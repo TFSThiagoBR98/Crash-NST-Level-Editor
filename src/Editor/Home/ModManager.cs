@@ -264,7 +264,7 @@ namespace NST
         /// </summary>
         private void OnClickAddMod()
         {
-            List<string> files = FileExplorer.OpenFiles("", FileExplorer.EXT_ARCHIVES, true);
+            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, true);
             if (files.Count == 0) return;
 
             foreach (string file in files)
@@ -294,7 +294,7 @@ namespace NST
         /// </summary>
         private void OnClickLocateMod(string path)
         {
-            List<string> files = FileExplorer.OpenFiles(Path.GetDirectoryName(path) ?? "", FileExplorer.EXT_ARCHIVES, false);
+            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, Path.GetDirectoryName(path));
             if (files.Count != 1) return;
 
             string filePath = files[0];

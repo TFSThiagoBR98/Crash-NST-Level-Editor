@@ -727,7 +727,7 @@ namespace NST
 
             if (saveAs || ForceSaveAs || string.IsNullOrEmpty(path))
             {
-                path = FileExplorer.SaveFile("", FileExplorer.EXT_ARCHIVES, Archive.GetName());
+                path = FileExplorer.SaveFile(FileExplorer.EXT_ARCHIVES, Archive.GetName());
                 if (path == null) return;
                 LocalStorage.AddRecentFile(path, IsLevelArchive);
                 ForceSaveAs = false;
@@ -876,7 +876,7 @@ namespace NST
         /// </summary>
         private void ExtractFile(IgArchiveFile file)
         {
-            string? filePath = FileExplorer.SaveFile("", FileExplorer.EXT_ALL, file.GetName());
+            string? filePath = FileExplorer.SaveFile(FileExplorer.EXT_ALL, file.GetName());
 
             if (filePath != null)
             {

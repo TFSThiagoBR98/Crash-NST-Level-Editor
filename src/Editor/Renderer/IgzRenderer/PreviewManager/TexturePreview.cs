@@ -143,7 +143,7 @@ namespace NST
                 ? Path.GetFileNameWithoutExtension(image._name) + ".png"
                 : "image.png";
 
-            string? filePath = FileExplorer.SaveFile("", FileExplorer.EXT_IMAGES, fileName);
+            string? filePath = FileExplorer.SaveFile(FileExplorer.EXT_IMAGES, fileName);
 
             if (filePath == null) return;
 
@@ -162,7 +162,7 @@ namespace NST
                 return;
             }
 
-            List<string> files = FileExplorer.OpenFiles("", FileExplorer.EXT_IMAGES, false);
+            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_IMAGES, false, "");
             if (files.Count != 1) return;
 
             // Load image

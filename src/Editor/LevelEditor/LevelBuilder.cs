@@ -41,7 +41,7 @@ namespace NST
 
                 if (ImGuiUtils.CenteredButton("Open Level Editor", size))
                 {
-                    List<string> files = FileExplorer.OpenFiles(LocalStorage.ArchivePath, FileExplorer.EXT_ARCHIVES, false);
+                    List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
                     if (files.Count == 0) return;
 
                     try
@@ -58,7 +58,7 @@ namespace NST
 
                 if (ImGuiUtils.CenteredButton("Play Custom Level", size))
                 {
-                    List<string> files = FileExplorer.OpenFiles(LocalStorage.ArchivePath, FileExplorer.EXT_ARCHIVES, false);
+                    List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
                     if (files.Count == 0) return;
                     IgArchive.Open(files[0]).TryRunLevel();
                 }

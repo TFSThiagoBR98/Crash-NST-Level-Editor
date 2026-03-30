@@ -351,7 +351,7 @@ namespace NST
 
         public static void OnClickOpen(bool fromLevelEditor = false)
         {
-            List<string> files = FileExplorer.OpenFiles(LocalStorage.ArchivePath, FileExplorer.EXT_ARCHIVES, false);
+            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
 
             if (files.Count == 0) return;
 

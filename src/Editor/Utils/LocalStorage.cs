@@ -143,7 +143,7 @@ namespace NST
         /// </summary>
         public static void SetNewGamePath()
         {
-            List<string> paths = FileExplorer.OpenFiles(LocalStorage.DEFAULT_GAME_PATH, FileExplorer.EXT_EXECUTABLE, false);
+            List<string> paths = FileExplorer.OpenFiles(FileExplorer.EXT_EXECUTABLE, false, DEFAULT_GAME_PATH);
 
             if (paths.Count > 0)
             {

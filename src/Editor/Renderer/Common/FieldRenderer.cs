@@ -647,7 +647,7 @@ namespace NST
                         ImGui.SameLine();
                         if (ImGui.SmallButton("Export raw"))
                         {
-                            string? path = FileExplorer.SaveFile("", FileExplorer.EXT_ALL, name + ".bin");
+                            string? path = FileExplorer.SaveFile(FileExplorer.EXT_ALL, name + ".bin");
                             if (path != null)
                             {
                                 File.WriteAllBytes(path, mem.Cast<u8>().ToArray());

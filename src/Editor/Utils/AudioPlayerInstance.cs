@@ -120,7 +120,7 @@ namespace NST
 
             if (ImGui.Button("Import audio"))
             {
-                List<string> paths = FileExplorer.OpenFiles("", FileExplorer.EXT_AUDIO, false);
+                List<string> paths = FileExplorer.OpenFiles(FileExplorer.EXT_AUDIO, false, "");
                 if (paths.Count == 1)
                 {
                     ModalRenderer.ShowLoadingModal("Importing audio...");
@@ -179,7 +179,7 @@ namespace NST
 
         private static void ExportAudio()
         {
-            string? path = FileExplorer.SaveFile("", FileExplorer.EXT_AUDIO, _name + ".mp3");
+            string? path = FileExplorer.SaveFile(FileExplorer.EXT_AUDIO, _name + ".mp3");
             if (path == null) return;
 
             File.WriteAllBytes(path, _audioStream.ToArray());

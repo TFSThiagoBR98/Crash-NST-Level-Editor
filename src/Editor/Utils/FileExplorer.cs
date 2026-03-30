@@ -13,11 +13,11 @@ namespace NST
         public static string EXT_AUDIO = "Audio Files (*.mp3,*.ogg,*.wav)|*.mp3;*.ogg;*.wav|" + EXT_ALL;
         public static string EXT_EXECUTABLE = "Executable Files (*.exe)|*.exe|" + EXT_ALL;
         
-        public static List<string> OpenFiles(string initialDirectory, string extensions, bool multiSelect)
+        public static List<string> OpenFiles(string extensions, bool multiSelect, string? initialDirectory = null)
         {
             using OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                InitialDirectory = initialDirectory,
+                InitialDirectory = initialDirectory ?? LocalStorage.Get("last_open_path", LocalStorage.ArchivePath),
                 Filter = extensions,
                 Multiselect = multiSelect
             };
@@ -26,10 +26,20 @@ namespace NST
             {
                 if (multiSelect)
                 {
+                    if (initialDirectory == null)
+                    {
+                        string? path = Path.GetDirectoryName(openFileDialog.FileNames[0]);
+                        if (path != null) LocalStorage.Set("last_open_path", path);
+                    }
                     return openFileDialog.FileNames.ToList();
                 }
                 else
                 {
+                    if (initialDirectory == null)
+                    {
+                        string? path = Path.GetDirectoryName(openFileDialog.FileName);
+                        if (path != null) LocalStorage.Set("last_open_path", path);
+                    }
                     return [openFileDialog.FileName];
                 }
             }
@@ -37,17 +47,22 @@ namespace NST
             return [];
         }
 
-        public static string? SaveFile(string initialDirectory, string extensions, string defaultName)
+        public static string? SaveFile(string extensions, string defaultName, string? initialDirectory = null)
         {
             using SaveFileDialog saveFileDialog = new SaveFileDialog()
             {
-                InitialDirectory = initialDirectory,
+                InitialDirectory = initialDirectory ?? LocalStorage.Get("last_save_path", ""),
                 FileName = SanitizeFileName(defaultName),
                 Filter = extensions
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                if (initialDirectory == null)
+                {
+                    string? path = Path.GetDirectoryName(saveFileDialog.FileName);
+                    if (path != null) LocalStorage.Set("last_save_path", path);
+                }
                 return saveFileDialog.FileName;
             }
 
