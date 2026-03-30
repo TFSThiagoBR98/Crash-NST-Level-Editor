@@ -7,9 +7,11 @@ namespace NST
     {
         private const float YAW_INIT = 90.0f;
         private const float PITCH_INIT = 0.0f;
-        private const float MOVE_SPEED = 400.0f;
         private const float VELOCITY_DAMPING = 15.0f;
-        private const float SENSITIVITY = 0.25f;
+
+        public float MouseSpeed = 50f;
+        public float CameraSpeed = 100.0f;
+        public bool SpeedIncrease = true;
 
         private readonly THREE.Camera _camera;
 
@@ -21,6 +23,7 @@ namespace NST
         private int _lastX;
         private int _lastY;
         private bool _firstMouse = true;
+        private DateTime _moveStartTime;
 
         private bool _focused = false;
         public bool Focused() => _focused || _velocity.X != 0 || _velocity.Y != 0 || _velocity.Z != 0;
@@ -62,10 +65,6 @@ namespace NST
             var keyboard = SilkWindow.instance._input.Keyboards[0];
             if (keyboard == null) return;
 
-            float moveSpeed = MOVE_SPEED * 100.0f;
-
-            if (keyboard.IsKeyPressed(Key.ShiftLeft)) moveSpeed *= 6.0f;
-
             THREE.Vector3 input = THREE.Vector3.Zero();
 
             if (keyboard.IsKeyPressed(Key.W)) input += _camera.Front;
@@ -77,7 +76,19 @@ namespace NST
 
             if (input.LengthSq() > 0)
             {
+                float moveSpeed = CameraSpeed * 100.0f;
+
+                if (keyboard.IsKeyPressed(Key.ShiftLeft)) 
+                    moveSpeed *= 6.0f;
+
+                if (SpeedIncrease)
+                    moveSpeed *= 1 + (float)(DateTime.Now - _moveStartTime).TotalSeconds * 1.5f;
+                
                 _velocity.AddScaledVector(input.Normalize(), moveSpeed * deltaTime);
+            }
+            else
+            {
+                _moveStartTime = DateTime.Now;
             }
         }
 
@@ -96,8 +107,8 @@ namespace NST
                 int deltaX = e.X - _lastX;
                 int deltaY = e.Y - _lastY;
 
-                _yaw -= deltaX * SENSITIVITY;
-                _pitch -= deltaY * SENSITIVITY;
+                _yaw -= deltaX * MouseSpeed * 0.005f;
+                _pitch -= deltaY * MouseSpeed * 0.005f;
 
                 _pitch = Math.Clamp(_pitch, -89.0f, 89.0f);
             }

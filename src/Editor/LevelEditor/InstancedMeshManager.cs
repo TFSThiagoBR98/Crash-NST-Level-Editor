@@ -102,12 +102,7 @@ namespace NST
         {
             string? modelName = _model?.Name.ToLower();
 
-            if (Entities.Count > 0 && Entities.First().Object is CScriptTriggerEntity)
-            {
-                group.Layers.Set((int)LevelExplorer.CameraLayer.Triggers);
-                group.Traverse(o => o.Layers.Set((int)LevelExplorer.CameraLayer.Triggers));
-            }
-            else if (modelName == null)
+            if (modelName == null)
             {
                 group.Layers.Set((int)LevelExplorer.CameraLayer.AllEntities);
                 group.Traverse(o => o.Layers.Set((int)LevelExplorer.CameraLayer.AllEntities));
@@ -265,8 +260,11 @@ namespace NST
 
                 value.Add(entity);
             }
-            else if (entity.Object is not CScriptTriggerEntity && entity.Object is not CDynamicClipEntity && 
+            else if (entity.Object is not CDynamicClipEntity && 
+                     entity.Object is not CScriptTriggerEntity && 
                      entity.Object.GetComponent<CTriggerVolumeBoxComponentData>() == null && 
+                     entity.Object.GetComponent<CVisualDataBoxComponentData>() == null &&
+                     entity.Object.GetComponent<CBoxLightComponentData>() == null &&
                      entity.Object.GetComponent<igPrefabComponentData>() == null)
             {
                 _entitiesWithoutModel.Add(entity);

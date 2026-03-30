@@ -40,7 +40,6 @@ namespace NST
         public bool OutlineTrigger { get; set; } = false;
 
         public NSTSpline? Spline { get; private set; }
-        public THREE.Object3D? TriggerVolumeBox { get; private set; }
         private Dictionary<CWaypoint, NSTWaypoint> _waypoints = [];
 
         public THREE.Color Color { get; }
@@ -107,6 +106,7 @@ namespace NST
                     else if (c is CVisualDataBoxComponentData) lightCount++;
                     else if (c is CStaticVfxComponentData)     vfxCount++;
                     else if (c is CLoopingVfxComponentData)    vfxCount++;
+                    else if (c is CDSPOverrideComponentData)   sfxCount++;
                     else if (c is CAmbientAudioComponentData)  sfxCount++;
                     else if (c is common_OnStartMusicData)     sfxCount++;
                     else otherCount++;
@@ -153,6 +153,21 @@ namespace NST
                 group.Attach(child);
             }
 
+            SetLayer(group, selected);
+
+            Object3D?.Parent?.Remove(Object3D);
+
+            Object3D = group;
+
+            _waypoints.Clear();
+
+            return group;
+        }
+
+        private void SetLayer(THREE.Object3D group, bool selected)
+        {
+            LevelExplorer.CameraLayer? layer = null;
+
             if (Object is not CScriptTriggerEntity)
             {
                 foreach (NSTEntity parent in Parents.OfType<NSTEntity>().Where(p => p.Object is CScriptTriggerEntity))
@@ -161,41 +176,51 @@ namespace NST
                 }
             }
 
-            if (Object is CScriptTriggerEntity)
+            if (!selected && IsTemplate)
             {
-                LevelExplorer.CameraLayer layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.Triggers;
-                group.Traverse(e => e.Layers.Set((int)layer));
+                layer = LevelExplorer.CameraLayer.Templates;
+            }
+            else if (!selected && IsHidden)
+            {
+                layer = LevelExplorer.CameraLayer.Hidden;
+            }
+            else if (Object.GetComponent<CBoxLightComponentData>() != null || Object.GetComponent<CVisualDataBoxComponentData>() != null)
+            {
+                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.VisualBox;
+            }
+            else if (Object.GetComponent<CDSPOverrideComponentData>() != null)
+            {
+                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.AudioBox;
+            }
+            else if (Object.GetComponent<CTriggerVolumeComponentData>() != null)
+            {
+                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.TriggerVolume;
+            }
+            else if (Object is CScriptTriggerEntity)
+            {
+                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.ScriptTrigger;
             }
             else if (!selected)
             {
-                LevelExplorer.CameraLayer layer = LevelExplorer.CameraLayer.Default;
-
-                if (IsTemplate) layer = LevelExplorer.CameraLayer.Templates;
-                else if (IsHidden) layer = LevelExplorer.CameraLayer.Hidden;
-                else if (Object is CDynamicClipEntity) layer = LevelExplorer.CameraLayer.ClipEntities;
+                if (Object is CDynamicClipEntity) layer = LevelExplorer.CameraLayer.ClipEntities;
                 else if (Model == null) layer = LevelExplorer.CameraLayer.AllEntities;
-
-                group.Traverse(e => e.Layers.Set((int)layer));
             }
             else if (IsPrefabChild && ParentPrefabInstance?.IsSelected == true && Model?.Name.Contains("cloud", StringComparison.InvariantCultureIgnoreCase) == true)
             {
-                group.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.Clouds));
+                layer = LevelExplorer.CameraLayer.Clouds;
             }
 
-            _waypoints.Clear();
-
-            Object3D?.Parent?.Remove(Object3D);
-
-            Object3D = group;
-
-            return group;
+            if (layer != null)
+            {
+                group.Traverse(e => e.Layers.Set((int)layer));
+            }
         }
 
         public List<THREE.Object3D> CreateChildrenObject3D(bool selected = false)
         {
             List<THREE.Object3D> group = [];
 
-            THREE.Mesh? special = CreateSpecialObject3D(selected);
+            THREE.Object3D? special = CreateSpecialObject3D(selected);
             if (special != null) group.Add(special);
 
             foreach (NSTObject child in Children)
@@ -208,12 +233,12 @@ namespace NST
             return group;
         }
 
-        private THREE.Mesh? CreateSpecialObject3D(bool focused = false)
+        private THREE.Object3D? CreateSpecialObject3D(bool focused = false)
         {
             if (Object is CEntity entity && (Object is CScriptTriggerEntity || Object is CDynamicClipEntity))
             {
-                THREE.Color color = new THREE.Color(Object is CScriptTriggerEntity ? 0xFFA500 : 0xFF0000);
-                var layer = Object is CDynamicClipEntity ? LevelExplorer.CameraLayer.ClipEntities : LevelExplorer.CameraLayer.Triggers;
+                THREE.Color color = IsSFX ? ColorSFX : new THREE.Color(Object is CScriptTriggerEntity ? 0xFFA500 : 0xFF0000);
+                var layer = IsSFX ? LevelExplorer.CameraLayer.AudioBox : Object is CDynamicClipEntity ? LevelExplorer.CameraLayer.ClipEntities : LevelExplorer.CameraLayer.ScriptTrigger;
                 THREE.Mesh mesh = CreateBoxHelper(entity._min.ToVector3(), entity._max.ToVector3(), color, focused, layer);
 
                 if (Object is CScriptTriggerEntity && !OutlineTrigger)
@@ -226,26 +251,63 @@ namespace NST
                 return mesh;
             }
 
-            if (Object.TryGetComponent(out CTriggerVolumeBoxComponentData? box))
+            if (Object.TryGetComponent(out CTriggerVolumeBoxComponentData? trigger))
             {
-                THREE.Vector3 position = box._offset.ToVector3();
-                THREE.Euler rotation = box._rotation.Mul(THREE.MathUtils.DEG2RAD).ToEuler();
+                THREE.Vector3 position = trigger._offset.ToVector3();
+                THREE.Euler rotation = trigger._rotation.Mul(THREE.MathUtils.DEG2RAD).ToEuler();
+                THREE.Vector3 scale = trigger._dimensions.ToVector3();
+                var b = SetupBox(trigger, position, rotation, scale, focused);
+                b.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.TriggerVolume));
+                if (IsSpawned)
+                {
+                    b.ApplyMatrix4(ObjectToWorld());
+                    return b;
+                }
+            }
+            if (Object.TryGetComponent(out CVisualDataBoxComponentData? box))
+            {
                 THREE.Vector3 scale = box._dimensions.ToVector3();
-
-                THREE.Vector3 parentScale = new THREE.Vector3();
-                ObjectToWorld().Decompose(new THREE.Vector3(), new THREE.Quaternion(), parentScale);
-
-                THREE.Matrix4 localMatrix = new THREE.Matrix4().Compose(position / parentScale, new THREE.Quaternion().SetFromEuler(rotation), scale / parentScale);
-
-                THREE.Color color =  MathUtils.FromImGuiColor(box.GetType().GetUniqueColor());
-                THREE.Vector3 min = THREE.Vector3.One() * -0.5f;
-                THREE.Vector3 max = THREE.Vector3.One() * 0.5f;
-
-                TriggerVolumeBox = CreateBoxHelper(min, max, color, focused);
-                TriggerVolumeBox.ApplyMatrix4(localMatrix);
+                var b = SetupBox(box, new THREE.Vector3(), new THREE.Euler(), scale, focused);
+                b.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.VisualBox));
+                if (IsSpawned)
+                {
+                    b.ApplyMatrix4(ObjectToWorld());
+                    return b;
+                }
+            }
+            if (Object.TryGetComponent(out CBoxLightComponentData? boxLight))
+            {
+                THREE.Vector3 scale = boxLight._dimensions.ToVector3();
+                var b = SetupBox(boxLight, new THREE.Vector3(), new THREE.Euler(), scale, focused);
+                b.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.VisualBox));
+                if (IsSpawned)
+                {
+                    b.ApplyMatrix4(ObjectToWorld());
+                    return b;
+                }
             }
 
             return null;
+        }
+
+        private THREE.Object3D SetupBox(igComponentData component, THREE.Vector3 position, THREE.Euler rotation, THREE.Vector3 scale, bool focused)
+        {
+            THREE.Vector3 parentScale = new THREE.Vector3();
+            ObjectToWorld().Decompose(new THREE.Vector3(), new THREE.Quaternion(), parentScale);
+
+            THREE.Matrix4 localMatrix = new THREE.Matrix4().Compose(position / parentScale, new THREE.Quaternion().SetFromEuler(rotation), scale / parentScale);
+
+            THREE.Color color =  MathUtils.FromImGuiColor(component.GetType().GetUniqueColor());
+            THREE.Vector3 min = THREE.Vector3.One() * -0.5f;
+            THREE.Vector3 max = THREE.Vector3.One() * 0.5f;
+
+            THREE.Object3D box3D = CreateBoxHelper(min, max, color, focused);
+            box3D.ApplyMatrix4(localMatrix);
+
+            Components ??= new ComponentManager(this);
+            Components.CreateObject3D(component, box3D);
+
+            return box3D;
         }
 
         public NSTWaypoint AddWaypoint(CWaypoint waypoint, LevelExplorer explorer)
@@ -307,7 +369,7 @@ namespace NST
                     link.Parents.Add(this);
                     Children.Add(link);
                 }
-                else if (explorer.FileManager.FindObjectInOpenFiles(reference, out _) is CEntityHandleList handleList)
+                else if (explorer.FileManager.FindObjectInOpenFiles(reference, out _) is igSmartHandleList handleList)
                 {
                     foreach (var handleMetaField in handleList._data)
                     {
@@ -735,9 +797,9 @@ namespace NST
             if (Object is CPlayerStartEntity playerStart)
             {
                 renderEntityDataSeparator();
-                ComponentRenderer.RenderObjectReference("Camera:", playerStart._camera?.Reference, typeof(CCameraBase), explorer, (value) =>
+                ComponentRenderer.RenderObjectReference("Camera:", playerStart._camera?.Reference, typeof(CCamera), explorer, (value) =>
                 {
-                    if (playerStart._camera == null) playerStart._camera = new CCameraBase();
+                    playerStart._camera ??= new CCamera();
                     playerStart._camera.Reference = value;
                     explorer.ArchiveRenderer.SetObjectUpdated(ArchiveFile, playerStart, true);
                 });

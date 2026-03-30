@@ -21,6 +21,8 @@ namespace NST
         private static List<NSTComponent> _copyComponents = [];
         private static LevelExplorer? _copyEntityExplorer = null;
 
+        public Dictionary<string, THREE.Object3D> Gizmos { get; private set; } = [];
+
         private static readonly HashSet<Type> _autoFocusComponents = 
         [
             typeof(common_Spawner_TemplateData), 
@@ -272,6 +274,7 @@ namespace NST
             Entity.Object._entityData._componentData.BuildDict();
 
             Explorer.ArchiveRenderer.SetObjectUpdated(Entity.ArchiveFile, clone, true);
+            Explorer.ArchiveRenderer.SetObjectUpdated(Entity.ArchiveFile, Entity.Object, true);
             Explorer.ArchiveRenderer.SetObjectUpdated(Entity.ArchiveFile, Entity.Object._entityData._componentData, true);
 
             // Update cache
@@ -487,11 +490,16 @@ namespace NST
                 {
                     if (!req.Selected)
                     {
-                        if (Entity.Object3D != null && Entity.TriggerVolumeBox != null 
-                            && Entity.Object3D.Children.Contains(Entity.TriggerVolumeBox))
+                        if (Entity.Object3D != null)
                         {
-                            Entity.Object3D.Remove(Entity.TriggerVolumeBox);
-                            Explorer.RenderNextFrame = true;
+                            foreach ((var key, var obj3D) in Gizmos)
+                            {
+                                if (Entity.Object3D.Children.Contains(obj3D))
+                                {
+                                    Entity.Object3D.Remove(obj3D);
+                                    Explorer.RenderNextFrame = true;
+                                }
+                            }
                         }
 
                         _selection.Clear();
@@ -516,6 +524,51 @@ namespace NST
                         _selection.Remove(_components[(int)i]);
                     }
                 }
+            }
+        }
+
+        public void CreateObject3D(igComponentData component, THREE.Object3D object3D)
+        {
+            string key = component.ObjectName ?? component.GetType().Name;
+
+            if (Gizmos.TryGetValue(key, out THREE.Object3D? prev))
+            {
+                prev.Parent?.Remove(prev);
+            }
+
+            Gizmos[key] = object3D;
+        }
+
+        public void UpdateBox3D(igComponentData component, THREE.Vector3? position = null, THREE.Euler? rotation = null, THREE.Vector3? scale = null)
+        {
+            string key = component.ObjectName ?? component.GetType().Name;
+            if (!Gizmos.TryGetValue(key, out THREE.Object3D? obj3D))
+            {
+                return;
+            }
+
+            var exists = Entity.Object3D?.Children.Contains(obj3D);
+
+            if (exists == false && Entity.Object3D != null)
+            {
+                obj3D.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.TriggersOn));
+                Entity.Object3D.Add(obj3D);
+                Explorer.RenderNextFrame = true;
+            }
+            
+            if (position != null || rotation != null || scale != null)
+            {
+                position ??= new THREE.Vector3();
+                rotation ??= new THREE.Euler();
+                scale ??= new THREE.Vector3();
+
+                THREE.Vector3 parentScale = new THREE.Vector3();
+                Entity.ObjectToWorld().Decompose(new THREE.Vector3(), new THREE.Quaternion(), parentScale);
+
+                obj3D.Position.Copy(position / parentScale);
+                obj3D.Rotation.Copy(rotation);
+                obj3D.Scale.Copy(scale / parentScale);
+                Explorer.RenderNextFrame = true;
             }
         }
     }

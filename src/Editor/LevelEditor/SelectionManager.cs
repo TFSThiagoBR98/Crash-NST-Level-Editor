@@ -190,7 +190,7 @@ namespace NST
                 foreach (NSTEntity parent in obj.Parents.OfType<NSTEntity>().Where(p => p.Object is CScriptTriggerEntity))
                 {
                     if (parent.IsSelected || parent.Children.Any(c => c != obj && c.IsSelected)) continue;
-                    parent.Object3D?.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.Triggers));
+                    parent.Object3D?.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.ScriptTrigger));
                 }
 
                 obj.IsSelected = false;

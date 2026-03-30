@@ -107,13 +107,13 @@ namespace NST
 
         public override void RenderEntityData(LevelExplorer explorer)
         {
-            ComponentRenderer.RenderObject("Enable camera:", Object._camera, FileNamespace, typeof(CCameraBase), explorer, (value) => 
+            ComponentRenderer.RenderObject("Enable camera:", Object._camera, FileNamespace, typeof(CCamera), explorer, (value) => 
             {
                 Object._camera = (CCameraBase?)value;
                 explorer.ArchiveRenderer.SetObjectUpdated(ArchiveFile, Object, true);
             });
 
-            ComponentRenderer.RenderObject("Disable camera:", Object._explicitlyDefinedPreviousCamera, FileNamespace, typeof(CCameraBase), explorer, (value) => 
+            ComponentRenderer.RenderObject("Disable camera:", Object._explicitlyDefinedPreviousCamera, FileNamespace, typeof(CCamera), explorer, (value) => 
             {
                 Object._explicitlyDefinedPreviousCamera = (CCameraBase?)value;
                 explorer.ArchiveRenderer.SetObjectUpdated(ArchiveFile, Object, true);

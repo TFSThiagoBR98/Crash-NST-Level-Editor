@@ -14,6 +14,7 @@ namespace Alchemy
         private FixupCollection _fixups = new FixupCollection();
         private Dictionary<igObject, int> _objectOffsets = [];
         private bool _nextElementRefCounted = false;
+        private bool _groupMemoryPools = false;
 
         public int GetSize() => (int)_currentWriter.BaseStream.Length;
         public int GetPosition() => (int)_currentWriter.BaseStream.Position;
@@ -33,9 +34,9 @@ namespace Alchemy
         /// <param name="objects">The list of objects to include in the file</param>
         /// <param name="dependencies">The dependencies the objects in this file relies on</param>
         /// <returns>The newly built IGZ file as raw bytes</returns>
-        public static byte[] BuildIGZ(List<igObject> objects, TDEP_Fixup dependencies)
+        public static byte[] BuildIGZ(List<igObject> objects, TDEP_Fixup dependencies, bool groupMemoryPools = false)
         {
-            return new IgzWriter().Build(objects, dependencies);
+            return new IgzWriter() { _groupMemoryPools = groupMemoryPools }.Build(objects, dependencies);
         }
 
         private byte[] Build(List<igObject> objects, TDEP_Fixup dependencies) 
@@ -113,8 +114,6 @@ namespace Alchemy
         /// <returns>The raw data containing all dumped objects</returns>
         private byte[] BuildObjects(List<igObject> objects)
         {
-            MemoryPool defaultMemoryPool = objects.Count == 0 ? MemoryPool.Default : objects[0].MemoryPool;
-
             var objectList = (igObjectList?)objects.FirstOrDefault(e => e.GetType() == typeof(igObjectList));
             var nameList     = (igNameList?)objects.FirstOrDefault(e => e.GetType() == typeof(igNameList));
             var nameListNSPC = (igNameList?)objects.Where(e => e.GetType() == typeof(igNameList)).Skip(1).FirstOrDefault();
@@ -123,6 +122,26 @@ namespace Alchemy
 
             List<igObject> allObjects = FindAllObjectsRecursive(objects, []);
             if (allObjects.Count == objects.Count) allObjects = objects;
+
+            // Group memory pools
+
+            MemoryPool defaultMemoryPool = objects.Count == 0 ? MemoryPool.Default : objects[0].MemoryPool;
+
+            if (_groupMemoryPools)
+            {
+                foreach (igObject obj in allObjects)
+                {
+                    obj.MemoryPool = defaultMemoryPool;
+
+                    foreach (var field in obj.GetFields())
+                    {
+                        if (field.GetValue(obj) is IMemoryRef mem)
+                        {
+                            mem.MemoryPool = defaultMemoryPool;
+                        }
+                    }
+                }
+            }
 
             List<igObject> namedObjects = allObjects.Where(e => e.ObjectName != null).ToList();
 

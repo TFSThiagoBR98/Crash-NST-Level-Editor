@@ -187,6 +187,9 @@ namespace NST
             if (ImGui.DragFloat3("##", ref num, speed))
             {
                 vec = num.ToVec3MetaField();
+                vec._x = (float)(Math.Truncate((decimal)vec._x * 10) / 10) % 360f;
+                vec._y = (float)(Math.Truncate((decimal)vec._y * 10) / 10) % 360f;
+                vec._z = (float)(Math.Truncate((decimal)vec._z * 10) / 10) % 360f;
                 changed = true;
             }
 

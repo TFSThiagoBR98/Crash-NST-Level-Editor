@@ -127,6 +127,7 @@ namespace NST
                     else if (entity.Object is CScriptTriggerEntity && entity.Parents.Any(p => p.GetObject() is not CScriptTriggerEntity)) continue;
                     else if (entity.Object is CPlayerStartEntity || entity.Object.GetComponents().Any(c => _alwaysDisplayComponents.Any(t => c.GetType().IsAssignableTo(t)))) added = false;
                     else if (entity.Parents.Count(p => p is NSTEntity e && e.IsSpawned && e.Object is not CWorldEntity && e.Object is not CScriptTriggerEntity && e.Object.GetComponent<common_Spawner_TemplateData>() == null) == 1) continue;
+                    else if (entity.Model == null && entity.Object is CScriptTriggerEntity && entity.Object.GetComponent<CDSPOverrideComponentData>() != null) sfx.Add(obj);
                     else if (entity.Model == null && entity.Object is not CScriptTriggerEntity && entity.Object is not CDynamicClipEntity && entity.Object is not CPlayerStartEntity)
                     {
                         if (entity.Parents.Any(p => p is not NSTEntity e || !e.IsTemplate) && entity.Object.GetComponent<common_Spawner_TemplateData>() == null) continue;
@@ -375,8 +376,28 @@ namespace NST
             if (Object.IsSelected || tree.SelectedNode == this) flags |= ImGuiTreeNodeFlags.Selected;
             else flags &= ~ImGuiTreeNodeFlags.Selected;
 
-            string displayName = Object is NSTEntity entity && entity.IsPrefabInstance ? $"[Prefab] {Name}" : Name;
+            NSTEntity? entity = Object as NSTEntity;
+
+            string displayName = entity?.IsPrefabInstance == true ? $"[Prefab] {Name}" : Name;
             bool subselected = Object.IsSelected && tree.SelectedNode != this;
+
+            var infos = tree.Explorer.FileManager.GetInfos(Object.ArchiveFile);
+            bool updated = false;
+
+            if (infos != null)
+            {
+                updated = infos.updatedObjects.Contains(Object.GetObject()) == true;
+
+                if (!updated && entity != null)
+                {
+                    updated = entity.Object.GetComponents().Any(infos.updatedObjects.Contains) == true;
+
+                    if (!updated && entity.GetChildTemplate() is NSTEntity childTemplate)
+                    {
+                        updated = infos.updatedObjects.Contains(childTemplate);
+                    }
+                }
+            }
 
             if (subselected) ImGui.PushStyleColor(ImGuiCol.Header, new System.Numerics.Vector4(1, 1, 1, 0.15f));
 
@@ -393,7 +414,16 @@ namespace NST
             }
 
             HandleNavigation(tree);
+
+            if (updated)
+            {
+                displayName += "*";
+                ImGui.PushStyleColor(ImGuiCol.Text, 0xff0099ff);
+            }
+
             RenderName(displayName);
+
+            if (updated) ImGui.PopStyleColor();
         }
 
         private void RenderFolderNode(EntityTreeView tree, ImGuiTreeNodeFlags flags)

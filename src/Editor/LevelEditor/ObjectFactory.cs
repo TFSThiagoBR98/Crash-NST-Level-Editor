@@ -141,6 +141,8 @@ namespace NST
                         if (ImGui.MenuItem(displayName)) TryAddObject(() => AddCrate(objectName, explorer));
                     }
 
+                    if (ImGui.MenuItem("Nitro (not moving)")) TryAddObject(() => AddGeneric("L220_BeeHaving_Crates", "Crate_Nitro_Flying", "Crates", explorer));
+                    if (ImGui.MenuItem("Fake Nitro")) TryAddObject(() => AddFakeNitro(explorer));
                     if (ImGui.MenuItem("Big TNT")) TryAddObject(() => AddBigTNTCrate(explorer));
 
                     ImGui.Separator();
@@ -357,6 +359,7 @@ namespace NST
                 {
                     if (ImGui.MenuItem("New DynamicClipEntity")) TryAddObject(() => AddCDynamicClipEntity(explorer));
                     if (ImGui.MenuItem("New Death Trigger")) TryAddObject(() => AddDeathTrigger(explorer));
+                    if (ImGui.MenuItem("New Death Trigger (Water)")) TryAddObject(() => AddDeathTrigger(explorer, true));
                     ImGui.Separator();
                     if (ImGui.MenuItem("New Boost Pad")) TryAddObject(() => AddGenericTemplate("Chase_BoostPad", "Platforms", explorer));
                     if (ImGui.MenuItem("New Bounce Mine")) TryAddObject(() => AddGenericTemplate("Chase_BounceMine", "Hazards", explorer));
@@ -516,6 +519,28 @@ namespace NST
                 spawnerEntity.RefreshModel(explorer, templateEntity.Model!);
             }
         }
+
+        private static void AddFakeNitro(LevelExplorer explorer)
+        {
+            IgArchive sourceArchive = IgArchive.Open(Path.Combine(LocalStorage.ArchivePath, "L220_BeeHaving.pak"));
+            IgArchiveFile sourceFile = sourceArchive.FindFile("L220_BeeHaving.igz")!;
+            IgzFile sourceIgz = sourceFile.ToIgzFile();
+
+            CGameEntity fakeNitro = sourceIgz.FindObject<CGameEntity>("CGameEntity")!;
+            CGameEntityData entityData = (CGameEntityData)fakeNitro._entityData!;
+
+            fakeNitro.ObjectName = "Fake_Nitro_001";
+            fakeNitro._transform!._nonUniformPersistentParentSpaceScale = new igVec3fMetaField(1, 1, 1);
+            fakeNitro._bitfield._isScaleDirty = false;
+            fakeNitro._bitfield._canVolumeCull = true;
+            fakeNitro._properties._startHidden = false;
+            entityData._entityFlags = 2879492;
+            entityData._modelName = @"Levels\Crash1\crates\Crash_Crate_Nitro";
+
+            explorer.GetOrCreateIgzFile("Crates", out IgArchiveFile crateFile, out IgzFile crateIgz);
+
+            explorer.Clone([fakeNitro], sourceArchive, sourceIgz, crateFile, crateIgz);
+        }
     
         private static void AddCollectible(string name, LevelExplorer explorer)
         {
@@ -672,18 +697,32 @@ namespace NST
             explorer.SelectObject(clip, true);
         }
 
-        private static void AddDeathTrigger(LevelExplorer explorer)
+        private static void AddDeathTrigger(LevelExplorer explorer, bool water = false)
         {
-            SetupTemplateArchive();
+            IgArchive sourceArchive;
+            IgzFile sourceIgz;
+            CScriptTriggerEntity deathTrigger;
 
-            CScriptTriggerEntity deathTrigger = templateIgz!.FindObject<CScriptTriggerEntity>("Hazard_Pit")!;
+            if (!water)
+            {
+                SetupTemplateArchive();
+                sourceArchive = templateArchive!;
+                sourceIgz = templateIgz!;
+                deathTrigger = templateIgz!.FindObject<CScriptTriggerEntity>("Hazard_Pit")!;
+            }
+            else
+            {
+                sourceArchive = IgArchive.Open(Path.Join(LocalStorage.ArchivePath, "B102_RipperRoo.pak"));
+                sourceIgz = sourceArchive.FindFile("B102_RipperRoo_Border.igz")!.ToIgzFile();
+                deathTrigger = sourceIgz.FindObject<CScriptTriggerEntity>("HazardPit_Water")!;
+            }
 
             deathTrigger._min = new igVec3fMetaField(-600, -300, 0);
             deathTrigger._max = new igVec3fMetaField(600, 300, 300);
 
             explorer.GetOrCreateIgzFile("Hazards", out IgArchiveFile hazardFile, out IgzFile hazardIgz);
 
-            explorer.Clone([deathTrigger], templateArchive, templateIgz, hazardFile, hazardIgz, 800);
+            explorer.Clone([deathTrigger], sourceArchive, sourceIgz, hazardFile, hazardIgz, 800);
         }
 
         private static void AddFadeTeleporter(LevelExplorer explorer)

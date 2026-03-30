@@ -683,7 +683,7 @@ namespace NST
         {
             IgzRenderer renderer = manager.Explorer.FileManager.GetOrCreateRenderer(manager.Entity.ArchiveFile, manager.Explorer.ArchiveRenderer);
 
-            RenderFloat3("Dimensions:", ref component._dimensions, component, manager);
+            bool updated = RenderFloat3("Dimensions:", ref component._dimensions, component, manager, true);
             
             ImGui.Spacing();
             if (ImGui.TreeNodeEx("Box Settings...", ImGuiTreeNodeFlags.NoTreePushOnOpen))
@@ -696,6 +696,9 @@ namespace NST
             {
                 renderer.RenderObject(component._data, component._data.GetFields());
             }
+
+            THREE.Vector3? scale = updated ? component._dimensions.ToVector3() : null;
+            manager.Manager.UpdateBox3D(component, scale: scale);
         }
 
         private static void RenderComponent(common_CameraDistanceFadeEntityData component, NSTComponent manager)
@@ -796,30 +799,16 @@ namespace NST
 
             manager.RenderAdvancedProperties(component, component.GetFields().Skip(3).Take(8).ToList());
 
-            if (manager.Entity.TriggerVolumeBox == null) return;
-
-            var triggerExists = manager.Entity.Object3D?.Children.Contains(manager.Entity.TriggerVolumeBox);
-
-            if (triggerExists == false && manager.Entity.Object3D != null)
+            if (!updated)
             {
-                manager.Entity.TriggerVolumeBox.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.TriggersOn));
-                manager.Entity.Object3D.Add(manager.Entity.TriggerVolumeBox);
-                manager.Explorer.RenderNextFrame = true;
+                manager.Manager.UpdateBox3D(component);
             }
-            
-            if (updated)
+            else
             {
                 THREE.Vector3 position = component._offset.ToVector3();
                 THREE.Euler rotation = component._rotation.Mul(THREE.MathUtils.DEG2RAD).ToEuler();
                 THREE.Vector3 scale = component._dimensions.ToVector3();
-
-                THREE.Vector3 parentScale = new THREE.Vector3();
-                manager.Entity.ObjectToWorld().Decompose(new THREE.Vector3(), new THREE.Quaternion(), parentScale);
-
-                manager.Entity.TriggerVolumeBox.Position.Copy(position / parentScale);
-                manager.Entity.TriggerVolumeBox.Rotation.Copy(rotation);
-                manager.Entity.TriggerVolumeBox.Scale.Copy(scale / parentScale);
-                manager.Explorer.RenderNextFrame = true;
+                manager.Manager.UpdateBox3D(component, position, rotation, scale);
             }
         }
 
@@ -900,8 +889,8 @@ namespace NST
 
         private static void RenderComponent(common_Path_Platform_Mover component, NSTComponent manager)
         {
-            RenderObjectReference("Spline Camera 1:", component._common_Gem_Platform_SplineDatas002, typeof(CSplineCamera), manager);
-            RenderObjectReference("Spline Camera 2:", component._common_Gem_Platform_SplineDatas001, typeof(CSplineCamera), manager);
+            RenderObjectReference("Spline Camera 1:", component._common_Gem_Platform_SplineDatas002, typeof(CCamera), manager);
+            RenderObjectReference("Spline Camera 2:", component._common_Gem_Platform_SplineDatas001, typeof(CCamera), manager);
             RenderFloat("Initial Delay: ", ref component._common_Gem_Platform_SplineDatas007, component, manager);
 
             if (component._common_Gem_Platform_SplineDatas006.Reference != null)
@@ -1099,7 +1088,7 @@ namespace NST
         {
             RenderColor( "Color:     ", ref component._color, component, manager);
             RenderFloat( "Intensity: ", ref component._intensity, component, manager);
-            RenderFloat3("Dimensions:", ref component._dimensions, component, manager);
+            bool updated = RenderFloat3("Dimensions:", ref component._dimensions, component, manager);
             ImGui.Spacing(); ImGui.Separator(); ImGui.Spacing();
             RenderFloat("Near attenuation:", ref component._nearAttenuation, component, manager);
             RenderFloat("Attenuation:     ", ref component._attenuation, component, manager);
@@ -1109,6 +1098,9 @@ namespace NST
             RenderString("Cookie Texture:  ", ref component._cookieTextureName, component, manager);
             RenderEnum("Light bake type: ", ref component._lightBakeType, component, manager);
             RenderCheckbox("Distance cull:   ", ref component._distanceCull, component, manager);
+
+            THREE.Vector3? scale = updated ? component._dimensions.ToVector3() : null;
+            manager.Manager.UpdateBox3D(component, scale: scale);
         }
 
 #endregion

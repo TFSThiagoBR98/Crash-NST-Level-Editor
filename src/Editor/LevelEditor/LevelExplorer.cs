@@ -32,6 +32,7 @@ namespace NST
         private EntityTreeView _treeView;
         private Dictionary<HashedReference, int> _collisionData = [];
         private THREE.Silk.TransformControls _gizmos;
+        private FirstPersonControls _fpsControls;
         private SelectionBox _selectionBox;
         private System.Numerics.Vector4 _renderBounds = new System.Numerics.Vector4();
 
@@ -52,14 +53,17 @@ namespace NST
             Default = 0, 
             AllEntities = 1, 
             Splines = 2, 
-            ClipEntities = 3,
-            Camera = 4, 
-            CameraBox = 5,
-            Triggers = 6, 
-            Templates = 7, 
-            Clouds = 8, 
-            Shadows = 9, 
-            Hidden = 10,
+            Camera = 3, 
+            CameraBox = 4,
+            ClipEntities = 5,
+            ScriptTrigger = 6,
+            TriggerVolume = 7,
+            VisualBox = 8,
+            AudioBox = 9,
+            Templates = 10, 
+            Clouds = 11, 
+            Shadows = 12, 
+            Hidden = 13,
             TriggersOn = 20,
         };
 
@@ -67,10 +71,13 @@ namespace NST
         {
             { "All Entities", true },
             { "Splines", true },
-            { "DynamicClipEntity", true },
-            { "Camera", true },
-            { "CameraBox", false },
-            { "ScriptTriggerEntity", false },
+            { "Cameras", true },
+            { "Camera Boxes", false },
+            { "Dynamic Clips", true },
+            { "Script Triggers", true },
+            { "Trigger Volumes", false },
+            { "Visual Boxes", false },
+            { "Audio Boxes", false },
             { "Templates", false },
             { "Clouds", false },
             { "Shadows", false },
@@ -201,7 +208,7 @@ namespace NST
                     else
                     {
                         _shouldOpenContextMenu = true;
-                        (_controls as FirstPersonControls)?.ResetMousePos();
+                        _fpsControls?.ResetMousePos();
                     }
                 }
                 else if (_refreshSelectionOnMouseUp)
@@ -219,7 +226,7 @@ namespace NST
         private void InitScene()
         {
             _camera.Near = 10.0f;
-            _camera.Far = 120000.0f;
+            _camera.Far = LocalStorage.Get("camera_far", 120000.0f);
             _scene.Fog.Far = _camera.Far;
             _camera.UpdateProjectionMatrix();
 
@@ -236,7 +243,13 @@ namespace NST
             d2.Position.Set(-.2f, .3f, -.9f);
             _scene.Add(d2);
 
-            _controls = new FirstPersonControls(this, _camera);
+            _fpsControls = new FirstPersonControls(this, _camera)
+            {
+                MouseSpeed = LocalStorage.Get("mouse_speed", 50f),
+                CameraSpeed = LocalStorage.Get("camera_speed", 100f),
+                SpeedIncrease = LocalStorage.Get("increase_speed", true)
+            };
+            _controls = _fpsControls;
 
             _gizmos = new THREE.Silk.TransformControls(this, _camera, GetClipSpaceMousePos);
 
@@ -950,13 +963,14 @@ namespace NST
                     _updateCachedModels = false;
                 }
 
-                ArchiveRenderer?.RenderMenuBar(SaveArchive);
+                var close = ArchiveRenderer?.RenderMenuBar(SaveArchive);
+                if (close == true) IsOpen = false;
 
                 IsWindowFocused = _isDragging | ImGui.IsWindowHovered(ImGuiHoveredFlags.ChildWindows);
 
                 if (ImGui.BeginTable("LevelEditorTable" + GetHashCode(), 3, ImGuiTableFlags.Resizable))
                 {
-                    ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthFixed, 250);
+                    ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthFixed, 300);
                     ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthStretch);
                     ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthFixed, 350);
                     ImGui.TableNextColumn();
@@ -1215,6 +1229,7 @@ namespace NST
                 ImGuiUtils.Prefix("Render distance:");
                 if (ImGui.SliderFloat("##renderDistance", ref _camera.Far, 4000, 200000, $"%.0f"))
                 {
+                    LocalStorage.Set("camera_far", _camera.Far);
                     _scene.Fog.Far = _camera.Far;
                     _camera.UpdateProjectionMatrix();
                     RenderNextFrame = true;
@@ -1247,12 +1262,33 @@ namespace NST
                         UpdateActiveLayers(_camera.Layers);
                         LocalStorage.Set("layer_" + layer.Key, enabled);
                     }
+                    if (layer.Key == "Camera Boxes" || layer.Key == "Audio Boxes")
+                        ImGui.Separator();
                 }
                 ImGui.Spacing();
             }
 
             if (ImGui.CollapsingHeader("Controls"))
             {
+                ImGui.PushItemWidth(-1);
+                ImGui.Spacing();
+                ImGuiUtils.Prefix("Mouse sensitivity:");
+                if (ImGui.SliderFloat("##mouseSpeed", ref _fpsControls.MouseSpeed, 1f, 100f, $"%.1f"))
+                {
+                    LocalStorage.Set("mouse_speed", _fpsControls.MouseSpeed);
+                }
+                ImGuiUtils.Prefix("Movement speed:");
+                if (ImGui.SliderFloat("##cameraSpeed", ref _fpsControls.CameraSpeed, 1f, 400f, $"%.0f"))
+                {
+                    LocalStorage.Set("camera_speed", _fpsControls.CameraSpeed);
+                }
+                ImGuiUtils.Prefix("Gradual speed increase:");
+                if (ImGui.Checkbox("##increaseSpeed", ref _fpsControls.SpeedIncrease))
+                {
+                    LocalStorage.Set("increase_speed", _fpsControls.SpeedIncrease);
+                }
+                ImGui.PopItemWidth();
+
                 ImGuiUtils.ColoredSeparator("Camera", controlsColor);
                 ImGui.BulletText("W,A,S,D: move camera");
                 ImGui.BulletText("Right click: rotate camera");
@@ -1399,7 +1435,7 @@ namespace NST
             {
                 raycaster.layers.Disable((int)CameraLayer.Splines);
                 raycaster.layers.Disable((int)CameraLayer.CameraBox);
-                raycaster.layers.Disable((int)CameraLayer.Triggers);
+                raycaster.layers.Disable((int)CameraLayer.ScriptTrigger);
                 raycaster.layers.Disable((int)CameraLayer.TriggersOn);
                 raycaster.layers.Disable((int)CameraLayer.ClipEntities);
             }

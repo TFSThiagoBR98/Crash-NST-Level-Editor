@@ -37,8 +37,10 @@ Moreover, custom levels created with this tool won't interfere with the original
 
 ### Showcased levels
 
-- SpeedLan's Carnage levels ([Nexus Mods](https://www.nexusmods.com/crashbandicootnsanetrilogy/mods/50?tab=images#list-modimages-1))
-- Camo's Road To Death ([Youtube](https://www.youtube.com/watch?v=7l9D7dloNAo))
+- C2 Carnage Modpack by SpeedLan ([Nexus Mods](https://www.nexusmods.com/crashbandicootnsanetrilogy/mods/50?tab=images#list-modimages-1))
+- "Toxic Machinery" by AlfyGame  ([Youtube](https://www.youtube.com/watch?v=6niFSFbw8Kk))
+- "Midnight Cat Crisis" by Jzrlza ([Youtube](https://www.youtube.com/watch?v=pD1xRmWjAV4))
+- "Flush Hour" by Camo  ([Youtube](https://www.youtube.com/watch?v=rofvJ1tQxis))
 
 ## Installation
 

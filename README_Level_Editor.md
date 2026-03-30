@@ -19,6 +19,7 @@
   - [Outline Switch Crate](#outline-switch-crate)
   - [Checkpoint Text](#checkpoint-text)
   - [On Start Music](#on-start-music)
+  - [Invisible borders](#invisible-borders)
 
 # New Level
 
@@ -57,7 +58,7 @@ _basic empty template_:
 - Use the quick-access menu (right-click) to easily import useful objects
 - Create tabs by clicking on the title of a window and dragging it over another window's title to make it easier to switch between levels
 
-You can also find the list of all objects that have already been tested here: [docs.google.com/spreadsheets/d/1jVLJTm1idsps4p5KSXfI80fT5y7HFQuSiLOLkI18K30](https://docs.google.com/spreadsheets/d/1jVLJTm1idsps4p5KSXfI80fT5y7HFQuSiLOLkI18K30/edit?usp=sharing)
+You can also find the list of the main enemies, hazards and platforms across every level, some with special indications: [docs.google.com/spreadsheets/d/1jVLJTm1idsps4p5KSXfI80fT5y7HFQuSiLOLkI18K30](https://docs.google.com/spreadsheets/d/1jVLJTm1idsps4p5KSXfI80fT5y7HFQuSiLOLkI18K30/edit?usp=sharing)
 
 ## Save & Play
 
@@ -86,7 +87,7 @@ Level Name
 - **Hint**: Level's hint (appears on level load)
 
 Level settings:
-- **Character**: Which character to use when starting the level (Crash/Coco)
+- **Character**: Which character to use when starting the level (Crash, Coco...)
 - **Crash Mode**: The current Crash version (affects the pause menu style and the level start/end)
 - **Gameplay Mode**: The starting gameplay mode/vehicle (Traditional, Swimming, Motorbike, Jetski, Plane)
 - **Enable Ride**: Whether to enable special objects for this level (they won't work otherwise)
@@ -265,7 +266,7 @@ Among other things, they are used with [Spawner Templates](#spawner-templates) t
 
 Most of the time if you have an issue where an object doesn't spawn in-game but appears fine in the editor, it's because of a misplaced trigger volume.
 
-They're hidden by default to improve visibility, but you can enable them using `Editor settings -> Visible Camera Layers -> Triggers`.
+They're hidden by default to improve visibility, but you can enable them using `Editor settings -> Visible Camera Layers -> Script Triggers`.
 
 Trigger and child selection:
 - `Click` on a trigger to select all of its children
@@ -339,3 +340,11 @@ It's possible to change the text that is displayed when breaking checkpoints, al
 You can listen to the default music, and import your own audio files (.mp3) using this component.
 
 <img src="assets/readme/level_editor/c_music.jpg" alt="On Start Music" width="300"/>
+
+## Invisible Borders
+
+You may encounter invisible walls in many levels that aren't associated with any [Static Model](#static-models) or [Dynamic Clip](#dynamic-clips).
+
+You can find them in the "Other" category, they will have a component of type `CLevelBorderComponent` that contains optimized border collisions for the entire level. 
+
+Viewing and editing these collisions isn't currently supported. If you want to get rid of the invisible borders, simply delete these objects.

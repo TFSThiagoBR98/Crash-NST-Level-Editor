@@ -156,8 +156,10 @@ namespace NST
             ImGui.End();
         }
 
-        public void RenderMenuBar(Action<bool, bool, bool>? customSaveMethod = null)
+        public bool RenderMenuBar(Action<bool, bool, bool>? customSaveMethod = null)
         {
+            bool clickClose = false;
+
             if (ImGui.BeginMenuBar())
             {
                 bool fromLevelEditor = customSaveMethod != null;
@@ -205,7 +207,11 @@ namespace NST
                         }
                         ImGui.EndMenu();
                     }
-                    if (ImGui.MenuItem("Close")) IsOpen = false;
+                    if (ImGui.MenuItem("Close"))
+                    {
+                        if (fromLevelEditor) clickClose = true;
+                        else IsOpen = false;
+                    }
 
                     ImGui.EndMenu();
                 }
@@ -228,18 +234,20 @@ namespace NST
                         {
                             FileInfo fileInfo = new FileInfo(autoBackupPath);
                             string formatted = fileInfo.LastWriteTime.ToString("dd/MM HH:mm");
-                            if (ImGui.MenuItem($"Restore auto backup ({formatted})")) RestoreBackup(fromLevelEditor, autoBackupPath);
+                            if (ImGui.MenuItem($"Restore auto backup ({formatted})")) TryRestoreBackup(fromLevelEditor, autoBackupPath);
+                            ImGui.Separator();
                         }
                         if (!_hasBackup && ImGui.MenuItem("Create backup")) CreateBackup();
-                        if (_hasBackup && ImGui.MenuItem("Restore manual backup")) RestoreBackup(fromLevelEditor);
-                        if (_hasBackup && ImGui.MenuItem("Delete manual backup")) DeleteBackup();
+                        if (_hasBackup && ImGui.MenuItem("Restore backup")) TryRestoreBackup(fromLevelEditor);
+                        if (_hasBackup && ImGui.MenuItem("Overwrite backup")) OverwriteBackup();
+                        if (_hasBackup && ImGui.MenuItem("Delete backup")) DeleteBackup();
                         if (!string.IsNullOrEmpty(LocalStorage.AutoBackupSize))
                         {
                             ImGui.Separator();
                             if (ImGui.MenuItem("Clear auto-backup folder", LocalStorage.AutoBackupSize))
                             {
                                 ModalRenderer.ShowDeleteModal(
-                                    $"Are you sure you want to delete all automatic backups? ({LocalStorage.AutoBackupSize})\n\nFolder to remove: {LocalStorage.AutoBackupPath}", 
+                                    $"Are you sure you want to delete all automatic backups across all levels? ({LocalStorage.AutoBackupSize})\n\nFolder to remove: {LocalStorage.AutoBackupPath}", 
                                     LocalStorage.DeleteAutoBackupFolder
                                 );
                             }
@@ -257,6 +265,8 @@ namespace NST
 
                 ImGui.EndMenuBar();
             }
+
+            return clickClose;
         }
 
         private void RenderPlayCurrentLevel()
@@ -287,8 +297,15 @@ namespace NST
 
         private void CreateBackup()
         {
-            File.Copy(Archive.GetPath(), Archive.GetPath() + ".backup");
-            _hasBackup = true;
+            if (ForceSaveAs)
+            {
+                ModalRenderer.ShowMessageModal("Warning", "You need to save the level first");
+            }
+            else
+            {
+                File.Copy(Archive.GetPath(), Archive.GetPath() + ".backup");
+                _hasBackup = true;
+            }
         }
 
         private void DeleteBackup()
@@ -300,10 +317,31 @@ namespace NST
             });
         }
 
-        private void RestoreBackup(bool fromLevelEditor, string? backupPath = null)
+        private void OverwriteBackup()
+        {
+            ModalRenderer.ShowDeleteModal("Are you sure you want to overwrite the archive's backup?", () =>
+            {
+                File.Delete(Archive.GetPath() + ".backup");
+                File.Copy(Archive.GetPath(), Archive.GetPath() + ".backup");
+            });
+        }
+
+        private void TryRestoreBackup(bool fromLevelEditor, string? backupPath = null)
         {
             if (backupPath == null && !_hasBackup) return;
 
+            if (IsUpdated)
+            {
+                ModalRenderer.ShowDeleteModal("You have unsaved changes. Restore backup?", () => RestoreBackup(fromLevelEditor, backupPath));
+            }
+            else
+            {
+                RestoreBackup(fromLevelEditor, backupPath);
+            }
+        }
+
+        private void RestoreBackup(bool fromLevelEditor, string? backupPath = null)
+        {
             // Restore backup
             backupPath ??= Archive.GetPath() + ".backup";
             File.Copy(backupPath, Archive.GetPath(), true);
@@ -319,13 +357,17 @@ namespace NST
 
         public void TryReload(bool fromLevelEditor)
         {
-            if (!IsUpdated)
+            if (ForceSaveAs)
             {
-                Reload(fromLevelEditor);
+                ModalRenderer.ShowMessageModal("Warning", "You need to save the level first");
+            }
+            else if (IsUpdated)
+            {
+                ModalRenderer.ShowWarningModal("This archive has pending changes!", $"Are you sure you want to reload {Archive.GetName()} without saving?", () => Reload(fromLevelEditor));
             }
             else
             {
-                ModalRenderer.ShowWarningModal("This archive has pending changes!", $"Are you sure you want to reload {Archive.GetName()} without saving?", () => Reload(fromLevelEditor));
+                Reload(fromLevelEditor);
             }
         }
 

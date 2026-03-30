@@ -1909,6 +1909,9 @@ namespace THREE.Silk
                 //handle.Material.Color = (Color)handle.Material["_color"];
                 //handle.Material.Opacity = (float)handle.Material["_opacity"] ;
 
+                handle.Material.Color = (Color)handle.Material.UserData["_color"];
+                handle.Material.Opacity = (float)handle.Material.UserData["_opacity"];
+
                 // if selected
                 if (transformControls.enabled && transformControls.axis != null)
                 {
@@ -1945,12 +1948,12 @@ namespace THREE.Silk
                     }
 
                 }
-                else
-                {
-                    // revoke original color and opacity
-                    handle.Material.Color = (Color)handle.Material.UserData["_color"];
-                    handle.Material.Opacity = (float)handle.Material.UserData["_opacity"];
-                }
+                // else
+                // {
+                //     // revoke original color and opacity
+                //     handle.Material.Color = (Color)handle.Material.UserData["_color"];
+                //     handle.Material.Opacity = (float)handle.Material.UserData["_opacity"];
+                // }
 
             }
 

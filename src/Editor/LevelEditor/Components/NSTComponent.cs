@@ -22,6 +22,7 @@ namespace NST
             get => IsUnique ? _component : _componentCopy;
         }
 
+        public ComponentManager Manager => _manager;
         public igComponentData OriginalObject => _component;
 
         public NSTComponent(string key, igComponentData component, ComponentManager manager, bool isUnique)

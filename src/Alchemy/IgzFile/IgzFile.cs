@@ -54,7 +54,9 @@ namespace Alchemy
                 ReplaceHandlesNamespace(currentNamespace, newNamespace);
             }
 
-            return IgzWriter.BuildIGZ(Objects, includeDependencies ? Dependencies : []);
+            bool groupMemoryPools = _path.StartsWith("maps/");
+
+            return IgzWriter.BuildIGZ(Objects, includeDependencies ? Dependencies : [], groupMemoryPools);
         }
 
         /// <summary>

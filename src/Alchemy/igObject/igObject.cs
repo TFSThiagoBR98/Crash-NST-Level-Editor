@@ -48,7 +48,6 @@ namespace Alchemy
             if (attribs.GetBaseMetaObjectType() != null)
             {
                 CachedFieldAttr _dynamicFieldMemory = attribs.GetField("_dynamicFieldMemory")!;
-                CachedFieldAttr _meta = attribs.GetField("_meta")!;
 
                 igRawRefMetaField rawRef = (igRawRefMetaField)_dynamicFieldMemory.GetValue(this)!;
                 if (rawRef._address != 0)
