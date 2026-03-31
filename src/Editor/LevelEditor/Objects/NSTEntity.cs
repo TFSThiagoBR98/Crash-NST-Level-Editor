@@ -645,6 +645,10 @@ namespace NST
             igVec3fMetaField rotationDegrees = transform._parentSpaceRotation.Mul(THREE.MathUtils.RAD2DEG);
             if (RenderVector3("Rotation", ref rotationDegrees, 0.1f))
             {
+                rotationDegrees._x = (float)(Math.Truncate((decimal)rotationDegrees._x * 10) / 10) % 360f;
+                rotationDegrees._y = (float)(Math.Truncate((decimal)rotationDegrees._y * 10) / 10) % 360f;
+                rotationDegrees._z = (float)(Math.Truncate((decimal)rotationDegrees._z * 10) / 10) % 360f;
+
                 if (Object._transform == null)
                 {
                     Object._transform = transform;
