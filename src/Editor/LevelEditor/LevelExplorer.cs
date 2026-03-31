@@ -74,7 +74,7 @@ namespace NST
             { "Cameras", true },
             { "Camera Boxes", false },
             { "Dynamic Clips", true },
-            { "Script Triggers", true },
+            { "Script Triggers", false },
             { "Trigger Volumes", false },
             { "Visual Boxes", false },
             { "Audio Boxes", false },
@@ -251,7 +251,8 @@ namespace NST
             };
             _controls = _fpsControls;
 
-            _gizmos = new THREE.Silk.TransformControls(this, _camera, GetClipSpaceMousePos);
+            bool enableTranslateXYZ = LocalStorage.Get("enable_translate_xyz", true);
+            _gizmos = new THREE.Silk.TransformControls(this, _camera, enableTranslateXYZ, GetClipSpaceMousePos);
 
             foreach ((string layerName, bool active) in _layers)
             {
@@ -432,6 +433,11 @@ namespace NST
 
             // Step 2 : Load models (+ find meshes and materials)
 
+            Dictionary<string, IgArchiveFile> modelFiles = Archive
+                .GetFiles()
+                .Where(f => (f.GetPath().StartsWith("actors/") || f.GetPath().StartsWith("models/")) && f.IsIGZ())
+                .ToDictionary(e => e.GetName(false).ToLowerInvariant(), e => e);
+
             for (int i = 0; i < modelNames.Count; i++)
             {
                 (string modelName, string modelPath) = modelNames.ElementAt(i);
@@ -444,13 +450,7 @@ namespace NST
                     continue;
                 }
 
-                IgArchiveFile? modelFile = Archive.GetFiles().Find(f =>
-                {
-                    return (f.GetPath().StartsWith("actors/") || f.GetPath().StartsWith("models/")) && 
-                            f.IsIGZ() && f.GetName(false).ToLowerInvariant() == modelNameLower;
-                });
-
-                if (modelFile == null)
+                if (!modelFiles.TryGetValue(modelNameLower, out IgArchiveFile? modelFile))
                 {
                     Console.WriteLine($"WARNING: Failed to find model file for {modelName}.");
                     continue;
@@ -1287,6 +1287,13 @@ namespace NST
                 {
                     LocalStorage.Set("increase_speed", _fpsControls.SpeedIncrease);
                 }
+                ImGuiUtils.Prefix("Show diamond gizmo:");
+                if (ImGui.Checkbox("##diamondGizmo", ref _gizmos.EnableTranslateXYZ))
+                {
+                    LocalStorage.Set("enable_translate_xyz", _gizmos.EnableTranslateXYZ);
+                    _gizmos._gizmo.UpdateVisibility("XYZ", _gizmos.EnableTranslateXYZ);
+                    RenderNextFrame = true;
+                }
                 ImGui.PopItemWidth();
 
                 ImGuiUtils.ColoredSeparator("Camera", controlsColor);
@@ -1340,7 +1347,7 @@ namespace NST
         public THREE.Vector2? GetClipSpaceMousePos(THREE.Silk.MouseEventArgs e) => GetClipSpaceMousePos(e.X, e.Y);
         private THREE.Vector2? GetClipSpaceMousePos(float x, float y)
         {
-            if (!IsWindowFocused) return null;
+            if (!IsWindowFocused || (!_clickedInsideScene && ImGui.IsMouseDown(ImGuiMouseButton.Left))) return null;
             
             x = (x - _renderBounds.X) / _renderBounds.Z;
             y = (y - _renderBounds.Y) / _renderBounds.W;

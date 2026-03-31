@@ -12,6 +12,7 @@
   - [Prefab Instances](#prefab-instances)
   - [Script Triggers](#script-triggers)
   - [Dynamic Clips](#dynamic-clips)
+  - [Invisible borders](#invisible-borders)
 ---
 - [Special components](#special-components)
   - [Splines](#splines)
@@ -19,7 +20,6 @@
   - [Outline Switch Crate](#outline-switch-crate)
   - [Checkpoint Text](#checkpoint-text)
   - [On Start Music](#on-start-music)
-  - [Invisible borders](#invisible-borders)
 
 # New Level
 
@@ -283,6 +283,14 @@ Trigger and child copy/paste:
 
 <img src="assets/readme/level_editor/clips.jpg" alt="Clips" width="700"/><br>
 
+## Invisible Borders
+
+You may encounter invisible walls in many levels that aren't associated with any [Static Model](#static-models) or [Dynamic Clip](#dynamic-clips).
+
+You can find them in the "Other" category, they will have a component of type `CLevelBorderComponent` that contains optimized border collisions for the entire level. 
+
+Viewing and editing these collisions isn't currently supported. If you want to get rid of the invisible borders, simply delete these objects.
+
 # Special components
 
 ## Splines
@@ -340,11 +348,3 @@ It's possible to change the text that is displayed when breaking checkpoints, al
 You can listen to the default music, and import your own audio files (.mp3) using this component.
 
 <img src="assets/readme/level_editor/c_music.jpg" alt="On Start Music" width="300"/>
-
-## Invisible Borders
-
-You may encounter invisible walls in many levels that aren't associated with any [Static Model](#static-models) or [Dynamic Clip](#dynamic-clips).
-
-You can find them in the "Other" category, they will have a component of type `CLevelBorderComponent` that contains optimized border collisions for the entire level. 
-
-Viewing and editing these collisions isn't currently supported. If you want to get rid of the invisible borders, simply delete these objects.

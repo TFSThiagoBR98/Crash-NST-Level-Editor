@@ -63,7 +63,7 @@ namespace NST
         private void UpdateKeyboard(float deltaTime)
         {
             var keyboard = SilkWindow.instance._input.Keyboards[0];
-            if (keyboard == null) return;
+            if (keyboard == null || keyboard.IsKeyPressed(Key.ControlLeft)) return;
 
             THREE.Vector3 input = THREE.Vector3.Zero();
 

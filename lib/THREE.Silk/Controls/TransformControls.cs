@@ -466,9 +466,12 @@ namespace THREE.Silk
 
         IControlsContainer control;
         Func<MouseEventArgs, Vector2?> getMousePositionFunc;
+        public bool EnableTranslateXYZ = true;
 
-        public TransformControls(IControlsContainer control, Camera camera, Func<MouseEventArgs, Vector2?> getMousePosition) : base()
+        public TransformControls(IControlsContainer control, Camera camera, bool enableTranslateXYZ, Func<MouseEventArgs, Vector2?> getMousePosition) : base()
         {
+            EnableTranslateXYZ = enableTranslateXYZ;
+
             _gizmo = new TransformControlsGizmo(this);
             _plane = new TransformControlsPlane(this);
             this.Add(_gizmo);
@@ -508,7 +511,11 @@ namespace THREE.Silk
         bool ComputeMousePosition(MouseEventArgs e)
         {
             Vector2? clipMouse = getMousePositionFunc(e);
-            if (clipMouse == null) return false;
+            if (clipMouse == null)
+            {
+                this.dragging = false;
+                return false;
+            }
 
             mouse.X = -clipMouse.X;
             mouse.Y = clipMouse.Y;
@@ -928,9 +935,10 @@ namespace THREE.Silk
 
                 if (allIntersections[i].object3D.Visible || includeInvisible)
                 {
-
-                    return allIntersections[i];
-
+                    if (EnableTranslateXYZ || allIntersections[i].object3D.Name != "XYZ")
+                    {
+                        return allIntersections[i];
+                    }
                 }
 
             }
@@ -1502,8 +1510,24 @@ namespace THREE.Silk
             (picker["translate"] as Object3D).Visible = false;
             (picker["rotate"] as Object3D).Visible = false;
             (picker["scale"] as Object3D).Visible = false;
+
+            if (!transformControls.EnableTranslateXYZ)
+            {
+                UpdateVisibility("XYZ", false);
+            }
         }
 
+        public void UpdateVisibility(string name, bool visible)
+        {
+            Traverse(e =>
+            {
+                if (e.Name == name)
+                {
+                    e.Visible = visible;
+                    e.Material.Visible = visible;
+                }
+            });
+        }
 
         private Object3D SetupGizmo(Hashtable gizmoMap)
         {
