@@ -687,19 +687,25 @@ namespace NST
                     explorer.OnStartScaling(this);
                 }
             }
-            else if (RenderVector3("Scale   ", ref transform._nonUniformPersistentParentSpaceScale, 0.01f))
+            else
             {
-                explorer.InstanceManager.RefreshInstances(GetParentSpawners().Cast<NSTObject>().ToList());
-
-                if (Object._transform == null)
+                bool disableScale = Object is CScriptTriggerEntity || Object is CDynamicClipEntity;
+                if (disableScale) ImGui.BeginDisabled();
+                if (RenderVector3("Scale   ", ref transform._nonUniformPersistentParentSpaceScale, 0.01f))
                 {
-                    Object._transform = transform;
-                    explorer.ArchiveRenderer.SetObjectUpdated(ArchiveFile, Object, true);
-                }
-                explorer.ArchiveRenderer.SetEntityUpdated(this);
+                    explorer.InstanceManager.RefreshInstances(GetParentSpawners().Cast<NSTObject>().ToList());
 
-                Object3D?.Scale.Copy(transform._nonUniformPersistentParentSpaceScale.ToVector3());
-                explorer.RenderNextFrame = true;
+                    if (Object._transform == null)
+                    {
+                        Object._transform = transform;
+                        explorer.ArchiveRenderer.SetObjectUpdated(ArchiveFile, Object, true);
+                    }
+                    explorer.ArchiveRenderer.SetEntityUpdated(this);
+
+                    Object3D?.Scale.Copy(transform._nonUniformPersistentParentSpaceScale.ToVector3());
+                    explorer.RenderNextFrame = true;
+                }
+                if (disableScale) ImGui.EndDisabled();
             }
 
             // Render bounds min/max

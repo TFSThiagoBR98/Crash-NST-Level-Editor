@@ -654,47 +654,21 @@ namespace NST
 
         private static void AddCDynamicClipEntity(LevelExplorer explorer)
         {
-            explorer.GetOrCreateIgzFile("Clip", out IgArchiveFile file, out IgzFile igz);
+            IgArchive sourceArchive = IgArchive.Open(Path.Join(LocalStorage.ArchivePath, "L301_ToadVillage.pak"));
+            IgzFile sourceIgz = sourceArchive.FindFile("L301_ToadVillage_Crates.igz")!.ToIgzFile();
 
-            string name = igz.FindSuitableName("CDynamicClipEntity");
+            CDynamicClipEntity clip = sourceIgz.FindObject<CDynamicClipEntity>()!;
+            clip.ObjectName = "DynamicClip_001";
+            clip._min = new igVec3fMetaField(-800, -15, 0);
+            clip._max = new igVec3fMetaField(800, 15, 300);
+            clip._transform!._parentSpaceRotation = new igVec3fMetaField(0, 0, 0);
+            clip._clipTypeStorage._clipPlayers = true;
+            clip._clipTypeStorage._clipTeamHero = true;
+            clip._clipTypeStorage._clipNPCEnemies = true;
 
-            var entity = new CDynamicClipEntity() { ObjectName = name };
-            var entityData = new CDynamicClipEntityData() { ObjectName = entity.ObjectName + "_entityData" };
-            var componentData = new igComponentDataTable() { ObjectName = entityData.ObjectName + "_componentData" };
+            explorer.GetOrCreateIgzFile("Clip", out IgArchiveFile clipFile, out IgzFile clipIgz);
 
-            entity._entityData = entityData;
-            entityData._componentData = componentData;
-
-            entity._parentSpacePosition = explorer.Camera.Position.Clone().Add( explorer.Camera.Front * 400).ToVec3MetaField();
-
-            entity._min = new igVec3fMetaField(-800, -15, 0);
-            entity._max = new igVec3fMetaField(800, 15, 300);
-            entity._components = new igComponentList();
-            
-            entity._bitfield._enabledByVisualScript = true;
-            entity._bitfield._isPositionDirty = true; // todo: set not dirty as default
-            entity._bitfield._isRotationDirty = true;
-            entity._bitfield._isScaleDirty = true;
-            entity._bitfield._isMoving = true;
-            entity._bitfield._isVolumeCulled = true;
-            entity._bitfield._netHasAuthority = true;
-            entity._properties._actToggleOn = true;
-            entity._clipTypeStorage._clipNPCEnemies = true;
-            entity._clipTypeStorage._clipNPCAltEnemies = true;
-            entity._clipTypeStorage._clipPlayers = true;
-            entity._clipTypeStorage._clipWorld = true;
-
-            igz.Objects.Add(entity);
-
-            explorer.ArchiveRenderer.SetObjectUpdated(file, entity._entityData._componentData);
-            explorer.ArchiveRenderer.SetObjectUpdated(file, entity._entityData);
-            explorer.ArchiveRenderer.SetObjectUpdated(file, entity._components);
-            explorer.ArchiveRenderer.SetObjectUpdated(file, entity, true);
-
-            NSTEntity clip = new NSTEntity(entity, file);
-            explorer.InstanceManager.Register(clip);
-            explorer.RebuildTree();
-            explorer.SelectObject(clip, true);
+            explorer.Clone([clip], sourceArchive, sourceIgz, clipFile, clipIgz);
         }
 
         private static void AddDeathTrigger(LevelExplorer explorer, bool water = false)
