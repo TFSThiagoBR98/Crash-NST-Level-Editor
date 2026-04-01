@@ -48,7 +48,7 @@ namespace NST
             
             IgArchiveFile? packageFile = Archive.FindPackageFile();
 
-            _hasBackup = File.Exists(Archive.GetPath() + ".backup");
+            _hasBackup = !string.IsNullOrEmpty(Archive.GetPath()) && File.Exists(Archive.GetPath() + ".backup");
             _hasPackageFile = (packageFile != null);
             _rebuildPackageFile = _hasPackageFile;
             _includeInPackageFile.Clear();
@@ -729,6 +729,7 @@ namespace NST
             {
                 path = FileExplorer.SaveFile(FileExplorer.EXT_ARCHIVES, Archive.GetName());
                 if (path == null) return;
+                _hasBackup = File.Exists(path + ".backup");
                 LocalStorage.AddRecentFile(path, IsLevelArchive);
                 ForceSaveAs = false;
             }

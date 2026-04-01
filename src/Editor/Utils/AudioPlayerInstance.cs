@@ -216,6 +216,9 @@ namespace NST
             writer.Seek(20, SeekOrigin.Begin);
             writer.Write(mpegStream.Length);
 
+            writer.Seek(64, SeekOrigin.Begin);
+            writer.Write(mpegStream.Length * 12);
+
             writer.Seek(mpegFrameStart, SeekOrigin.Begin);
             writer.Write(mpegStream);
 
