@@ -666,7 +666,7 @@ namespace NST
             clip._clipTypeStorage._clipTeamHero = true;
             clip._clipTypeStorage._clipNPCEnemies = true;
 
-            explorer.GetOrCreateIgzFile("Clip", out IgArchiveFile clipFile, out IgzFile clipIgz);
+            explorer.GetOrCreateIgzFile("Clips", out IgArchiveFile clipFile, out IgzFile clipIgz);
 
             explorer.Clone([clip], sourceArchive, sourceIgz, clipFile, clipIgz);
         }
