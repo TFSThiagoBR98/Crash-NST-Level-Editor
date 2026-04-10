@@ -1061,6 +1061,15 @@ namespace NST
         {
             if (!IsWindowFocused) return;
 
+            // Unfocus all text fields (ugly but imgui doesn't provide a way to do it)
+            if (IsSceneFocused && ImGui.IsAnyItemActive())
+            {
+                int tmp = 0;
+                ImGui.SetCursorPos(new System.Numerics.Vector2(0, 0));
+                ImGui.SetKeyboardFocusHere();
+                ImGui.InputInt("##tmp", ref tmp);
+            }
+
             if (ImGui.Shortcut(ImGuiKey.ModCtrl | ImGuiKey.S))
             {
                 SaveArchive(launchGame: false, saveAs: false);
