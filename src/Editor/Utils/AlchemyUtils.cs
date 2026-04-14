@@ -15,8 +15,10 @@ namespace NST
         /// <param name="searchType">How the fileName should be matched against other file names</param>
         /// <returns>The archive file matching the fileName</returns>
         /// <exception cref="FileNotFoundException">Thrown if the file could not be found in any archive</exception>
-        public static IgArchiveFile FindFileInArchives(string fileName, out IgArchive outArchive, IgArchive? currentArchive = null, FileSearchType searchType = FileSearchType.Name)
+        public static IgArchiveFile? FindFileInArchives(string fileName, out IgArchive? outArchive, IgArchive? currentArchive = null, FileSearchType searchType = FileSearchType.Name)
         {
+            outArchive = null;
+
             // Try to find the file in the current archive
             IgArchiveFile? file = currentArchive?.FindFile(fileName, searchType);
 
@@ -27,19 +29,24 @@ namespace NST
             }
 
             // Find the file in its original archive
-            string archivePath = NamespaceUtils.GetInfos(NamespaceUtils.ComputeHash(fileName))?.pak
-                                 ?? throw new Exception($"Failed to find archive for {fileName}.");
+            string? archivePath = NamespaceUtils.GetInfos(NamespaceUtils.ComputeHash(fileName))?.pak;
 
-            IgArchive archive = IgArchive.Open(Path.Join(LocalStorage.GamePath, "archives", archivePath));
+            if (archivePath == null)
+            {
+                Console.WriteLine($"Failed to find archive for {fileName}.");
+                return null;
+            }
 
             Console.WriteLine($"Searching for {fileName} in archive {archivePath}...");
+
+            IgArchive archive = IgArchive.Open(Path.Join(LocalStorage.GamePath, "archives", archivePath));
 
             file = archive.FindFile(fileName, searchType);
             outArchive = archive;
 
             if (file == null)
             {
-                throw new FileNotFoundException($"Failed to find file {fileName} in any archive.");
+                Console.WriteLine($"Failed to find file {fileName} in any archive.");
             }
 
             return file;
@@ -51,7 +58,7 @@ namespace NST
         /// <param name="reference">The object reference</param>
         /// <returns>The igObject corresponding to the reference</returns>
         /// <exception cref="FileNotFoundException">Thrown if the object could not be found in any archive</exception>
-        public static igObject FindObjectInArchives(NamedReference reference, IgArchive? archive = null, LevelExplorer? explorer = null, IgzFile? igz = null)
+        public static igObject? FindObjectInArchives(NamedReference reference, IgArchive? archive = null, LevelExplorer? explorer = null, IgzFile? igz = null)
         {
             // Hashed namespace
             if (reference.namespaceName.All(char.IsDigit))
@@ -80,21 +87,26 @@ namespace NST
             if (obj != null) return obj;
 
             // Find the object in its original archive
-            string archivePath = NamespaceUtils.GetInfos(reference)?.pak
-                                 ?? throw new FileNotFoundException($"Failed to find archive for {reference.namespaceName}.");
+            string? archivePath = NamespaceUtils.GetInfos(reference)?.pak;
 
-            IgArchive originalArchive = IgArchive.Open(Path.Join(LocalStorage.GamePath, "archives", archivePath));
+            if (archivePath == null)
+            {
+                Console.WriteLine($"Failed to find archive for {reference}.");
+                return null;
+            }
 
             Console.WriteLine($"Searching for {reference} in archive {archivePath}...");
 
+            IgArchive originalArchive = IgArchive.Open(Path.Join(LocalStorage.GamePath, "archives", archivePath));
+
             obj = originalArchive.FindObject(reference);
 
-            if (obj != null)
+            if (obj == null)
             {
-                return obj;
+                Console.WriteLine($"Failed to find object {reference} in any archive.");
             }
 
-            throw new FileNotFoundException($"Failed to find object {reference} in any archive.");
+            return obj;
         }
     }
 }

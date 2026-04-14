@@ -29,11 +29,13 @@ namespace Alchemy
         /// <returns>The hashed version of the string</returns>
         public static uint ComputeHash(string name, uint basis = 0x811c9dc5)
         {
-            name = name.ToLower().Replace('\\', '/');
+            name = name.ToLowerInvariant().Replace('\\', '/');
 
-            for (int i = 0; i < name.Length; i++)
+            var bytes = Encoding.UTF8.GetBytes(name);
+
+            for (int i = 0; i < bytes.Length; i++)
             {
-                basis = (basis ^ name[i]) * 0x1000193;
+                basis = (basis ^ bytes[i]) * 0x1000193;
             }
 
             return basis;

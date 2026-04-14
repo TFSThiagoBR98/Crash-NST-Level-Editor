@@ -127,7 +127,7 @@ namespace Alchemy
             {
                 (string fullPath, string path) = filePaths[i];
 
-                IgArchiveFile file = new IgArchiveFile(archivePath, path, fileInfos[i], blockTables, fs);
+                IgArchiveFile file = new IgArchiveFile(archivePath, path, fullPath, fileInfos[i], blockTables, fs);
 
                 if (fileIds[i] != file.GetHash())
                     Console.WriteLine($"[ERROR] {i}: {fileIds[i]} != {file.GetHash()} for {path}");

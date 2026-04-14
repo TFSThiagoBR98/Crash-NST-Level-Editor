@@ -550,7 +550,8 @@ namespace NST
             }
             catch (Exception e)
             {
-               ModalRenderer.ShowMessageModal("Warning", $"An error occured while opening {node.File.GetName()}:\n\n{e.Message}");
+                Console.WriteLine(e);
+                ModalRenderer.ShowMessageModal("Warning", $"An error occured while opening {node.File.GetName()}:\n\n{e.Message}");
             }
         }
         

@@ -165,7 +165,15 @@ namespace NST
             }
 
             // Check if game is modded
-            _isGameModded = CheckIsGameModded();
+            try 
+            {
+                _isGameModded = CheckIsGameModded();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _isGameModded = false;
+            }
 
             // Load last selected level
             _selectedLevel = LocalStorage.Get("selected_level", 0);

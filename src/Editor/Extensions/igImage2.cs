@@ -101,11 +101,16 @@ namespace Alchemy
             {
                 case "r8g8b8a8_dx11":
                     return CompressionFormat.Rgba;
+                case "b8g8r8a8_tile_ps4":
+                    return CompressionFormat.Bgra;
                 case "dxt1_dx11":
+                case "dxt1_tile_ps4":
                     return CompressionFormat.Bc1;
                 case "dxt5_dx11":
+                case "dxt5_tile_ps4":
                     return CompressionFormat.Bc3;
                 case "bc5_dx11":
+                case "bc5_tile_ps4":
                     return CompressionFormat.Bc5;
                 default:
                     throw new Exception($"Unknown compression format: {format}");

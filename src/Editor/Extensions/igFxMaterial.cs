@@ -4,41 +4,48 @@ using System.Reflection;
 namespace NST
 {
     /// <summary>
-    /// Extensions for igFxMaterial objects
+    /// Extensions for igMaterial objects
     /// </summary>
-    public static class igFxMaterialExtensions
+    public static class igMaterialExtensions
     {
         /// <summary>
         /// Find the path of the material's diffuse texture file
         /// </summary>
-        public static NamedReference? FindDiffuseTexture(this igFxMaterial igMaterial)
+        public static NamedReference? FindDiffuseTexture(this igMaterial material)
         {
-            if (igMaterial.GetType() == typeof(CWaterMaterial) || igMaterial.GetType() == typeof(CFlowWaterMaterial))
+            if (material.GetType() == typeof(CWaterMaterial) || material.GetType() == typeof(CFlowWaterMaterial))
             {
                 return null;
             }
 
             const string fieldName = "_textureName_diffuse";
 
-            FieldInfo? field = igMaterial.GetType().GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo? field = material.GetType().GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+            string? formattedPath = null;
 
-            if (field == null)
+            if (field != null)
             {
-                Console.Error.WriteLine($"Warning: Diffuse texture field not found on type {igMaterial.GetType().Name}.");
-                return null;
+                string diffusePath = (string)field.GetValue(material)!;
+                formattedPath = diffusePath.Replace(":", "@").Replace("\\", "!").Replace("/", "!").Replace(".", "`");
             }
 
-            string diffusePath = (string)field.GetValue(igMaterial)!;
-            string formattedPath = diffusePath.Replace(":", "@").Replace("\\", "!").Replace("/", "!").Replace(".", "`");
+            igGraphicsMaterial? graphicsMaterial = material as igGraphicsMaterial ?? (material as igFxMaterial)?._graphicsMaterial;
 
-            List<NamedReference>? diffuseFileNames = igMaterial._graphicsMaterial?._graphicsObjects?._objects
+            List<NamedReference>? diffuseFileNames = graphicsMaterial?._graphicsObjects?._objects
                 .Select(e =>
                 {
                     if (e is not igGraphicsTexture attr) return null;
                     
                     string? fileName = attr._imageHandle.Reference?.namespaceName;
-                    
-                    if (fileName?.Contains(formattedPath) == true) // || fileName?.StartsWith("CavityBakedColorMap") == true)
+
+                    if (string.IsNullOrEmpty(formattedPath))
+                    {
+                        if (fileName?.StartsWith("ColorMap") == true)
+                        {
+                            return attr._imageHandle.Reference;
+                        }
+                    }
+                    else if (fileName?.Contains(formattedPath) == true) // || fileName?.StartsWith("CavityBakedColorMap") == true)
                     {
                         return attr._imageHandle.Reference;
                     }
@@ -51,7 +58,7 @@ namespace NST
 
             if (diffuseFileNames == null || diffuseFileNames.Count == 0)
             {
-                Console.Error.WriteLine($"Warning: No igGraphicsTexture attribute found on type {igMaterial.GetType().Name} for path {diffusePath} ({formattedPath}).");
+                Console.Error.WriteLine($"No igGraphicsTexture attribute found on type {material.GetType().Name} for path: {formattedPath}.");
                 return null;
             }
 

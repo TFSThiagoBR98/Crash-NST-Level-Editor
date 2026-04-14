@@ -324,7 +324,7 @@ namespace Alchemy
 
             int offset = GetSize();
 
-            if (memoryPoolIndex == 0 && alignment > 0)
+            if (alignment > 0)
             {
                 offset += (alignment - (offset % alignment)) % alignment;
             }

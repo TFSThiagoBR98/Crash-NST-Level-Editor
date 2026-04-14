@@ -491,7 +491,7 @@ namespace NST
                     continue;
                 }
 
-                igFxMaterial? matObject = (igFxMaterial?)AlchemyUtils.FindObjectInArchives(materialRef, Archive);
+                igMaterial? matObject = (igMaterial?)AlchemyUtils.FindObjectInArchives(materialRef, Archive);
                 if (matObject == null)
                 {
                     Console.WriteLine($"WARNING: Failed to find material file for {materialRef}.");
@@ -520,9 +520,10 @@ namespace NST
                 NamedReference textureRef = _textureToMaterials.Keys.ElementAt(i);
                 if (progressBar) _progressManager.SetProgress("textures", (float)(i+1) / _textureToMaterials.Count, $"Loading textures {i + 1}/{_textureToMaterials.Count}...");
 
-                try 
+                igImage2? image = (igImage2?)AlchemyUtils.FindObjectInArchives(textureRef, Archive)!;
+
+                if (image != null)
                 {
-                    igImage2 image = (igImage2)AlchemyUtils.FindObjectInArchives(textureRef, Archive);
                     byte[] pixels = image.GetPixels();
 
                     SKBitmap bitmap = new SKBitmap(image._width, image._height, SKColorType.Rgba8888, SKAlphaType.Unpremul);
@@ -535,16 +536,15 @@ namespace NST
                         mat.texture = texture;
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Warning: failed to find texture {textureRef}:\n{e.Message}\n{e.StackTrace}");
-                }
             }
 
             // Step 5 : Assign materials to meshes
             foreach ((NSTMesh mesh, NamedReference materialRef) in _meshToMaterial)
             {
-                mesh.Material = materials[materialRef];
+                if (materials.TryGetValue(materialRef, out NSTMaterial? mat))
+                {
+                    mesh.Material = mat;
+                }
             }
 
             // Step 6 : Assign models to entities

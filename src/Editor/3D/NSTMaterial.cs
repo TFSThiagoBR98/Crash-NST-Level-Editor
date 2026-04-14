@@ -98,37 +98,45 @@ namespace NST
         };
 
         public NSTMaterial() { }
-        public NSTMaterial(igFxMaterial igMaterial, NamedReference handle)
+        public NSTMaterial(igMaterial material, NamedReference handle)
         {
             materialHandle = handle;
-            SetupFromIgFxMaterial(igMaterial);
+            SetupFromIgMaterial(material);
         }
 
         /// <summary>
         /// Initializes the material properties from an igFxMaterial
         /// </summary>
-        private void SetupFromIgFxMaterial(igFxMaterial igMaterial)
+        private void SetupFromIgMaterial(igMaterial material)
         {
-            alphaRef       = igMaterial._alphaRefValue;
-            alphaTest      = igMaterial._customMaterialBitfield._alphaTestState;
-            blending       = igMaterial._customMaterialBitfield._blendingState;
-            srcBlend       = igMaterial._customMaterialBitfield._blendingSource;
-            dstBlend       = igMaterial._customMaterialBitfield._blendingDestination;
-            blendEquation  = igMaterial._customMaterialBitfield._blendingEquation;
-            culling        = igMaterial._customMaterialBitfield._cullFaceState;
-            cullFace       = igMaterial._customMaterialBitfield._cullFaceMode;
-            depthTest      = igMaterial._customMaterialBitfield._depthTestState;
-            depthWrite     = igMaterial._customMaterialBitfield._depthWriteState;
-            wrapS          = igMaterial._customMaterialBitfield._wrapS;
-            wrapT          = igMaterial._customMaterialBitfield._wrapT;
-            minFilter      = igMaterial._customMaterialBitfield2._minificationFilter;
-            magFilter      = igMaterial._customMaterialBitfield2._magnificationFilter;
-            drawType       = igMaterial._graphicsMaterial?._materialBitField._drawType ?? EigDrawType.kDrawTypeOpaque;
-            editorOnly     = igMaterial is CUnlitMaterial unlit && unlit._onlyDrawInTools;
-            shaderName     = igMaterial._fxFilename ?? "";
-            type           = igMaterial.GetType();
-            color          = igMaterial.FindColor();
-            diffuseTexture = igMaterial.FindDiffuseTexture();
+            type           = material.GetType();
+            editorOnly     = material is CUnlitMaterial unlit && unlit._onlyDrawInTools;
+            diffuseTexture = material.FindDiffuseTexture();
+
+            if (material is igFxMaterial fx)
+            {
+                alphaRef       = fx._alphaRefValue;
+                alphaTest      = fx._customMaterialBitfield._alphaTestState;
+                blending       = fx._customMaterialBitfield._blendingState;
+                srcBlend       = fx._customMaterialBitfield._blendingSource;
+                dstBlend       = fx._customMaterialBitfield._blendingDestination;
+                blendEquation  = fx._customMaterialBitfield._blendingEquation;
+                culling        = fx._customMaterialBitfield._cullFaceState;
+                cullFace       = fx._customMaterialBitfield._cullFaceMode;
+                depthTest      = fx._customMaterialBitfield._depthTestState;
+                depthWrite     = fx._customMaterialBitfield._depthWriteState;
+                wrapS          = fx._customMaterialBitfield._wrapS;
+                wrapT          = fx._customMaterialBitfield._wrapT;
+                minFilter      = fx._customMaterialBitfield2._minificationFilter;
+                magFilter      = fx._customMaterialBitfield2._magnificationFilter;
+                drawType       = fx._graphicsMaterial?._materialBitField._drawType ?? EigDrawType.kDrawTypeOpaque;
+                shaderName     = fx._fxFilename ?? "";
+                color          = fx.FindColor();
+            }
+            else
+            {
+                Console.Error.WriteLine("Unknown material type:" + material.GetType());
+            }
         }
 
         /// <summary>
@@ -182,15 +190,17 @@ namespace NST
         /// <param name="archive">The parent archive if open (searched first to improve performance)</param>
         private void InitializeMaterial(NamedReference materialHandle, IgArchive? archive = null)
         {
-            igObject obj = AlchemyUtils.FindObjectInArchives(materialHandle, archive);
+            igObject? obj = AlchemyUtils.FindObjectInArchives(materialHandle, archive);
 
-            if (obj is not igFxMaterial igMaterial)
+            if (obj is igMaterial mat)
             {
-                Console.Error.WriteLine("Warning: Material is not a igFxMaterial: " + obj.GetType());
-                return;
+                SetupFromIgMaterial(mat);
+            }
+            else if (obj != null)
+            {
+                Console.Error.WriteLine("Material is not an igMaterial:" + obj.GetType());
             }
             
-            SetupFromIgFxMaterial(igMaterial);
         }
 
         /// <summary>

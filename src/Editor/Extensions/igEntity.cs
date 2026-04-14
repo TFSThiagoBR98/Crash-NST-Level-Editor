@@ -123,7 +123,7 @@ namespace NST
 
                     if (entityToSpawnRef != null)
                     {
-                        igObject entityToSpawn = AlchemyUtils.FindObjectInArchives(entityToSpawnRef, explorer.Archive, explorer, igz);
+                        igObject? entityToSpawn = AlchemyUtils.FindObjectInArchives(entityToSpawnRef, explorer.Archive, explorer, igz);
 
                         if (entityToSpawn is igEntity entityToSpawnEntity)
                         {
@@ -177,7 +177,7 @@ namespace NST
 
                     if (handleListRef != null)
                     {
-                        igObject handleListObject = AlchemyUtils.FindObjectInArchives(handleListRef, explorer.Archive, explorer, igz);
+                        igObject? handleListObject = AlchemyUtils.FindObjectInArchives(handleListRef, explorer.Archive, explorer, igz);
 
                         if (handleListObject is CEntityHandleList handleList && handleList._count > 0)
                         {
@@ -185,7 +185,7 @@ namespace NST
 
                             if (entityToSpawnRef != null)
                             {
-                                igObject entityToSpawnObject = AlchemyUtils.FindObjectInArchives(entityToSpawnRef, explorer.Archive, explorer);
+                                igObject? entityToSpawnObject = AlchemyUtils.FindObjectInArchives(entityToSpawnRef, explorer.Archive, explorer);
 
                                 if (entityToSpawnObject is igEntity entityToSpawn)
                                 {

@@ -12,6 +12,7 @@ namespace Alchemy
     public class IgArchiveFile
     {
         private const string ROOT_DIR = "temporary/mack/data/win64/output/";
+        private const int LZMA_HEADER_SIZE = 2;
 
         private enum BlockSize
         {
@@ -36,6 +37,7 @@ namespace Alchemy
             public int uncompressedSize;
         }
 
+        private string _fullPath;
         private string _path;
         private uint _hash;
 
@@ -51,7 +53,7 @@ namespace Alchemy
         private string _archivePath;
         private int _archiveOffset;
 
-        public string GetFullPath() => ROOT_DIR + _path;
+        public string GetFullPath() => _fullPath;
         public string GetPath() => _path;
         public uint GetHash() => _hash;
         public int GetUncompressedSize() => _uncompressedSize;
@@ -74,15 +76,17 @@ namespace Alchemy
         public IgArchiveFile(string path)
         {
             _path = path;
+            _fullPath = ROOT_DIR + path;
             _hash = NamespaceUtils.ComputeHash(path);
         }
 
         /// <summary>
         /// Constructor used when parsing an IgArchive
         /// </summary>
-        public IgArchiveFile(string archivePath, string path, IgArchive.FileInfo fileInfo, IgArchive.BlockTables blockTables, Stream igArchiveStream, int sectorSize = IgArchive.SECTOR_SIZE) 
+        public IgArchiveFile(string archivePath, string path, string fullPath, IgArchive.FileInfo fileInfo, IgArchive.BlockTables blockTables, Stream igArchiveStream, int sectorSize = IgArchive.SECTOR_SIZE) 
         {
             _path = path;
+            _fullPath = fullPath;
             _sectorSize = sectorSize;
             _hash = NamespaceUtils.ComputeHash(path);
 
@@ -146,6 +150,15 @@ namespace Alchemy
 
             _path = newPath;
             _hash = NamespaceUtils.ComputeHash(newPath);
+
+            if (_fullPath.Contains(_path))
+            {
+                _fullPath = _fullPath.Replace(_path, newPath);
+            }
+            else
+            {
+                _fullPath = ROOT_DIR + newPath;
+            }
         }
 
         /// <summary>
@@ -167,6 +180,7 @@ namespace Alchemy
         {
             IgArchiveFile clone = new IgArchiveFile(_path, _data, _uncompressedSize, _compressionType, _blocksData, _sectorSize)
             {
+                _fullPath = _fullPath,
                 _archivePath = _archivePath,
                 _archiveOffset = _archiveOffset,
             };
@@ -484,14 +498,16 @@ namespace Alchemy
                     break;
 
                 case CompressionType.LZMA:
-                    compressedSizeBytes = new byte[2];
+                    compressedSizeBytes = new byte[LZMA_HEADER_SIZE];
                     source.Seek(sourceOffset, SeekOrigin.Begin);
-                    source.Read(compressedSizeBytes, 0, 2);
+                    source.Read(compressedSizeBytes, 0, LZMA_HEADER_SIZE);
 
-                    compressedSize = BitConverter.ToUInt16(compressedSizeBytes, 0);
+                    compressedSize = LZMA_HEADER_SIZE == 2 
+                        ? BitConverter.ToUInt16(compressedSizeBytes, 0)
+                        : BitConverter.ToInt32(compressedSizeBytes, 0);
                     
                     byte[] properties = new byte[5];
-                    source.Seek(sourceOffset + 2, SeekOrigin.Begin);
+                    source.Seek(sourceOffset + LZMA_HEADER_SIZE, SeekOrigin.Begin);
                     source.Read(properties, 0, 5);
 
                     Decoder decoder = new Decoder();
