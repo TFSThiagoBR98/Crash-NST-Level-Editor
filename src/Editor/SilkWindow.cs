@@ -7,6 +7,7 @@ using Silk.NET.Windowing;
 using Silk.NET.OpenGLES;
 using Silk.NET.OpenGLES.Extensions.ImGui;
 using MouseButton = Silk.NET.Input.MouseButton;
+using System.Reflection;
 
 namespace NST
 {
@@ -35,7 +36,7 @@ namespace NST
             WindowOptions options = WindowOptions.Default;
             options.WindowBorder = WindowBorder.Resizable;
             options.WindowState = WindowState.Maximized;
-            options.Title = "Crash NST Maker 1.30.4";
+            options.Title = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>()?.Title ?? "Crash NST Maker";
             options.API = new GraphicsAPI(ContextAPI.OpenGL, ContextProfile.Compatability, ContextFlags.Default, new APIVersion(3, 3));
 
             options.VSync = false;
