@@ -44,9 +44,19 @@ namespace Alchemy
         /// <summary>
         /// Extracts the name of a file from its path, optionally including the extension
         /// </summary>
-        public static string GetFileName(string path, bool includeExtension = true)
+        public static string? GetFileName(string? path, bool includeExtension = true)
         {
+            if (path != null) path = path.Replace('\\', '/');
             return includeExtension ? Path.GetFileName(path) : Path.GetFileNameWithoutExtension(path);
+        }
+
+        /// <summary>
+        /// Extracts the directory information from a specified path
+        /// </summary>
+        public static string? GetDirectoryName(string? path)
+        {
+            if (path != null) path = path.Replace('\\', '/');
+            return Path.GetDirectoryName(path);
         }
 
         /// <summary>

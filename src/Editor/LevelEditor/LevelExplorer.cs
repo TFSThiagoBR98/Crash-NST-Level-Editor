@@ -380,7 +380,7 @@ namespace NST
                     if (obj is not igEntity entity) continue;
 
                     string? modelPath = entity.GetModelName(igz, this);
-                    string? modelName = Path.GetFileNameWithoutExtension(modelPath);
+                    string? modelName = NamespaceUtils.GetFileName(modelPath, false);
 
                     NSTEntity entity3D = new NSTEntity(entity, mapFile);
 
@@ -437,6 +437,11 @@ namespace NST
                 .GetFiles()
                 .Where(f => (f.GetPath().StartsWith("actors/") || f.GetPath().StartsWith("models/")) && f.IsIGZ())
                 .ToDictionary(e => e.GetName(false).ToLowerInvariant(), e => e);
+
+            foreach (IgArchiveFile modelFile in modelFiles.Values)
+            {
+                Console.WriteLine($"Found model file: {modelFile.GetPath()}");
+            }
 
             for (int i = 0; i < modelNames.Count; i++)
             {
@@ -1526,7 +1531,7 @@ namespace NST
             if (existing != null) return existing.GetName(false);
 
             string path = Archive.FindMainMapFile()!.GetPath().Replace(".igz", $"{identifier}.igz");
-            return Path.GetFileNameWithoutExtension(path);
+            return NamespaceUtils.GetFileName(path, false);
         }
 
         public void GetOrCreateIgzFile(string fileIdentifier, out IgArchiveFile file, out IgzFile igz)
@@ -1558,7 +1563,7 @@ namespace NST
 
         public void GetOrCreateExternalIgzFile(string path, out IgArchiveFile file, out IgzFile igz)
         {
-            if (Path.GetFileNameWithoutExtension(path).Contains("camera", StringComparison.InvariantCultureIgnoreCase))
+            if (NamespaceUtils.GetFileName(path, false).Contains("camera", StringComparison.InvariantCultureIgnoreCase))
             {
                 GetOrCreateIgzFile("Camera", out file, out igz);
                 return;
@@ -1647,7 +1652,7 @@ namespace NST
                 NSTEntity entity = new NSTEntity(cloneEntity, destFile);
 
                 string? modelPath = cloneEntity.GetModelName(destIgz, this);
-                string? modelName = Path.GetFileNameWithoutExtension(modelPath);
+                string? modelName = NamespaceUtils.GetFileName(modelPath, false);
 
                 if (modelPath != null && modelName != null) {
                     modelNames.Add((modelName, modelPath));

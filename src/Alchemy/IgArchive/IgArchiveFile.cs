@@ -145,7 +145,7 @@ namespace Alchemy
 
             if (updateHandles && IsIGZ())
             {
-                string newNamespace = Path.GetFileNameWithoutExtension(newPath);
+                string newNamespace = NamespaceUtils.GetFileName(newPath, false);
                 SetData(ToIgzFile().Save(newNamespace));
             }
 

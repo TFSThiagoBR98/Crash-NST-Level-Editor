@@ -53,7 +53,7 @@ namespace Alchemy
         {
             if (newNamespace != null)
             {
-                string currentNamespace = Path.GetFileNameWithoutExtension(_path);
+                string currentNamespace = NamespaceUtils.GetFileName(_path, false);
                 ReplaceHandlesNamespace(currentNamespace, newNamespace);
             }
 
@@ -259,7 +259,7 @@ namespace Alchemy
 
             HashSet<string> result = deps
                 .Where(d => !string.IsNullOrEmpty(d))
-                .Select(d => Path.GetFileNameWithoutExtension(d).ToLowerInvariant())
+                .Select(d => NamespaceUtils.GetFileName(d, false).ToLowerInvariant())
                 .ToHashSet();
 
             result.Remove(namespaceName);
@@ -281,7 +281,7 @@ namespace Alchemy
 
             return deps
                 .Where(d => !string.IsNullOrEmpty(d))
-                .Select(d => Path.GetFileNameWithoutExtension(d).ToLowerInvariant())
+                .Select(d => NamespaceUtils.GetFileName(d, false).ToLowerInvariant())
                 .ToHashSet();
         }
 
