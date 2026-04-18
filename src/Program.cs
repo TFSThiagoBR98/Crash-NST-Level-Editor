@@ -2,8 +2,6 @@ using Alchemy;
 
 class Program
 {
-    // STAThread is necessary for Windows.Forms.OpenFileDialog/SaveFileDialog
-    [STAThread]
     static void Main(string[] args)
     {
         // Exception handling
