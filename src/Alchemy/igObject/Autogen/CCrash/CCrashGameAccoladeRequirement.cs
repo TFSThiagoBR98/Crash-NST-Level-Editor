@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, align: 4)]
     public class CCrashGameAccoladeRequirement : CAccoladeRequirement
     {
-        [FieldAttr(16)] public ECrashGame _crashGame;
+        [FieldAttr(nst: 16)] public ECrashGame _crashGame;
     }
 }

@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8)]
+    [ObjectAttr(nst: 96, ctr: 96, align: 8)]
     public class igGuiVisualizer : igObject
     {
-        [FieldAttr(16)] public bool _drawEnable;
-        [FieldAttr(17)] public bool _drawFontNames;
-        [FieldAttr(18)] public bool _drawScreenSafe;
-        [FieldAttr(19)] public bool _fitToScreen;
-        [FieldAttr(20)] public bool _printEnable;
-        [FieldAttr(24, false)] public igGuiContext? _context;
-        [FieldAttr(32)] public igAABox? _globalBoundMain;
-        [FieldAttr(40)] public igAABox? _globalBoundSub;
-        [FieldAttr(48)] public igVectorMetaField<igGuiPlaceable> _placeables = new();
-        [FieldAttr(72)] public igVec3fMetaField _scaleMain = new();
-        [FieldAttr(84)] public igVec3fMetaField _scaleSub = new();
+        [FieldAttr(nst: 16, ctr: 12)] public bool _drawEnable;
+        [FieldAttr(nst: 17, ctr: 13)] public bool _drawFontNames;
+        [FieldAttr(nst: 18, ctr: 14)] public bool _drawScreenSafe;
+        [FieldAttr(nst: 19, ctr: 15)] public bool _fitToScreen;
+        [FieldAttr(nst: 20, ctr: 16)] public bool _printEnable;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igGuiContext? _context;
+        [FieldAttr(nst: 32, ctr: 32)] public igAABox? _globalBoundMain;
+        [FieldAttr(nst: 40, ctr: 40)] public igAABox? _globalBoundSub;
+        [FieldAttr(nst: 48, ctr: 48)] public igVectorMetaField<igGuiPlaceable> _placeables = new();
+        [FieldAttr(nst: 72, ctr: 72)] public igVec3fMetaField _scaleMain = new();
+        [FieldAttr(nst: 84, ctr: 84)] public igVec3fMetaField _scaleSub = new();
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CVscBehaviorStateEventDelegator : igVscDelegator
     {
-        [FieldAttr(24)] public igVscObjectAccessor? _target;
+        [FieldAttr(nst: 24)] public igVscObjectAccessor? _target;
     }
 }

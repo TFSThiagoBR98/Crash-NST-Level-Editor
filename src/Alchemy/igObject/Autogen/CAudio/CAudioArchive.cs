@@ -1,19 +1,19 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 56, align: 8)]
     public class CAudioArchive : igObject
     {
-        [FieldAttr(16)] public string? _name = "NOT_SET";
-        [FieldAttr(24)] public CSoundList? _soundList;
-        [FieldAttr(32)] public CPlatformAudioSettingsOverrideList? _settingsOverrideList;
-        [FieldAttr(40)] public bool _isStreamed;
-        [FieldAttr(41)] public bool _isGenerated;
-        [FieldAttr(42)] public bool _isLocalized;
-        [FieldAttr(43)] public bool _default;
-        [FieldAttr(44)] public bool _isCollisionBank;
-        [FieldAttr(45)] public bool _loaded;
-        [FieldAttr(46)] public bool _sorted;
-        [FieldAttr(47)] public bool _mute;
-        [FieldAttr(48)] public bool _solo;
+        [FieldAttr(nst: 16, ctr: 16)] public string? _name = "NOT_SET";
+        [FieldAttr(nst: 24, ctr: 24)] public CSoundList? _soundList;
+        [FieldAttr(nst: 32, ctr: 32)] public CPlatformAudioSettingsOverrideList? _settingsOverrideList;
+        [FieldAttr(nst: 40, ctr: 40)] public bool _isStreamed;
+        [FieldAttr(nst: 41, ctr: 41)] public bool _isGenerated;
+        [FieldAttr(nst: 42, ctr: 42)] public bool _isLocalized;
+        [FieldAttr(nst: 43, ctr: 43)] public bool _default;
+        [FieldAttr(nst: 44, ctr: 44)] public bool _isCollisionBank;
+        [FieldAttr(nst: 45, ctr: 45)] public bool _loaded;
+        [FieldAttr(nst: 46, ctr: 46)] public bool _sorted;
+        [FieldAttr(nst: 47, ctr: 47)] public bool _mute;
+        [FieldAttr(nst: 48, ctr: 48)] public bool _solo;
     }
 }

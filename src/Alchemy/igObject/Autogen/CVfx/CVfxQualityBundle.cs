@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CVfxQualityBundle : igShaderConstantBundle
     {
-        [FieldAttr(24)] public float _quality = 1.0f;
-        [FieldAttr(28)] public bool _edgeDetectEnabled = true;
+        [FieldAttr(nst: 24, ctr: 24)] public float _quality = 1.0f;
+        [FieldAttr(nst: 28, ctr: 28)] public bool _edgeDetectEnabled = true;
     }
 }

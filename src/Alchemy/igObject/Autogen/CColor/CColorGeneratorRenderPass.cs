@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(608, 16)]
+    [ObjectAttr(nst: 608, ctr: 592, align: 16)]
     public class CColorGeneratorRenderPass : igFullScreenRenderPass
     {
-        [FieldAttr(592)] public CColorGeneratorConstantBundle? _parameters;
+        [FieldAttr(nst: 592, ctr: 584)] public CColorGeneratorConstantBundle? _parameters;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CGuiEventBossHealthBarFade : igGuiEvent
     {
-        [FieldAttr(24)] public bool _fadeOut = true;
+        [FieldAttr(nst: 24)] public bool _fadeOut = true;
     }
 }

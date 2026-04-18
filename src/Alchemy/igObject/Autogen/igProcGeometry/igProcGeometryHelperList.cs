@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 40, align: 8)]
     public class igProcGeometryHelperList : igDataList
     {
-        [FieldAttr(24)] public igMemoryRef<igRawRefMetaField> _data = new();
+        [FieldAttr(nst: 24, ctr: 24)] public igMemoryRef<igRawRefMetaField> _data = new();
     }
 }

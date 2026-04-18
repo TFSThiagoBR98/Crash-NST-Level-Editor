@@ -1,15 +1,15 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 80, align: 8)]
     public class igVscModifyListByIndexHelper : igVscPlaceable
     {
-        [FieldAttr(16)] public igVscObjectAccessor? _sourceList;
-        [FieldAttr(24)] public igVscAccessor? _insertItem;
-        [FieldAttr(32)] public igVscIntAccessor? _index;
-        [FieldAttr(40)] public igVscObjectAccessor? _modifiedList;
-        [FieldAttr(48)] public igVscIntAccessor? _size;
-        [FieldAttr(56, false)] public igMetaObjectInstance? _listMetaObject;
-        [FieldAttr(64, false)] public igMetaObjectInstance? _listBaseMetaObject;
-        [FieldAttr(72, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscObjectAccessor? _sourceList;
+        [FieldAttr(nst: 24, ctr: 24)] public igVscAccessor? _insertItem;
+        [FieldAttr(nst: 32, ctr: 32)] public igVscIntAccessor? _index;
+        [FieldAttr(nst: 40, ctr: 40)] public igVscObjectAccessor? _modifiedList;
+        [FieldAttr(nst: 48, ctr: 48)] public igVscIntAccessor? _size;
+        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igMetaObject? _listMetaObject;
+        [FieldAttr(nst: 64, ctr: 64, refCount: false)] public igMetaObject? _listBaseMetaObject;
+        [FieldAttr(nst: 72, ctr: 72, refCount: false)] public igVscActionNode? _out;
     }
 }

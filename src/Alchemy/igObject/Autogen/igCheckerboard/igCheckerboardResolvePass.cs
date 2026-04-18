@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(624, 16)]
+    [ObjectAttr(nst: 624, ctr: 608, align: 16)]
     public class igCheckerboardResolvePass : igFullScreenRenderPass
     {
-        [FieldAttr(592)] public igCheckerboardConstantBundle? _checkerboardParameters;
-        [FieldAttr(600)] public igSizeTypeMetaField _historyTexture = new();
-        [FieldAttr(608)] public igCheckerboardSetupCall? _setupCall;
+        [FieldAttr(nst: 592, ctr: 584)] public igCheckerboardConstantBundle? _checkerboardParameters;
+        [FieldAttr(nst: 600, ctr: 592)] public igSizeTypeMetaField _historyTexture = new();
+        [FieldAttr(nst: 608, ctr: 600)] public igCheckerboardSetupCall? _setupCall;
     }
 }

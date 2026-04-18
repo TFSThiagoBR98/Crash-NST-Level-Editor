@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class CAccoladeCharacterInfo : igObject
     {
-        public enum EAccoladeCharacterType : int
+        public enum EAccoladeCharacterType
         {
             eACT_Invalid = -1,
             eACT_Hero = 0,
@@ -26,7 +26,7 @@ namespace Alchemy
             eACT_Count = 17,
         }
 
-        [FieldAttr(16)] public EAccoladeCharacterType _characterType;
-        [FieldAttr(24)] public string? _characterName = null;
+        [FieldAttr(nst: 16, ctr: 12)] public EAccoladeCharacterType _characterType;
+        [FieldAttr(nst: 24, ctr: 16)] public string? _characterName = null;
     }
 }

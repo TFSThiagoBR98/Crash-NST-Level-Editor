@@ -1,12 +1,12 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 56, align: 8)]
     public class igVscEntryPointNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscAccessorList? _accessors;
-        [FieldAttr(24)] public igVscAccessorList? _filters;
-        [FieldAttr(32)] public igVscIntAccessor? _timesFired;
-        [FieldAttr(40)] public igVscIntAccessor? _timesToFire;
-        [FieldAttr(48, false)] public igVscActionNode? _node;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscAccessorList? _accessors;
+        [FieldAttr(nst: 24, ctr: 24)] public igVscAccessorList? _filters;
+        [FieldAttr(nst: 32, ctr: 32)] public igVscIntAccessor? _timesFired;
+        [FieldAttr(nst: 40, ctr: 40)] public igVscIntAccessor? _timesToFire;
+        [FieldAttr(nst: 48, ctr: 48, refCount: false)] public igVscActionNode? _node;
     }
 }

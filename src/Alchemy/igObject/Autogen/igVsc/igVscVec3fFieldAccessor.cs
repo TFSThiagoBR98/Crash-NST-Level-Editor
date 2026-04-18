@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVscVec3fFieldAccessor : igVscVec3fAccessor
     {
-        [FieldAttr(24, false)] public igVec3fMetaFieldInstance? _metaField;
+        [FieldAttr(nst: 24, ctr: 16, refCount: false)] public igVec3fMetaFieldInstance? _metaField;
     }
 }

@@ -1,15 +1,15 @@
 namespace Alchemy
 {
-    [ObjectAttr(208, 16)]
+    [ObjectAttr(nst: 208, ctr: 192, align: 16)]
     public class CRotationController : CBaseMovementController
     {
-        public enum ERotationMode : uint
+        public enum ERotationMode
         {
             eRM_Reliable = 0,
             eRM_Additive = 1,
         }
 
-        public enum ERotationSource : uint
+        public enum ERotationSource
         {
             eRS_Auto = 0,
             eRS_AngleOffset = 1,
@@ -17,26 +17,26 @@ namespace Alchemy
             eRS_AxisTime = 3,
         }
 
-        [FieldAttr(56)] public igVec3fMetaField _rotationAxis = new();
-        [FieldAttr(68)] public igVec3fMetaField _offset = new();
-        [FieldAttr(80)] public igHandleMetaField _pivotEntity = new();
-        [FieldAttr(88)] public bool _facePivot = true;
-        [FieldAttr(92)] public float _degreesToRotate = 360.0f;
-        [FieldAttr(96)] public bool _isLocalRotation;
-        [FieldAttr(97)] public bool _replicateSlider = true;
-        [FieldAttr(100)] public ESliderMode _mode;
-        [FieldAttr(104)] public ERotationMode _rotationMode;
-        [FieldAttr(108)] public float _duration = 1.0f;
-        [FieldAttr(112)] public EigEaseType _easeType = EigEaseType.kEaseTypeQuadratic;
-        [FieldAttr(116)] public float _easeIn;
-        [FieldAttr(120)] public float _easeOut;
-        [FieldAttr(124)] public float _forcedSpeed = 3.4028234663852886e+38f;
-        [FieldAttr(128)] public CSlider? _slider;
-        [FieldAttr(136)] public float _previousSliderValue;
-        [FieldAttr(140)] public igVec3fMetaField _axis = new();
-        [FieldAttr(160)] public igQuaternionfMetaField _sourceOrientation = new();
-        [FieldAttr(176)] public igQuaternionfMetaField _targetOrientation = new();
-        [FieldAttr(192)] public bool _reachedTargetOrientation;
-        [FieldAttr(196)] public ERotationSource _rotationSource;
+        [FieldAttr(nst: 56, ctr: 48)] public igVec3fMetaField _rotationAxis = new();
+        [FieldAttr(nst: 68, ctr: 60)] public igVec3fMetaField _offset = new();
+        [FieldAttr(nst: 80, ctr: 72)] public igHandleMetaField _pivotEntity = new();
+        [FieldAttr(nst: 88, ctr: 80)] public bool _facePivot = true;
+        [FieldAttr(nst: 92, ctr: 84)] public float _degreesToRotate = 360.0f;
+        [FieldAttr(nst: 96, ctr: 88)] public bool _isLocalRotation;
+        [FieldAttr(nst: 97, ctr: 89)] public bool _replicateSlider = true;
+        [FieldAttr(nst: 100, ctr: 92)] public ESliderMode _mode;
+        [FieldAttr(nst: 104, ctr: 96)] public ERotationMode _rotationMode;
+        [FieldAttr(nst: 108, ctr: 100)] public float _duration = 1.0f;
+        [FieldAttr(nst: 112, ctr: 104)] public EigEaseType _easeType = EigEaseType.kEaseTypeQuadratic;
+        [FieldAttr(nst: 116, ctr: 108)] public float _easeIn;
+        [FieldAttr(nst: 120, ctr: 112)] public float _easeOut;
+        [FieldAttr(nst: 124, ctr: 116)] public float _forcedSpeed = 3.4028234663852886e+38f;
+        [FieldAttr(nst: 128, ctr: 120)] public CSlider? _slider;
+        [FieldAttr(nst: 136, ctr: 128)] public float _previousSliderValue;
+        [FieldAttr(nst: 140, ctr: 132)] public igVec3fMetaField _axis = new();
+        [FieldAttr(nst: 160, ctr: 144)] public igQuaternionfMetaField _sourceOrientation = new();
+        [FieldAttr(nst: 176, ctr: 160)] public igQuaternionfMetaField _targetOrientation = new();
+        [FieldAttr(nst: 192, ctr: 176)] public bool _reachedTargetOrientation;
+        [FieldAttr(nst: 196, ctr: 180)] public ERotationSource _rotationSource;
     }
 }

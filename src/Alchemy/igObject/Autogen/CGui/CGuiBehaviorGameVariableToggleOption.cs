@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(224, 8)]
+    [ObjectAttr(nst: 224, ctr: 232, align: 8)]
     public class CGuiBehaviorGameVariableToggleOption : CGuiBehaviorBaseToggleOption
     {
-        [FieldAttr(216)] public igHandleMetaField _toggledVariable = new();
+        [FieldAttr(nst: 216, ctr: 224)] public igHandleMetaField _toggledVariable = new();
     }
 }

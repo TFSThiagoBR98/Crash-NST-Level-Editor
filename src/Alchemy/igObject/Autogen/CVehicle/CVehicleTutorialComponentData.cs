@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CVehicleTutorialComponentData : CEntityComponentData
     {
-        public enum EVehicleTutorialType : uint
+        public enum EVehicleTutorialType
         {
             eVTT_None = 0,
             eVTT_Sea = 1,
@@ -11,7 +11,7 @@ namespace Alchemy
             eVTT_Coop = 3,
         }
 
-        [FieldAttr(24)] public EVehicleTutorialType _tutorialType;
-        [FieldAttr(32)] public igHandleMetaField _pauseMenuFocusedOptionOverride = new();
+        [FieldAttr(nst: 24)] public EVehicleTutorialType _tutorialType;
+        [FieldAttr(nst: 32)] public igHandleMetaField _pauseMenuFocusedOptionOverride = new();
     }
 }

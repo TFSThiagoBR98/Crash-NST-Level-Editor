@@ -1,0 +1,8 @@
+namespace Alchemy
+{
+    [ObjectAttr(nst: 64, align: 4, metaType: typeof(CEntityMessage))]
+    public class New_Graph_Event_1_id_zqeoxuaz : CEntityMessage
+    {
+        [FieldAttr(nst: 56)] public bool _BossNGin_C3_WeakpointHandler_New_Graph_Event_1;
+    }
+}

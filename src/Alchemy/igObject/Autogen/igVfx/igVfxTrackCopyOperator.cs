@@ -1,19 +1,19 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVfxTrackCopyOperator : igVfxOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 4)] public EReferenceFrame _destinationTrack = EReferenceFrame.eRF_Track2;
-            [FieldAttr(4, size: 1)] public bool _copyPose = false;
-            [FieldAttr(5, size: 1)] public bool _copyMotion = false;
-            [FieldAttr(6, size: 1)] public bool _copyColor = false;
-            [FieldAttr(7, size: 1)] public bool _copySize = false;
-            [FieldAttr(8, size: 1)] public bool _copyParameters;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _destinationTrack;
+            [FieldAttr(offset: 4, size: 1)] public bool _copyPose;
+            [FieldAttr(offset: 5, size: 1)] public bool _copyMotion;
+            [FieldAttr(offset: 6, size: 1)] public bool _copyColor;
+            [FieldAttr(offset: 7, size: 1)] public bool _copySize;
+            [FieldAttr(offset: 8, size: 1)] public bool _copyParameters;
         }
 
-        [FieldAttr(24)] public Flags _flags = new();
+        [FieldAttr(nst: 24, ctr: 16)] public Flags _flags = new();
     }
 }

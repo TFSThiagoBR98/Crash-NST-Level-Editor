@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class CFadeInPresetData : igObject
     {
-        [FieldAttr(16)] public float _duration;
-        [FieldAttr(24)] public CAudioFadeData? _audioFadeData;
+        [FieldAttr(nst: 16, ctr: 12)] public float _duration;
+        [FieldAttr(nst: 24, ctr: 16)] public CAudioFadeData? _audioFadeData;
     }
 }

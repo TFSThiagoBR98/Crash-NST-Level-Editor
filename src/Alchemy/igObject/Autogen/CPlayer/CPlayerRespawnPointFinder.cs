@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8)]
+    [ObjectAttr(nst: 96, align: 8)]
     public class CPlayerRespawnPointFinder : igObject
     {
-        public enum EState : uint
+        public enum EState
         {
             eS_None = 0,
             eS_InProgress = 1,
@@ -11,27 +11,27 @@ namespace Alchemy
             eS_Failure = 3,
         }
 
-        public enum ESearchState : uint
+        public enum ESearchState
         {
             eSS_None = 0,
             eSS_GroundCheck = 1,
             eSS_BlockerCheck = 2,
         }
 
-        [FieldAttr(16)] public EState _state;
-        [FieldAttr(20)] public ESearchState _searchState;
-        [FieldAttr(24)] public int _cursor;
-        [FieldAttr(28)] public int _offset;
-        [FieldAttr(32)] public igVec3fMetaField _resultPosition = new();
-        [FieldAttr(44)] public bool _resultIsOnGround = true;
-        [FieldAttr(48)] public CPlayerRespawnGroundChecker? _groundChecker;
-        [FieldAttr(56)] public CPlayerRespawnBlockerChecker? _blockerChecker;
-        [FieldAttr(64)] public igHandleMetaField _respawnActor = new();
-        [FieldAttr(72)] public bool _isVehicle;
-        [FieldAttr(73)] public bool _isLandVehicle;
-        [FieldAttr(74)] public bool _needsGroundCheck;
-        [FieldAttr(76)] public EigBlockingType _blockingType;
-        [FieldAttr(80)] public bool _forceMultiplayerLogic;
-        [FieldAttr(84)] public igVec3fMetaField _positionAtRespawnRequest = new();
+        [FieldAttr(nst: 16)] public EState _state;
+        [FieldAttr(nst: 20)] public ESearchState _searchState;
+        [FieldAttr(nst: 24)] public int _cursor;
+        [FieldAttr(nst: 28)] public int _offset;
+        [FieldAttr(nst: 32)] public igVec3fMetaField _resultPosition = new();
+        [FieldAttr(nst: 44)] public bool _resultIsOnGround = true;
+        [FieldAttr(nst: 48)] public CPlayerRespawnGroundChecker? _groundChecker;
+        [FieldAttr(nst: 56)] public CPlayerRespawnBlockerChecker? _blockerChecker;
+        [FieldAttr(nst: 64)] public igHandleMetaField _respawnActor = new();
+        [FieldAttr(nst: 72)] public bool _isVehicle;
+        [FieldAttr(nst: 73)] public bool _isLandVehicle;
+        [FieldAttr(nst: 74)] public bool _needsGroundCheck;
+        [FieldAttr(nst: 76)] public EigBlockingType _blockingType;
+        [FieldAttr(nst: 80)] public bool _forceMultiplayerLogic;
+        [FieldAttr(nst: 84)] public igVec3fMetaField _positionAtRespawnRequest = new();
     }
 }

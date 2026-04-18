@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CActorInputMapComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CActorInputMap? _defaultActorInputMap;
+        [FieldAttr(nst: 24)] public CActorInputMap? _defaultActorInputMap;
     }
 }

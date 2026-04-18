@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(208, 4)]
+    [ObjectAttr(nst: 208, ctr: 200, align: 8)]
     public class CVfxDrawForceFeedbackOperator : igVfxDrawOperator
     {
-        [FieldAttr(32)] public igVfxRangedCurveMetaField _rumbleMagnitude = new();
-        [FieldAttr(116)] public igVfxRangedCurveMetaField _vibrationMagnitude = new();
-        [FieldAttr(200)] public EOperatorCurveInput _rumbleInput;
-        [FieldAttr(204)] public bool _playerOne;
-        [FieldAttr(205)] public bool _playerTwo;
-        [FieldAttr(206)] public bool _currentPlayer = true;
+        [FieldAttr(nst: 32, ctr: 20)] public igVfxRangedCurveMetaField _rumbleMagnitude = new();
+        [FieldAttr(nst: 116, ctr: 104)] public igVfxRangedCurveMetaField _vibrationMagnitude = new();
+        [FieldAttr(nst: 200, ctr: 188)] public EOperatorCurveInput _rumbleInput;
+        [FieldAttr(nst: 204, ctr: 192)] public bool _playerOne;
+        [FieldAttr(nst: 205, ctr: 193)] public bool _playerTwo;
+        [FieldAttr(nst: 206, ctr: 194)] public bool _currentPlayer = true;
     }
 }

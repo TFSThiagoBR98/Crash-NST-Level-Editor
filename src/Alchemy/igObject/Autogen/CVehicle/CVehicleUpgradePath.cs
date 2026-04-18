@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CVehicleUpgradePath : igNamedObject
     {
-        [FieldAttr(24)] public CVehicleUpgradeList? _upgrades;
+        [FieldAttr(nst: 24)] public CVehicleUpgradeList? _upgrades;
     }
 }

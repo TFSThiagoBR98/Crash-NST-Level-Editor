@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CDspDistortionOverride : CDspOverride
     {
-        [FieldAttr(32)] public float _level = 0.5f;
+        [FieldAttr(nst: 32)] public float _level = 0.5f;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, align: 8)]
     public class CCEModSound : CCombatNodeEvent
     {
-        [FieldAttr(80)] public CModSoundEventData? mSoundData;
+        [FieldAttr(nst: 80)] public CModSoundEventData? mSoundData;
     }
 }

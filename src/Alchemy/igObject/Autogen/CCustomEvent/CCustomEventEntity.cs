@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CCustomEventEntity))]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CCustomEventEntity : CCustomEvent
     {
-        [FieldAttr(64)] public igHandleMetaField _entity = new();
+        [FieldAttr(nst: 64)] public igHandleMetaField _entity = new();
     }
 }

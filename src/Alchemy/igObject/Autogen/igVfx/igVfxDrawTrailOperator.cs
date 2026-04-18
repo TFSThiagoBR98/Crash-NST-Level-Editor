@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(592, 16)]
+    [ObjectAttr(nst: 592, ctr: 560, align: 16)]
     public class igVfxDrawTrailOperator : igVfxDrawProcGeometryOperator
     {
-        public enum ERolloutMethod : uint
+        public enum ERolloutMethod
         {
             kDrag = 0,
             kStretch = 1,
@@ -11,27 +11,27 @@ namespace Alchemy
             kRoll = 3,
         }
 
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class TrailFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 3)] public EModulation _widthAlongTrailModulation = EModulation.kModulate;
-            [FieldAttr(3, size: 3)] public EModulation _colorAlongTrailModulation = EModulation.kReplace;
-            [FieldAttr(6, size: 3)] public EModulation _alphaAlongTrailModulation = EModulation.kReplace;
-            [FieldAttr(9, size: 3)] public igVfxDrawTrailOperator.ERolloutMethod _rolloutMethod;
-            [FieldAttr(12, size: 3)] public int _trailBezier = 0;
-            [FieldAttr(15, size: 6)] public int _trailSegmentCount = 0;
-            [FieldAttr(21, size: 1)] public bool _banner;
-            [FieldAttr(22, size: 1)] public bool _forceExactLength = false;
-            [FieldAttr(23, size: 1)] public bool _isBillboard;
+            [FieldAttr(offset: 0, size: 3)] public EModulation _widthAlongTrailModulation;
+            [FieldAttr(offset: 3, size: 3)] public EModulation _colorAlongTrailModulation;
+            [FieldAttr(offset: 6, size: 3)] public EModulation _alphaAlongTrailModulation;
+            [FieldAttr(offset: 9, size: 3)] public igVfxDrawTrailOperator.ERolloutMethod _rolloutMethod;
+            [FieldAttr(offset: 12, size: 3)] public int _trailBezier;
+            [FieldAttr(offset: 15, size: 6)] public int _trailSegmentCount;
+            [FieldAttr(offset: 21, size: 1)] public bool _banner;
+            [FieldAttr(offset: 22, size: 1)] public bool _forceExactLength;
+            [FieldAttr(offset: 23, size: 1)] public bool _isBillboard;
         }
 
-        [FieldAttr(80)] public TrailFlags _trailFlags = new();
-        [FieldAttr(84)] public u32 /* igStructMetaField */ _instanceData;
-        [FieldAttr(88)] public igRangedFloatMetaField _trailLength = new();
-        [FieldAttr(96)] public igVfxRangedCurveMetaField _widthAlongTrail = new();
-        [FieldAttr(192)] public igVfxRgbCurveMetaField _colorAlongTrail = new();
-        [FieldAttr(464)] public igVfxRangedCurveMetaField _alphaAlongTrail = new();
-        [FieldAttr(560)] public igVec3fAlignedMetaField _sideAxis = new();
-        [FieldAttr(576)] public EReferenceFrame _frame;
+        [FieldAttr(nst: 80, ctr: 60)] public TrailFlags _trailFlags = new();
+        [FieldAttr(nst: 84, ctr: 64)] public uint _instanceData;
+        [FieldAttr(nst: 88, ctr: 68)] public igRangedFloatMetaField _trailLength = new();
+        [FieldAttr(nst: 96, ctr: 76)] public igVfxRangedCurveMetaField _widthAlongTrail = new();
+        [FieldAttr(nst: 192, ctr: 160)] public igVfxRgbCurveMetaField _colorAlongTrail = new();
+        [FieldAttr(nst: 464, ctr: 432)] public igVfxRangedCurveMetaField _alphaAlongTrail = new();
+        [FieldAttr(nst: 560, ctr: 528)] public igVec3fAlignedMetaField _sideAxis = new();
+        [FieldAttr(nst: 576, ctr: 544)] public EReferenceFrame _frame;
     }
 }

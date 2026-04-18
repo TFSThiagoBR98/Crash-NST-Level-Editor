@@ -1,0 +1,87 @@
+namespace Alchemy
+{
+    [ObjectAttr(ctr: 352, align: 8)]
+    public class CRacer : igObject
+    {
+        [FieldAttr(ctr: 16)] public igHandleMetaField _player = new();
+        [FieldAttr(ctr: 24)] public igHandleMetaField _driver = new();
+        [FieldAttr(ctr: 32)] public igHandleMetaField _kart = new();
+        [FieldAttr(ctr: 40)] public igHandleMetaField _kartData = new();
+        [FieldAttr(ctr: 48)] public igHandleMetaField _driverData = new();
+        [FieldAttr(ctr: 56)] public igHandleMetaField _outfitData = new();
+        [FieldAttr(ctr: 64)] public bool _isAiControlled;
+        [FieldAttr(ctr: 65)] public bool _isBoss;
+        [FieldAttr(ctr: 68)] public float _ratioOnRaceTrack;
+        [FieldAttr(ctr: 72)] public float _currentPositionSplineDistance;
+        [FieldAttr(ctr: 76)] public int _currentLap;
+        [FieldAttr(ctr: 80)] public int _positionLap;
+        [FieldAttr(ctr: 84)] public int _rank;
+        [FieldAttr(ctr: 88)] public int _racePosition;
+        [FieldAttr(ctr: 92)] public int _prevFinishPosition;
+        [FieldAttr(ctr: 96)] public int _currentFinishPosition;
+        [FieldAttr(ctr: 100)] public int _officialPosition;
+        [FieldAttr(ctr: 104)] public int _completedRaceLaps;
+        [FieldAttr(ctr: 108)] public igTimeMetaField _endOfRaceTime = new();
+        [FieldAttr(ctr: 112)] public bool _canIncrementLap;
+        [FieldAttr(ctr: 120)] public igHandleMetaField _currentPositionPath = new();
+        [FieldAttr(ctr: 128)] public igHandleMetaField _currentAIPath = new();
+        [FieldAttr(ctr: 136)] public int _pathCount;
+        [FieldAttr(ctr: 140)] public bool _finished;
+        [FieldAttr(ctr: 144)] public igTimeList? _lapTimes;
+        [FieldAttr(ctr: 152)] public igTimeMetaField _lastLapTime = new();
+        [FieldAttr(ctr: 156)] public int _currentWumpaFruitCount;
+        [FieldAttr(ctr: 160)] public int _wumpaFruitQueue;
+        [FieldAttr(ctr: 164)] public int _collectedWumpaFruit;
+        [FieldAttr(ctr: 168)] public igHandleMetaField _wumpaCollectFunction = new();
+        [FieldAttr(ctr: 176)] public bool _hasLocalAuthority;
+        [FieldAttr(ctr: 180)] public int _playersRacePoints;
+        [FieldAttr(ctr: 184)] public int _playersCupPoints;
+        [FieldAttr(ctr: 188)] public int _playersBattleScore;
+        [FieldAttr(ctr: 192)] public bool _isDead;
+        [FieldAttr(ctr: 196)] public float _playersBattleTimeBeforeDeath;
+        [FieldAttr(ctr: 200)] public int _teamBattleScore;
+        [FieldAttr(ctr: 204)] public float _teamBattleTimeBeforeDeath;
+        [FieldAttr(ctr: 208)] public bool _hasUsedPowerUpThisTrack;
+        [FieldAttr(ctr: 209)] public bool _beenHitByRacer;
+        [FieldAttr(ctr: 210)] public bool _beenHit;
+        [FieldAttr(ctr: 212)] public uint _chainedDriftCounter;
+        [FieldAttr(ctr: 216)] public uint _chainedDriftWithAllDriftBoostCounter;
+        [FieldAttr(ctr: 220)] public bool _isLastLastLap;
+        [FieldAttr(ctr: 221)] public bool _isRearViewedWholeRace;
+        [FieldAttr(ctr: 222)] public bool _isRearViewedWholeLastLap;
+        [FieldAttr(ctr: 223)] public bool _isRearViewedWholeLapTracker;
+        [FieldAttr(ctr: 224)] public bool _isRearViewedWholeLapCompleted;
+        [FieldAttr(ctr: 225)] public bool _isReverseWholeLastLap;
+        [FieldAttr(ctr: 226)] public bool _startedLapBoostingAndKeptBoost;
+        [FieldAttr(ctr: 227)] public bool _wasLastOnStartOfLastLap;
+        [FieldAttr(ctr: 228)] public bool _hasUsedBoostPadThisTrack;
+        [FieldAttr(ctr: 232)] public float _totalDriftDurationDuringRace;
+        [FieldAttr(ctr: 236)] public float _maxConsecutiveDriftDurationReachedDuringRace;
+        [FieldAttr(ctr: 240)] public bool _hasBeenOffroadDuringRace;
+        [FieldAttr(ctr: 241)] public bool _hasUsedShortcut;
+        [FieldAttr(ctr: 242)] public bool _hasUsedAllShortcutInARace;
+        [FieldAttr(ctr: 248)] public string? _lastTrackName;
+        [FieldAttr(ctr: 256)] public int _crateCollectedCount;
+        [FieldAttr(ctr: 260)] public int _trickJumpCount;
+        [FieldAttr(ctr: 264)] public int _perfectDriftBoostInARow;
+        [FieldAttr(ctr: 268)] public int _juicedUpPowerUpUsedCount;
+        [FieldAttr(ctr: 272)] public int _destroyedPowerUpWithPowerUpCount;
+        [FieldAttr(ctr: 276)] public int _destroyedCrateWithPowerUpCount;
+        [FieldAttr(ctr: 280)] public igIntList? _opponentHitCount;
+        [FieldAttr(ctr: 288)] public bool _isBlueFireLap;
+        [FieldAttr(ctr: 292)] public int _consecutiveBlueFireLaps;
+        [FieldAttr(ctr: 296)] public int _highestConsecutiveBlueFireLaps;
+        [FieldAttr(ctr: 300)] public int _receivedDamageByOwnPowerUpCount;
+        [FieldAttr(ctr: 304)] public float _cumulativeAirTime;
+        [FieldAttr(ctr: 308)] public int _nextDropIndex;
+        [FieldAttr(ctr: 312)] public igTimeMetaField _lastDamageStateStartTime = new();
+        [FieldAttr(ctr: 316)] public igTimeMetaField _lastFlagPickUpTime = new();
+        [FieldAttr(ctr: 320)] public int _crystalCollectedCount;
+        [FieldAttr(ctr: 324)] public EPlayerId _playerId;
+        [FieldAttr(ctr: 328)] public EVehicleId _vehicleId;
+        [FieldAttr(ctr: 336)] public CCharacter? _tempDriverDataRef;
+        [FieldAttr(ctr: 344)] public bool _driverHidden;
+        [FieldAttr(ctr: 345)] public bool _kartHidden;
+        [FieldAttr(ctr: 346)] public bool _wheelsHidden;
+    }
+}

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class igVscBoolMacroAccessor : igVscBoolAccessor
     {
-        [FieldAttr(24, false)] public igObjectRefMetaFieldInstance? _accessorMetaField;
-        [FieldAttr(32)] public bool _default;
+        [FieldAttr(nst: 24, ctr: 16, refCount: false)] public igObject? _accessorMetaField;
+        [FieldAttr(nst: 32, ctr: 24)] public bool _default;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class igVscMultipleBoolAccessor : igVscBoolAccessor
     {
-        [FieldAttr(24)] public igVectorMetaField<igVscAccessor> _accessors = new();
+        [FieldAttr(nst: 24)] public igVectorMetaField<igVscAccessor> _accessors = new();
     }
 }

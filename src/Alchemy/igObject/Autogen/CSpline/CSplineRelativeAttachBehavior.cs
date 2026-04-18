@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 16)]
+    [ObjectAttr(nst: 96, align: 16)]
     public class CSplineRelativeAttachBehavior : CSplineAttachBehavior
     {
-        [FieldAttr(32)] public igMatrix44fMetaField _startingTransform = new();
+        [FieldAttr(nst: 32)] public igMatrix44fMetaField _startingTransform = new();
     }
 }

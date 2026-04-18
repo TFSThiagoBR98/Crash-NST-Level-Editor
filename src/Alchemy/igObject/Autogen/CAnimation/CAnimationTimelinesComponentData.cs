@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CAnimationTimelinesComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public string? _animationEventsFile = null;
+        [FieldAttr(nst: 24)] public string? _animationEventsFile = null;
     }
 }

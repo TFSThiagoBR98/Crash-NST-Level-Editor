@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CCustomEventString))]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CCustomEventString : CCustomEvent
     {
-        [FieldAttr(64)] public string? _string = null;
+        [FieldAttr(nst: 64)] public string? _string = null;
     }
 }

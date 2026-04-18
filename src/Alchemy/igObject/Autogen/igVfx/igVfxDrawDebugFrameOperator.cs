@@ -1,17 +1,17 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class igVfxDrawDebugFrameOperator : igVfxDrawOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class DebugFrameFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 4)] public EReferenceFrame _frame = EReferenceFrame.eRF_Instance;
-            [FieldAttr(4, size: 1)] public bool _showColor;
-            [FieldAttr(5, size: 1)] public bool _showVelocity;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _frame;
+            [FieldAttr(offset: 4, size: 1)] public bool _showColor;
+            [FieldAttr(offset: 5, size: 1)] public bool _showVelocity;
         }
 
-        [FieldAttr(32)] public DebugFrameFlags _debugFrameFlags = new();
-        [FieldAttr(36)] public float _forceSize;
+        [FieldAttr(nst: 32, ctr: 20)] public DebugFrameFlags _debugFrameFlags = new();
+        [FieldAttr(nst: 36, ctr: 24)] public float _forceSize;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CCutsceneActorData : igObject
     {
-        [FieldAttr(16)] public string? _skin = null;
-        [FieldAttr(24)] public CFxMaterialRedirectTable? _materialOverrides;
+        [FieldAttr(nst: 16, ctr: 16)] public string? _skin = null;
+        [FieldAttr(nst: 24, ctr: 24)] public CFxMaterialRedirectTable? _materialOverrides;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaObject: true)]
+    [ObjectAttr(nst: 64, align: 8, meta: true)]
     public class CPlayerMessage : CEntityMessage
     {
-        [FieldAttr(56)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
+        [FieldAttr(nst: 56)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
     }
 }

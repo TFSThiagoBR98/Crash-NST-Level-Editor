@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8, metaType: typeof(CVehicleVfxHandler))]
+    [ObjectAttr(nst: 88, align: 8)]
     public class CVehicleVfxHandler : CBehaviorLogic
     {
-        [FieldAttr(80)] public CVehicleVfxHandlerDataList? _effects;
+        [FieldAttr(nst: 80)] public CVehicleVfxHandlerDataList? _effects;
     }
 }

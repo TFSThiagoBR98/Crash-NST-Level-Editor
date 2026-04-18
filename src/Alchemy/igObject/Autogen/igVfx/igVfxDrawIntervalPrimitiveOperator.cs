@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class igVfxDrawIntervalPrimitiveOperator : igVfxOperator
     {
-        [FieldAttr(24)] public igHandleMetaField _primitiveData = new();
-        [FieldAttr(32)] public u32 /* igStructMetaField */ _instanceData;
+        [FieldAttr(nst: 24, ctr: 16)] public igHandleMetaField _primitiveData = new();
+        [FieldAttr(nst: 32, ctr: 24)] public uint _instanceData;
     }
 }

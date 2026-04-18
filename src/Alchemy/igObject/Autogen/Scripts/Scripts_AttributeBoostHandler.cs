@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8, metaType: typeof(CBehaviorLogic))]
+    [ObjectAttr(nst: 88, align: 8, metaType: typeof(CBehaviorLogic))]
     public class Scripts_AttributeBoostHandler : CBehaviorLogic
     {
-        [FieldAttr(80)] public CAttributeBoostMessage? attributeBoostMessage;
+        [FieldAttr(nst: 80)] public CAttributeBoostMessage? attributeBoostMessage;
     }
 }

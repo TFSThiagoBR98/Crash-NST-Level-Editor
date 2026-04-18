@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CNetworkAnimationReplicaComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CAnimationSubStatesDataTable? _synchronizedStates;
-        [FieldAttr(32)] public bool _forceNotify;
-        [FieldAttr(33)] public bool _disableOnDeath;
+        [FieldAttr(nst: 24)] public CAnimationSubStatesDataTable? _synchronizedStates;
+        [FieldAttr(nst: 32)] public bool _forceNotify;
+        [FieldAttr(nst: 33)] public bool _disableOnDeath;
     }
 }

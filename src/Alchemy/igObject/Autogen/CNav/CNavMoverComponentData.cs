@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 4)]
+    [ObjectAttr(nst: 56, ctr: 48, align: 8)]
     public class CNavMoverComponentData : CEntityComponentData
     {
-        public enum ENavMoverMoveMethod : uint
+        public enum ENavMoverMoveMethod
         {
             eNMMM_ActorInput = 0,
             eNMMM_SetPosition = 1,
@@ -11,24 +11,24 @@ namespace Alchemy
             eNMMM_None = 3,
         }
 
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 3)] public CNavMoverComponentData.ENavMoverMoveMethod _moveMethod;
-            [FieldAttr(3, size: 1)] public bool _allowSpaceChanges;
-            [FieldAttr(4, size: 1)] public bool _allowSeparationFromNavMesh;
-            [FieldAttr(5, size: 5)] public uint _linkCapabilities;
-            [FieldAttr(10, size: 10)] public uint _repulsorBlockageFlags = 15;
-            [FieldAttr(20, size: 10)] public uint _repulsorIdentityFlags = 0;
-            [FieldAttr(30, size: 2)] public uint _areaUsageFlags;
+            [FieldAttr(offset: 0, size: 3)] public CNavMoverComponentData.ENavMoverMoveMethod _moveMethod;
+            [FieldAttr(offset: 3, size: 1)] public bool _allowSpaceChanges;
+            [FieldAttr(offset: 4, size: 1)] public bool _allowSeparationFromNavMesh;
+            [FieldAttr(offset: 5, size: 5)] public uint _linkCapabilities;
+            [FieldAttr(offset: 10, size: 10)] public uint _repulsorBlockageFlags;
+            [FieldAttr(offset: 20, size: 10)] public uint _repulsorIdentityFlags;
+            [FieldAttr(offset: 30, size: 2)] public uint _areaUsageFlags;
         }
 
-        [FieldAttr(24)] public BitfieldStorage _bitfieldStorage = new();
-        [FieldAttr(28)] public float _moverRadius;
-        [FieldAttr(32)] public float _radiusCushion = 20.0f;
-        [FieldAttr(36)] public float _stopDistance = 39.0f;
-        [FieldAttr(40)] public float _earlyJumpDistance = 10.0f;
-        [FieldAttr(44)] public float _pathSharingPenalty = 2.0f;
-        [FieldAttr(48)] public float _maxPathSharingPenalty = 20.0f;
+        [FieldAttr(nst: 24, ctr: 16)] public BitfieldStorage _bitfieldStorage = new();
+        [FieldAttr(nst: 28, ctr: 20)] public float _moverRadius;
+        [FieldAttr(nst: 32, ctr: 24)] public float _radiusCushion = 20.0f;
+        [FieldAttr(nst: 36, ctr: 28)] public float _stopDistance = 39.0f;
+        [FieldAttr(nst: 40, ctr: 32)] public float _earlyJumpDistance = 10.0f;
+        [FieldAttr(nst: 44, ctr: 36)] public float _pathSharingPenalty = 2.0f;
+        [FieldAttr(nst: 48, ctr: 40)] public float _maxPathSharingPenalty = 20.0f;
     }
 }

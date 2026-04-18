@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class CVehicleWeightComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public int _weight;
+        [FieldAttr(nst: 24)] public int _weight;
     }
 }

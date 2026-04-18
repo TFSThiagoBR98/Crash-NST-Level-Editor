@@ -1,15 +1,15 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CEntityMessage))]
+    [ObjectAttr(nst: 72, align: 8, metaType: typeof(CEntityMessage))]
     public class Scripts_MaterialOverrideComponentApplyMaterialMessage : CEntityMessage
     {
-        public enum EAction : uint
+        public enum EAction
         {
             Apply = 0,
             Remove = 1,
         }
 
-        [FieldAttr(56)] public string? MaterialIdentifier = null;
-        [FieldAttr(64)] public EAction ApplyOrRemove;
+        [FieldAttr(nst: 56)] public string? MaterialIdentifier = null;
+        [FieldAttr(nst: 64)] public EAction ApplyOrRemove;
     }
 }

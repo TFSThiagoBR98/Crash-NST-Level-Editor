@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class CNetworkVisualizationComponentData : igComponentData
     {
-        [FieldAttr(24)] public igHandleMetaField _packetCost = new();
+        [FieldAttr(nst: 24, ctr: 16)] public igHandleMetaField _packetCost = new();
     }
 }

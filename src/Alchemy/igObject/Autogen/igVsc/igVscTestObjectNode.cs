@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 40, align: 8)]
     public class igVscTestObjectNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscAccessor? _object;
-        [FieldAttr(24, false)] public igVscActionNode? _boolNonNull;
-        [FieldAttr(32, false)] public igVscActionNode? _boolNull;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscAccessor? _object;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igVscActionNode? _boolNonNull;
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igVscActionNode? _boolNull;
     }
 }

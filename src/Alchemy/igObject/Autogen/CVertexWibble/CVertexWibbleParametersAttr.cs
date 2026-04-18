@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 16)]
+    [ObjectAttr(nst: 80, align: 16)]
     public class CVertexWibbleParametersAttr : igVisualAttribute
     {
-        [FieldAttr(32)] public igVec4fMetaField _amplitude = new();
-        [FieldAttr(48)] public igVec4fMetaField _frequency = new();
-        [FieldAttr(64)] public igVec4fMetaField _phase = new();
+        [FieldAttr(nst: 32)] public igVec4fMetaField _amplitude = new();
+        [FieldAttr(nst: 48)] public igVec4fMetaField _frequency = new();
+        [FieldAttr(nst: 64)] public igVec4fMetaField _phase = new();
     }
 }

@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8)]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CFadeSequenceData : igObject
     {
-        [FieldAttr(16)] public float _holdDuration;
-        [FieldAttr(20)] public float _fadeInDuration;
-        [FieldAttr(24, false)] public CAudioFadeData? _fadeInAudioFadeData;
-        [FieldAttr(32)] public igVscDelegateMetaField _holdComplete = new();
-        [FieldAttr(48)] public igVscDelegateMetaField _fadeInComplete = new();
-        [FieldAttr(64)] public CScopedScheduledFunction? _holdScheduledFunction;
+        [FieldAttr(nst: 16)] public float _holdDuration;
+        [FieldAttr(nst: 20)] public float _fadeInDuration;
+        [FieldAttr(nst: 24, refCount: false)] public CAudioFadeData? _fadeInAudioFadeData;
+        [FieldAttr(nst: 32)] public igVscDelegateMetaField _holdComplete = new();
+        [FieldAttr(nst: 48)] public igVscDelegateMetaField _fadeInComplete = new();
+        [FieldAttr(nst: 64)] public CScopedScheduledFunction? _holdScheduledFunction;
     }
 }

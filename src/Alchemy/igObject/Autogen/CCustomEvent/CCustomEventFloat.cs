@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CCustomEventFloat))]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CCustomEventFloat : CCustomEvent
     {
-        [FieldAttr(64)] public float _float;
+        [FieldAttr(nst: 64)] public float _float;
     }
 }

@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CCEAtkData : igObject
     {
-        [FieldAttr(16)] public float _maxRange;
-        [FieldAttr(20)] public float _dot;
-        [FieldAttr(24)] public bool _ignoreHeroes;
-        [FieldAttr(32)] public CAttackBone? _attackBone;
+        [FieldAttr(nst: 16)] public float _maxRange;
+        [FieldAttr(nst: 20)] public float _dot;
+        [FieldAttr(nst: 24)] public bool _ignoreHeroes;
+        [FieldAttr(nst: 32)] public CAttackBone? _attackBone;
     }
 }

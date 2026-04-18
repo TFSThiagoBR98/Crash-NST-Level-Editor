@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaType: typeof(CDamageAttemptMessage))]
+    [ObjectAttr(nst: 64, align: 8)]
     public class CDamageAttemptMessage : CEntityMessage
     {
-        [FieldAttr(56, false)] public CDamageInstance? _damage;
+        [FieldAttr(nst: 56, refCount: false)] public CDamageInstance? _damage;
     }
 }

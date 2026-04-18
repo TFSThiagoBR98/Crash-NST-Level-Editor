@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
-    public class CDspOverrideSet : igObjectList
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
+    public class CDspOverrideSet : igObjectList<CDspOverride>
     {
-        [FieldAttr(40)] public float _fadeInTime = 2.0f;
+        [FieldAttr(nst: 40, ctr: 40)] public float _fadeInTime = 2.0f;
     }
 }

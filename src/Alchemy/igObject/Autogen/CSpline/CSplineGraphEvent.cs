@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CSplineGraphEvent : igSplineEvent
     {
-        [FieldAttr(32)] public CEntityMessage? _graphEvent;
+        [FieldAttr(nst: 32)] public CEntityMessage? _graphEvent;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 8)]
+    [ObjectAttr(nst: 24, align: 8)]
     public class CModelInfo : igObject
     {
-        [FieldAttr(16)] public string? _name = null;
+        [FieldAttr(nst: 16)] public string? _name = null;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(160, 8)]
+    [ObjectAttr(nst: 160, align: 8)]
     public class CGuiBehaviorButtonText : CGuiBehavior
     {
-        [FieldAttr(144)] public string? _originalText = null;
-        [FieldAttr(152)] public CController.EInputDeviceType _buttonDeviceType;
+        [FieldAttr(nst: 144)] public string? _originalText = null;
+        [FieldAttr(nst: 152)] public CController.EInputDeviceType _buttonDeviceType;
     }
 }

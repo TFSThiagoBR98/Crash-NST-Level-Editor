@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CVehicleUpgradeComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CVehicleUpgradePath? _shieldUpgrades;
-        [FieldAttr(32)] public CVehicleUpgradePath? _weaponUpgrades;
+        [FieldAttr(nst: 24)] public CVehicleUpgradePath? _shieldUpgrades;
+        [FieldAttr(nst: 32)] public CVehicleUpgradePath? _weaponUpgrades;
     }
 }

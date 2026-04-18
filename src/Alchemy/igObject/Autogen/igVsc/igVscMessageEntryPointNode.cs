@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 80, align: 8)]
     public class igVscMessageEntryPointNode : igVscEntryPointNode
     {
-        [FieldAttr(56)] public igVectorMetaField<igMetaFieldInstance> _metaFields = new();
+        [FieldAttr(nst: 56, ctr: 56)] public igVectorMetaField<igMetaFieldInstance> _metaFields = new();
     }
 }

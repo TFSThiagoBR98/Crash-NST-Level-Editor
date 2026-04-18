@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class igVscLogicalANDNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscBoolAccessor? _a;
-        [FieldAttr(24)] public igVscBoolAccessor? _b;
-        [FieldAttr(32)] public igVscBoolAccessor? _result;
-        [FieldAttr(40, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16)] public igVscBoolAccessor? _a;
+        [FieldAttr(nst: 24)] public igVscBoolAccessor? _b;
+        [FieldAttr(nst: 32)] public igVscBoolAccessor? _result;
+        [FieldAttr(nst: 40, refCount: false)] public igVscActionNode? _out;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CPlayerRespawnGroundChecker : igObject
     {
-        public enum EResult : uint
+        public enum EResult
         {
             eR_None = 0,
             eR_Pending = 1,
@@ -11,9 +11,9 @@ namespace Alchemy
             eR_Failure = 3,
         }
 
-        [FieldAttr(16)] public igHandleMetaField _activeQuery = new();
-        [FieldAttr(24)] public EResult _result;
-        [FieldAttr(28)] public igVec3fMetaField _groundPosition = new();
-        [FieldAttr(40)] public bool _isLandVehicle;
+        [FieldAttr(nst: 16)] public igHandleMetaField _activeQuery = new();
+        [FieldAttr(nst: 24)] public EResult _result;
+        [FieldAttr(nst: 28)] public igVec3fMetaField _groundPosition = new();
+        [FieldAttr(nst: 40)] public bool _isLandVehicle;
     }
 }

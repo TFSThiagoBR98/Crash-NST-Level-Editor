@@ -1,14 +1,14 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVfxSizeBaseOperator : igVfxOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class SizeFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 3)] public EModulation _modulation = EModulation.kModulate;
+            [FieldAttr(offset: 0, size: 3)] public EModulation _modulation;
         }
 
-        [FieldAttr(24)] public SizeFlags _sizeFlags = new();
+        [FieldAttr(nst: 24, ctr: 16)] public SizeFlags _sizeFlags = new();
     }
 }

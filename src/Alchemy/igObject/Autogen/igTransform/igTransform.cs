@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(160, 16)]
+    [ObjectAttr(nst: 160, ctr: 160, align: 16)]
     public class igTransform : igGroup
     {
-        [FieldAttr(64)] public igMatrix44fMetaField _m = new();
-        [FieldAttr(128)] public int _target;
-        [FieldAttr(136)] public igTransformSource? _transformInput;
-        [FieldAttr(144)] public igTransformSource3? _transformInput3;
+        [FieldAttr(nst: 64, ctr: 64)] public igMatrix44fMetaField _m = new();
+        [FieldAttr(nst: 128, ctr: 128)] public int _target;
+        [FieldAttr(nst: 136, ctr: 136)] public igTransformSource? _transformInput;
+        [FieldAttr(nst: 144, ctr: 144)] public igTransformSource3? _transformInput3;
     }
 }

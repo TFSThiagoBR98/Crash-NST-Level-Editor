@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CGlobalNormalMapScaleBundle : igShaderConstantBundle
     {
-        [FieldAttr(24)] public float _globalNormalMapScale = 1.0f;
+        [FieldAttr(nst: 24, ctr: 24)] public float _globalNormalMapScale = 1.0f;
     }
 }

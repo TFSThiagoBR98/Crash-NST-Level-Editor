@@ -1,17 +1,17 @@
 namespace Alchemy
 {
-    [ObjectAttr(312, 4)]
+    [ObjectAttr(nst: 312, ctr: 304, align: 8)]
     public class CVfxDrawEntityTintOperator : igVfxDrawOperator
     {
-        [FieldAttr(32)] public igVfxRangedCurveMetaField _colorIntensity = new();
-        [FieldAttr(116)] public EOperatorCurveInput _intensityInput;
-        [FieldAttr(120)] public igVfxRangedCurveMetaField _emissive = new();
-        [FieldAttr(204)] public EOperatorCurveInput _emissiveInput;
-        [FieldAttr(208)] public igVfxRangedCurveMetaField _emissiveBlend = new();
-        [FieldAttr(292)] public EOperatorCurveInput _blendInput;
-        [FieldAttr(296)] public float _priority;
-        [FieldAttr(300)] public bool _applyToBoltOns = true;
-        [FieldAttr(304)] public u32 /* igStructMetaField */ _instance;
-        [FieldAttr(308)] public u32 /* igStructMetaField */ _primitive;
+        [FieldAttr(nst: 32, ctr: 20)] public igVfxRangedCurveMetaField _colorIntensity = new();
+        [FieldAttr(nst: 116, ctr: 104)] public EOperatorCurveInput _intensityInput;
+        [FieldAttr(nst: 120, ctr: 108)] public igVfxRangedCurveMetaField _emissive = new();
+        [FieldAttr(nst: 204, ctr: 192)] public EOperatorCurveInput _emissiveInput;
+        [FieldAttr(nst: 208, ctr: 196)] public igVfxRangedCurveMetaField _emissiveBlend = new();
+        [FieldAttr(nst: 292, ctr: 280)] public EOperatorCurveInput _blendInput;
+        [FieldAttr(nst: 296, ctr: 284)] public float _priority;
+        [FieldAttr(nst: 300, ctr: 288)] public bool _applyToBoltOns = true;
+        [FieldAttr(nst: 304, ctr: 292)] public uint _instance;
+        [FieldAttr(nst: 308, ctr: 296)] public uint _primitive;
     }
 }

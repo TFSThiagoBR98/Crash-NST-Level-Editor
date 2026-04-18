@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8, metaType: typeof(CChangeCollisionPriorityHandler))]
+    [ObjectAttr(nst: 88, ctr: 72, align: 8)]
     public class CChangeCollisionPriorityHandler : CBehaviorLogic
     {
-        [FieldAttr(80)] public ECharacterCollisionPriority _collisionPriority = ECharacterCollisionPriority.eCCP_High;
+        [FieldAttr(nst: 80, ctr: 64)] public ECharacterCollisionPriority _collisionPriority = ECharacterCollisionPriority.eCCP_High;
     }
 }

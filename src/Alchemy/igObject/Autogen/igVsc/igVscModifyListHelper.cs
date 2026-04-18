@@ -1,14 +1,14 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8)]
+    [ObjectAttr(nst: 72, ctr: 72, align: 8)]
     public class igVscModifyListHelper : igVscPlaceable
     {
-        [FieldAttr(16)] public igVscObjectAccessor? _sourceList;
-        [FieldAttr(24)] public igVscAccessor? _item;
-        [FieldAttr(32)] public igVscObjectAccessor? _modifiedList;
-        [FieldAttr(40)] public igVscIntAccessor? _size;
-        [FieldAttr(48, false)] public igMetaObjectInstance? _listMetaObject;
-        [FieldAttr(56, false)] public igMetaObjectInstance? _listBaseMetaObject;
-        [FieldAttr(64, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscObjectAccessor? _sourceList;
+        [FieldAttr(nst: 24, ctr: 24)] public igVscAccessor? _item;
+        [FieldAttr(nst: 32, ctr: 32)] public igVscObjectAccessor? _modifiedList;
+        [FieldAttr(nst: 40, ctr: 40)] public igVscIntAccessor? _size;
+        [FieldAttr(nst: 48, ctr: 48, refCount: false)] public igMetaObject? _listMetaObject;
+        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igMetaObject? _listBaseMetaObject;
+        [FieldAttr(nst: 64, ctr: 64, refCount: false)] public igVscActionNode? _out;
     }
 }

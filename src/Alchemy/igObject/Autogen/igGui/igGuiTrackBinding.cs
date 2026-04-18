@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class igGuiTrackBinding : igObject
     {
-        [FieldAttr(16, false)] public igObject? _object;
-        [FieldAttr(24, false)] public igGuiTrack? _track;
+        [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igObject? _object;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igGuiTrack? _track;
     }
 }

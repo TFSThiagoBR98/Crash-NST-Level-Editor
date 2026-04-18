@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8, metaObject: true)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8, meta: true)]
     public class CEntitySphere : Object
     {
-        [FieldAttr(32)] public float _radius = 100.0f;
-        [FieldAttr(36)] public igVec3fMetaField _offset = new();
+        [FieldAttr(nst: 32, ctr: 32)] public float _radius = 100.0f;
+        [FieldAttr(nst: 36, ctr: 36)] public igVec3fMetaField _offset = new();
     }
 }

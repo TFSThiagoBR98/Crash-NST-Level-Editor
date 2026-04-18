@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 4)]
     public class CGuiBehaviorTouchSimulateButton : igGuiBehavior
     {
-        [FieldAttr(16)] public igGuiInput.ESignal _button;
-        [FieldAttr(20)] public bool _hideWhenOnSubScreen;
-        [FieldAttr(24)] public igGuiInput.EController _touchControl;
+        [FieldAttr(nst: 16, ctr: 12)] public igGuiInput.ESignal _button;
+        [FieldAttr(nst: 20, ctr: 16)] public bool _hideWhenOnSubScreen;
+        [FieldAttr(nst: 24, ctr: 20)] public igGuiInput.EController _touchControl;
     }
 }

@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 40, align: 8)]
     public class CChangeRequest : igObject
     {
-        [FieldAttr(16)] public igHandleMetaField _manager = new();
-        [FieldAttr(24)] public bool _requestEnabled;
-        [FieldAttr(32)] public CScopedScheduledFunction? _scheduledChange;
+        [FieldAttr(nst: 16, ctr: 16)] public igHandleMetaField _manager = new();
+        [FieldAttr(nst: 24, ctr: 24)] public bool _requestEnabled;
+        [FieldAttr(nst: 32, ctr: 32)] public CScopedScheduledFunction? _scheduledChange;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8)]
+    [ObjectAttr(nst: 72, ctr: 64, align: 8)]
     public class igVec4ucMetaFieldInstance : igMetaFieldInstance
     {
-        [FieldAttr(56, false)] public InlinedMemoryRef<igVec4ucMetaField> _default = new();
+        [FieldAttr(nst: 56, ctr: 48, refCount: false)] public InlinedMemoryRef<igVec4ucMetaField> _default = new();
     }
 }

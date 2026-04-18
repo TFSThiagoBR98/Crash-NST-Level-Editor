@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(120, 4)]
+    [ObjectAttr(nst: 120, ctr: 112, align: 8)]
     public class igVfxVelocityLoadCurveOperator : igVfxVelocityLoadBaseOperator
     {
-        [FieldAttr(32)] public igVfxRangedCurveMetaField _inheritedVelocity = new();
-        [FieldAttr(116)] public EOperatorCurveInput _inheritedVelocityInput;
+        [FieldAttr(nst: 32, ctr: 20)] public igVfxRangedCurveMetaField _inheritedVelocity = new();
+        [FieldAttr(nst: 116, ctr: 104)] public EOperatorCurveInput _inheritedVelocityInput;
     }
 }

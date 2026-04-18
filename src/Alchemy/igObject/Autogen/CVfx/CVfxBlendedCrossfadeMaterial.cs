@@ -1,24 +1,24 @@
 namespace Alchemy
 {
-    [ObjectAttr(768, 16)]
+    [ObjectAttr(nst: 768, ctr: 768, align: 16)]
     public class CVfxBlendedCrossfadeMaterial : CVfxBlendedCombinerMaterial
     {
-        [FieldAttr(624)] public CVfxBlendedMaterial.EBlendFormat _blendFactor;
-        [FieldAttr(628)] public float _diffuseColorScale2;
-        [FieldAttr(632)] public CVfxBlendedMaterial.EBlendFormat _diffuseColorMaskAlpha2 = CVfxBlendedMaterial.EBlendFormat.kFormatOne;
-        [FieldAttr(636)] public float _diffuseAlphaScale2;
-        [FieldAttr(640)] public float _maskColorScale2;
-        [FieldAttr(644)] public CVfxBlendedMaterial.EBlendFormat _maskColorMaskAlpha2 = CVfxBlendedMaterial.EBlendFormat.kFormatOne;
-        [FieldAttr(648)] public float _maskAlphaScale2;
-        [FieldAttr(652)] public float _productColorScale2 = 1.0f;
-        [FieldAttr(656)] public float _productAlphaScale2 = 1.0f;
-        [FieldAttr(660)] public float _finalColorOffset2;
-        [FieldAttr(664)] public float _finalAlphaOffset2;
-        [FieldAttr(672)] public igVec4fMetaField _diffuseScale2 = new();
-        [FieldAttr(688)] public igVec4fMetaField _maskScale2 = new();
-        [FieldAttr(704)] public igVec4fMetaField _productScale2 = new();
-        [FieldAttr(720)] public igVec4fMetaField _finalOffset2 = new();
-        [FieldAttr(736)] public igVec4fMetaField _alphaParams2 = new();
-        [FieldAttr(752)] public igVec4fMetaField _blendParams = new();
+        [FieldAttr(nst: 624, ctr: 624)] public CVfxBlendedMaterial.EBlendFormat _blendFactor;
+        [FieldAttr(nst: 628, ctr: 628)] public float _diffuseColorScale2;
+        [FieldAttr(nst: 632, ctr: 632)] public CVfxBlendedMaterial.EBlendFormat _diffuseColorMaskAlpha2 = CVfxBlendedMaterial.EBlendFormat.kFormatOne;
+        [FieldAttr(nst: 636, ctr: 636)] public float _diffuseAlphaScale2;
+        [FieldAttr(nst: 640, ctr: 640)] public float _maskColorScale2;
+        [FieldAttr(nst: 644, ctr: 644)] public CVfxBlendedMaterial.EBlendFormat _maskColorMaskAlpha2 = CVfxBlendedMaterial.EBlendFormat.kFormatOne;
+        [FieldAttr(nst: 648, ctr: 648)] public float _maskAlphaScale2;
+        [FieldAttr(nst: 652, ctr: 652)] public float _productColorScale2 = 1.0f;
+        [FieldAttr(nst: 656, ctr: 656)] public float _productAlphaScale2 = 1.0f;
+        [FieldAttr(nst: 660, ctr: 660)] public float _finalColorOffset2;
+        [FieldAttr(nst: 664, ctr: 664)] public float _finalAlphaOffset2;
+        [FieldAttr(nst: 672, ctr: 672)] public igVec4fMetaField _diffuseScale2 = new();
+        [FieldAttr(nst: 688, ctr: 688)] public igVec4fMetaField _maskScale2 = new();
+        [FieldAttr(nst: 704, ctr: 704)] public igVec4fMetaField _productScale2 = new();
+        [FieldAttr(nst: 720, ctr: 720)] public igVec4fMetaField _finalOffset2 = new();
+        [FieldAttr(nst: 736, ctr: 736)] public igVec4fMetaField _alphaParams2 = new();
+        [FieldAttr(nst: 752, ctr: 752)] public igVec4fMetaField _blendParams = new();
     }
 }

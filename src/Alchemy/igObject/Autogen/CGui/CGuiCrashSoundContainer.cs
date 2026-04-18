@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CGuiCrashSoundContainer : CGuiBaseSoundContainer
     {
-        [FieldAttr(24)] public CGuiMenuSoundTable? _crash1MenuSoundTable;
-        [FieldAttr(32)] public CGuiMenuSoundTable? _crash2MenuSoundTable;
-        [FieldAttr(40)] public CGuiMenuSoundTable? _crash3MenuSoundTable;
+        [FieldAttr(nst: 24)] public CGuiMenuSoundTable? _crash1MenuSoundTable;
+        [FieldAttr(nst: 32)] public CGuiMenuSoundTable? _crash2MenuSoundTable;
+        [FieldAttr(nst: 40)] public CGuiMenuSoundTable? _crash3MenuSoundTable;
     }
 }

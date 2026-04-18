@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(4, 8)]
+    [ObjectAttr(592, 8)]
     public class igVfxManagerCameraDataMetaField : igCompoundMetaField
     {
-        [FieldAttr(0)] public float _unknown_0x0;
+        [FieldAttr(0)] public int[] _unknown = new int[148];
     }
 }

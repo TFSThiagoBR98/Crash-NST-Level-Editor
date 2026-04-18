@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 56, align: 8)]
     public class igAnimation2Generic : igAnimation2
     {
-        [FieldAttr(48)] public igTransformSource2List? _transformSourceList;
+        [FieldAttr(nst: 48, ctr: 48)] public igTransformSource2List? _transformSourceList;
     }
 }

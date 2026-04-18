@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(168, 8)]
+    [ObjectAttr(nst: 168, ctr: 168, align: 8)]
     public class CGuiBehaviorLegalScreen : CGuiBehavior
     {
-        [FieldAttr(144, false)] public igGuiPlaceable? _copyrightText;
-        [FieldAttr(152, false)] public igGuiPlaceable? _autosaveText;
-        [FieldAttr(160, false)] public igGuiAnimationTag? _idleAnimation;
+        [FieldAttr(nst: 144, ctr: 144, refCount: false)] public igGuiPlaceable? _copyrightText;
+        [FieldAttr(nst: 152, ctr: 152, refCount: false)] public igGuiPlaceable? _autosaveText;
+        [FieldAttr(nst: 160, ctr: 160, refCount: false)] public igGuiAnimationTag? _idleAnimation;
     }
 }

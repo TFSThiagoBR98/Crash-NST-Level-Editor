@@ -1,14 +1,14 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CAIAggroRule : igObject
     {
-        [FieldAttr(16)] public CFilterEntities? _filter;
-        [FieldAttr(24)] public float _aggroAmount = 1.0f;
-        [FieldAttr(28)] public float _distanceMax;
-        [FieldAttr(32)] public float _aggroMultiplierMinDistance;
-        [FieldAttr(36)] public float _aggroMultiplierAtMinDistance = 1.0f;
-        [FieldAttr(40)] public float _aggroMultiplierAtMaxDistance = 1.0f;
-        [FieldAttr(44)] public uint _validWithStatus = 3;
+        [FieldAttr(nst: 16)] public CFilterEntities? _filter;
+        [FieldAttr(nst: 24)] public float _aggroAmount = 1.0f;
+        [FieldAttr(nst: 28)] public float _distanceMax;
+        [FieldAttr(nst: 32)] public float _aggroMultiplierMinDistance;
+        [FieldAttr(nst: 36)] public float _aggroMultiplierAtMinDistance = 1.0f;
+        [FieldAttr(nst: 40)] public float _aggroMultiplierAtMaxDistance = 1.0f;
+        [FieldAttr(nst: 44)] public uint _validWithStatus = 3;
     }
 }

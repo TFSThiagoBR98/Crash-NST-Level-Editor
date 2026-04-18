@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, ctr: 16, align: 4)]
     public class CBaseBehaviorLogic : igObject
     {
-        [FieldAttr(16)] public bool _isCrashed;
+        [FieldAttr(nst: 16, ctr: 12)] public bool _isCrashed;
     }
 }

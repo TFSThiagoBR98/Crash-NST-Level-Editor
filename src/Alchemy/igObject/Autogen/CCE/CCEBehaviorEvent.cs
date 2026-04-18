@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 72, align: 8)]
     public class CCEBehaviorEvent : CCombatNodeEvent
     {
-        [FieldAttr(80)] public string? _behaviorEventName = null;
+        [FieldAttr(nst: 80, ctr: 64)] public string? _behaviorEventName = null;
     }
 }

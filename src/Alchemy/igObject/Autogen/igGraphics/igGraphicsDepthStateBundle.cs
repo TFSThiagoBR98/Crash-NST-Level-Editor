@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class igGraphicsDepthStateBundle : igGraphicsObject
     {
-        [FieldAttr(24)] public igDepthStateBundleDescMetaField _depthStateBundle = new();
-        [FieldAttr(40)] public igSizeTypeMetaField _resource = new();
+        [FieldAttr(nst: 24, ctr: 24)] public igDepthStateBundleDescMetaField _depthStateBundle = new();
+        [FieldAttr(nst: 40, ctr: 40)] public igSizeTypeMetaField _resource = new();
     }
 }

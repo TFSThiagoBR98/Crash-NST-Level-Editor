@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class CVehiclePersonalizationBaseItemList : igObjectList<CVehiclePersonalizationBaseItem>
     {
-        [FieldAttr(40)] public CVehiclePersonalizationBaseSharedData? _sharedData;
+        [FieldAttr(nst: 40, ctr: 40)] public CVehiclePersonalizationBaseSharedData? _sharedData;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 4)]
     public class CPlayerFollowData : igObject
     {
-        [FieldAttr(16)] public float _followRatio = 1.0f;
-        [FieldAttr(20)] public float _maxAngle = 10.0f;
+        [FieldAttr(nst: 16, ctr: 12)] public float _followRatio = 1.0f;
+        [FieldAttr(nst: 20, ctr: 16)] public float _maxAngle = 10.0f;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CDspHighPassSimpleOverride : CDspOverride
     {
-        [FieldAttr(32)] public float _cutoffFreq = 1000.0f;
+        [FieldAttr(nst: 32, ctr: 28)] public float _cutoffFreq = 1000.0f;
     }
 }

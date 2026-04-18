@@ -1,12 +1,12 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, align: 8)]
     public class CPositionLocalToWorldNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscObjectAccessor? _target;
-        [FieldAttr(24)] public igVscObjectAccessor? _boltPoint;
-        [FieldAttr(32)] public igVscVec3fAccessor? _vector;
-        [FieldAttr(40)] public igVscVec3fAccessor? _result;
-        [FieldAttr(48, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16)] public igVscObjectAccessor? _target;
+        [FieldAttr(nst: 24)] public igVscObjectAccessor? _boltPoint;
+        [FieldAttr(nst: 32)] public igVscVec3fAccessor? _vector;
+        [FieldAttr(nst: 40)] public igVscVec3fAccessor? _result;
+        [FieldAttr(nst: 48, refCount: false)] public igVscActionNode? _out;
     }
 }

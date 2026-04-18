@@ -1,23 +1,23 @@
 namespace Alchemy
 {
-    [ObjectAttr(128, 8)]
+    [ObjectAttr(nst: 128, ctr: 120, align: 8)]
     public class igSpriteBucket : igObject
     {
-        [FieldAttr(16)] public float _depth;
-        [FieldAttr(24)] public igHandleMetaField _renderTarget = new();
-        [FieldAttr(32)] public igHandleMetaField _image = new();
-        [FieldAttr(40, false)] public igSpriteDrawCallModifier? _modifier;
-        [FieldAttr(48)] public bool _hasValidPassId;
-        [FieldAttr(49)] public u8 _passId;
-        [FieldAttr(50)] public bool _blendState;
-        [FieldAttr(56)] public igRawRefMetaField _extraUvs = new();
-        [FieldAttr(64)] public igScissorNode? _scissor;
-        [FieldAttr(72)] public igHandleMetaField _material = new();
-        [FieldAttr(80)] public igSizeTypeMetaField _texture = new();
-        [FieldAttr(88)] public igSizeTypeMetaField _sampler = new();
-        [FieldAttr(96)] public int _spriteCount;
-        [FieldAttr(104, false)] public igSprite? _firstSprite;
-        [FieldAttr(112, false)] public igRenderer? _renderer;
-        [FieldAttr(120)] public uint _hash;
+        [FieldAttr(nst: 16, ctr: 12)] public float _depth;
+        [FieldAttr(nst: 24, ctr: 16)] public igHandleMetaField _renderTarget = new();
+        [FieldAttr(nst: 32, ctr: 24)] public igHandleMetaField _image = new();
+        [FieldAttr(nst: 40, ctr: 32, refCount: false)] public igSpriteDrawCallModifier? _modifier;
+        [FieldAttr(nst: 48, ctr: 40)] public bool _hasValidPassId;
+        [FieldAttr(nst: 49, ctr: 42)] public u16 _passId;
+        [FieldAttr(nst: 50, ctr: 44)] public bool _blendState;
+        [FieldAttr(nst: 56, ctr: 48)] public igRawRefMetaField _extraUvs = new();
+        [FieldAttr(nst: 64, ctr: 56)] public igScissorNode? _scissor;
+        [FieldAttr(nst: 72, ctr: 64)] public igHandleMetaField _material = new();
+        [FieldAttr(nst: 80, ctr: 72)] public igSizeTypeMetaField _texture = new();
+        [FieldAttr(nst: 88, ctr: 80)] public igSizeTypeMetaField _sampler = new();
+        [FieldAttr(nst: 96, ctr: 88)] public int _spriteCount;
+        [FieldAttr(nst: 104, ctr: 96, refCount: false)] public igSprite? _firstSprite;
+        [FieldAttr(nst: 112, ctr: 104, refCount: false)] public igRenderer? _renderer;
+        [FieldAttr(nst: 120, ctr: 112)] public uint _hash;
     }
 }

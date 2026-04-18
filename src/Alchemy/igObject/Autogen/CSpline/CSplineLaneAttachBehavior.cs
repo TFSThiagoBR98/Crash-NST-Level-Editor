@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CSplineLaneAttachBehavior : CSplineAttachBehavior
     {
-        [FieldAttr(24, false)] public CEntity? _entityOnSpline;
-        [FieldAttr(32)] public float _localXPosition;
+        [FieldAttr(nst: 24, ctr: 16, refCount: false)] public CEntity? _entityOnSpline;
+        [FieldAttr(nst: 32, ctr: 24)] public float _localXPosition;
     }
 }

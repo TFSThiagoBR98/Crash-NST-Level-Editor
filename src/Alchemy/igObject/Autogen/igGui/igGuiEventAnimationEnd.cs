@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class igGuiEventAnimationEnd : igGuiEventAnimation
     {
-        [FieldAttr(32, false)] public igGuiPlaceable? _placeable;
-        [FieldAttr(40, false)] public igGuiPlaceable? _signalObject;
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igGuiPlaceable? _placeable;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igGuiPlaceable? _signalObject;
     }
 }

@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(112, 8)]
+    [ObjectAttr(nst: 112, align: 8)]
     public class CCEBoltOn : CCombatNodeEvent
     {
-        [FieldAttr(80)] public string? mModelName = null;
-        [FieldAttr(88)] public string? mSkinName = null;
-        [FieldAttr(96)] public CBoltPoint? mBoltPoint;
-        [FieldAttr(104)] public EBoltonModels mBoltOnSlot;
-        [FieldAttr(108)] public bool mRemoveBoltOn;
-        [FieldAttr(109)] public bool mReplaceCurrent;
+        [FieldAttr(nst: 80)] public string? mModelName = null;
+        [FieldAttr(nst: 88)] public string? mSkinName = null;
+        [FieldAttr(nst: 96)] public CBoltPoint? mBoltPoint;
+        [FieldAttr(nst: 104)] public EBoltonModels mBoltOnSlot;
+        [FieldAttr(nst: 108)] public bool mRemoveBoltOn;
+        [FieldAttr(nst: 109)] public bool mReplaceCurrent;
     }
 }

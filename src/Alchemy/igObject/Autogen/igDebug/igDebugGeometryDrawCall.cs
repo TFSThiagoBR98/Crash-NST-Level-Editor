@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class igDebugGeometryDrawCall : igDrawCall
     {
-        [FieldAttr(24)] public igRawRefMetaField _data = new();
-        [FieldAttr(32, false)] public igMemoryCommandStream? _state;
+        [FieldAttr(nst: 24, ctr: 16)] public igRawRefMetaField _data = new();
+        [FieldAttr(nst: 32, ctr: 24, refCount: false)] public igMemoryCommandStream? _state;
     }
 }

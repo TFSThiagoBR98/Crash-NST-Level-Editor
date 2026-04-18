@@ -1,12 +1,14 @@
 namespace Alchemy
 {
-    [ObjectAttr(112, 8)]
+    [ObjectAttr(nst: 112, ctr: 128, align: 8)]
     public class CGuiSaveSlotOperationSave : CGuiSaveSlotOperationBase
     {
-        [FieldAttr(72)] public string? _overwriteSaveDialogTitle = null;
-        [FieldAttr(80)] public string? _overwriteSaveDialogBody = null;
-        [FieldAttr(88)] public string? _confirmOverwriteOptionText = null;
-        [FieldAttr(96)] public string? _cancelOverwriteOptionText = null;
-        [FieldAttr(104)] public igHandleMetaField _overwriteDialogImage = new();
+        [FieldAttr(nst: 72, ctr: 72)] public string? _overwriteSaveDialogTitle = null;
+        [FieldAttr(nst: 80, ctr: 80)] public string? _overwriteSaveDialogBody = null;
+        [FieldAttr(nst: 88, ctr: 88)] public string? _confirmOverwriteOptionText = null;
+        [FieldAttr(ctr: 96)] public EButtonLegendButton _confirmOverwriteOptionButton;
+        [FieldAttr(nst: 96, ctr: 104)] public string? _cancelOverwriteOptionText = null;
+        [FieldAttr(ctr: 112)] public EButtonLegendButton _cancelOverwriteOptionButton;
+        [FieldAttr(nst: 104, ctr: 120)] public igHandleMetaField _overwriteDialogImage = new();
     }
 }

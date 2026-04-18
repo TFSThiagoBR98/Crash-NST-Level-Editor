@@ -1,15 +1,15 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 80, align: 8)]
     public class igVscCompareIntNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscIntAccessor? _a;
-        [FieldAttr(24)] public igVscIntAccessor? _b;
-        [FieldAttr(32, false)] public igVscActionNode? _greaterThan;
-        [FieldAttr(40, false)] public igVscActionNode? _greaterThanOrEqualTo;
-        [FieldAttr(48, false)] public igVscActionNode? _equalTo;
-        [FieldAttr(56, false)] public igVscActionNode? _notEqualTo;
-        [FieldAttr(64, false)] public igVscActionNode? _lessThanOrEqualTo;
-        [FieldAttr(72, false)] public igVscActionNode? _lessThan;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscIntAccessor? _a;
+        [FieldAttr(nst: 24, ctr: 24)] public igVscIntAccessor? _b;
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igVscActionNode? _greaterThan;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igVscActionNode? _greaterThanOrEqualTo;
+        [FieldAttr(nst: 48, ctr: 48, refCount: false)] public igVscActionNode? _equalTo;
+        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igVscActionNode? _notEqualTo;
+        [FieldAttr(nst: 64, ctr: 64, refCount: false)] public igVscActionNode? _lessThanOrEqualTo;
+        [FieldAttr(nst: 72, ctr: 72, refCount: false)] public igVscActionNode? _lessThan;
     }
 }

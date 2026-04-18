@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CCutsceneActionOpenUi : CCutsceneAction
     {
-        [FieldAttr(24)] public string? _menuName = null;
-        [FieldAttr(32)] public CCharacterIntroductionInfo? _characterIntroductionInfo;
+        [FieldAttr(nst: 24)] public string? _menuName = null;
+        [FieldAttr(nst: 32)] public CCharacterIntroductionInfo? _characterIntroductionInfo;
     }
 }

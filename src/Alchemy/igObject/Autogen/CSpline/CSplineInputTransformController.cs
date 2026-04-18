@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CSplineInputTransformController : CBaseInputTransformController
     {
-        [FieldAttr(16, false)] public CEntity? _splineEntity;
-        [FieldAttr(24)] public bool _reversed;
+        [FieldAttr(nst: 16, refCount: false)] public CEntity? _splineEntity;
+        [FieldAttr(nst: 24)] public bool _reversed;
     }
 }

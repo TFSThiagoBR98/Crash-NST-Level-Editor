@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 16)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 16)]
     public class CPixelCostConstantBundle : igShaderConstantBundle
     {
-        [FieldAttr(32)] public igVec4fMetaField _thresholds = new();
+        [FieldAttr(nst: 32, ctr: 32)] public igVec4fMetaField _thresholds = new();
     }
 }

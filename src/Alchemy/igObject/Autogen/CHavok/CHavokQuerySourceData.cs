@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CHavokQuerySourceData : CSourceData
     {
-        [FieldAttr(16)] public float _raycastOffsetAbove = 1000.0f;
-        [FieldAttr(20)] public float _raycastOffsetBelow = 1000.0f;
-        [FieldAttr(24)] public igHandleMetaField _targetWaterSurfaceMaterial = new();
+        [FieldAttr(nst: 16)] public float _raycastOffsetAbove = 1000.0f;
+        [FieldAttr(nst: 20)] public float _raycastOffsetBelow = 1000.0f;
+        [FieldAttr(nst: 24)] public igHandleMetaField _targetWaterSurfaceMaterial = new();
     }
 }

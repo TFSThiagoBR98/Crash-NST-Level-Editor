@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 4)]
+    [ObjectAttr(nst: 48, ctr: 32, align: 8)]
     public class igVfxColorValueFixedOperator : igVfxColorValueBaseOperator
     {
-        [FieldAttr(40)] public float _amount = 0.5f;
+        [FieldAttr(nst: 40, ctr: 24)] public float _amount = 0.5f;
     }
 }

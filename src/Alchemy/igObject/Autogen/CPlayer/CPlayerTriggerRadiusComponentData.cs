@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class CPlayerTriggerRadiusComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public float _radius = 1.0f;
-        [FieldAttr(28)] public bool _allPlayersMustEnter;
-        [FieldAttr(29)] public bool _allPlayersMustExit;
+        [FieldAttr(nst: 24)] public float _radius = 1.0f;
+        [FieldAttr(nst: 28)] public bool _allPlayersMustEnter;
+        [FieldAttr(nst: 29)] public bool _allPlayersMustExit;
     }
 }

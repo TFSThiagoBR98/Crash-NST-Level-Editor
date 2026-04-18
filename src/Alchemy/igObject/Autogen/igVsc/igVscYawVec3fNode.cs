@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class igVscYawVec3fNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscVec3fAccessor? _position;
-        [FieldAttr(24)] public igVscVec3fAccessor? _relativeTo;
-        [FieldAttr(32)] public igVscFloatAccessor? _yaw;
-        [FieldAttr(40, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16)] public igVscVec3fAccessor? _position;
+        [FieldAttr(nst: 24)] public igVscVec3fAccessor? _relativeTo;
+        [FieldAttr(nst: 32)] public igVscFloatAccessor? _yaw;
+        [FieldAttr(nst: 40, refCount: false)] public igVscActionNode? _out;
     }
 }

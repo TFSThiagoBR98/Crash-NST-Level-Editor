@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 72, align: 8)]
     public class CBehaviorPhysicsGenericShapeComponentData : CBehaviorPhysicsComponentData
     {
-        [FieldAttr(72)] public CShape? _shape;
+        [FieldAttr(nst: 72, ctr: 64)] public CShape? _shape;
     }
 }

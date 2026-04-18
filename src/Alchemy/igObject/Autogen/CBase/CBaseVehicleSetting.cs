@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 4)]
     public class CBaseVehicleSetting : igObject
     {
-        [FieldAttr(16)] public int _stat;
-        [FieldAttr(20)] public bool _dirty;
+        [FieldAttr(nst: 16, ctr: 12)] public int _stat;
+        [FieldAttr(nst: 20, ctr: 16)] public bool _dirty;
     }
 }

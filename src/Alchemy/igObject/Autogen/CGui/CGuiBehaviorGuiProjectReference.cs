@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(152, 8)]
+    [ObjectAttr(nst: 152, align: 8)]
     public class CGuiBehaviorGuiProjectReference : CGuiBehavior
     {
-        [FieldAttr(144, false)] public igGuiProject? _project;
+        [FieldAttr(nst: 144, refCount: false)] public igGuiProject? _project;
     }
 }

@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaType: typeof(CPhysicsForceUpdater))]
+    [ObjectAttr(nst: 64, align: 8)]
     public class CPhysicsForceUpdater : igUpdateable
     {
-        [FieldAttr(32)] public igHandleMetaField _updater = new();
-        [FieldAttr(40)] public igHandleMetaField _entity = new();
-        [FieldAttr(48)] public igVec3fMetaField _force = new();
+        [FieldAttr(nst: 32)] public igHandleMetaField _updater = new();
+        [FieldAttr(nst: 40)] public igHandleMetaField _entity = new();
+        [FieldAttr(nst: 48)] public igVec3fMetaField _force = new();
     }
 }

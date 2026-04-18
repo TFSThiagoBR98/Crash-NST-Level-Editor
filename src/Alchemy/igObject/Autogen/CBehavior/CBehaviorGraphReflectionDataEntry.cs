@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CBehaviorGraphReflectionDataEntry : igObject
     {
-        [FieldAttr(16)] public CBehaviorGraphReflectionData? _reflectionData;
-        [FieldAttr(24)] public string? _filename = null;
+        [FieldAttr(nst: 16, ctr: 16)] public CBehaviorGraphReflectionData? _reflectionData;
+        [FieldAttr(nst: 24, ctr: 24)] public string? _filename = null;
     }
 }

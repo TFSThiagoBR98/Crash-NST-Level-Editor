@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 40, align: 8)]
     public class igDepthEncodingBundle : igShaderConstantBundle
     {
-        [FieldAttr(24)] public float _farPlane = 1.0f;
-        [FieldAttr(28)] public float _farDiv255 = 39.21569061f;
-        [FieldAttr(32)] public float _oneDivFarPlane = 0.0f;
-        [FieldAttr(36)] public float _255DivFarPlane = 0.0255f;
+        [FieldAttr(nst: 24, ctr: 24)] public float _farPlane = 1.0f;
+        [FieldAttr(nst: 28, ctr: 28)] public float _farDiv255 = 39.21569061f;
+        [FieldAttr(nst: 32, ctr: 32)] public float _oneDivFarPlane = 0.0f;
+        [FieldAttr(nst: 36, ctr: 36)] public float _255DivFarPlane = 0.0255f;
     }
 }

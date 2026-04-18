@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, align: 4)]
     public class igVfxAccelerateDragAerodynamicOperator : igVfxAccelerateDragAerodynamicBaseOperator
     {
-        [FieldAttr(32)] public float _drag;
+        [FieldAttr(nst: 32)] public float _drag;
     }
 }

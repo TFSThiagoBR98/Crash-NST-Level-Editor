@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 80, align: 8)]
     public class CTriggerVolumeModelComponentData : CTriggerVolumeComponentData
     {
-        [FieldAttr(80)] public string? _fileName = null;
+        [FieldAttr(nst: 80, ctr: 72)] public string? _fileName = null;
     }
 }

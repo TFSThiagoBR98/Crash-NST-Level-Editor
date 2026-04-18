@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CVscComponentEntityToComponentAccessor : igVscObjectAccessor
     {
-        [FieldAttr(24)] public igVscObjectAccessor? _accessor;
-        [FieldAttr(32, false)] public igMetaObject? _componentMeta;
+        [FieldAttr(nst: 24, ctr: 16)] public igVscObjectAccessor? _accessor;
+        [FieldAttr(nst: 32, ctr: 24, refCount: false)] public igMetaObject? _componentMeta;
     }
 }

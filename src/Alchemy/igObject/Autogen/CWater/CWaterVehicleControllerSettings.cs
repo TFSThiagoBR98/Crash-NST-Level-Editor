@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(120, 8)]
+    [ObjectAttr(nst: 120, ctr: 120, align: 8)]
     public class CWaterVehicleControllerSettings : CBaseVehicleControllerSettings
     {
-        [FieldAttr(112)] public CBuoyancyVehicleSettingList? _buoyancyStat;
+        [FieldAttr(nst: 112, ctr: 112)] public CBuoyancyVehicleSettingList? _buoyancyStat;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8, metaType: typeof(CTakeHitLogic))]
+    [ObjectAttr(nst: 88, ctr: 72, align: 8)]
     public class CTakeHitLogic : CBehaviorLogic
     {
-        [FieldAttr(80)] public bool _allowMultiplePushbacks;
-        [FieldAttr(84)] public float _pushbackScale = 1.0f;
+        [FieldAttr(nst: 80, ctr: 64)] public bool _allowMultiplePushbacks;
+        [FieldAttr(nst: 84, ctr: 68)] public float _pushbackScale = 1.0f;
     }
 }

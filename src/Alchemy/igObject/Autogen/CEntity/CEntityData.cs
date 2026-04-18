@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 56, align: 8)]
     public class CEntityData : igEntityData
     {
-        public enum EEntityTeam : uint
+        public enum EEntityTeam
         {
             eET_None = 0,
             eET_Hero = 1,
@@ -11,7 +11,7 @@ namespace Alchemy
             eET_AltEnemy = 3,
         }
 
-        public enum EEntityTeamFaction : uint
+        public enum EEntityTeamFaction
         {
             eETF_None = 0,
             eETF_Faction_1 = 1,
@@ -28,10 +28,10 @@ namespace Alchemy
             eETF_Faction_12 = 12,
         }
 
-        [FieldAttr(32)] public uint _entityFlags = 2879492;
-        [FieldAttr(36)] public uint _actionEntityFlags = 32;
-        [FieldAttr(40)] public EEntityTeam _team;
-        [FieldAttr(44)] public EEntityTeamFaction _teamFaction;
-        [FieldAttr(48)] public CEntityTagSet? _tags;
+        [FieldAttr(nst: 32, ctr: 32)] public uint _entityFlags = 2879492;
+        [FieldAttr(nst: 36, ctr: 36)] public uint _actionEntityFlags = 32;
+        [FieldAttr(nst: 40, ctr: 40)] public EEntityTeam _team;
+        [FieldAttr(nst: 44, ctr: 44)] public EEntityTeamFaction _teamFaction;
+        [FieldAttr(nst: 48, ctr: 48)] public CEntityTagSet? _tags;
     }
 }

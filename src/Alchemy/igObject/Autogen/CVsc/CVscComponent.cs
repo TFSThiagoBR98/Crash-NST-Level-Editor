@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaObject: true)]
+    [ObjectAttr(nst: 64, align: 8, meta: true)]
     public class CVscComponent : CEntityComponent
     {
-        [FieldAttr(48)] public igRawRefMetaField _dynamicFieldMemory = new();
-        [FieldAttr(56, false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 48)] public igRawRefMetaField _dynamicFieldMemory = new();
+        [FieldAttr(nst: 56, refCount: false)] public igMetaObject? _meta = (null);
     }
 }

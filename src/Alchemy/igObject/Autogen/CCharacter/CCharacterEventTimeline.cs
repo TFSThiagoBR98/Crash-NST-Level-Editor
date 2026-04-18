@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CCharacterEventTimeline : igObject
     {
-        [FieldAttr(16)] public igHandleMetaField _clip = new();
-        [FieldAttr(24)] public CCombatNodeEventList? _events;
+        [FieldAttr(nst: 16, ctr: 16)] public igHandleMetaField _clip = new();
+        [FieldAttr(nst: 24, ctr: 24)] public CCombatNodeEventList? _events;
     }
 }

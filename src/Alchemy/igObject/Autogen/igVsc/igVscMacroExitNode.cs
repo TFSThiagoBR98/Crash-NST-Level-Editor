@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 8)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 8)]
     public class igVscMacroExitNode : igVscActionNode
     {
-        [FieldAttr(16, false)] public igObjectRefMetaFieldInstance? _actionNodeField;
+        [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igObject? _actionNodeField;
     }
 }

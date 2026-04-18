@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CCharacterIntroductionInfo : igObject
     {
-        [FieldAttr(16)] public igHandleMetaField _skewMaterial = new();
-        [FieldAttr(24)] public igHandleMetaField _introductionVO = new();
+        [FieldAttr(nst: 16)] public igHandleMetaField _skewMaterial = new();
+        [FieldAttr(nst: 24)] public igHandleMetaField _introductionVO = new();
     }
 }

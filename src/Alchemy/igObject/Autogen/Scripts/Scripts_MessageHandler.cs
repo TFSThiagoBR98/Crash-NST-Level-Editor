@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8, metaType: typeof(CBehaviorLogic))]
+    [ObjectAttr(nst: 96, align: 8, metaType: typeof(CBehaviorLogic))]
     public class Scripts_MessageHandler : CBehaviorLogic
     {
-        [FieldAttr(80)] public CEntityMessage? ActivationMessage;
-        [FieldAttr(88)] public CEntityMessage? DeactivationMessage;
+        [FieldAttr(nst: 80)] public CEntityMessage? ActivationMessage;
+        [FieldAttr(nst: 88)] public CEntityMessage? DeactivationMessage;
     }
 }

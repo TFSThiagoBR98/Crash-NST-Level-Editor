@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class igVscMessageDelegator : igVscDelegator
     {
-        [FieldAttr(24, false)] public igMetaObjectInstance? _messageMetaObject;
-        [FieldAttr(32)] public igVscObjectAccessor? _target;
-        [FieldAttr(40)] public bool _isPrivateMessage;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igMetaObject? _messageMetaObject;
+        [FieldAttr(nst: 32, ctr: 32)] public igVscObjectAccessor? _target;
+        [FieldAttr(nst: 40, ctr: 40)] public bool _isPrivateMessage;
     }
 }

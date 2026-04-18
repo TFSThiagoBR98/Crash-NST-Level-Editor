@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CBehaviorStateGroup : igObject
     {
-        [FieldAttr(16)] public CBehaviorActivatorNodeHandleList? _activatorStates;
-        [FieldAttr(24)] public CBehaviorActivatorNodeHandleList? _deactivatorStates;
+        [FieldAttr(nst: 16)] public CBehaviorActivatorNodeHandleList? _activatorStates;
+        [FieldAttr(nst: 24)] public CBehaviorActivatorNodeHandleList? _deactivatorStates;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(272, 8)]
+    [ObjectAttr(nst: 272, ctr: 256, align: 8)]
     public class igVfxPosePlacedPrimitiveRotateOperator : igVfxPosePlacedPrimitiveRotateOperatorBase
     {
-        [FieldAttr(104)] public igVfxRangedCurveMetaField _rotationAngle = new();
-        [FieldAttr(188)] public igVfxRangedCurveMetaField _rotationRadius = new();
+        [FieldAttr(nst: 104, ctr: 84)] public igVfxRangedCurveMetaField _rotationAngle = new();
+        [FieldAttr(nst: 188, ctr: 168)] public igVfxRangedCurveMetaField _rotationRadius = new();
     }
 }

@@ -1,0 +1,88 @@
+namespace Alchemy
+{
+    [ObjectAttr(ctr: 672, align: 4, metaType: typeof(igGuiVscBehavior))]
+    public class Octane_TimeTrial_Ranking_Root : igGuiVscBehavior
+    {
+        [FieldAttr(ctr: 40)] public igHandleMetaField _Gui_Placeable_0x28 = new();
+        [FieldAttr(ctr: 48)] public igHandleMetaField _Gui_Placeable_id_7dyniep7001 = new();
+        [FieldAttr(ctr: 56)] public igHandleMetaField _Gui_Placeable_id_24l6lkva001 = new();
+        [FieldAttr(ctr: 64)] public igHandleMetaField _Gui_Placeable_0x40 = new();
+        [FieldAttr(ctr: 72)] public igHandleMetaField _Gui_Placeable_0x48 = new();
+        [FieldAttr(ctr: 80)] public igHandleMetaField _Gui_Placeable_0x50 = new();
+        [FieldAttr(ctr: 88)] public igHandleMetaField _Gui_Animation_Tag_0x58 = new();
+        [FieldAttr(ctr: 96)] public igHandleMetaField _Gui_Placeable_0x60 = new();
+        [FieldAttr(ctr: 104)] public igHandleMetaField _Gui_Animation_Tag_0x68 = new();
+        [FieldAttr(ctr: 112)] public igHandleMetaField _Gui_Animation_Tag_0x70 = new();
+        [FieldAttr(ctr: 120)] public bool _Bool_0x78;
+        [FieldAttr(ctr: 121)] public bool _Bool_0x79;
+        [FieldAttr(ctr: 128)] public igHandleMetaField _Gui_Placeable_0x80 = new();
+        [FieldAttr(ctr: 136)] public string? _String_0x88 = null;
+        [FieldAttr(ctr: 144)] public igHandleMetaField _Gui_Placeable_0x90 = new();
+        [FieldAttr(ctr: 152)] public string? _String_0x98 = null;
+        [FieldAttr(ctr: 160)] public igHandleMetaField _Gui_Placeable_0xa0 = new();
+        [FieldAttr(ctr: 168)] public string? _String_id_2ckuj2l2001 = null;
+        [FieldAttr(ctr: 176)] public igHandleMetaField _Gui_Placeable_id_l3rekhxc001 = new();
+        [FieldAttr(ctr: 184)] public igHandleMetaField _Entity = new();
+        [FieldAttr(ctr: 192)] public igHandleMetaField _Gui_Placeable_0xc0 = new();
+        [FieldAttr(ctr: 200)] public igHandleMetaField _Gui_Placeable_0xc8 = new();
+        [FieldAttr(ctr: 208)] public igHandleMetaField _Gui_Placeable_0xd0 = new();
+        [FieldAttr(ctr: 216)] public igHandleMetaField _Gui_Placeable_0xd8 = new();
+        [FieldAttr(ctr: 224)] public igHandleMetaField _Gui_Placeable_0xe0 = new();
+        [FieldAttr(ctr: 232)] public bool _Bool_0xe8;
+        [FieldAttr(ctr: 240)] public igHandleMetaField _Gui_Placeable_0xf0 = new();
+        [FieldAttr(ctr: 248)] public igHandleMetaField _Gui_Placeable_0xf8 = new();
+        [FieldAttr(ctr: 256)] public igHandleMetaField _Gui_Placeable_0x100 = new();
+        [FieldAttr(ctr: 264)] public string? _String_0x108 = null;
+        [FieldAttr(ctr: 272)] public bool _Bool_0x110;
+        [FieldAttr(ctr: 280)] public igHandleMetaField _Gui_Placeable_0x118 = new();
+        [FieldAttr(ctr: 288)] public string? _String_0x120 = null;
+        [FieldAttr(ctr: 296)] public string? _String_0x128 = null;
+        [FieldAttr(ctr: 304)] public igHandleMetaField _Gui_Placeable_0x130 = new();
+        [FieldAttr(ctr: 312)] public igHandleMetaField _Gui_Animation_Tag_0x138 = new();
+        [FieldAttr(ctr: 320)] public igHandleMetaField _Gui_Placeable_0x140 = new();
+        [FieldAttr(ctr: 328)] public igHandleMetaField _Sound_0x148 = new();
+        [FieldAttr(ctr: 336)] public igHandleMetaField _Gui_Placeable_0x150 = new();
+        [FieldAttr(ctr: 344)] public igHandleMetaField _Gui_Placeable_id_lkf8qogo001 = new();
+        [FieldAttr(ctr: 352)] public igHandleMetaField _Gui_Placeable_0x160 = new();
+        [FieldAttr(ctr: 360)] public igHandleMetaField _Material = new();
+        [FieldAttr(ctr: 368)] public igHandleMetaField _Gui_Placeable_0x170 = new();
+        [FieldAttr(ctr: 376)] public igHandleMetaField _Gui_Placeable_0x178 = new();
+        [FieldAttr(ctr: 384)] public igHandleMetaField _Gui_Placeable_0x180 = new();
+        [FieldAttr(ctr: 392)] public igHandleMetaField _Gui_Placeable_0x188 = new();
+        [FieldAttr(ctr: 400)] public igHandleMetaField _Gui_Placeable_0x190 = new();
+        [FieldAttr(ctr: 408)] public int _Int_0x198;
+        [FieldAttr(ctr: 412)] public int _Int_0x19c;
+        [FieldAttr(ctr: 416)] public igHandleMetaField _Gui_Placeable_0x1a0 = new();
+        [FieldAttr(ctr: 424)] public igHandleMetaField _Gui_Placeable_0x1a8 = new();
+        [FieldAttr(ctr: 432)] public igHandleMetaField _Localized_String_0x1b0 = new();
+        [FieldAttr(ctr: 440)] public igHandleMetaField _Gui_Placeable_0x1b8 = new();
+        [FieldAttr(ctr: 448)] public igHandleMetaField _Gui_Placeable_0x1c0 = new();
+        [FieldAttr(ctr: 456)] public igHandleMetaField _Localized_String_0x1c8 = new();
+        [FieldAttr(ctr: 464)] public igHandleMetaField _Localized_String_0x1d0 = new();
+        [FieldAttr(ctr: 472)] public igHandleMetaField _Gui_Placeable_0x1d8 = new();
+        [FieldAttr(ctr: 480)] public string? _String_0x1e0 = null;
+        [FieldAttr(ctr: 488)] public igHandleMetaField _Gui_Placeable_0x1e8 = new();
+        [FieldAttr(ctr: 496)] public igHandleMetaField _Gui_Placeable_0x1f0 = new();
+        [FieldAttr(ctr: 504)] public igHandleMetaField _Gui_Placeable_0x1f8 = new();
+        [FieldAttr(ctr: 512)] public igHandleMetaField _Gui_Placeable_0x200 = new();
+        [FieldAttr(ctr: 520)] public igHandleMetaField _Gui_Placeable_0x208 = new();
+        [FieldAttr(ctr: 528)] public igHandleMetaField _Gui_Placeable_id_zus8ka3r001 = new();
+        [FieldAttr(ctr: 536)] public igHandleMetaField _Gui_Placeable_0x218 = new();
+        [FieldAttr(ctr: 544)] public igHandleMetaField _Gui_Placeable_0x220 = new();
+        [FieldAttr(ctr: 552)] public igHandleMetaField _Gui_Placeable_id_anav2n9s001 = new();
+        [FieldAttr(ctr: 560)] public igHandleMetaField _Gui_Placeable_id_vv4leycl001 = new();
+        [FieldAttr(ctr: 568)] public igHandleMetaField _Gui_Placeable_0x238 = new();
+        [FieldAttr(ctr: 576)] public igHandleMetaField _Gui_Animation_Tag_0x240 = new();
+        [FieldAttr(ctr: 584)] public igHandleMetaField _Gui_Placeable_id_v71q2qs5001 = new();
+        [FieldAttr(ctr: 592)] public igHandleMetaField _Gui_Placeable_0x250 = new();
+        [FieldAttr(ctr: 600)] public igHandleMetaField _Gui_Animation_Tag_0x258 = new();
+        [FieldAttr(ctr: 608)] public igHandleMetaField _Gui_Placeable_0x260 = new();
+        [FieldAttr(ctr: 616)] public igHandleMetaField _Gui_Placeable_id_dknjg9mn001 = new();
+        [FieldAttr(ctr: 624)] public igHandleMetaField _Gui_Project = new();
+        [FieldAttr(ctr: 632)] public bool _Bool_0x278;
+        [FieldAttr(ctr: 640)] public igHandleMetaField _Sound_0x280 = new();
+        [FieldAttr(ctr: 648)] public bool _Bool_0x288;
+        [FieldAttr(ctr: 656)] public igHandleMetaField _Gui_Placeable_0x290 = new();
+        [FieldAttr(ctr: 664)] public igHandleMetaField _Gui_Placeable_id_fgbyoxqg001 = new();
+    }
+}

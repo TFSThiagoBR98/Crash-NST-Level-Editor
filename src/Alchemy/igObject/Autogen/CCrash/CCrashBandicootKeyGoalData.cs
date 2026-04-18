@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CCrashBandicootKeyGoalData : CAccoladeGoalData
     {
-        [FieldAttr(32)] public CZoneInfoHandleList? _levels;
+        [FieldAttr(nst: 32)] public CZoneInfoHandleList? _levels;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class CUpgradeableFloat : CUpgradeableValue
     {
-        [FieldAttr(16)] public float _defaultValue;
-        [FieldAttr(24)] public CUpgradeableFloatTable? _upgradedValues;
+        [FieldAttr(nst: 16, ctr: 12)] public float _defaultValue;
+        [FieldAttr(nst: 24, ctr: 16)] public CUpgradeableFloatTable? _upgradedValues;
     }
 }

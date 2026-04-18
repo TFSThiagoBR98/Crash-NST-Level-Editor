@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class CVehicleGroundCorrectionComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public float _groundSpawnOffset = 150.0f;
+        [FieldAttr(nst: 24)] public float _groundSpawnOffset = 150.0f;
     }
 }

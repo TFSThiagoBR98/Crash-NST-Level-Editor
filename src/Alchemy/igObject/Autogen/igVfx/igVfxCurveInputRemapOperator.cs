@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(120, 4)]
+    [ObjectAttr(nst: 120, ctr: 112, align: 8)]
     public class igVfxCurveInputRemapOperator : igVfxOperator
     {
-        [FieldAttr(24)] public igVfxRangedCurveMetaField _mapping = new();
-        [FieldAttr(108)] public EOperatorCurveInput _inputParameter = EOperatorCurveInput.kTrackParameter1;
-        [FieldAttr(112)] public EOperatorCurveOutput _outputParameter = EOperatorCurveOutput.kSetTrackParameter1;
+        [FieldAttr(nst: 24, ctr: 16)] public igVfxRangedCurveMetaField _mapping = new();
+        [FieldAttr(nst: 108, ctr: 100)] public EOperatorCurveInput _inputParameter = EOperatorCurveInput.kTrackParameter1;
+        [FieldAttr(nst: 112, ctr: 104)] public EOperatorCurveOutput _outputParameter = EOperatorCurveOutput.kSetTrackParameter1;
     }
 }

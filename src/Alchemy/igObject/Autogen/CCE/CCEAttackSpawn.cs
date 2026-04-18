@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8)]
+    [ObjectAttr(nst: 96, ctr: 80, align: 8)]
     public class CCEAttackSpawn : CCombatNodeEvent
     {
-        [FieldAttr(80)] public CProjectileSpawnData? _spawnData;
-        [FieldAttr(88)] public CPhysicalEntityData? _entityData;
+        [FieldAttr(nst: 80, ctr: 64)] public CProjectileSpawnData? _spawnData;
+        [FieldAttr(nst: 88, ctr: 72)] public CPhysicalEntityData? _entityData;
     }
 }

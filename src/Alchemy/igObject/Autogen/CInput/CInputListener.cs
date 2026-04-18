@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(136, 8)]
+    [ObjectAttr(nst: 136, align: 8)]
     public class CInputListener : igObject
     {
-        public enum EInputState : uint
+        public enum EInputState
         {
             kUnknown = 0,
             kPressed = 1,
@@ -11,24 +11,24 @@ namespace Alchemy
             kReleased = 3,
         }
 
-        [ObjectAttr(2)]
+        [ObjectAttr(size: 2)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _stopped;
-            [FieldAttr(1, size: 1)] public bool _stopOnPressed;
-            [FieldAttr(2, size: 1)] public bool _stopOnHold;
-            [FieldAttr(3, size: 1)] public bool _stopOnReleased;
+            [FieldAttr(offset: 0, size: 1)] public bool _stopped;
+            [FieldAttr(offset: 1, size: 1)] public bool _stopOnPressed;
+            [FieldAttr(offset: 2, size: 1)] public bool _stopOnHold;
+            [FieldAttr(offset: 3, size: 1)] public bool _stopOnReleased;
         }
 
-        [FieldAttr(16)] public EXBUTTON _button;
-        [FieldAttr(20)] public Flags _flags = new();
-        [FieldAttr(24)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
-        [FieldAttr(32)] public igVscFloatDelegateMetaField _deflectionDataOut = new();
-        [FieldAttr(48)] public igVscVec2fDelegateMetaField _stickDeflectionDataOut = new();
-        [FieldAttr(64)] public igVscVec3fDelegateMetaField _relativeStickDeflectionDataOut = new();
-        [FieldAttr(80)] public igVscDelegateMetaField _pressedCallback = new();
-        [FieldAttr(96)] public igVscDelegateMetaField _holdingCallback = new();
-        [FieldAttr(112)] public igVscDelegateMetaField _releasedCallback = new();
-        [FieldAttr(128)] public EInputState _state;
+        [FieldAttr(nst: 16)] public EXBUTTON _button;
+        [FieldAttr(nst: 20)] public Flags _flags = new();
+        [FieldAttr(nst: 24)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
+        [FieldAttr(nst: 32)] public igVscFloatDelegateMetaField _deflectionDataOut = new();
+        [FieldAttr(nst: 48)] public igVscVec2fDelegateMetaField _stickDeflectionDataOut = new();
+        [FieldAttr(nst: 64)] public igVscVec3fDelegateMetaField _relativeStickDeflectionDataOut = new();
+        [FieldAttr(nst: 80)] public igVscDelegateMetaField _pressedCallback = new();
+        [FieldAttr(nst: 96)] public igVscDelegateMetaField _holdingCallback = new();
+        [FieldAttr(nst: 112)] public igVscDelegateMetaField _releasedCallback = new();
+        [FieldAttr(nst: 128)] public EInputState _state;
     }
 }

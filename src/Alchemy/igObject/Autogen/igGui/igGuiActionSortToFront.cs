@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, align: 8)]
     public class igGuiActionSortToFront : igGuiAction
     {
-        [FieldAttr(48, false)] public igGuiPlaceable? _placeable;
+        [FieldAttr(nst: 48, refCount: false)] public igGuiPlaceable? _placeable;
     }
 }

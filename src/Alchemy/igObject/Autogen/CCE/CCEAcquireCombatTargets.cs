@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(152, 8)]
+    [ObjectAttr(nst: 152, ctr: 136, align: 8)]
     public class CCEAcquireCombatTargets : CCombatNodeEvent
     {
-        [FieldAttr(80)] public EAcquireInsertMethod _insertMethod;
-        [FieldAttr(84)] public ECombatTargetList _targetList;
-        [FieldAttr(88)] public CSortEntities? _sortMethod;
-        [FieldAttr(96)] public CFilterEntities? _filterMethod;
-        [FieldAttr(104)] public uint _targetType;
-        [FieldAttr(108)] public float _radius = 100.0f;
-        [FieldAttr(112)] public float _angle = 90.0f;
-        [FieldAttr(120)] public CCombatNodeEvent? _successEvent;
-        [FieldAttr(128)] public CCombatNodeEvent? _failEvent;
-        [FieldAttr(136)] public bool _useDefaultTarget;
-        [FieldAttr(140)] public igVec3fMetaField _defaultTargetOffset = new();
+        [FieldAttr(nst: 80, ctr: 64)] public EAcquireInsertMethod _insertMethod;
+        [FieldAttr(nst: 84, ctr: 68)] public ECombatTargetList _targetList;
+        [FieldAttr(nst: 88, ctr: 72)] public CSortEntities? _sortMethod;
+        [FieldAttr(nst: 96, ctr: 80)] public CFilterEntities? _filterMethod;
+        [FieldAttr(nst: 104, ctr: 88)] public uint _targetType;
+        [FieldAttr(nst: 108, ctr: 92)] public float _radius = 100.0f;
+        [FieldAttr(nst: 112, ctr: 96)] public float _angle = 90.0f;
+        [FieldAttr(nst: 120, ctr: 104)] public CCombatNodeEvent? _successEvent;
+        [FieldAttr(nst: 128, ctr: 112)] public CCombatNodeEvent? _failEvent;
+        [FieldAttr(nst: 136, ctr: 120)] public bool _useDefaultTarget;
+        [FieldAttr(nst: 140, ctr: 124)] public igVec3fMetaField _defaultTargetOffset = new();
     }
 }

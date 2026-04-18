@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(4312, 8)]
+    [ObjectAttr(nst: 4312, align: 8)]
     public class CController : igObject
     {
-        public enum EInputDeviceType : uint
+        public enum EInputDeviceType
         {
             IDT_GAMEPAD = 0,
             IDT_KEYBOARD = 1,
@@ -12,18 +12,18 @@ namespace Alchemy
             IDT_COUNT = 4,
         }
 
-        [FieldAttr(3984, false)] public igBaseInputDevice? _inputDevice;
-        [FieldAttr(3992, false)] public igKeyboardInputDevice? _keyboardDevice;
-        [FieldAttr(4000, false)] public igMouseInputDevice? _mouseDevice;
-        [FieldAttr(4008)] public EControllerType _controllerType;
-        [FieldAttr(4016)] public u64 _buttonState;
-        [FieldAttr(4024)] public u64 _previousButtonState;
-        [FieldAttr(4032)] public u64 _forcedButtonState;
-        [FieldAttr(4040)] public float[] _deflections = new float[62];
-        [FieldAttr(4288)] public igTimeMetaField[] _motorTimeOff = new igTimeMetaField[2];
-        [FieldAttr(4296)] public bool[] _motorOn = new bool[2];
-        [FieldAttr(4300)] public igTimeMetaField _lastActivity = new();
-        [FieldAttr(4304)] public bool _remoteDevice;
-        [FieldAttr(4308)] public EInputDeviceType _activeDeviceType;
+        [FieldAttr(nst: 3984, refCount: false)] public igBaseInputDevice? _inputDevice;
+        [FieldAttr(nst: 3992, refCount: false)] public igKeyboardInputDevice? _keyboardDevice;
+        [FieldAttr(nst: 4000, refCount: false)] public igMouseInputDevice? _mouseDevice;
+        [FieldAttr(nst: 4008)] public EControllerType _controllerType;
+        [FieldAttr(nst: 4016)] public u64 _buttonState;
+        [FieldAttr(nst: 4024)] public u64 _previousButtonState;
+        [FieldAttr(nst: 4032)] public u64 _forcedButtonState;
+        [FieldAttr(nst: 4040)] public float[] _deflections = new float[62];
+        [FieldAttr(nst: 4288)] public igTimeMetaField[] _motorTimeOff = new igTimeMetaField[2];
+        [FieldAttr(nst: 4296)] public bool[] _motorOn = new bool[2];
+        [FieldAttr(nst: 4300)] public igTimeMetaField _lastActivity = new();
+        [FieldAttr(nst: 4304)] public bool _remoteDevice;
+        [FieldAttr(nst: 4308)] public EInputDeviceType _activeDeviceType;
     }
 }

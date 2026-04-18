@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(2704, 16)]
+    [ObjectAttr(nst: 2704, ctr: 3888, align: 16)]
     public class igVfxManager : igObject
     {
-        public enum ESpawnGroup : int
+        public enum ESpawnGroup
         {
             kSpawnGroupInherit = -1,
+            kSpawnGroup0 = 0,
             kSpawnGroupDefault = 0,
-            // kSpawnGroup0 = 0,
             kSpawnGroup1 = 1,
             kSpawnGroup2 = 2,
             kSpawnGroup3 = 3,
@@ -18,20 +18,20 @@ namespace Alchemy
             kMaxSpawnGroupCount = 8,
         }
 
-        public enum EffectKillType : uint
+        public enum EffectKillType
         {
             kSoftKill = 0,
             kHardKill = 1,
         }
 
-        public enum EUpdatePhase : uint
+        public enum EUpdatePhase
         {
             kPostUpdate = 0,
             kEarlyPreUpdate = 1,
             kLatePreUpdate = 2,
         }
 
-        public enum EDebugVisualizationLevel : uint
+        public enum EDebugVisualizationLevel
         {
             kNone = 0,
             kPrimitive = 1,
@@ -39,7 +39,7 @@ namespace Alchemy
             kAll = 3,
         }
 
-        public enum EVfxCamera : uint
+        public enum EVfxCamera
         {
             kVfxCamera0 = 0,
             kVfxCamera1 = 1,
@@ -47,111 +47,111 @@ namespace Alchemy
             kVfxCameraCount = 3,
         }
 
-        [FieldAttr(16)] public igRawRefMetaField _stackUpdateFunction = new();
-        [FieldAttr(24)] public bool _metricSystemUnits;
-        [FieldAttr(25)] public bool _activated;
-        [FieldAttr(26)] public bool _skipCulling;
-        [FieldAttr(27)] public bool _doSkipCulling;
-        [FieldAttr(28)] public bool _highQualityTrails;
-        [FieldAttr(32)] public igMetaObjectPrimitiveInfoHashTable? _primitiveInfoTable;
-        [FieldAttr(40)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _spawnRateInfoTable;
-        [FieldAttr(48)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _spawnLocationInfoTable;
-        [FieldAttr(56)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _boltInfoTable;
-        [FieldAttr(64)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _dataBlockInfoTable;
-        [FieldAttr(72)] public igVfxNonRefCountedPrimitiveInfoList? _primitiveInfoList;
-        [FieldAttr(80, false)] public igVfxPrimitiveInfo? _primitiveInfo;
-        [FieldAttr(88)] public igObject[] _operatorStorageInfo = new igObject[3];
-        [FieldAttr(112)] public igVfxBolt? _sharedIntervalBolt;
-        [FieldAttr(120)] public igObjectPool? _spawnedEffectPool;
-        [FieldAttr(128)] public igObject[] _effects = new igObject[2];
-        [FieldAttr(144)] public igObject[] _effectsByPriority = new igObject[2];
-        [FieldAttr(160)] public bool[] _priorityRebalance = new bool[2];
-        [FieldAttr(162)] public bool _queuedForSpawnDirty;
-        [FieldAttr(168)] public igVfxSpawnedEffectHandleList? _queuedForSpawn;
-        [FieldAttr(176)] public igObject[] _windupEffects = new igObject[2];
-        [FieldAttr(192)] public float _parentWindupTime;
-        [FieldAttr(196)] public igRandomMetaField _rng = new();
-        [FieldAttr(204)] public float _frameDelta;
-        [FieldAttr(208)] public igTimer? _spawnTimer;
-        [FieldAttr(216)] public igVec3fMetaField _wind = new();
-        [FieldAttr(232)] public igVectorMetaField<igVfxSpawnGroupPassInfo> _spawnGroupPassInfoList = new();
-        [FieldAttr(256)] public igVectorMetaField<igNonRefCountedMetaObjectSpawnGroupPassDataHashTable> _spawnGroupPassInfoTableList = new();
-        [FieldAttr(280)] public igVectorMetaField<igProcGeometryBuilder> _pgbs = new();
-        [FieldAttr(304)] public igVectorMetaField<uint> _pgbFlags = new();
-        [FieldAttr(328)] public igVectorMetaField<int> _pgbVertSizes = new();
-        [FieldAttr(352)] public igDynamicBuffer? _procGeometryBuffer;
-        [FieldAttr(360)] public igProcGeometryHelperPool? _pghPool;
-        [FieldAttr(368, false)] public igAtomicSortKeyValueLinearAllocator? _sortKeyAllocator;
-        [FieldAttr(376)] public igAtomicSortKeyValueListMetaField _sortKeyList = new();
-        [FieldAttr(400)] public igVfxDrawCallPool? _vfxDrawCallPool;
-        [FieldAttr(408)] public igVfxDecalDrawCallPool? _vfxDecalDrawCallPool;
-        [FieldAttr(416)] public igObjectPool? _decalMatrixConstantBundlePool;
-        [FieldAttr(424)] public igModelInstancePool? _modelInstancePool;
-        [FieldAttr(432)] public igObjectPool? _colorConstantBundlePool;
-        [FieldAttr(440)] public igObjectPool? _timeTransformPool;
-        [FieldAttr(448)] public igStreamPool? _streamPool;
-        [FieldAttr(456)] public bool _ownedPoolsFixed;
-        [FieldAttr(457)] public bool _outOfMemory;
-        [FieldAttr(464)] public string? _outOfMemoryCallSite = null;
-        [FieldAttr(472)] public bool _reportOutOfMemory;
-        [FieldAttr(476)] public int _maxProcVertexCount = -1;
-        [FieldAttr(480)] public uint _pghPoolSize = 32;
-        [FieldAttr(484)] public uint _boundingBoxPoolSize = 32;
-        [FieldAttr(488)] public uint _geoAndMaterialPoolSize = 32;
-        [FieldAttr(492)] public uint _spawnedEffectPoolCapacity = 32;
-        [FieldAttr(496)] public uint _emitterCapacity = 32;
-        [FieldAttr(500)] public uint _instanceCapacity = 32;
-        [FieldAttr(504)] public uint _decalPoolCount = 32;
-        [FieldAttr(508)] public uint _modelPoolCount = 32;
-        [FieldAttr(512)] public u8 _spawnGroupCount = 1;
-        [FieldAttr(528)] public igVfxManagerCameraDataMetaField[] _cameraData = new igVfxManagerCameraDataMetaField[1];
-        [FieldAttr(2304)] public uint _activeCameras = 1;
-        [FieldAttr(2308)] public uint _viewChanged = 4294967295;
-        [FieldAttr(2320)] public igVec3fAlignedMetaField _worldForward = new();
-        [FieldAttr(2336)] public igVec3fAlignedMetaField _worldRight = new();
-        [FieldAttr(2352)] public igVec3fAlignedMetaField _worldUp = new();
-        [FieldAttr(2368)] public igMatrix44fMetaField _invWorldMatrix = new();
-        [FieldAttr(2432)] public igVec3fAlignedMetaField _gravity = new();
-        [FieldAttr(2448)] public igVertexFormat? _decalVertexFormat;
-        [FieldAttr(2456)] public igSizeTypeMetaField _decalVertexFormatResource = new();
-        [FieldAttr(2464)] public igSizeTypeMetaField _decalVertexBufferResource = new();
-        [FieldAttr(2472)] public igSizeTypeMetaField _decalIndexBufferResource = new();
-        [FieldAttr(2480)] public bool _effectCullingEnabled = true;
-        [FieldAttr(2481)] public bool _useOverrideCullDistance;
-        [FieldAttr(2484)] public float _overrideCullDistance = 3.0f;
-        [FieldAttr(2488)] public float _maxProcGeometryRadius = 1000.0f;
-        [FieldAttr(2492)] public int _debugMaxProcVertCount = -1;
-        [FieldAttr(2496)] public bool _expandPghLists;
-        [FieldAttr(2500)] public EUpdatePhase _updatePhase;
-        [FieldAttr(2504)] public bool _killAllSpawnedEffectsQueued;
-        [FieldAttr(2512, false)] public igThread? _owner;
-        [FieldAttr(2520)] public bool _bypassJobQueue;
-        [FieldAttr(2524)] public EDebugVisualizationLevel _debugVisualizationLevel;
-        [FieldAttr(2528)] public bool _visibility = true;
-        [FieldAttr(2536)] public igVfxDebugData? _debugData;
-        [FieldAttr(2544)] public igHandleMetaField _selectedEffect = new();
-        [FieldAttr(2552)] public igHandleMetaField _selectedPrimitive = new();
-        [FieldAttr(2560)] public bool _magicMomentHack;
-        [FieldAttr(2564)] public float[] _cameraCullDistance = new float[3];
-        [FieldAttr(2576)] public bool _cullZeroTimeScaleEffects;
-        [FieldAttr(2584, false)] public igVfxSpawnedEffect? _updatingEffect;
-        [FieldAttr(2592, false)] public igVfxPrimitive? _updatingPrimitive;
-        [FieldAttr(2600)] public bool _enablePriorities = true;
-        [FieldAttr(2604)] public igStatHandleMetaField _statHandleDeprioritised = new();
-        [FieldAttr(2608)] public igStatHandleMetaField _statHandlePaused = new();
-        [FieldAttr(2612)] public igStatHandleMetaField _statHandleEmpty = new();
-        [FieldAttr(2616)] public igStatHandleMetaField _statHandleActive = new();
-        [FieldAttr(2620)] public uint _currentFrame;
-        [FieldAttr(2624)] public igMemoryRef<u8> _streamHeapMemory = new();
-        [FieldAttr(2640)] public igMemoryRef<u8> _streamHeapLevelData = new();
-        [FieldAttr(2656)] public int _streamBlockSize = 128;
-        [FieldAttr(2660)] public int _streamBlockCount = 512;
-        [FieldAttr(2664)] public igRawRefMetaField _streamHeap = new();
-        [FieldAttr(2672)] public u16 _deviceClass = 65535;
-        [FieldAttr(2676)] public igStatHandleMetaField _jqUpdateStatHandle = new();
-        [FieldAttr(2680)] public bool _skipFrame;
-        [FieldAttr(2684)] public float _averageFinishProcGeoTime;
-        [FieldAttr(2688)] public float _averageStreamResetTime;
-        [FieldAttr(2692)] public float _averageFinishCommandTime;
+        [FieldAttr(nst: 16)] public igRawRefMetaField _stackUpdateFunction = new();
+        [FieldAttr(nst: 24, ctr: 24)] public bool _metricSystemUnits;
+        [FieldAttr(nst: 25, ctr: 25)] public bool _activated;
+        [FieldAttr(nst: 26, ctr: 26)] public bool _skipCulling;
+        [FieldAttr(nst: 27, ctr: 27)] public bool _doSkipCulling;
+        [FieldAttr(nst: 28, ctr: 28)] public bool _highQualityTrails;
+        [FieldAttr(nst: 32, ctr: 32)] public igMetaObjectPrimitiveInfoHashTable? _primitiveInfoTable;
+        [FieldAttr(nst: 40, ctr: 40)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _spawnRateInfoTable;
+        [FieldAttr(nst: 48, ctr: 48)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _spawnLocationInfoTable;
+        [FieldAttr(nst: 56, ctr: 56)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _boltInfoTable;
+        [FieldAttr(nst: 64, ctr: 64)] public igMetaObjectVfxRuntimeObjectInfoHashTable? _dataBlockInfoTable;
+        [FieldAttr(nst: 72, ctr: 72)] public igVfxNonRefCountedPrimitiveInfoList? _primitiveInfoList;
+        [FieldAttr(nst: 80, ctr: 80, refCount: false)] public igVfxPrimitiveInfo? _primitiveInfo;
+        [FieldAttr(nst: 88, ctr: 88)] public igVfxRuntimeObjectInfo[] _operatorStorageInfo = new igVfxRuntimeObjectInfo[3];
+        [FieldAttr(nst: 112, ctr: 112)] public igVfxBolt? _sharedIntervalBolt;
+        [FieldAttr(nst: 120, ctr: 120)] public igObjectPool? _spawnedEffectPool;
+        [FieldAttr(nst: 128, ctr: 128)] public igVfxSpawnedEffectList[] _effects = new igVfxSpawnedEffectList[2];
+        [FieldAttr(nst: 144, ctr: 144)] public igVfxNonRefCountedSpawnedEffectList[] _effectsByPriority = new igVfxNonRefCountedSpawnedEffectList[2];
+        [FieldAttr(nst: 160, ctr: 160)] public bool[] _priorityRebalance = new bool[2];
+        [FieldAttr(nst: 162, ctr: 162)] public bool _queuedForSpawnDirty;
+        [FieldAttr(nst: 168, ctr: 168)] public igVfxSpawnedEffectHandleList? _queuedForSpawn;
+        [FieldAttr(nst: 176, ctr: 176)] public igVfxSpawnedEffectHandleList[] _windupEffects = new igVfxSpawnedEffectHandleList[2];
+        [FieldAttr(nst: 192, ctr: 192)] public float _parentWindupTime;
+        [FieldAttr(nst: 196, ctr: 196)] public igRandomMetaField _rng = new();
+        [FieldAttr(nst: 204, ctr: 204)] public float _frameDelta;
+        [FieldAttr(nst: 208, ctr: 208)] public igTimer? _spawnTimer;
+        [FieldAttr(nst: 216, ctr: 216)] public igVec3fMetaField _wind = new();
+        [FieldAttr(nst: 232, ctr: 232)] public igVectorMetaField<igVfxSpawnGroupPassInfo> _spawnGroupPassInfoList = new();
+        [FieldAttr(nst: 256, ctr: 256)] public igVectorMetaField<igStringSpawnGroupPassDataHashTable> _spawnGroupPassInfoTableList = new();
+        [FieldAttr(nst: 280, ctr: 280)] public igVectorMetaField<igProcGeometryBuilder> _pgbs = new();
+        [FieldAttr(nst: 304, ctr: 304)] public igVectorMetaField<uint> _pgbFlags = new();
+        [FieldAttr(nst: 328, ctr: 328)] public igVectorMetaField<int> _pgbVertSizes = new();
+        [FieldAttr(nst: 352, ctr: 352)] public igDynamicBuffer? _procGeometryBuffer;
+        [FieldAttr(nst: 360, ctr: 360)] public igProcGeometryHelperPool? _pghPool;
+        [FieldAttr(nst: 368, ctr: 368, refCount: false)] public igRawRefMetaField _sortKeyAllocator = new();
+        [FieldAttr(nst: 376, ctr: 376)] public igAtomicSortKeyValueListMetaField _sortKeyList = new();
+        [FieldAttr(nst: 400, ctr: 400)] public igVfxDrawCallPool? _vfxDrawCallPool;
+        [FieldAttr(nst: 408, ctr: 408)] public igVfxDecalDrawCallPool? _vfxDecalDrawCallPool;
+        [FieldAttr(nst: 416, ctr: 416)] public igObjectPool? _decalMatrixConstantBundlePool;
+        [FieldAttr(nst: 424, ctr: 424)] public igModelInstancePool? _modelInstancePool;
+        [FieldAttr(nst: 432, ctr: 432)] public igObjectPool? _colorConstantBundlePool;
+        [FieldAttr(nst: 440, ctr: 440)] public igObjectPool? _timeTransformPool;
+        [FieldAttr(nst: 448, ctr: 448)] public igStreamPool? _streamPool;
+        [FieldAttr(nst: 456, ctr: 456)] public bool _ownedPoolsFixed;
+        [FieldAttr(nst: 457, ctr: 457)] public bool _outOfMemory;
+        [FieldAttr(nst: 464, ctr: 464)] public string? _outOfMemoryCallSite = null;
+        [FieldAttr(nst: 472, ctr: 472)] public bool _reportOutOfMemory;
+        [FieldAttr(nst: 476, ctr: 476)] public int _maxProcVertexCount = -1;
+        [FieldAttr(nst: 480, ctr: 480)] public uint _pghPoolSize = 32;
+        [FieldAttr(nst: 484, ctr: 484)] public uint _boundingBoxPoolSize = 32;
+        [FieldAttr(nst: 488, ctr: 488)] public uint _geoAndMaterialPoolSize = 32;
+        [FieldAttr(nst: 492, ctr: 492)] public uint _spawnedEffectPoolCapacity = 32;
+        [FieldAttr(nst: 496, ctr: 496)] public uint _emitterCapacity = 32;
+        [FieldAttr(nst: 500, ctr: 500)] public uint _instanceCapacity = 32;
+        [FieldAttr(nst: 504, ctr: 504)] public uint _decalPoolCount = 32;
+        [FieldAttr(nst: 508, ctr: 508)] public uint _modelPoolCount = 32;
+        [FieldAttr(nst: 512, ctr: 512)] public u8 _spawnGroupCount = 1;
+        [FieldAttr(nst: 528, ctr: 528)] public igVfxManagerCameraDataMetaField[] _cameraData = new igVfxManagerCameraDataMetaField[5];
+        [FieldAttr(nst: 2304, ctr: 3488)] public uint _activeCameras = 1;
+        [FieldAttr(nst: 2308, ctr: 3492)] public uint _viewChanged = 4294967295;
+        [FieldAttr(nst: 2320, ctr: 3504)] public igVec3fAlignedMetaField _worldForward = new();
+        [FieldAttr(nst: 2336, ctr: 3520)] public igVec3fAlignedMetaField _worldRight = new();
+        [FieldAttr(nst: 2352, ctr: 3536)] public igVec3fAlignedMetaField _worldUp = new();
+        [FieldAttr(nst: 2368, ctr: 3552)] public igMatrix44fMetaField _invWorldMatrix = new();
+        [FieldAttr(nst: 2432, ctr: 3616)] public igVec3fAlignedMetaField _gravity = new();
+        [FieldAttr(nst: 2448, ctr: 3632)] public igVertexFormat? _decalVertexFormat;
+        [FieldAttr(nst: 2456, ctr: 3640)] public igSizeTypeMetaField _decalVertexFormatResource = new();
+        [FieldAttr(nst: 2464, ctr: 3648)] public igSizeTypeMetaField _decalVertexBufferResource = new();
+        [FieldAttr(nst: 2472, ctr: 3656)] public igSizeTypeMetaField _decalIndexBufferResource = new();
+        [FieldAttr(nst: 2480, ctr: 3664)] public bool _effectCullingEnabled = true;
+        [FieldAttr(nst: 2481, ctr: 3665)] public bool _useOverrideCullDistance;
+        [FieldAttr(nst: 2484, ctr: 3668)] public float _overrideCullDistance = 3.0f;
+        [FieldAttr(nst: 2488, ctr: 3672)] public float _maxProcGeometryRadius = 1000.0f;
+        [FieldAttr(nst: 2492, ctr: 3676)] public int _debugMaxProcVertCount = -1;
+        [FieldAttr(nst: 2496, ctr: 3680)] public bool _expandPghLists;
+        [FieldAttr(nst: 2500, ctr: 3684)] public EUpdatePhase _updatePhase;
+        [FieldAttr(nst: 2504, ctr: 3688)] public bool _killAllSpawnedEffectsQueued;
+        [FieldAttr(nst: 2512, ctr: 3696, refCount: false)] public igThread? _owner;
+        [FieldAttr(nst: 2520, ctr: 3704)] public bool _bypassJobQueue;
+        [FieldAttr(nst: 2524, ctr: 3708)] public EDebugVisualizationLevel _debugVisualizationLevel;
+        [FieldAttr(nst: 2528, ctr: 3712)] public bool _visibility = true;
+        [FieldAttr(nst: 2536, ctr: 3720)] public igVfxDebugData? _debugData;
+        [FieldAttr(nst: 2544, ctr: 3728)] public igHandleMetaField _selectedEffect = new();
+        [FieldAttr(nst: 2552, ctr: 3736)] public igHandleMetaField _selectedPrimitive = new();
+        [FieldAttr(nst: 2560, ctr: 3744)] public bool _magicMomentHack;
+        [FieldAttr(nst: 2564, ctr: 3748)] public float[] _cameraCullDistance = new float[5];
+        [FieldAttr(nst: 2576, ctr: 3768)] public bool _cullZeroTimeScaleEffects;
+        [FieldAttr(nst: 2584, ctr: 3776, refCount: false)] public igVfxSpawnedEffect? _updatingEffect;
+        [FieldAttr(nst: 2592, ctr: 3784, refCount: false)] public igVfxPrimitive? _updatingPrimitive;
+        [FieldAttr(nst: 2600, ctr: 3792)] public bool _enablePriorities = true;
+        [FieldAttr(nst: 2604, ctr: 3796)] public igHandleMetaField _statHandleDeprioritised = new();
+        [FieldAttr(nst: 2608, ctr: 3800)] public igHandleMetaField _statHandlePaused = new();
+        [FieldAttr(nst: 2612, ctr: 3804)] public igHandleMetaField _statHandleEmpty = new();
+        [FieldAttr(nst: 2616, ctr: 3808)] public igHandleMetaField _statHandleActive = new();
+        [FieldAttr(nst: 2620, ctr: 3812)] public uint _currentFrame;
+        [FieldAttr(nst: 2624, ctr: 3816)] public igMemoryRef<u8> _streamHeapMemory = new();
+        [FieldAttr(nst: 2640, ctr: 3832)] public igMemoryRef<u8> _streamHeapLevelData = new();
+        [FieldAttr(nst: 2656, ctr: 3848)] public int _streamBlockSize = 128;
+        [FieldAttr(nst: 2660, ctr: 3852)] public int _streamBlockCount = 512;
+        [FieldAttr(nst: 2664, ctr: 3856)] public igRawRefMetaField _streamHeap = new();
+        [FieldAttr(nst: 2672, ctr: 3864)] public u16 _deviceClass = 65535;
+        [FieldAttr(nst: 2676, ctr: 3868)] public igHandleMetaField _jqUpdateStatHandle = new();
+        [FieldAttr(nst: 2680, ctr: 3872)] public bool _skipFrame;
+        [FieldAttr(nst: 2684, ctr: 3876)] public float _averageFinishProcGeoTime;
+        [FieldAttr(nst: 2688, ctr: 3880)] public float _averageStreamResetTime;
+        [FieldAttr(nst: 2692, ctr: 3884)] public float _averageFinishCommandTime;
     }
 }

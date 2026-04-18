@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, align: 8)]
     public class CCEForceInvisible : CCombatNodeEvent
     {
-        [FieldAttr(80)] public bool mVisible = true;
+        [FieldAttr(nst: 80)] public bool mVisible = true;
     }
 }

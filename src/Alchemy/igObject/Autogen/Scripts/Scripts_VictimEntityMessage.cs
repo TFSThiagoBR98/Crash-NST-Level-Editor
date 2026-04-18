@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CEntityMessage))]
+    [ObjectAttr(nst: 72, align: 8, metaType: typeof(CEntityMessage))]
     public class Scripts_VictimEntityMessage : CEntityMessage
     {
-        public enum EVictimStates : uint
+        public enum EVictimStates
         {
             None = 0,
             AirBlown = 1,
@@ -33,8 +33,8 @@ namespace Alchemy
             Golden = 25,
         }
 
-        [FieldAttr(56)] public float TimeOverride = -1.0f;
-        [FieldAttr(60)] public bool InfiniteTime;
-        [FieldAttr(64)] public EVictimStates VictimState;
+        [FieldAttr(nst: 56)] public float TimeOverride = -1.0f;
+        [FieldAttr(nst: 60)] public bool InfiniteTime;
+        [FieldAttr(nst: 64)] public EVictimStates VictimState;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8)]
+    [ObjectAttr(nst: 96, align: 8)]
     public class CCEVariableSound : CCombatNodeEvent
     {
-        [FieldAttr(80)] public CWeightedSoundList? _weightedSoundList;
-        [FieldAttr(88)] public bool _findSoundsOnThisVehicleDriver;
+        [FieldAttr(nst: 80)] public CWeightedSoundList? _weightedSoundList;
+        [FieldAttr(nst: 88)] public bool _findSoundsOnThisVehicleDriver;
     }
 }

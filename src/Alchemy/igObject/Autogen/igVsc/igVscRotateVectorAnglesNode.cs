@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class igVscRotateVectorAnglesNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscVec3fAccessor? _direction;
-        [FieldAttr(24)] public igVscVec3fAccessor? _rotation;
-        [FieldAttr(32)] public igVscVec3fAccessor? _rotated;
-        [FieldAttr(40, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16, ctr: 16)] public igVscVec3fAccessor? _direction;
+        [FieldAttr(nst: 24, ctr: 24)] public igVscVec3fAccessor? _rotation;
+        [FieldAttr(nst: 32, ctr: 32)] public igVscVec3fAccessor? _rotated;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igVscActionNode? _out;
     }
 }

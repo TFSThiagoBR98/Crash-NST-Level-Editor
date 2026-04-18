@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(128, 8)]
+    [ObjectAttr(nst: 128, ctr: 128, align: 8)]
     public class CGuiTextMaterial : igFxMaterial
     {
-        [FieldAttr(120)] public u8 _bfStorage__0;
+        [FieldAttr(nst: 120, ctr: 120)] public u8 _bfStorage__0;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CSplineOffsetAttachBehavior : CSplineAttachBehavior
     {
-        [FieldAttr(24)] public igVec3fMetaField _positionOffset = new();
+        [FieldAttr(nst: 24, ctr: 16)] public igVec3fMetaField _positionOffset = new();
     }
 }

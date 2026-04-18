@@ -1,26 +1,26 @@
 namespace Alchemy
 {
-    [ObjectAttr(168, 8)]
+    [ObjectAttr(nst: 168, align: 8)]
     public class CGuiBehaviorDamageNumber : igGuiBehavior
     {
-        [FieldAttr(16, false)] public igGuiPlaceable? _text;
-        [FieldAttr(24, false)] public igGuiPlaceable? _iconPlaceable;
-        [FieldAttr(32, false)] public igGuiPlaceable? _baneIconPlaceable;
-        [FieldAttr(40, false)] public igGuiSprite? _icon;
-        [FieldAttr(48, false)] public igGuiAnimationTag? _damageAnimation;
-        [FieldAttr(56, false)] public igGuiAnimationTag? _damageFromPlayerAnimation;
-        [FieldAttr(64, false)] public igGuiAnimationTag? _criticalDamageAnimation;
-        [FieldAttr(72, false)] public igGuiAnimationTag? _healthAnimation;
-        [FieldAttr(80, false)] public igGuiAnimationTag? _statBoostAnimation;
-        [FieldAttr(88, false)] public igGuiAnimationTag? _moneyAnimation;
-        [FieldAttr(96, false)] public igGuiAnimationTag? _superchargeDamageAnimation;
-        [FieldAttr(104, false)] public igGuiAnimationTag? _superchargeCritcalDamageAnimation;
-        [FieldAttr(112, false)] public igGuiAnimationTag? _armorBlockedAnimation;
-        [FieldAttr(120)] public igNonRefCountedGuiAnimationTagList? _customAnimations;
-        [FieldAttr(128)] public float _riseSpeed;
-        [FieldAttr(132)] public igVec2fMetaField _screenPosition = new();
-        [FieldAttr(144)] public string? _stunText = null;
-        [FieldAttr(152, false)] public CGuiDamageNumberData? _damageNumberInfo;
-        [FieldAttr(160)] public bool _queuedStatBoostAnimation;
+        [FieldAttr(nst: 16, refCount: false)] public igGuiPlaceable? _text;
+        [FieldAttr(nst: 24, refCount: false)] public igGuiPlaceable? _iconPlaceable;
+        [FieldAttr(nst: 32, refCount: false)] public igGuiPlaceable? _baneIconPlaceable;
+        [FieldAttr(nst: 40, refCount: false)] public igGuiSprite? _icon;
+        [FieldAttr(nst: 48, refCount: false)] public igGuiAnimationTag? _damageAnimation;
+        [FieldAttr(nst: 56, refCount: false)] public igGuiAnimationTag? _damageFromPlayerAnimation;
+        [FieldAttr(nst: 64, refCount: false)] public igGuiAnimationTag? _criticalDamageAnimation;
+        [FieldAttr(nst: 72, refCount: false)] public igGuiAnimationTag? _healthAnimation;
+        [FieldAttr(nst: 80, refCount: false)] public igGuiAnimationTag? _statBoostAnimation;
+        [FieldAttr(nst: 88, refCount: false)] public igGuiAnimationTag? _moneyAnimation;
+        [FieldAttr(nst: 96, refCount: false)] public igGuiAnimationTag? _superchargeDamageAnimation;
+        [FieldAttr(nst: 104, refCount: false)] public igGuiAnimationTag? _superchargeCritcalDamageAnimation;
+        [FieldAttr(nst: 112, refCount: false)] public igGuiAnimationTag? _armorBlockedAnimation;
+        [FieldAttr(nst: 120)] public igNonRefCountedGuiAnimationTagList? _customAnimations;
+        [FieldAttr(nst: 128)] public float _riseSpeed;
+        [FieldAttr(nst: 132)] public igVec2fMetaField _screenPosition = new();
+        [FieldAttr(nst: 144)] public string? _stunText = null;
+        [FieldAttr(nst: 152, refCount: false)] public CGuiDamageNumberData? _damageNumberInfo;
+        [FieldAttr(nst: 160)] public bool _queuedStatBoostAnimation;
     }
 }

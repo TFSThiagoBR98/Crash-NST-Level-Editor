@@ -1,19 +1,19 @@
 namespace Alchemy
 {
-    [ObjectAttr(112, 8)]
+    [ObjectAttr(nst: 112, ctr: 112, align: 8)]
     public class CGuiBehaviorPlayerWidget : igGuiBehavior
     {
-        [FieldAttr(16, false)] public igGuiPlaceable? _rankPlaceable;
-        [FieldAttr(24, false)] public igGuiPlaceable? _rankText;
-        [FieldAttr(32, false)] public igGuiPlaceable? _profilePicture;
-        [FieldAttr(40, false)] public igGuiPlaceable? _profileCrop;
-        [FieldAttr(48, false)] public igGuiPlaceable? _loadingIcon;
-        [FieldAttr(56, false)] public igGuiAnimationTag? _loadingAnimation;
-        [FieldAttr(64)] public igHandleMetaField _defaultMaterial = new();
-        [FieldAttr(72)] public igImage2? _image;
-        [FieldAttr(80)] public igGraphicsMaterial? _gamerMaterial;
-        [FieldAttr(88)] public igHandleMetaField _friendInfo = new();
-        [FieldAttr(96, false)] public igGuiPlaceable? _behaviorPlace;
-        [FieldAttr(104, false)] public igNetTask? _getPictureTask;
+        [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igGuiPlaceable? _rankPlaceable;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igGuiPlaceable? _rankText;
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igGuiPlaceable? _profilePicture;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igGuiPlaceable? _profileCrop;
+        [FieldAttr(nst: 48, ctr: 48, refCount: false)] public igGuiPlaceable? _loadingIcon;
+        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igGuiAnimationTag? _loadingAnimation;
+        [FieldAttr(nst: 64, ctr: 64)] public igHandleMetaField _defaultMaterial = new();
+        [FieldAttr(nst: 72, ctr: 72)] public igImage2? _image;
+        [FieldAttr(nst: 80, ctr: 80)] public igGraphicsMaterial? _gamerMaterial;
+        [FieldAttr(nst: 88, ctr: 88)] public igHandleMetaField _friendInfo = new();
+        [FieldAttr(nst: 96, ctr: 96, refCount: false)] public igGuiPlaceable? _behaviorPlace;
+        [FieldAttr(nst: 104, ctr: 104, refCount: false)] public igNetTask? _getPictureTask;
     }
 }

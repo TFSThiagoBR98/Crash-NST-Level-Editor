@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 4)]
+    [ObjectAttr(nst: 72, ctr: 64, align: 8)]
     public class igVfxSpawnLocationData : igObject
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class SpawnLocationFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _hasPosition = true;
-            [FieldAttr(1, size: 1)] public bool _hasRotation = false;
-            [FieldAttr(2, size: 1)] public bool _dataFieldsCached;
+            [FieldAttr(offset: 0, size: 1)] public bool _hasPosition;
+            [FieldAttr(offset: 1, size: 1)] public bool _hasRotation;
+            [FieldAttr(offset: 2, size: 1)] public bool _dataFieldsCached;
         }
 
-        [FieldAttr(16)] public igRangedVectorMetaField _offsetPos = new();
-        [FieldAttr(40)] public igRangedVectorMetaField _offsetRot = new();
-        [FieldAttr(64)] public SpawnLocationFlags _spawnLocationFlags = new();
+        [FieldAttr(nst: 16, ctr: 12)] public igRangedVectorMetaField _offsetPos = new();
+        [FieldAttr(nst: 40, ctr: 36)] public igRangedVectorMetaField _offsetRot = new();
+        [FieldAttr(nst: 64, ctr: 60)] public SpawnLocationFlags _spawnLocationFlags = new();
     }
 }

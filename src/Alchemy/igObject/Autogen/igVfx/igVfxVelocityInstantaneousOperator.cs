@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class igVfxVelocityInstantaneousOperator : igVfxOperator
     {
-        [FieldAttr(24)] public u32 /* igStructMetaField */ _instanceData;
+        [FieldAttr(nst: 24)] public uint _instanceData;
     }
 }

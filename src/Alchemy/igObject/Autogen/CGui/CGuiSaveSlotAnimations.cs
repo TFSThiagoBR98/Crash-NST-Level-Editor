@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class CGuiSaveSlotAnimations : igObject
     {
-        [FieldAttr(16, false)] public igGuiAnimationTag? _beginAnimation;
-        [FieldAttr(24, false)] public igGuiAnimationTag? _idleAnimation;
-        [FieldAttr(32, false)] public igGuiAnimationTag? _endAnimation;
-        [FieldAttr(40, false)] public igGuiAnimationTag? _endAnimationEmpty;
+        [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igGuiAnimationTag? _beginAnimation;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igGuiAnimationTag? _idleAnimation;
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igGuiAnimationTag? _endAnimation;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igGuiAnimationTag? _endAnimationEmpty;
     }
 }

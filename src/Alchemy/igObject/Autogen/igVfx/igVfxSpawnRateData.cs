@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 4)]
     public class igVfxSpawnRateData : igObject
     {
-        public enum ETimeInput : uint
+        public enum ETimeInput
         {
             kPrimitiveTime = 0,
             kZeroTime = 1,
@@ -17,10 +17,10 @@ namespace Alchemy
             kBolt2Input4 = 9,
         }
 
-        [FieldAttr(16)] public int _maxCount;
-        [FieldAttr(20)] public int _minCount = 1;
-        [FieldAttr(24)] public bool _sputter;
-        [FieldAttr(25)] public bool _killOldest;
-        [FieldAttr(28)] public ETimeInput _timeInput;
+        [FieldAttr(nst: 16, ctr: 12)] public int _maxCount;
+        [FieldAttr(nst: 20, ctr: 16)] public int _minCount = 1;
+        [FieldAttr(nst: 24, ctr: 20)] public bool _sputter;
+        [FieldAttr(nst: 25, ctr: 21)] public bool _killOldest;
+        [FieldAttr(nst: 28, ctr: 24)] public ETimeInput _timeInput;
     }
 }

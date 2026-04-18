@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVscConstColorAccessor : igVscColorAccessor
     {
-        [FieldAttr(24)] public igVec4ucMetaField _value = new();
+        [FieldAttr(nst: 24, ctr: 14)] public igVec4ucMetaField _value = new();
     }
 }

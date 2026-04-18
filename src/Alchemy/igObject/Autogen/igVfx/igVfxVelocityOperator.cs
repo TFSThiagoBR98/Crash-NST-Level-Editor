@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 16)]
+    [ObjectAttr(nst: 64, ctr: 48, align: 16)]
     public class igVfxVelocityOperator : igVfxVelocityBaseOperator
     {
-        [FieldAttr(48)] public igVec3fAlignedMetaField _velocity = new();
+        [FieldAttr(nst: 48, ctr: 32)] public igVec3fAlignedMetaField _velocity = new();
     }
 }

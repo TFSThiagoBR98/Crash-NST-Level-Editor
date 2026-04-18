@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 48, align: 8)]
     public class CBaseMovementController : igObject
     {
-        public enum EMovementControllerState : int
+        public enum EMovementControllerState
         {
             eMCS_Invalid = -1,
             eMCS_Active = 0,
@@ -12,9 +12,9 @@ namespace Alchemy
             eMCS_Inactive = 3,
         }
 
-        [FieldAttr(16)] public bool _startEnabled;
-        [FieldAttr(24)] public igHandleMetaField _entity = new();
-        [FieldAttr(32)] public EMovementControllerState _state = CBaseMovementController.EMovementControllerState.eMCS_Inactive;
-        [FieldAttr(40)] public igVscDelegateMetaField _finishedCallback = new();
+        [FieldAttr(nst: 16, ctr: 12)] public bool _startEnabled;
+        [FieldAttr(nst: 24, ctr: 16)] public igHandleMetaField _entity = new();
+        [FieldAttr(nst: 32, ctr: 24)] public EMovementControllerState _state = CBaseMovementController.EMovementControllerState.eMCS_Inactive;
+        [FieldAttr(nst: 40, ctr: 32)] public igVscDelegateMetaField _finishedCallback = new();
     }
 }

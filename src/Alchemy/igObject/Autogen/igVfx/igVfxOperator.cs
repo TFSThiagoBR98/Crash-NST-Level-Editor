@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, ctr: 16, align: 8)]
     public class igVfxOperator : igObject
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class OperatorFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _enabled = true;
-            [FieldAttr(1, size: 1)] public bool _visualize = false;
-            [FieldAttr(2, size: 1)] public bool _valid;
-            [FieldAttr(3, size: 2)] public EStackType _stackType = EStackType.kStackEffect;
-            [FieldAttr(5, size: 1)] public bool _dirty;
+            [FieldAttr(offset: 0, size: 1)] public bool _enabled;
+            [FieldAttr(offset: 1, size: 1)] public bool _visualize;
+            [FieldAttr(offset: 2, size: 1)] public bool _valid;
+            [FieldAttr(offset: 3, size: 2)] public EStackType _stackType;
+            [FieldAttr(offset: 5, size: 1)] public bool _dirty;
         }
 
-        [FieldAttr(16)] public OperatorFlags _operatorFlags = new();
+        [FieldAttr(nst: 16, ctr: 12)] public OperatorFlags _operatorFlags = new();
     }
 }

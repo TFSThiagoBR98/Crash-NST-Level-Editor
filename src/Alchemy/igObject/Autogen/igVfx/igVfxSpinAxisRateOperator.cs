@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 16)]
+    [ObjectAttr(nst: 80, align: 16)]
     public class igVfxSpinAxisRateOperator : igVfxSpinAxisRateBaseOperator
     {
-        [FieldAttr(64)] public float _rate;
+        [FieldAttr(nst: 64)] public float _rate;
     }
 }

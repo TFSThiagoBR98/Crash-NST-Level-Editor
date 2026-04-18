@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class CEntityBolt : igEntityBolt
     {
-        [FieldAttr(24)] public CBoltPoint? _boltSelect;
-        [FieldAttr(32)] public CObjectBolt? _objectBolt;
-        [FieldAttr(40)] public bool _dirty = true;
+        [FieldAttr(nst: 24, ctr: 24)] public CBoltPoint? _boltSelect;
+        [FieldAttr(nst: 32, ctr: 32)] public CObjectBolt? _objectBolt;
+        [FieldAttr(nst: 40, ctr: 40)] public bool _dirty = true;
     }
 }

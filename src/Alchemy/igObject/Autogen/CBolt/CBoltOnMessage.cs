@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaType: typeof(CBoltOnMessage))]
+    [ObjectAttr(nst: 64, align: 8)]
     public class CBoltOnMessage : CEntityMessage
     {
-        [FieldAttr(56)] public bool _bolt;
-        [FieldAttr(60)] public EBoltonModels _boltonModels = EBoltonModels.EBOLTON_NONE;
+        [FieldAttr(nst: 56)] public bool _bolt;
+        [FieldAttr(nst: 60)] public EBoltonModels _boltonModels = EBoltonModels.EBOLTON_NONE;
     }
 }

@@ -1,16 +1,16 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CVehicleCollisionExtraResponseBase : igObject
     {
-        public enum EDamageScalingMethod : uint
+        public enum EDamageScalingMethod
         {
             eDSM_None = 0,
             eDSM_ScaleByWeight = 1,
             eDSM_ScaleByModifiedWeight = 2,
         }
 
-        [FieldAttr(16)] public CDamageData? _damage;
-        [FieldAttr(24)] public EDamageScalingMethod _damageScaling;
+        [FieldAttr(nst: 16, ctr: 16)] public CDamageData? _damage;
+        [FieldAttr(nst: 24, ctr: 24)] public EDamageScalingMethod _damageScaling;
     }
 }

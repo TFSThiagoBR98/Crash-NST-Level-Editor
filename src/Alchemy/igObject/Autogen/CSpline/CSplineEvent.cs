@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 40, align: 8)]
     public class CSplineEvent : igSplineEvent
     {
-        [FieldAttr(32)] public CSplineEventDelegate? _onSplineEvent;
-        [FieldAttr(40)] public CSplineEventDelegateEventList? _onSplineEventList;
+        [FieldAttr(nst: 32, ctr: 24)] public CSplineEventDelegate? _onSplineEvent;
+        [FieldAttr(nst: 40, ctr: 32)] public CSplineEventDelegateEventList? _onSplineEventList;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CPlayerMessage))]
+    [ObjectAttr(nst: 72, align: 8, metaType: typeof(CPlayerMessage))]
     public class Scripts_StringMessage : CPlayerMessage
     {
-        [FieldAttr(64)] public string? MessageString = "";
+        [FieldAttr(nst: 64)] public string? MessageString = "";
     }
 }

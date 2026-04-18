@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CAnimationEventTimeline : CCharacterEventTimeline
     {
-        [FieldAttr(32)] public bool _startAtCurrentTimeWhenActivated;
+        [FieldAttr(nst: 32)] public bool _startAtCurrentTimeWhenActivated;
     }
 }

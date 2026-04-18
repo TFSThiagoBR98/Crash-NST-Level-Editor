@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 56, align: 8)]
     public class igGuiAnimationBinding : igObject
     {
-        [FieldAttr(16, false)] public igGuiPlaceable? _placeable;
-        [FieldAttr(24, false)] public igGuiAnimation? _animation;
-        [FieldAttr(32)] public igVectorMetaField<igGuiTrackBinding> _trackBindings = new();
+        [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igGuiPlaceable? _placeable;
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igGuiAnimation? _animation;
+        [FieldAttr(nst: 32, ctr: 32)] public igVectorMetaField<igGuiTrackBinding> _trackBindings = new();
     }
 }

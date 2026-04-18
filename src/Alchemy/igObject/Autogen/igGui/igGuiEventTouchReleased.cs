@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 8)]
     public class igGuiEventTouchReleased : igGuiEventTouch
     {
-        [FieldAttr(40, false)] public igGuiPlaceable? _releasedPlaceable;
+        [FieldAttr(nst: 40, ctr: 40, refCount: false)] public igGuiPlaceable? _releasedPlaceable;
     }
 }

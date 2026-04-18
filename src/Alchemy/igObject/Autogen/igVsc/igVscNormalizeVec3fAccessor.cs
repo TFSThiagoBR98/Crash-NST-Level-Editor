@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class igVscNormalizeVec3fAccessor : igVscVec3fAccessor
     {
-        [FieldAttr(24)] public igVscVec3fAccessor? _vector;
+        [FieldAttr(nst: 24)] public igVscVec3fAccessor? _vector;
     }
 }

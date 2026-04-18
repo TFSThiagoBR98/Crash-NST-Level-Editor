@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CGuiEventInfoMessage : igGuiEvent
     {
-        public enum EInfoMessageState : uint
+        public enum EInfoMessageState
         {
             eIMS_None = 0,
             eIMS_Loading = 1,
@@ -12,6 +12,6 @@ namespace Alchemy
             eIMS_Paused = 4,
         }
 
-        [FieldAttr(24)] public EInfoMessageState _state;
+        [FieldAttr(nst: 24)] public EInfoMessageState _state;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CPlayerAttackComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public float _heightToBeginJumpAttacks = 100.0f;
-        [FieldAttr(32)] public CPlayerAttackDataTable? _dataTable;
+        [FieldAttr(nst: 24, ctr: 16)] public float _heightToBeginJumpAttacks = 100.0f;
+        [FieldAttr(nst: 32, ctr: 24)] public CPlayerAttackDataTable? _dataTable;
     }
 }

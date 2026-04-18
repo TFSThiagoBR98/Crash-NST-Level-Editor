@@ -1,0 +1,87 @@
+namespace Alchemy
+{
+    [ObjectAttr(ctr: 656, align: 4, metaType: typeof(CVscComponentData))]
+    public class Hub_Start_Event_ChainData : CVscComponentData
+    {
+        [FieldAttr(ctr: 32)] public igHandleMetaField _Entity_0x20 = new();
+        [FieldAttr(ctr: 40)] public igHandleMetaField _Entity_0x28 = new();
+        [FieldAttr(ctr: 48)] public igHandleMetaField _Bolt_Point_0x30 = new();
+        [FieldAttr(ctr: 56)] public igHandleMetaField _Bolt_Point_0x38 = new();
+        [FieldAttr(ctr: 64)] public igHandleMetaField _Bolt_Point_0x40 = new();
+        [FieldAttr(ctr: 72)] public igHandleMetaField _Entity_Data_0x48 = new();
+        [FieldAttr(ctr: 80)] public igHandleMetaField _Bolt_Point_0x50 = new();
+        [FieldAttr(ctr: 88)] public igHandleMetaField _Entity_Data_0x58 = new();
+        [FieldAttr(ctr: 96)] public igHandleMetaField _Fade_In_Preset_Data_0x60 = new();
+        [FieldAttr(ctr: 104)] public igHandleMetaField _Fade_In_Preset_Data_0x68 = new();
+        [FieldAttr(ctr: 112)] public igHandleMetaField _Fade_Out_Preset_Data_0x70 = new();
+        [FieldAttr(ctr: 120)] public igHandleMetaField _Fade_Out_Preset_Data_0x78 = new();
+        [FieldAttr(ctr: 128)] public igHandleMetaField _Gui_Project_0x80 = new();
+        [FieldAttr(ctr: 136)] public igHandleMetaField _Fade_In_Preset_Data_0x88 = new();
+        [FieldAttr(ctr: 144)] public igHandleMetaField _Fade_In_Preset_Data_0x90 = new();
+        [FieldAttr(ctr: 152)] public igHandleMetaField _Vfx_Effect_0x98 = new();
+        [FieldAttr(ctr: 160)] public igHandleMetaField _Fade_Out_Preset_Data_0xa0 = new();
+        [FieldAttr(ctr: 168)] public igHandleMetaField _Fade_Out_Preset_Data_0xa8 = new();
+        [FieldAttr(ctr: 176)] public igHandleMetaField _Bolt_Point_0xb0 = new();
+        [FieldAttr(ctr: 184)] public igHandleMetaField _Bolt_Point_0xb8 = new();
+        [FieldAttr(ctr: 192)] public igHandleMetaField _Vfx_Effect_0xc0 = new();
+        [FieldAttr(ctr: 200)] public igHandleMetaField _Vfx_Effect_0xc8 = new();
+        [FieldAttr(ctr: 208)] public igHandleMetaField _Entity_0xd0 = new();
+        [FieldAttr(ctr: 216)] public igHandleMetaField _Fade_Sequence_Preset_Data_id_ciamf86k001 = new();
+        [FieldAttr(ctr: 224)] public igHandleMetaField _Fade_Sequence_Preset_Data_id_eos2bvw0001 = new();
+        [FieldAttr(ctr: 232)] public igHandleMetaField _Fade_Sequence_Preset_Data_id_8d2w0ngb001 = new();
+        [FieldAttr(ctr: 240)] public igHandleMetaField _Entity_0xf0 = new();
+        [FieldAttr(ctr: 248)] public igHandleMetaField _Fade_In_Preset_Data_0xf8 = new();
+        [FieldAttr(ctr: 256)] public igHandleMetaField _Entity_0x100 = new();
+        [FieldAttr(ctr: 264)] public igHandleMetaField _Game_Sound_Music_Settings_0x108 = new();
+        [FieldAttr(ctr: 272)] public igHandleMetaField _Priority_Dsp_Override_Set = new();
+        [FieldAttr(ctr: 280)] public igHandleMetaField _Camera_0x118 = new();
+        [FieldAttr(ctr: 288)] public igHandleMetaField _Camera_0x120 = new();
+        [FieldAttr(ctr: 296)] public igHandleMetaField _Entity_Data_0x128 = new();
+        [FieldAttr(ctr: 304)] public igHandleMetaField _Bolt_Point_0x130 = new();
+        [FieldAttr(ctr: 312)] public igHandleMetaField _Bolt_Point_0x138 = new();
+        [FieldAttr(ctr: 320)] public igHandleMetaField _Vfx_Effect_0x140 = new();
+        [FieldAttr(ctr: 328)] public igHandleMetaField _Vfx_Effect_0x148 = new();
+        [FieldAttr(ctr: 336)] public igHandleMetaField _Entity_Handle_List = new();
+        [FieldAttr(ctr: 344)] public igHandleMetaField _Audio_Fade_Data = new();
+        [FieldAttr(ctr: 352)] public igHandleMetaField _Waypoint = new();
+        [FieldAttr(ctr: 360)] public igHandleMetaField _Cutscene_Data = new();
+        [FieldAttr(ctr: 368)] public igHandleMetaField _Game_Sound_Music_Settings_0x170 = new();
+        [FieldAttr(ctr: 376)] public igHandleMetaField _Game_Sound_Music_Settings_0x178 = new();
+        [FieldAttr(ctr: 384)] public igHandleMetaField _Camera_0x180 = new();
+        [FieldAttr(ctr: 392)] public igHandleMetaField _Sound = new();
+        [FieldAttr(ctr: 400)] public float _Float_0x190;
+        [FieldAttr(ctr: 404)] public float _Float_0x194;
+        [FieldAttr(ctr: 408)] public float _Float_0x198;
+        [FieldAttr(ctr: 412)] public float _Float_0x19c;
+        [FieldAttr(ctr: 416)] public igHandleMetaField _Vfx_Effect_0x1a0 = new();
+        [FieldAttr(ctr: 424)] public igHandleMetaField _Bolt_Point_0x1a8 = new();
+        [FieldAttr(ctr: 432)] public igHandleMetaField _Vfx_Effect_0x1b0 = new();
+        [FieldAttr(ctr: 440)] public igHandleMetaField _Bolt_Point_0x1b8 = new();
+        [FieldAttr(ctr: 448)] public igHandleMetaField _Entity_0x1c0 = new();
+        [FieldAttr(ctr: 456)] public igHandleMetaField _Entity_0x1c8 = new();
+        [FieldAttr(ctr: 464)] public igHandleMetaField _Entity_0x1d0 = new();
+        [FieldAttr(ctr: 472)] public igHandleMetaField _Entity_0x1d8 = new();
+        [FieldAttr(ctr: 480)] public igHandleMetaField _Entity_0x1e0 = new();
+        [FieldAttr(ctr: 488)] public igHandleMetaField _Entity_0x1e8 = new();
+        [FieldAttr(ctr: 496)] public igHandleMetaField _Entity_0x1f0 = new();
+        [FieldAttr(ctr: 504)] public igHandleMetaField _Entity_0x1f8 = new();
+        [FieldAttr(ctr: 512)] public igHandleMetaField _Entity_0x200 = new();
+        [FieldAttr(ctr: 520)] public igHandleMetaField _Entity_0x208 = new();
+        [FieldAttr(ctr: 528)] public igHandleMetaField _Entity_0x210 = new();
+        [FieldAttr(ctr: 536)] public igHandleMetaField _Entity_0x218 = new();
+        [FieldAttr(ctr: 544)] public igHandleMetaField _Entity_0x220 = new();
+        [FieldAttr(ctr: 552)] public igHandleMetaField _Entity_0x228 = new();
+        [FieldAttr(ctr: 560)] public igHandleMetaField _Entity_0x230 = new();
+        [FieldAttr(ctr: 568)] public igHandleMetaField _Entity_0x238 = new();
+        [FieldAttr(ctr: 576)] public igHandleMetaField _Entity_0x240 = new();
+        [FieldAttr(ctr: 584)] public igHandleMetaField _Entity_0x248 = new();
+        [FieldAttr(ctr: 592)] public igHandleMetaField _Entity_0x250 = new();
+        [FieldAttr(ctr: 600)] public igHandleMetaField _Entity_0x258 = new();
+        [FieldAttr(ctr: 608)] public igHandleMetaField _Vfx_Effect_0x260 = new();
+        [FieldAttr(ctr: 616)] public igHandleMetaField _Vfx_Effect_0x268 = new();
+        [FieldAttr(ctr: 624)] public igHandleMetaField _Bolt_Point_0x270 = new();
+        [FieldAttr(ctr: 632)] public igHandleMetaField _Bolt_Point_id_vmcafrs5001 = new();
+        [FieldAttr(ctr: 640)] public igHandleMetaField _Gui_Project_0x280 = new();
+        [FieldAttr(ctr: 648)] public igHandleMetaField _Gui_Project_0x288 = new();
+    }
+}

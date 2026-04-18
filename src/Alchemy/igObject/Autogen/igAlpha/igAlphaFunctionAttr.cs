@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 4)]
     public class igAlphaFunctionAttr : igVisualAttribute
     {
-        [FieldAttr(24)] public EIG_GFX_ALPHA_FUNCTION _func = EIG_GFX_ALPHA_FUNCTION.GEQUAL;
-        [FieldAttr(28)] public float _refValue;
+        [FieldAttr(nst: 24, ctr: 20)] public EIG_GFX_ALPHA_FUNCTION _func = EIG_GFX_ALPHA_FUNCTION.GEQUAL;
+        [FieldAttr(nst: 28, ctr: 24)] public float _refValue;
     }
 }

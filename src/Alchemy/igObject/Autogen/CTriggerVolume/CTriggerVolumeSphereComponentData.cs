@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 72, align: 8)]
     public class CTriggerVolumeSphereComponentData : CTriggerVolumeComponentData
     {
-        [FieldAttr(80)] public float _radius = 10.0f;
+        [FieldAttr(nst: 80, ctr: 68)] public float _radius = 10.0f;
     }
 }

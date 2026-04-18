@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CVehicleModeVfxData : igObject
     {
-        public enum EVehicleModeVfxType : uint
+        public enum EVehicleModeVfxType
         {
             eVMVT_All = 0,
             eVMVT_Arena = 1,
@@ -14,7 +14,7 @@ namespace Alchemy
             eVMVT_MagicMoment = 6,
         }
 
-        [FieldAttr(16)] public EVehicleModeVfxType _modeType;
-        [FieldAttr(24)] public CModVfxDataList? _modeVfx;
+        [FieldAttr(nst: 16)] public EVehicleModeVfxType _modeType;
+        [FieldAttr(nst: 24)] public CModVfxDataList? _modeVfx;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, ctr: 24, align: 8)]
     public class CVfxDrawEntityFadeOperator : igVfxDrawOperator
     {
-        [FieldAttr(32)] public bool _applyToBoltOns = true;
-        [FieldAttr(36)] public u32 /* igStructMetaField */ _primitive;
+        [FieldAttr(nst: 32, ctr: 17)] public bool _applyToBoltOns = true;
+        [FieldAttr(nst: 36, ctr: 20)] public uint _primitive;
     }
 }

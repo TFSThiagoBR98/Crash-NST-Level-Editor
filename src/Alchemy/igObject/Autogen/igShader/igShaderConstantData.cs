@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class igShaderConstantData : igNamedObject
     {
-        [FieldAttr(24)] public int _handle = -1;
+        [FieldAttr(nst: 24, ctr: 24)] public int _handle = -1;
     }
 }

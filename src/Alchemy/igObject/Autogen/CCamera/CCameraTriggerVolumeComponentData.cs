@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, align: 4)]
     public class CCameraTriggerVolumeComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public igVec3fMetaField _dimensions = new();
+        [FieldAttr(nst: 24)] public igVec3fMetaField _dimensions = new();
     }
 }

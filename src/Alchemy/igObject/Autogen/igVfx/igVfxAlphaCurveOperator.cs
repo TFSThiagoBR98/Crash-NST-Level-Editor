@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(120, 4)]
+    [ObjectAttr(nst: 120, ctr: 112, align: 8)]
     public class igVfxAlphaCurveOperator : igVfxAlphaBaseOperator
     {
-        [FieldAttr(32)] public igVfxRangedCurveMetaField _alpha = new();
-        [FieldAttr(116)] public EOperatorCurveInput _alphaInput;
+        [FieldAttr(nst: 32, ctr: 20)] public igVfxRangedCurveMetaField _alpha = new();
+        [FieldAttr(nst: 116, ctr: 104)] public EOperatorCurveInput _alphaInput;
     }
 }

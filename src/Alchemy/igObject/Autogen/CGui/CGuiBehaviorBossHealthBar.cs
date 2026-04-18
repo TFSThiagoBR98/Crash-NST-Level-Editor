@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8)]
+    [ObjectAttr(nst: 64, align: 8)]
     public class CGuiBehaviorBossHealthBar : igGuiBehavior
     {
-        [FieldAttr(16, false)] public igGuiAnimationTag? _healthAnimation;
-        [FieldAttr(24, false)] public igGuiPlaceable? _nameText;
-        [FieldAttr(32, false)] public igGuiPlaceable? _healthText;
-        [FieldAttr(40, false)] public igGuiPlaceable? _portrait;
-        [FieldAttr(48)] public igHandleMetaField _bossHandle = new();
-        [FieldAttr(56)] public bool _fadingOut;
+        [FieldAttr(nst: 16, refCount: false)] public igGuiAnimationTag? _healthAnimation;
+        [FieldAttr(nst: 24, refCount: false)] public igGuiPlaceable? _nameText;
+        [FieldAttr(nst: 32, refCount: false)] public igGuiPlaceable? _healthText;
+        [FieldAttr(nst: 40, refCount: false)] public igGuiPlaceable? _portrait;
+        [FieldAttr(nst: 48)] public igHandleMetaField _bossHandle = new();
+        [FieldAttr(nst: 56)] public bool _fadingOut;
     }
 }

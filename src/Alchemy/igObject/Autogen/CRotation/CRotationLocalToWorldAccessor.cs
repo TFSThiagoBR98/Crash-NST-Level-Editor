@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CRotationLocalToWorldAccessor : igVscVec3fAccessor
     {
-        [FieldAttr(24)] public igVscObjectAccessor? _target;
-        [FieldAttr(32)] public igVscVec3fAccessor? _rotation;
+        [FieldAttr(nst: 24)] public igVscObjectAccessor? _target;
+        [FieldAttr(nst: 32)] public igVscVec3fAccessor? _rotation;
     }
 }

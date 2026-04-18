@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, ctr: 24, align: 8)]
     public class igVfxOrbitBaseOperator : igVfxFrameOperator
     {
-        [FieldAttr(32)] public bool _applyRotation;
+        [FieldAttr(nst: 32, ctr: 20)] public bool _applyRotation;
     }
 }

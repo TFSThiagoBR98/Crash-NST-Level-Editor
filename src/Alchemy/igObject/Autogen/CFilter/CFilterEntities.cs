@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CFilterEntities : igObject
     {
-        [FieldAttr(16)] public CFilterMethodList? _filterMethods;
-        [FieldAttr(24)] public CFilterMethodTable? _filterMethodTable;
+        [FieldAttr(nst: 16, ctr: 16)] public CFilterMethodList? _filterMethods;
+        [FieldAttr(nst: 24, ctr: 24)] public CFilterMethodTable? _filterMethodTable;
     }
 }

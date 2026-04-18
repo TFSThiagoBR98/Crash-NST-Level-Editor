@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CEntityMessage))]
+    [ObjectAttr(nst: 72, align: 8, metaType: typeof(CEntityMessage))]
     public class Scripts_InformationEntityMessage : CEntityMessage
     {
-        public enum EInformationMessage : uint
+        public enum EInformationMessage
         {
             Bolted = 0,
             Toggle = 1,
@@ -16,7 +16,7 @@ namespace Alchemy
             Stop = 8,
         }
 
-        [FieldAttr(56)] public string? Tag = null;
-        [FieldAttr(64)] public EInformationMessage InformationMessage;
+        [FieldAttr(nst: 56)] public string? Tag = null;
+        [FieldAttr(nst: 64)] public EInformationMessage InformationMessage;
     }
 }

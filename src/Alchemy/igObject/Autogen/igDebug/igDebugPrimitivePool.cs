@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 80, align: 8)]
     public class igDebugPrimitivePool : igPool
     {
-        [FieldAttr(80)] public igRawRefMetaField _resetCallback = new();
+        [FieldAttr(nst: 80, ctr: 80)] public u64 _resetCallback = new();
     }
 }

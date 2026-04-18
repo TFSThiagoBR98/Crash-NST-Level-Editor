@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(248, 8)]
+    [ObjectAttr(nst: 248, ctr: 232, align: 8)]
     public class CGuiBehaviorSoundVolumeOption : CGuiBehaviorBaseNumberOption
     {
-        [FieldAttr(240)] public EOptionsChannelGroup _volumeGroup;
+        [FieldAttr(nst: 240, ctr: 224)] public EOptionsChannelGroup _volumeGroup;
     }
 }

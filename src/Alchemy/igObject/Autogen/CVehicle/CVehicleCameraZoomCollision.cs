@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, align: 8)]
     public class CVehicleCameraZoomCollision : CVehicleCameraCollision
     {
-        [FieldAttr(48)] public float _upOffset = 150.0f;
+        [FieldAttr(nst: 48)] public float _upOffset = 150.0f;
     }
 }

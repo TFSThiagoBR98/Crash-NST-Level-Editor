@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 8)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 8)]
     public class CGuiLicenseAgreementData : igObject
     {
-        [FieldAttr(16)] public igStringRefList? _textBlocks;
+        [FieldAttr(nst: 16, ctr: 16)] public igStringRefList? _textBlocks;
     }
 }

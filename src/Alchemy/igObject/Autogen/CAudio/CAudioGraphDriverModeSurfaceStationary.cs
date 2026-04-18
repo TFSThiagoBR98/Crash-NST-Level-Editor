@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 72, align: 8)]
     public class CAudioGraphDriverModeSurfaceStationary : CAudioGraphDriverModeTargetBased
     {
-        [FieldAttr(72)] public float _graphInput;
-        [FieldAttr(76)] public float _noVelocityThreshold = 5.0f;
+        [FieldAttr(nst: 72, ctr: 64)] public float _graphInput;
+        [FieldAttr(nst: 76, ctr: 68)] public float _noVelocityThreshold = 5.0f;
     }
 }

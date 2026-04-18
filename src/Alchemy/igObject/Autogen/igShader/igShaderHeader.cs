@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class igShaderHeader : igObject
     {
-        [FieldAttr(16)] public igMemoryRef<u8> _data = new();
+        [FieldAttr(nst: 16, ctr: 16)] public igMemoryRef<u8> _data = new();
     }
 }

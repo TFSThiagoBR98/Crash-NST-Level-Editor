@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(128, 16)]
+    [ObjectAttr(nst: 128, ctr: 128, align: 16)]
     public class CSplineRotationMover : igObject
     {
-        [FieldAttr(16)] public EMoverBehavior _rotationType;
-        [FieldAttr(20)] public float _convergeRatio;
-        [FieldAttr(24)] public bool _convergeCompleted;
-        [FieldAttr(32)] public igMatrix44fMetaField _transform = new();
-        [FieldAttr(96)] public igQuaternionfMetaField _startOrientation = new();
-        [FieldAttr(112)] public igVec3fMetaField _startAngles = new();
+        [FieldAttr(nst: 16, ctr: 12)] public EMoverBehavior _rotationType;
+        [FieldAttr(nst: 20, ctr: 16)] public float _convergeRatio;
+        [FieldAttr(nst: 24, ctr: 20)] public bool _convergeCompleted;
+        [FieldAttr(nst: 32, ctr: 32)] public igMatrix44fMetaField _transform = new();
+        [FieldAttr(nst: 96, ctr: 96)] public igQuaternionfMetaField _startOrientation = new();
+        [FieldAttr(nst: 112, ctr: 112)] public igVec3fMetaField _startAngles = new();
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(112, 8)]
+    [ObjectAttr(nst: 112, ctr: 104, align: 8)]
     public class CAccoladeData : igNamedObject
     {
-        public enum EQuestType : int
+        public enum EQuestType
         {
             eQT_Invalid = -1,
             eQT_Generic = 0,
@@ -12,32 +12,32 @@ namespace Alchemy
             eQT_Count = 3,
         }
 
-        [ObjectAttr(1)]
+        [ObjectAttr(size: 1)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 3)] public int _starsToAward = 1;
-            [FieldAttr(3, size: 1)] public bool _resetOnRequirementsLost;
-            [FieldAttr(4, size: 1)] public bool _displayProgress = false;
-            [FieldAttr(5, size: 1)] public bool _showAccoladeHud = false;
-            [FieldAttr(6, size: 1)] public bool _displayProgressBar = false;
-            [FieldAttr(7, size: 1)] public bool _showOverCutscene;
+            [FieldAttr(offset: 0, size: 3)] public int _starsToAward;
+            [FieldAttr(offset: 3, size: 1)] public bool _resetOnRequirementsLost;
+            [FieldAttr(offset: 4, size: 1)] public bool _displayProgress;
+            [FieldAttr(offset: 5, size: 1)] public bool _showAccoladeHud;
+            [FieldAttr(offset: 6, size: 1)] public bool _displayProgressBar;
+            [FieldAttr(offset: 7, size: 1)] public bool _showOverCutscene;
         }
 
-        [FieldAttr(24)] public CAccoladeRequirementList? _requirements;
-        [FieldAttr(32)] public CAccoladeGoalDataList? _goals;
-        [FieldAttr(40)] public EQuestType _questType = CAccoladeData.EQuestType.eQT_Invalid;
-        [FieldAttr(44)] public EAccoladeGroup _accoladeGroup = EAccoladeGroup.eAG_Invalid;
-        [FieldAttr(48)] public int _achievementId = -1;
-        [FieldAttr(52)] public int _trophyId = -1;
-        [FieldAttr(56)] public string? _steamAchievementId = "";
-        [FieldAttr(64)] public uint _trophyPackServiceLabel;
-        [FieldAttr(72)] public igHandleMetaField _achievementEvent = new();
-        [FieldAttr(80)] public igHandleMetaField _prerequisiteBeforeDisplay = new();
-        [FieldAttr(88)] public string? _shortDescription = null;
-        [FieldAttr(96)] public float _displayPercentInterval = 0.25f;
-        [FieldAttr(100)] public int _stardustToAward;
-        [FieldAttr(104)] public BitfieldStorage _bitfieldStorage = new();
-        [FieldAttr(105)] public bool _saveGameClip;
-        [FieldAttr(108)] public float _clipDuration = 10.0f;
+        [FieldAttr(nst: 24, ctr: 24)] public CAccoladeRequirementList? _requirements;
+        [FieldAttr(nst: 32, ctr: 32)] public CAccoladeGoalDataList? _goals;
+        [FieldAttr(nst: 40, ctr: 40)] public EQuestType _questType = CAccoladeData.EQuestType.eQT_Invalid;
+        [FieldAttr(nst: 44, ctr: 44)] public EAccoladeGroup _accoladeGroup = EAccoladeGroup.eAG_Invalid;
+        [FieldAttr(nst: 48, ctr: 48)] public int _achievementId = -1;
+        [FieldAttr(nst: 52, ctr: 52)] public int _trophyId = -1;
+        [FieldAttr(nst: 56)] public string? _steamAchievementId = "";
+        [FieldAttr(nst: 64, ctr: 56)] public uint _trophyPackServiceLabel;
+        [FieldAttr(nst: 72, ctr: 64)] public igHandleMetaField _achievementEvent = new();
+        [FieldAttr(nst: 80, ctr: 72)] public igHandleMetaField _prerequisiteBeforeDisplay = new();
+        [FieldAttr(nst: 88, ctr: 80)] public string? _shortDescription = null;
+        [FieldAttr(nst: 96, ctr: 88)] public float _displayPercentInterval = 0.25f;
+        [FieldAttr(nst: 100, ctr: 92)] public int _stardustToAward;
+        [FieldAttr(nst: 104, ctr: 96)] public BitfieldStorage _bitfieldStorage = new();
+        [FieldAttr(nst: 105, ctr: 97)] public bool _saveGameClip;
+        [FieldAttr(nst: 108, ctr: 100)] public float _clipDuration = 10.0f;
     }
 }

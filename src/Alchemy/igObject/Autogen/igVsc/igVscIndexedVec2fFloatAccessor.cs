@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class igVscIndexedVec2fFloatAccessor : igVscFloatAccessor
     {
-        [FieldAttr(24)] public igVscVec2fAccessor? _vector;
-        [FieldAttr(32)] public int _index;
+        [FieldAttr(nst: 24, ctr: 16)] public igVscVec2fAccessor? _vector;
+        [FieldAttr(nst: 32, ctr: 24)] public int _index;
     }
 }

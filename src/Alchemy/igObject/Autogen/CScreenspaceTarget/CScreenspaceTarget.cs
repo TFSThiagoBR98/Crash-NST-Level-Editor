@@ -1,23 +1,23 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8)]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CScreenspaceTarget : igObject
     {
-        public enum EScreenspaceTargetShape : uint
+        public enum EScreenspaceTargetShape
         {
             eSSTS_Box = 0,
             eSSTS_Circle = 1,
         }
 
-        [FieldAttr(16)] public CScreenspaceTargetShape? _shape;
-        [FieldAttr(24)] public float _depth;
-        [FieldAttr(32)] public igHandleMetaField _entity = new();
-        [FieldAttr(40)] public bool _isVisible;
-        [FieldAttr(41)] public bool _isOnScreen;
-        [FieldAttr(42)] public bool _isObscured;
-        [FieldAttr(43)] public bool _isInRange;
-        [FieldAttr(44)] public igVec3fMetaField _cachedEntityCenter = new();
-        [FieldAttr(56)] public uint _updateIndex;
-        [FieldAttr(64, false)] public CHavokQuery? _obscuredQuery;
+        [FieldAttr(nst: 16)] public CScreenspaceTargetShape? _shape;
+        [FieldAttr(nst: 24)] public float _depth;
+        [FieldAttr(nst: 32)] public igHandleMetaField _entity = new();
+        [FieldAttr(nst: 40)] public bool _isVisible;
+        [FieldAttr(nst: 41)] public bool _isOnScreen;
+        [FieldAttr(nst: 42)] public bool _isObscured;
+        [FieldAttr(nst: 43)] public bool _isInRange;
+        [FieldAttr(nst: 44)] public igVec3fMetaField _cachedEntityCenter = new();
+        [FieldAttr(nst: 56)] public uint _updateIndex;
+        [FieldAttr(nst: 64, refCount: false)] public CHavokQuery? _obscuredQuery;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 8)]
+    [ObjectAttr(nst: 80, ctr: 72, align: 8)]
     public class CVehicleCollisionExtraResponseMaintainSpeed : CVehicleCollisionExtraResponseReorientBase
     {
-        [FieldAttr(64)] public igVec3fMetaField _projectedVelocityFactor = new();
-        [FieldAttr(76)] public bool _useCurrentRigidBodySpeed;
+        [FieldAttr(nst: 64, ctr: 56)] public igVec3fMetaField _projectedVelocityFactor = new();
+        [FieldAttr(nst: 76, ctr: 68)] public bool _useCurrentRigidBodySpeed;
     }
 }

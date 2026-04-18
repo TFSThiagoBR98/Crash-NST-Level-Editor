@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, align: 8)]
     public class CCEOrientation : CCombatNodeEvent
     {
-        public enum EOrientationActionType : uint
+        public enum EOrientationActionType
         {
             eOAT_FaceTarget = 0,
             eOAT_FaceAwayFromTarget = 1,
@@ -14,7 +14,7 @@ namespace Alchemy
             eOAT_FaceCamera = 6,
         }
 
-        [FieldAttr(80)] public ECombatTargetSelect _target;
-        [FieldAttr(84)] public EOrientationActionType _actionType;
+        [FieldAttr(nst: 80)] public ECombatTargetSelect _target;
+        [FieldAttr(nst: 84)] public EOrientationActionType _actionType;
     }
 }

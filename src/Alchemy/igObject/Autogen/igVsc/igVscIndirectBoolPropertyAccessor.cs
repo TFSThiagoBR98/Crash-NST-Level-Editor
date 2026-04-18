@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, ctr: 40, align: 8)]
     public class igVscIndirectBoolPropertyAccessor : igVscBoolAccessor
     {
-        [FieldAttr(24)] public igVscObjectAccessor? _object;
-        [FieldAttr(32, false)] public igMetaFunction? _get;
-        [FieldAttr(40, false)] public igMetaFunction? _set;
+        [FieldAttr(nst: 24, ctr: 16)] public igVscObjectAccessor? _object;
+        [FieldAttr(nst: 32, ctr: 24, refCount: false)] public igMetaFunction? _get;
+        [FieldAttr(nst: 40, ctr: 32, refCount: false)] public igMetaFunction? _set;
     }
 }

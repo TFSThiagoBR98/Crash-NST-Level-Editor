@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, align: 4)]
     public class CPlayerVariableNode : igObject
     {
-        [FieldAttr(16)] public EPlayerId _playerID;
+        [FieldAttr(nst: 16)] public EPlayerId _playerID;
     }
 }

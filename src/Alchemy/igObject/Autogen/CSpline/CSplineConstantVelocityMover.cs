@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 4)]
+    [ObjectAttr(nst: 48, ctr: 40, align: 4)]
     public class CSplineConstantVelocityMover : CSplineVelocityMover
     {
-        [FieldAttr(40)] public float _velocity = 100.0f;
+        [FieldAttr(nst: 40, ctr: 36)] public float _velocity = 100.0f;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(240, 8)]
+    [ObjectAttr(nst: 240, align: 8)]
     public class CGuiBehaviorCrashNewGameButton : CGuiBehaviorNewGameButton
     {
-        [FieldAttr(232)] public ECrashGame _crashGame;
+        [FieldAttr(nst: 232)] public ECrashGame _crashGame;
     }
 }

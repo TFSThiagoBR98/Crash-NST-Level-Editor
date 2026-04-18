@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class CBehaviorDockingGenerator : igNamedObject
     {
-        [FieldAttr(24)] public igRawRefMetaField _havokDockingGeneratorTemplate = new();
+        [FieldAttr(nst: 24, ctr: 24)] public igRawRefMetaField _havokDockingGeneratorTemplate = new();
     }
 }

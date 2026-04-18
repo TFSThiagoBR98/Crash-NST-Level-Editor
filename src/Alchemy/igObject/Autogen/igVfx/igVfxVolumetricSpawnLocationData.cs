@@ -1,15 +1,15 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 4)]
+    [ObjectAttr(nst: 88, ctr: 80, align: 8)]
     public class igVfxVolumetricSpawnLocationData : igVfxSpawnLocationData
     {
-        [ObjectAttr(1)]
+        [ObjectAttr(size: 1)]
         public class FlagStorage : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _applyNormal;
+            [FieldAttr(offset: 0, size: 1)] public bool _applyNormal;
         }
 
-        [FieldAttr(72)] public igRangedFloatMetaField _volumeScalar = new();
-        [FieldAttr(80)] public FlagStorage _flagStorage = new();
+        [FieldAttr(nst: 72, ctr: 64)] public igRangedFloatMetaField _volumeScalar = new();
+        [FieldAttr(nst: 80, ctr: 72)] public FlagStorage _flagStorage = new();
     }
 }

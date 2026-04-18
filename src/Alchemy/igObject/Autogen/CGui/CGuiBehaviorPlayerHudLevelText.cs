@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CGuiBehaviorPlayerHudLevelText : igGuiBehavior
     {
-        [FieldAttr(16)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
-        [FieldAttr(24, false)] public igGuiPlaceable? _topLevel;
-        [FieldAttr(32, false)] public igGuiPlaceable? _placeable;
+        [FieldAttr(nst: 16)] public EPlayerId _player = EPlayerId.EPLAYERID_NONE;
+        [FieldAttr(nst: 24, refCount: false)] public igGuiPlaceable? _topLevel;
+        [FieldAttr(nst: 32, refCount: false)] public igGuiPlaceable? _placeable;
     }
 }

@@ -1,19 +1,19 @@
 namespace Alchemy
 {
-    [ObjectAttr(144, 8)]
+    [ObjectAttr(nst: 144, align: 8)]
     public class CGuiCrashSaveSlotAnimations : CGuiSaveSlotAnimations
     {
-        [FieldAttr(48, false)] public igGuiAnimationTag? _crash1BeginAnimation;
-        [FieldAttr(56, false)] public igGuiAnimationTag? _crash1IdleAnimation;
-        [FieldAttr(64, false)] public igGuiAnimationTag? _crash1EndAnimation;
-        [FieldAttr(72, false)] public igGuiAnimationTag? _crash1EndAnimationEmpty;
-        [FieldAttr(80, false)] public igGuiAnimationTag? _crash2BeginAnimation;
-        [FieldAttr(88, false)] public igGuiAnimationTag? _crash2IdleAnimation;
-        [FieldAttr(96, false)] public igGuiAnimationTag? _crash2EndAnimation;
-        [FieldAttr(104, false)] public igGuiAnimationTag? _crash2EndAnimationEmpty;
-        [FieldAttr(112, false)] public igGuiAnimationTag? _crash3BeginAnimation;
-        [FieldAttr(120, false)] public igGuiAnimationTag? _crash3IdleAnimation;
-        [FieldAttr(128, false)] public igGuiAnimationTag? _crash3EndAnimation;
-        [FieldAttr(136, false)] public igGuiAnimationTag? _crash3EndAnimationEmpty;
+        [FieldAttr(nst: 48, refCount: false)] public igGuiAnimationTag? _crash1BeginAnimation;
+        [FieldAttr(nst: 56, refCount: false)] public igGuiAnimationTag? _crash1IdleAnimation;
+        [FieldAttr(nst: 64, refCount: false)] public igGuiAnimationTag? _crash1EndAnimation;
+        [FieldAttr(nst: 72, refCount: false)] public igGuiAnimationTag? _crash1EndAnimationEmpty;
+        [FieldAttr(nst: 80, refCount: false)] public igGuiAnimationTag? _crash2BeginAnimation;
+        [FieldAttr(nst: 88, refCount: false)] public igGuiAnimationTag? _crash2IdleAnimation;
+        [FieldAttr(nst: 96, refCount: false)] public igGuiAnimationTag? _crash2EndAnimation;
+        [FieldAttr(nst: 104, refCount: false)] public igGuiAnimationTag? _crash2EndAnimationEmpty;
+        [FieldAttr(nst: 112, refCount: false)] public igGuiAnimationTag? _crash3BeginAnimation;
+        [FieldAttr(nst: 120, refCount: false)] public igGuiAnimationTag? _crash3IdleAnimation;
+        [FieldAttr(nst: 128, refCount: false)] public igGuiAnimationTag? _crash3EndAnimation;
+        [FieldAttr(nst: 136, refCount: false)] public igGuiAnimationTag? _crash3EndAnimationEmpty;
     }
 }

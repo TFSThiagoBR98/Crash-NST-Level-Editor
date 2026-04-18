@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(80, 16)]
+    [ObjectAttr(nst: 80, ctr: 64, align: 16)]
     public class igVfxSpinAxisRateRangeOperator : igVfxSpinAxisRateBaseOperator
     {
-        [FieldAttr(64)] public igRangedFloatMetaField _rate = new();
+        [FieldAttr(nst: 64, ctr: 48)] public igRangedFloatMetaField _rate = new();
     }
 }

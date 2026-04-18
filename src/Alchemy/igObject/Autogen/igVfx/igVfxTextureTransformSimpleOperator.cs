@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVfxTextureTransformSimpleOperator : igVfxOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _diffuse = true;
-            [FieldAttr(1, size: 1)] public bool _mask;
-            [FieldAttr(2, size: 3)] public igVfxTextureTransform.ERotate _uvRotation;
-            [FieldAttr(5, size: 2)] public igVfxTextureTransform.EMirror _uMirror;
-            [FieldAttr(7, size: 2)] public igVfxTextureTransform.EMirror _vMirror;
+            [FieldAttr(offset: 0, size: 1)] public bool _diffuse;
+            [FieldAttr(offset: 1, size: 1)] public bool _mask;
+            [FieldAttr(offset: 2, size: 3)] public ERotate _uvRotation;
+            [FieldAttr(offset: 5, size: 2)] public EMirror _uMirror;
+            [FieldAttr(offset: 7, size: 2)] public EMirror _vMirror;
         }
 
-        [FieldAttr(24)] public Flags _flags = new();
+        [FieldAttr(nst: 24, ctr: 16)] public Flags _flags = new();
     }
 }

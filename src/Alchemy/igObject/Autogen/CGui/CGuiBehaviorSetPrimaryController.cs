@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(232, 8)]
+    [ObjectAttr(nst: 232, ctr: 240, align: 8)]
     public class CGuiBehaviorSetPrimaryController : CGuiBehavior
     {
-        public enum EState : uint
+        public enum EState
         {
             eS_DelayingPressStart = 0,
             eS_WaitingForStartPress = 1,
@@ -16,18 +16,19 @@ namespace Alchemy
             eS_Finished = 8,
         }
 
-        [FieldAttr(144, false)] public igGuiPlaceable? _pressStartPlaceable;
-        [FieldAttr(152)] public igHandleMetaField _pressedStartSound = new();
-        [FieldAttr(160)] public igHandleMetaField _effectKilledSound = new();
-        [FieldAttr(168)] public float _pressStartDelay;
-        [FieldAttr(172)] public float _saveSlotsDelay;
-        [FieldAttr(176)] public bool _allowOverridePrimaryController;
-        [FieldAttr(180)] public int _loadSaveSlot = -1;
-        [FieldAttr(184)] public CTimer? _timer;
-        [FieldAttr(192)] public EState _state;
-        [FieldAttr(200)] public string? _pressStartString = null;
-        [FieldAttr(208)] public igHandleMetaField _licenseProject = new();
-        [FieldAttr(216)] public igHandleMetaField _iCloudDialog = new();
-        [FieldAttr(224)] public EState _farthestState;
+        [FieldAttr(nst: 144, ctr: 144, refCount: false)] public igGuiPlaceable? _pressStartPlaceable;
+        [FieldAttr(nst: 152, ctr: 152)] public igHandleMetaField _pressedStartSound = new();
+        [FieldAttr(nst: 160, ctr: 160)] public igHandleMetaField _effectKilledSound = new();
+        [FieldAttr(nst: 168, ctr: 168)] public float _pressStartDelay;
+        [FieldAttr(nst: 172, ctr: 172)] public float _saveSlotsDelay;
+        [FieldAttr(nst: 176, ctr: 176)] public bool _allowOverridePrimaryController;
+        [FieldAttr(nst: 180, ctr: 180)] public int _loadSaveSlot = -1;
+        [FieldAttr(nst: 184, ctr: 184)] public CTimer? _timer;
+        [FieldAttr(nst: 192, ctr: 192)] public EState _state;
+        [FieldAttr(nst: 200, ctr: 200)] public string? _pressStartString = null;
+        [FieldAttr(nst: 208, ctr: 208)] public igHandleMetaField _licenseProject = new();
+        [FieldAttr(nst: 216, ctr: 216)] public igHandleMetaField _iCloudDialog = new();
+        [FieldAttr(nst: 224, ctr: 224)] public EState _farthestState;
+        [FieldAttr(ctr: 232)] public igHandleMetaField _configDownloadDialog = new();
     }
 }

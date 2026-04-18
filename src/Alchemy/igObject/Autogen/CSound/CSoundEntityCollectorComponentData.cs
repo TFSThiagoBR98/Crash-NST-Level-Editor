@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CSoundEntityCollectorComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CTriggerVolumeComponentData? _collectionVolume;
-        [FieldAttr(32)] public CEntity? _dummyEntity;
-        [FieldAttr(40)] public float _positionDamping = 0.15f;
+        [FieldAttr(nst: 24)] public CTriggerVolumeComponentData? _collectionVolume;
+        [FieldAttr(nst: 32)] public CEntity? _dummyEntity;
+        [FieldAttr(nst: 40)] public float _positionDamping = 0.15f;
     }
 }

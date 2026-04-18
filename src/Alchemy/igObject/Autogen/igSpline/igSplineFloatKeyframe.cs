@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 4)]
     public class igSplineFloatKeyframe : igSplineData
     {
-        [FieldAttr(24)] public float _value;
-        [FieldAttr(28)] public float _tension;
+        [FieldAttr(nst: 24, ctr: 16)] public float _value;
+        [FieldAttr(nst: 28, ctr: 20)] public float _tension;
     }
 }

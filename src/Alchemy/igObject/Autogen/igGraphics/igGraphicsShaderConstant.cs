@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 32, align: 8)]
     public class igGraphicsShaderConstant : igGraphicsObject
     {
-        [FieldAttr(24)] public igSizeTypeMetaField _resource = new();
+        [FieldAttr(nst: 24, ctr: 24)] public igSizeTypeMetaField _resource = new();
     }
 }

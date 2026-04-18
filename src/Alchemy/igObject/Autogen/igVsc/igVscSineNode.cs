@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class igVscSineNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscFloatAccessor? _angle;
-        [FieldAttr(24)] public igVscFloatAccessor? _sine;
-        [FieldAttr(32, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16)] public igVscFloatAccessor? _angle;
+        [FieldAttr(nst: 24)] public igVscFloatAccessor? _sine;
+        [FieldAttr(nst: 32, refCount: false)] public igVscActionNode? _out;
     }
 }

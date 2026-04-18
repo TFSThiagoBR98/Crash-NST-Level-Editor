@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(120, 4)]
+    [ObjectAttr(nst: 120, ctr: 112, align: 8)]
     public class igVfxRangedCurveSpawnCountData : igVfxSpawnRateData
     {
-        [FieldAttr(32)] public igVfxRangedCurveMetaField _countCurve = new();
+        [FieldAttr(nst: 32, ctr: 28)] public igVfxRangedCurveMetaField _countCurve = new();
     }
 }

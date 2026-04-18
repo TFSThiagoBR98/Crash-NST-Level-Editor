@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8)]
+    [ObjectAttr(nst: 64, ctr: 56, align: 8)]
     public class CSoundUpdatePitchByVelocity : CSoundUpdateVelocityBased
     {
-        [FieldAttr(56)] public float _pitchAtMinVelocity;
-        [FieldAttr(60)] public float _pitchAtMaxVelocity;
+        [FieldAttr(nst: 56, ctr: 48)] public float _pitchAtMinVelocity;
+        [FieldAttr(nst: 60, ctr: 52)] public float _pitchAtMaxVelocity;
     }
 }

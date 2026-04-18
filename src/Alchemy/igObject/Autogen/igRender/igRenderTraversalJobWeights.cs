@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 4)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 4)]
     public class igRenderTraversalJobWeights : igObject
     {
-        [FieldAttr(16)] public int _minWeight = 100;
-        [FieldAttr(20)] public int _maxWeight = 200;
+        [FieldAttr(nst: 16, ctr: 12)] public int _minWeight = 100;
+        [FieldAttr(nst: 20, ctr: 16)] public int _maxWeight = 200;
     }
 }

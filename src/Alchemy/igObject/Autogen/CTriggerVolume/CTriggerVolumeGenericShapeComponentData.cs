@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 80, align: 8)]
     public class CTriggerVolumeGenericShapeComponentData : CTriggerVolumeComponentData
     {
-        [FieldAttr(80)] public CShape? _shape;
+        [FieldAttr(nst: 80, ctr: 72)] public CShape? _shape;
     }
 }

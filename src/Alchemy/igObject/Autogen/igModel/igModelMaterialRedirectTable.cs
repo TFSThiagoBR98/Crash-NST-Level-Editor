@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8)]
+    [ObjectAttr(nst: 72, ctr: 72, align: 8)]
     public class igModelMaterialRedirectTable : igObject
     {
-        [FieldAttr(16)] public igVectorMetaField<igHandleMetaField> _sourceHandles = new();
-        [FieldAttr(40)] public igVectorMetaField<igHandleMetaField> _targetHandles = new();
-        [FieldAttr(64)] public igHandleMetaField _defaultRedirectHandle = new();
+        [FieldAttr(nst: 16, ctr: 16)] public igVectorMetaField<igHandleMetaFieldInstance> _sourceHandles = new();
+        [FieldAttr(nst: 40, ctr: 40)] public igVectorMetaField<igHandleMetaFieldInstance> _targetHandles = new();
+        [FieldAttr(nst: 64, ctr: 64)] public igHandleMetaField _defaultRedirectHandle = new();
     }
 }

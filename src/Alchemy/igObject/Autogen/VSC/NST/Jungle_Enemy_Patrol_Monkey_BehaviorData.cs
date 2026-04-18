@@ -1,0 +1,9 @@
+namespace Alchemy
+{
+    [ObjectAttr(nst: 48, align: 4, metaType: typeof(CVscComponentData))]
+    public class Jungle_Enemy_Patrol_Monkey_BehaviorData : CVscComponentData
+    {
+        [FieldAttr(nst: 40)] public bool _Bool_0x28;
+        [FieldAttr(nst: 41)] public bool _Bool_0x29;
+    }
+}

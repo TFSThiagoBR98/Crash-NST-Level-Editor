@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, ctr: 72, align: 8)]
     public class CCEScript : CCombatNodeEvent
     {
-        [FieldAttr(80)] public CDotNetCombatNodeEvent? _scriptEvent;
+        [FieldAttr(nst: 80, ctr: 64)] public CDotNetCombatNodeEvent? _scriptEvent;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CGuiKeyboardMenuList : igDataList
     {
-        [FieldAttr(24)] public igMemoryRef<igEnumMetaField> _data = new();
+        [FieldAttr(nst: 24)] public igMemoryRef<igEnumMetaField> _data = new();
     }
 }

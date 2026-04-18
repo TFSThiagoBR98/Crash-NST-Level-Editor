@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8)]
+    [ObjectAttr(nst: 88, align: 8)]
     public class CCEGraphEvent : CCombatNodeEvent
     {
-        [FieldAttr(80, false)] public CEntityMessage? _graphEvent;
+        [FieldAttr(nst: 80, refCount: false)] public CEntityMessage? _graphEvent;
     }
 }

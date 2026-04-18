@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 4)]
+    [ObjectAttr(nst: 40, ctr: 24, align: 8)]
     public class igVfxVelocityBaseOperator : igVfxFrameOperator
     {
-        [FieldAttr(32)] public EModulation _modulation;
+        [FieldAttr(nst: 32, ctr: 20)] public EModulation _modulation;
     }
 }

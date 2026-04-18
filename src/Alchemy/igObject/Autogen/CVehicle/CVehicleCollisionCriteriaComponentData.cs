@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CVehicleCollisionCriteriaComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CVehicleCollisionResponseCriteriaTable? _collisionResponseCriteria;
+        [FieldAttr(nst: 24)] public CVehicleCollisionResponseCriteriaTable? _collisionResponseCriteria;
     }
 }

@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(88, 8, metaType: typeof(CBehaviorLogic))]
+    [ObjectAttr(nst: 88, align: 8, metaType: typeof(CBehaviorLogic))]
     public class Scripts_CMotionLayerHandler : CBehaviorLogic
     {
-        public enum EMotionLayerOptions : uint
+        public enum EMotionLayerOptions
         {
             None = 0,
             Body = 1,
@@ -15,6 +15,6 @@ namespace Alchemy
             ModWeaponizedMotion = 7,
         }
 
-        [FieldAttr(80)] public EMotionLayerOptions MotionOption;
+        [FieldAttr(nst: 80)] public EMotionLayerOptions MotionOption;
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class igStencilRefAttr : igVisualAttribute
     {
-        [FieldAttr(24)] public uint _refVal;
+        [FieldAttr(nst: 24)] public uint _refVal;
     }
 }

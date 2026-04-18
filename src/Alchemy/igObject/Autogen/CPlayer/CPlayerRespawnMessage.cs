@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(72, 8, metaType: typeof(CPlayerRespawnMessage))]
+    [ObjectAttr(nst: 72, align: 8)]
     public class CPlayerRespawnMessage : CEntityMessage
     {
-        [FieldAttr(56)] public igHandleMetaField _playerActor = new();
-        [FieldAttr(64)] public CPlayerRespawnComponent.ERespawnType _respawnType = CPlayerRespawnComponent.ERespawnType.eRT_Unknown;
+        [FieldAttr(nst: 56)] public igHandleMetaField _playerActor = new();
+        [FieldAttr(nst: 64)] public CPlayerRespawnComponent.ERespawnType _respawnType = CPlayerRespawnComponent.ERespawnType.eRT_Unknown;
     }
 }

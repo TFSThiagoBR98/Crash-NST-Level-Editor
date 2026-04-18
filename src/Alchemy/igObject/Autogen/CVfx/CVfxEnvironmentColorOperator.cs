@@ -1,18 +1,18 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, align: 4)]
     public class CVfxEnvironmentColorOperator : igVfxOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class EnvironmentColorFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 3)] public EModulation _colorModulation = EModulation.kModulate;
-            [FieldAttr(3, size: 1)] public bool _useEnvironmentColor = false;
-            [FieldAttr(4, size: 1)] public bool _useSunColor = false;
-            [FieldAttr(5, size: 1)] public bool _useOverrideCamera;
-            [FieldAttr(6, size: 3)] public igVfxManager.EVfxCamera _overrideCamera;
+            [FieldAttr(offset: 0, size: 3)] public EModulation _colorModulation = EModulation.kModulate;
+            [FieldAttr(offset: 3, size: 1)] public bool _useEnvironmentColor = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _useSunColor = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _useOverrideCamera;
+            [FieldAttr(offset: 6, size: 3)] public igVfxManager.EVfxCamera _overrideCamera;
         }
 
-        [FieldAttr(24)] public EnvironmentColorFlags _environmentColorFlags = new();
+        [FieldAttr(nst: 24)] public EnvironmentColorFlags _environmentColorFlags = new();
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CCrashBandicootBonusLivesGoalData : CAccoladeGoalData
     {
-        [FieldAttr(32)] public int _lifeCount;
+        [FieldAttr(nst: 32)] public int _lifeCount;
     }
 }

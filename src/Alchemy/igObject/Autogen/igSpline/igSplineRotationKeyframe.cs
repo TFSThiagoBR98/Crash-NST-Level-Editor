@@ -1,13 +1,13 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 4)]
+    [ObjectAttr(nst: 56, ctr: 48, align: 8)]
     public class igSplineRotationKeyframe : igSplineData
     {
-        [FieldAttr(24)] public igVec3fMetaField _value = new();
-        [FieldAttr(36)] public igVec3fMetaField _position = new();
-        [FieldAttr(48)] public float _tension;
-        [FieldAttr(52)] public bool _useSplinePitch;
-        [FieldAttr(53)] public bool _useSplineRoll;
-        [FieldAttr(54)] public bool _useSplineYaw;
+        [FieldAttr(nst: 24, ctr: 16)] public igVec3fMetaField _value = new();
+        [FieldAttr(nst: 36, ctr: 28)] public igVec3fMetaField _position = new();
+        [FieldAttr(nst: 48, ctr: 40)] public float _tension;
+        [FieldAttr(nst: 52, ctr: 44)] public bool _useSplinePitch;
+        [FieldAttr(nst: 53, ctr: 45)] public bool _useSplineRoll;
+        [FieldAttr(nst: 54, ctr: 46)] public bool _useSplineYaw;
     }
 }

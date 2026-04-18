@@ -1,17 +1,17 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 16)]
+    [ObjectAttr(nst: 48, ctr: 48, align: 16)]
     public class igVfxAlignSingleOperator : igVfxOperator
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class AlignFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 4)] public EReferenceFrame _sourceFrame = EReferenceFrame.eRF_Camera;
-            [FieldAttr(4, size: 3)] public ESourceAxis _sourceAxis = ESourceAxis.eSA_XAxis;
-            [FieldAttr(7, size: 1)] public bool _flip1;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _sourceFrame;
+            [FieldAttr(offset: 4, size: 3)] public ESourceAxis _sourceAxis;
+            [FieldAttr(offset: 7, size: 1)] public bool _flip1;
         }
 
-        [FieldAttr(24)] public AlignFlags _alignFlags = new();
-        [FieldAttr(32)] public igVec3fAlignedMetaField _axis = new();
+        [FieldAttr(nst: 24, ctr: 16)] public AlignFlags _alignFlags = new();
+        [FieldAttr(nst: 32, ctr: 32)] public igVec3fAlignedMetaField _axis = new();
     }
 }

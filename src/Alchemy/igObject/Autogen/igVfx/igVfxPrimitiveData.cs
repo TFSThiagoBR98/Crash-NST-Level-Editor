@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(56, 8)]
+    [ObjectAttr(nst: 56, ctr: 64, align: 8)]
     public class igVfxPrimitiveData : igObject
     {
-        public enum ESubframeSpawn : uint
+        public enum ESubframeSpawn
         {
             kIncludeLastFrame = 0,
             kIncludeCurrentFrame = 1,
@@ -12,57 +12,58 @@ namespace Alchemy
             kUseCurrentFrame = 4,
         }
 
-        [ObjectAttr(2)]
+        [ObjectAttr(size: 2)]
         public class DeviceLayers : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _deviceLayer1 = true;
-            [FieldAttr(1, size: 1)] public bool _deviceLayer2 = false;
-            [FieldAttr(2, size: 1)] public bool _deviceLayer3 = false;
-            [FieldAttr(3, size: 1)] public bool _deviceLayer4 = false;
-            [FieldAttr(4, size: 1)] public bool _deviceLayer5 = false;
-            [FieldAttr(5, size: 11)] public uint _overheadCost;
+            [FieldAttr(offset: 0, size: 1)] public bool _deviceLayer1;
+            [FieldAttr(offset: 1, size: 1)] public bool _deviceLayer2;
+            [FieldAttr(offset: 2, size: 1)] public bool _deviceLayer3;
+            [FieldAttr(offset: 3, size: 1)] public bool _deviceLayer4;
+            [FieldAttr(offset: 4, size: 1)] public bool _deviceLayer5;
+            [FieldAttr(offset: 5, size: 11)] public uint _overheadCost;
         }
 
-        [ObjectAttr(2)]
+        [ObjectAttr(size: 2)]
         public class SpawnLayers : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _spawnLayer1 = true;
-            [FieldAttr(1, size: 1)] public bool _spawnLayer2 = false;
-            [FieldAttr(2, size: 1)] public bool _spawnLayer3 = false;
-            [FieldAttr(3, size: 1)] public bool _spawnLayer4 = false;
-            [FieldAttr(4, size: 1)] public bool _spawnLayer5 = false;
-            [FieldAttr(5, size: 1)] public bool _spawnLayer6 = false;
-            [FieldAttr(6, size: 1)] public bool _spawnLayer7 = false;
-            [FieldAttr(7, size: 1)] public bool _spawnLayer8 = false;
-            [FieldAttr(8, size: 1)] public bool _spawnLayer9 = false;
-            [FieldAttr(9, size: 1)] public bool _spawnLayer10 = false;
-            [FieldAttr(10, size: 1)] public bool _spawnLayer11 = false;
-            [FieldAttr(11, size: 1)] public bool _spawnLayer12 = false;
-            [FieldAttr(12, size: 1)] public bool _spawnLayer13 = false;
-            [FieldAttr(13, size: 1)] public bool _spawnLayer14 = false;
-            [FieldAttr(14, size: 1)] public bool _spawnLayer15 = false;
-            [FieldAttr(15, size: 1)] public bool _spawnLayer16 = false;
+            [FieldAttr(offset: 0, size: 1)] public bool _spawnLayer1;
+            [FieldAttr(offset: 1, size: 1)] public bool _spawnLayer2;
+            [FieldAttr(offset: 2, size: 1)] public bool _spawnLayer3;
+            [FieldAttr(offset: 3, size: 1)] public bool _spawnLayer4;
+            [FieldAttr(offset: 4, size: 1)] public bool _spawnLayer5;
+            [FieldAttr(offset: 5, size: 1)] public bool _spawnLayer6;
+            [FieldAttr(offset: 6, size: 1)] public bool _spawnLayer7;
+            [FieldAttr(offset: 7, size: 1)] public bool _spawnLayer8;
+            [FieldAttr(offset: 8, size: 1)] public bool _spawnLayer9;
+            [FieldAttr(offset: 9, size: 1)] public bool _spawnLayer10;
+            [FieldAttr(offset: 10, size: 1)] public bool _spawnLayer11;
+            [FieldAttr(offset: 11, size: 1)] public bool _spawnLayer12;
+            [FieldAttr(offset: 12, size: 1)] public bool _spawnLayer13;
+            [FieldAttr(offset: 13, size: 1)] public bool _spawnLayer14;
+            [FieldAttr(offset: 14, size: 1)] public bool _spawnLayer15;
+            [FieldAttr(offset: 15, size: 1)] public bool _spawnLayer16;
         }
 
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class PrimitiveFlags : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _isVisible = true;
-            [FieldAttr(1, size: 1)] public bool _infiniteInstanceLifeSpan;
-            [FieldAttr(2, size: 1)] public bool _killOnLoopOut;
-            [FieldAttr(3, size: 3)] public igVfxPrimitiveData.ESubframeSpawn _subframeSpawn;
-            [FieldAttr(6, size: 1)] public bool _dataFieldsCached;
-            [FieldAttr(7, size: 12)] public uint _primitiveRefCount;
-            [FieldAttr(19, size: 1)] public bool _forceBoltInputs;
+            [FieldAttr(offset: 0, size: 1)] public bool _isVisible;
+            [FieldAttr(offset: 1, size: 1)] public bool _infiniteInstanceLifeSpan;
+            [FieldAttr(offset: 2, size: 1)] public bool _killOnLoopOut;
+            [FieldAttr(offset: 3, size: 3)] public igVfxPrimitiveData.ESubframeSpawn _subframeSpawn;
+            [FieldAttr(offset: 6, size: 1)] public bool _dataFieldsCached;
+            [FieldAttr(offset: 7, size: 12)] public uint _primitiveRefCount;
+            [FieldAttr(offset: 19, size: 1)] public bool _forceBoltInputs;
         }
 
-        [FieldAttr(16)] public igHandleMetaField _deathFx = new();
-        [FieldAttr(24)] public igTimeMetaField _spawnTime = new();
-        [FieldAttr(28)] public float _lifeSpan = 1.0f;
-        [FieldAttr(32)] public igRangedFloatMetaField _instanceLifeSpan = new();
-        [FieldAttr(40)] public igVfxSpawnRateData? _spawnRate;
-        [FieldAttr(48)] public DeviceLayers _deviceLayers = new();
-        [FieldAttr(50)] public SpawnLayers _spawnLayers = new();
-        [FieldAttr(52)] public PrimitiveFlags _primitiveFlags = new();
+        [FieldAttr(nst: 16, ctr: 16)] public igHandleMetaField _deathFx = new();
+        [FieldAttr(nst: 24, ctr: 24)] public igTimeMetaField _spawnTime = new();
+        [FieldAttr(nst: 28, ctr: 28)] public float _lifeSpan = 1.0f;
+        [FieldAttr(nst: 32, ctr: 32)] public igRangedFloatMetaField _instanceLifeSpan = new();
+        [FieldAttr(nst: 40, ctr: 40)] public igVfxSpawnRateData? _spawnRate;
+        [FieldAttr(nst: 48, ctr: 48)] public DeviceLayers _deviceLayers = new();
+        [FieldAttr(nst: 50, ctr: 50)] public SpawnLayers _spawnLayers = new();
+        [FieldAttr(nst: 52, ctr: 52)] public PrimitiveFlags _primitiveFlags = new();
+        [FieldAttr(ctr: 56)] public igRangedFloatMetaField _spawnDistanceRange = new();
     }
 }

@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class igVfxTrackChangeOperator : igVfxOperator
     {
-        [FieldAttr(24)] public EReferenceFrame _track = EReferenceFrame.eRF_Track1;
+        [FieldAttr(nst: 24, ctr: 16)] public EReferenceFrame _track = EReferenceFrame.eRF_Track1;
     }
 }

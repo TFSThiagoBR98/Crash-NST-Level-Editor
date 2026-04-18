@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, ctr: 24, align: 8)]
     public class CControllerButtonCharacterMap : igObject
     {
-        [FieldAttr(16)] public EControllerType _controllerType;
-        [FieldAttr(24)] public igStringStringHashTable? _characterMap;
+        [FieldAttr(nst: 16, ctr: 12)] public EControllerType _controllerType;
+        [FieldAttr(nst: 24, ctr: 16)] public igStringStringHashTable? _characterMap;
     }
 }

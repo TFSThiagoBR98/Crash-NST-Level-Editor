@@ -1,10 +1,10 @@
 namespace Alchemy
 {
-    [ObjectAttr(168, 8)]
+    [ObjectAttr(nst: 168, ctr: 168, align: 8)]
     public class CZoneInfoSave : igObject
     {
-        [FieldAttr(16)] public string? _zoneName = null;
-        [FieldAttr(24)] public CZoneInfoUserSession? _savedData;
-        [FieldAttr(32)] public igObject[] _sessionData = new igObject[17];
+        [FieldAttr(nst: 16, ctr: 16)] public string? _zoneName = null;
+        [FieldAttr(nst: 24, ctr: 24)] public CZoneInfoUserSession? _savedData;
+        [FieldAttr(nst: 32, ctr: 32)] public CZoneInfoUserSession[] _sessionData = new CZoneInfoUserSession[17];
     }
 }

@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class igBaseInputDevice : igObject
     {
-        [FieldAttr(16)] public int _id = -1;
-        [FieldAttr(20)] public bool _anySignalsChanged;
-        [FieldAttr(24)] public igFloatList? _signals;
-        [FieldAttr(32)] public igBoolList? _signalsChanged;
+        [FieldAttr(nst: 16)] public int _id = -1;
+        [FieldAttr(nst: 20)] public bool _anySignalsChanged;
+        [FieldAttr(nst: 24)] public igFloatList? _signals;
+        [FieldAttr(nst: 32)] public igBoolList? _signalsChanged;
     }
 }

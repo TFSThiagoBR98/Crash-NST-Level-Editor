@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CChangeSkin2ShardComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CChangeSkin2ComponentItemHashTable? _skinShards;
+        [FieldAttr(nst: 24)] public CChangeSkin2ComponentItemHashTable? _skinShards;
     }
 }

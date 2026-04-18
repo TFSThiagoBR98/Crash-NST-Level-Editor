@@ -1,12 +1,12 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CGuiBehaviorVoiceChatHud : igGuiBehavior
     {
-        [FieldAttr(16)] public int _talkerIndex;
-        [FieldAttr(24, false)] public igGuiPlaceable? _speakerIconPlaceable;
-        [FieldAttr(32, false)] public igGuiPlaceable? _gamertagPlaceable;
-        [FieldAttr(40)] public float _opacity;
-        [FieldAttr(44)] public float _targetOpacity;
+        [FieldAttr(nst: 16)] public int _talkerIndex;
+        [FieldAttr(nst: 24, refCount: false)] public igGuiPlaceable? _speakerIconPlaceable;
+        [FieldAttr(nst: 32, refCount: false)] public igGuiPlaceable? _gamertagPlaceable;
+        [FieldAttr(nst: 40)] public float _opacity;
+        [FieldAttr(nst: 44)] public float _targetOpacity;
     }
 }

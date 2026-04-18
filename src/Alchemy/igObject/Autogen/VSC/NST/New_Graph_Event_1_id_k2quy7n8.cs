@@ -1,0 +1,8 @@
+namespace Alchemy
+{
+    [ObjectAttr(nst: 64, align: 4, metaType: typeof(CEntityMessage))]
+    public class New_Graph_Event_1_id_k2quy7n8 : CEntityMessage
+    {
+        [FieldAttr(nst: 56)] public bool _Enemy_Basic_Behavior_c_New_Graph_Event_1;
+    }
+}

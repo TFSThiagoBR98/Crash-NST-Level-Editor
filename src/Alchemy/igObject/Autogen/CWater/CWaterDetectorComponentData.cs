@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 8)]
+    [ObjectAttr(nst: 32, align: 8)]
     public class CWaterDetectorComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CSourceData? _sourceData;
+        [FieldAttr(nst: 24)] public CSourceData? _sourceData;
     }
 }

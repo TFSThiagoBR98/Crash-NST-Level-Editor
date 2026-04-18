@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(24, 8)]
+    [ObjectAttr(nst: 24, ctr: 24, align: 8)]
     public class JuiceAction : igObject
     {
-        [FieldAttr(16)] public igDataBindingList? _bindingList;
+        [FieldAttr(nst: 16, ctr: 16)] public igDataBindingList? _bindingList;
     }
 }

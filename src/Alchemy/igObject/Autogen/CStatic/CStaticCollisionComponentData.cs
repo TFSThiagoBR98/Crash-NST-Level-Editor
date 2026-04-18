@@ -1,16 +1,16 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CStaticCollisionComponentData : igComponentData
     {
-        [ObjectAttr(4)]
+        [ObjectAttr(size: 4)]
         public class FlagsBitfield : igBitFieldMetaField
         {
-            [FieldAttr(0, size: 1)] public bool _disableCollision;
-            [FieldAttr(1, size: 1)] public bool _enableNavMesh;
+            [FieldAttr(offset: 0, size: 1)] public bool _disableCollision;
+            [FieldAttr(offset: 1, size: 1)] public bool _enableNavMesh;
         }
 
-        [FieldAttr(24)] public FlagsBitfield _flagsBitfield = new();
-        [FieldAttr(32)] public igHandleMetaField _collisionMaterial = new();
+        [FieldAttr(nst: 24, ctr: 16)] public FlagsBitfield _flagsBitfield = new();
+        [FieldAttr(nst: 32, ctr: 24)] public igHandleMetaField _collisionMaterial = new();
     }
 }

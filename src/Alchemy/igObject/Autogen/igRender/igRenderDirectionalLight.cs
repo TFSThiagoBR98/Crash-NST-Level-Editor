@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 16)]
+    [ObjectAttr(nst: 96, ctr: 96, align: 16)]
     public class igRenderDirectionalLight : igRenderLight
     {
-        [FieldAttr(80)] public igVec4fMetaField _direction = new();
+        [FieldAttr(nst: 80, ctr: 80)] public igVec4fMetaField _direction = new();
     }
 }

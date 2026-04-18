@@ -1,16 +1,16 @@
 namespace Alchemy
 {
-    [ObjectAttr(96, 8)]
+    [ObjectAttr(nst: 96, ctr: 88, align: 8)]
     public class CVfxDrawSoundOperator : igVfxDrawOperator
     {
-        [FieldAttr(32)] public igHandleMetaField _attackSound = new();
-        [FieldAttr(40)] public igHandleMetaField _sustainSound = new();
-        [FieldAttr(48)] public igHandleMetaField _releaseSound = new();
-        [FieldAttr(56)] public string? _attackSoundName = null;
-        [FieldAttr(64)] public string? _sustainSoundName = null;
-        [FieldAttr(72)] public string? _releaseSoundName = null;
-        [FieldAttr(80)] public bool _stopOneShotsOnEnd;
-        [FieldAttr(84)] public float _updateFrequency = 1.0f;
-        [FieldAttr(88)] public u32 /* igStructMetaField */ _primitiveData;
+        [FieldAttr(nst: 32, ctr: 24)] public igHandleMetaField _attackSound = new();
+        [FieldAttr(nst: 40, ctr: 32)] public igHandleMetaField _sustainSound = new();
+        [FieldAttr(nst: 48, ctr: 40)] public igHandleMetaField _releaseSound = new();
+        [FieldAttr(nst: 56, ctr: 48)] public string? _attackSoundName = null;
+        [FieldAttr(nst: 64, ctr: 56)] public string? _sustainSoundName = null;
+        [FieldAttr(nst: 72, ctr: 64)] public string? _releaseSoundName = null;
+        [FieldAttr(nst: 80, ctr: 72)] public bool _stopOneShotsOnEnd;
+        [FieldAttr(nst: 84, ctr: 76)] public float _updateFrequency = 1.0f;
+        [FieldAttr(nst: 88, ctr: 80)] public uint _primitiveData;
     }
 }

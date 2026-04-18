@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, align: 8)]
     public class CPlayerRespawnBlockerChecker : igObject
     {
-        public enum EResult : uint
+        public enum EResult
         {
             eR_None = 0,
             eR_Pending = 1,
@@ -11,8 +11,8 @@ namespace Alchemy
             eR_Clear = 3,
         }
 
-        [FieldAttr(16)] public igHandleMetaField _activeQuery = new();
-        [FieldAttr(24)] public EResult _result;
-        [FieldAttr(28)] public igVec3fMetaField _sourcePos = new();
+        [FieldAttr(nst: 16)] public igHandleMetaField _activeQuery = new();
+        [FieldAttr(nst: 24)] public EResult _result;
+        [FieldAttr(nst: 28)] public igVec3fMetaField _sourcePos = new();
     }
 }

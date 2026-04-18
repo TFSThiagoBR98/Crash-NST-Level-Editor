@@ -1,11 +1,11 @@
 namespace Alchemy
 {
-    [ObjectAttr(48, 8)]
+    [ObjectAttr(nst: 48, align: 8)]
     public class CRotationLocalToWorldNode : igVscActionNode
     {
-        [FieldAttr(16)] public igVscObjectAccessor? _target;
-        [FieldAttr(24)] public igVscVec3fAccessor? _rotation;
-        [FieldAttr(32)] public igVscVec3fAccessor? _result;
-        [FieldAttr(40, false)] public igVscActionNode? _out;
+        [FieldAttr(nst: 16)] public igVscObjectAccessor? _target;
+        [FieldAttr(nst: 24)] public igVscVec3fAccessor? _rotation;
+        [FieldAttr(nst: 32)] public igVscVec3fAccessor? _result;
+        [FieldAttr(nst: 40, refCount: false)] public igVscActionNode? _out;
     }
 }

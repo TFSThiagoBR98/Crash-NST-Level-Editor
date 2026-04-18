@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(40, 8)]
+    [ObjectAttr(nst: 40, ctr: 32, align: 8)]
     public class CCameraProxyComponentData : CEntityComponentData
     {
-        [FieldAttr(24)] public CCameraBase? _camera;
-        [FieldAttr(32)] public bool _activateOnEnable;
+        [FieldAttr(nst: 24, ctr: 16)] public CCameraBase? _camera;
+        [FieldAttr(nst: 32, ctr: 24)] public bool _activateOnEnable;
     }
 }

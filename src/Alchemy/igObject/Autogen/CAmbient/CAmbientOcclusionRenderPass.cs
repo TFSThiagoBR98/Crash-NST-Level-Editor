@@ -1,9 +1,9 @@
 namespace Alchemy
 {
-    [ObjectAttr(608, 16)]
+    [ObjectAttr(nst: 608, ctr: 608, align: 16)]
     public class CAmbientOcclusionRenderPass : igFullScreenRenderPass
     {
-        [FieldAttr(592)] public CAmbientOcclusionShaderConstantBundle? _shaderParameters;
-        [FieldAttr(600)] public igHandleMetaField _parameters = new();
+        [FieldAttr(nst: 592, ctr: 584)] public CAmbientOcclusionShaderConstantBundle? _shaderParameters;
+        [FieldAttr(nst: 600, ctr: 592)] public igHandleMetaField _parameters = new();
     }
 }

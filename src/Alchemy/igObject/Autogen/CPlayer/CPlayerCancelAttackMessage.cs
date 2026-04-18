@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(64, 8, metaType: typeof(CPlayerCancelAttackMessage))]
+    [ObjectAttr(nst: 64, align: 8)]
     public class CPlayerCancelAttackMessage : CEntityMessage
     {
-        [FieldAttr(56)] public EPlayerCancelAttackReason _cancelReason = EPlayerCancelAttackReason.ePCAR_Other;
+        [FieldAttr(nst: 56)] public EPlayerCancelAttackReason _cancelReason = EPlayerCancelAttackReason.ePCAR_Other;
     }
 }

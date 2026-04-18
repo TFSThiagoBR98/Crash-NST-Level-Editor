@@ -1,8 +1,8 @@
 namespace Alchemy
 {
-    [ObjectAttr(32, 4)]
+    [ObjectAttr(nst: 32, ctr: 16, align: 4)]
     public class igVscConstBoolAccessor : igVscBoolAccessor
     {
-        [FieldAttr(24)] public bool _value;
+        [FieldAttr(nst: 24, ctr: 14)] public bool _value;
     }
 }
