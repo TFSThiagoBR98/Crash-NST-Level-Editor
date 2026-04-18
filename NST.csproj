@@ -4,8 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
     <RootNamespace>NST</RootNamespace>
-    <AssemblyTitle>Crash NST Maker 1.30.5</AssemblyTitle>
-    <AssemblyDescription>Level editor for Crash NST (PC)</AssemblyDescription>
+    <AssemblyTitle>Crash NST Maker 1.31</AssemblyTitle>
+    <AssemblyDescription>Level editor for Crash NST / CTR:NF</AssemblyDescription>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>

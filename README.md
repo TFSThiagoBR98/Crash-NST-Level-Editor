@@ -1,6 +1,6 @@
 # Crash NST Maker
 
-A mod manager and level editor for Crash Bandicoot: N.Sane Trilogy on PC
+A mod manager and level editor for Crash NST and CTR:NF (WIP)
 
 <img src="assets/readme/editor.jpg" alt="Crash NST Maker" width="800"/>
 
@@ -39,8 +39,9 @@ Moreover, custom levels created with this tool won't interfere with the original
 
 - C2 Carnage Modpack by SpeedLan ([Nexus Mods](https://www.nexusmods.com/crashbandicootnsanetrilogy/mods/50?tab=images#list-modimages-1))
 - "Toxic Machinery" by AlfyGame  ([Youtube](https://www.youtube.com/watch?v=6niFSFbw8Kk))
+- "Alpine Splash" by Camo  ([Nexus Mods](https://www.nexusmods.com/crashbandicootnsanetrilogy/mods/73))
 - "Midnight Cat Crisis" by Jzrlza ([Youtube](https://www.youtube.com/watch?v=pD1xRmWjAV4))
-- "Flush Hour" by Camo  ([Youtube](https://www.youtube.com/watch?v=rofvJ1tQxis))
+- "Custom Gee Wiz" by Carmelo16 ([Youtube](https://www.youtube.com/watch?v=-GbCTHZKRd8))
 
 ## Installation
 
