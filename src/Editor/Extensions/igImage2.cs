@@ -1,3 +1,4 @@
+using NST;
 using BCnEncoder.Decoder;
 using BCnEncoder.Encoder;
 using BCnEncoder.ImageSharp;
@@ -45,13 +46,31 @@ namespace Alchemy
 
             CompressionFormat compressionFormat = StringToCompressionFormat(format);
 
-            byte[] pixels = new byte[image._width * image._height * 4];
+            byte[] data = image._data.ToArray();
+            byte[] outPixels = new byte[image._width * image._height * 4];
+
+            try
+            {
+                if (format.Contains("tile_ps4"))
+                {
+                    data = TextureHelper.UnswizzlePS4Texture(data, image._width, image._height, format);
+                }
+
+                if (format == "b8g8r8a8_tile_ps4")
+                {
+                    return data;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             new BcDecoder()
-                .DecodeRawToImageRgba32(image._data.ToArray(), image._width, image._height, compressionFormat)
-                .CopyPixelDataTo(pixels);
+                .DecodeRawToImageRgba32(data, image._width, image._height, compressionFormat)
+                .CopyPixelDataTo(outPixels);
             
-            return pixels;
+            return outPixels;
         }
 
         /// <summary>

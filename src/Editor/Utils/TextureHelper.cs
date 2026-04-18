@@ -130,5 +130,142 @@ namespace NST
 
             return _textureId;
         }
+
+        public static byte[] UnswizzlePS4Texture(byte[] data, int imageWidth, int imageHeight, string format)
+        {
+            var blockData = new Dictionary<string, (int, int, int)>()
+            {
+                { "b8g8r8a8_tile_ps4", (1, 1, 4) },
+                { "dxt1_tile_ps4", (4, 4, 8) },
+                { "dxt5_tile_ps4", (4, 4, 16) },
+                { "bc5_tile_ps4", (4, 4, 16) },
+            };
+            var deswizzleDataList = new List<(int, int)>() { (2,1), (2,0), (2,1), (2,0),(2,1), (2,0) };
+
+            (int blockWidth, int blockHeight, int bytesPerBlock) = blockData[format];
+
+            int tileDataSize = 64 * bytesPerBlock;
+            int expectedDataSize = imageWidth * imageHeight / (blockWidth * blockHeight) * bytesPerBlock;
+
+            int tileCount = expectedDataSize / tileDataSize;
+            int tileWidth = 8 * blockWidth;
+            int tileHeight = 8 * blockHeight;
+
+            int readSize = bytesPerBlock;
+            int readPerTileCount = 64;
+            int tilePerWidth = imageWidth / tileWidth;
+
+            // if (expectedDataSize != dataSize)
+            //     Console.WriteLine($"Error: Invalid data size.\nExpected datasize (according to image and format specifications): {expectedDataSize}\nActual datasize: {dataSize}");
+            if (data.Length % tileDataSize != 0)
+                throw new Exception($"Error: Invalid data size. The data size should be a multiple of {tileDataSize}, while the given datasize is {data.Length}. Height and/or width padding may be required in the original image.");
+            if (imageWidth % tileWidth != 0)
+                throw new Exception($"Error: with the current parameters, image width should be a multiple of {tileWidth}, but the given width is {imageWidth}");
+            if (imageHeight % tileHeight != 0)
+                throw new Exception($"Error: with the current parameters, image height should be a multiple of {tileHeight}, but the given height is {imageHeight}");
+
+            List<byte[,]> tileList = [];
+            List<byte[,]> tileData = [];
+            int dataReadIdx = 0;
+
+            for (int i = 0; i < tileCount; i++)
+            {
+                tileData.Clear();
+
+                for (int j = 0; j < readPerTileCount; j++)
+                {
+                    byte[,] chunk = new byte[1, readSize];
+                    for (int x = 0; x < readSize; x++)
+                    {
+                        chunk[0, x] = data[dataReadIdx + x];
+                    }
+                    dataReadIdx += readSize;
+                    tileData.Add(chunk);
+                }
+
+                foreach (var (sectionNumber, axis) in deswizzleDataList)
+                {
+                    tileData = ConcatArrays(tileData, sectionNumber, axis);
+                }
+
+                tileList.Add(tileData[0]);
+            }
+
+            tileList = ConcatArrays(tileList, tilePerWidth, 1);
+            tileList = ConcatArrays(tileList, tileList.Count, 0);
+
+            byte[] unswizzled = new byte[expectedDataSize];
+
+            System.Buffer.BlockCopy(tileList[0], 0, unswizzled, 0, expectedDataSize);
+
+            return unswizzled;
+        }
+
+        private static List<byte[,]> ConcatArrays(List<byte[,]> arrayList, int sectionNumber, int axis)
+        {
+            var newArrayList = new List<byte[,]>(arrayList.Count);
+
+            for (int i = 0; i < arrayList.Count; i += sectionNumber)
+            {
+                var chunk = arrayList.GetRange(i, sectionNumber);
+                newArrayList.Add(ConcatChunk(chunk, axis));
+            }
+
+            return newArrayList;
+        }
+
+        private static byte[,] ConcatChunk(List<byte[,]> arrays, int axis)
+        {
+            if (axis == 0)
+            {
+                int cols = arrays[0].GetLength(1);
+
+                int totalRows = 0;
+                foreach (var a in arrays)
+                    totalRows += a.GetLength(0);
+
+                var result = new byte[totalRows, cols];
+
+                int rowOffset = 0;
+
+                foreach (var a in arrays)
+                {
+                    int rows = a.GetLength(0);
+
+                    for (int r = 0; r < rows; r++)
+                        for (int c = 0; c < cols; c++)
+                            result[rowOffset + r, c] = a[r, c];
+
+                    rowOffset += rows;
+                }
+
+                return result;
+            }
+            else
+            {
+                int rows = arrays[0].GetLength(0);
+
+                int totalCols = 0;
+                foreach (var a in arrays)
+                    totalCols += a.GetLength(1);
+
+                var result = new byte[rows, totalCols];
+
+                int colOffset = 0;
+
+                foreach (var a in arrays)
+                {
+                    int cols = a.GetLength(1);
+
+                    for (int r = 0; r < rows; r++)
+                        for (int c = 0; c < cols; c++)
+                            result[r, colOffset + c] = a[r, c];
+
+                    colOffset += cols;
+                }
+
+                return result;
+            }
+        }
     }
 }
