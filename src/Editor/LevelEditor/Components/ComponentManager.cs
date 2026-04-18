@@ -93,7 +93,7 @@ namespace NST
                 {
                     _selection.Add(c);
                 }
-                else if (autoFocusFallback == null && component is CTriggerVolumeBoxComponentData)
+                else if (autoFocusFallback == null && Entity.Model == null && component is CTriggerVolumeBoxComponentData)
                 {
                     autoFocusFallback = c;
                 }
@@ -549,9 +549,10 @@ namespace NST
 
             var exists = Entity.Object3D?.Children.Contains(obj3D);
 
+            obj3D.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.TriggersOn));
+
             if (exists == false && Entity.Object3D != null)
             {
-                obj3D.Traverse(e => e.Layers.Set((int)LevelExplorer.CameraLayer.TriggersOn));
                 Entity.Object3D.Add(obj3D);
                 Explorer.RenderNextFrame = true;
             }

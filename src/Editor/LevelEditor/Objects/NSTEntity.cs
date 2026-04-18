@@ -148,12 +148,12 @@ namespace NST
 
             if (Model != null) group.Traverse(e => { if (e.Material != null) e.Material.Visible = true; });
 
+            SetLayer(group, selected);
+
             foreach (THREE.Object3D child in CreateChildrenObject3D(selected))
             {
                 group.Attach(child);
             }
-
-            SetLayer(group, selected);
 
             Object3D?.Parent?.Remove(Object3D);
 
@@ -183,22 +183,6 @@ namespace NST
             else if (!selected && IsHidden)
             {
                 layer = LevelExplorer.CameraLayer.Hidden;
-            }
-            else if (Object.GetComponent<CBoxLightComponentData>() != null || Object.GetComponent<CVisualDataBoxComponentData>() != null)
-            {
-                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.VisualBox;
-            }
-            else if (Object.GetComponent<CDSPOverrideComponentData>() != null)
-            {
-                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.AudioBox;
-            }
-            else if (Object.GetComponent<CTriggerVolumeComponentData>() != null)
-            {
-                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.TriggerVolume;
-            }
-            else if (Object is CScriptTriggerEntity)
-            {
-                layer = selected || Children.Any(c => c.IsSelected) ? LevelExplorer.CameraLayer.TriggersOn : LevelExplorer.CameraLayer.ScriptTrigger;
             }
             else if (!selected)
             {

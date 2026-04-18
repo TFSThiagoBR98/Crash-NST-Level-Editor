@@ -10,7 +10,7 @@ namespace NST
     /// </summary>
     public class NSTMaterial
     {
-        public Type type; // Material type
+        public Type? type; // Material type
         public NamedReference? materialHandle; // igFxMaterial reference
         public NamedReference? diffuseTexture = null; // igImage2 reference
         public THREE.Texture? texture = null; // GPU diffuse texture
@@ -133,6 +133,10 @@ namespace NST
                 shaderName     = fx._fxFilename ?? "";
                 color          = fx.FindColor();
             }
+            else if (material is igGraphicsMaterial gx)
+            {
+                shaderName = gx._fxMaterialMetaName ?? "";
+            }
             else
             {
                 Console.Error.WriteLine("Unknown material type:" + material.GetType());
@@ -144,7 +148,7 @@ namespace NST
         /// </summary>
         /// <param name="archive">The parent archive if open (searched first to improve performance)</param>
         /// <returns>The texture's data</returns>
-        private TextureData? FindDiffuseTexture(IgArchive? archive = null)
+        private TextureData? FindDiffuseTexture(IgArchive archive)
         {
             if (diffuseTexture == null) return null;
 
@@ -171,7 +175,7 @@ namespace NST
         /// Initializes the material and its textures from the material handle
         /// </summary>
         /// <param name="archive"></param>
-        public void InititializeMaterialAndTextures(IgArchive? archive = null)
+        public void InititializeMaterialAndTextures(IgArchive archive)
         {
             if (materialHandle == null)
             {
@@ -188,7 +192,7 @@ namespace NST
         /// </summary>
         /// <param name="materialHandle">The reference to the igFxMaterial</param>
         /// <param name="archive">The parent archive if open (searched first to improve performance)</param>
-        private void InitializeMaterial(NamedReference materialHandle, IgArchive? archive = null)
+        private void InitializeMaterial(NamedReference materialHandle, IgArchive archive)
         {
             igObject? obj = AlchemyUtils.FindObjectInArchives(materialHandle, archive);
 
@@ -207,7 +211,7 @@ namespace NST
         /// Initializes the material's diffuse texture for GPU rendering
         /// </summary>
         /// <param name="archive">The parent archive if open (searched first to improve performance)</param>
-        private void InitializeTexture(IgArchive? archive = null)
+        private void InitializeTexture(IgArchive archive)
         {
             TextureData? textureData = FindDiffuseTexture(archive);
 
@@ -350,8 +354,11 @@ namespace NST
                     ImGui.Text($"> Material:");
                     ImGui.SameLine();
 
-                    ImGui.TextColored(MathUtils.UIntToVector4Numerics(type.GetUniqueColor()), type.Name);
-                    ImGui.SameLine();
+                    if (type != null)
+                    {
+                        ImGui.TextColored(MathUtils.UIntToVector4Numerics(type.GetUniqueColor()), type.Name);
+                        ImGui.SameLine();
+                    }
 
                     ImGui.Text(reference?.objectName ?? "");
                 }

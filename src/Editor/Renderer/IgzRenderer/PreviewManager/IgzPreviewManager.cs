@@ -71,13 +71,20 @@ namespace NST
         /// </summary>
         private void InitMaterialFile()
         {
-            List<igFxMaterial> materials = _igz.FindObjects<igFxMaterial>();
+            List<igMaterial> materials = _igz.FindObjects<igMaterial>();
 
             if (materials.Count == 0) return;
 
+            var fxMaterials = materials.Where(m => m is igFxMaterial);
+
+            if (fxMaterials.Any())
+            {
+                materials = fxMaterials.ToList();
+            }
+
             _materials = [];
 
-            foreach (igFxMaterial material in materials)
+            foreach (igMaterial material in materials)
             {
                 IgzTreeNode node = _renderer.TreeView.FindNode(material)!;
                 NSTMaterial mat = new NSTMaterial(material, material.ToNamedReference(_igz.GetName(false)));

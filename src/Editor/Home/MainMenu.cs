@@ -184,6 +184,7 @@ namespace NST
                     }
                     catch (Exception e)
                     {
+                        Console.WriteLine(e);
                         ModalRenderer.ShowMessageModal("Error", e.Message);
                     }
                 }

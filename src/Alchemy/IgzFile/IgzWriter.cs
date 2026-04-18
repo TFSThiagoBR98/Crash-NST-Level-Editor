@@ -140,7 +140,7 @@ namespace Alchemy
                 {
                     obj.MemoryPool = defaultMemoryPool;
 
-                    foreach (var field in obj.GetFields())
+                    foreach (var field in obj.GetFields(GameVersion))
                     {
                         if (field.GetValue(obj) is IMemoryRef mem)
                         {

@@ -65,7 +65,7 @@ namespace NST
                     {
                         if (Parents.Count == 0) return true; 
                         if (Object?.GetType() == typeof(igVscMetaObject)) return true;
-                        if (Object?.GetType().IsAssignableTo(typeof(igFxMaterial)) == true) return true;
+                        if (Object?.GetType().IsAssignableTo(typeof(igMaterial)) == true) return true;
                     }
                     if (Object is igEntity entity && entity._bitfield._canSpawn && !entity._bitfield._isArchetype) return true;
                     return false;

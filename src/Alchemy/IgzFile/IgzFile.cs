@@ -59,7 +59,7 @@ namespace Alchemy
 
             bool groupMemoryPools = _path.StartsWith("maps/");
 
-            return IgzWriter.BuildIGZ(Objects, includeDependencies ? Dependencies : [], groupMemoryPools);
+            return IgzWriter.BuildIGZ(Objects, includeDependencies ? Dependencies : [], GameVersion, groupMemoryPools);
         }
 
         /// <summary>

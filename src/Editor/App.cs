@@ -274,8 +274,8 @@ namespace NST
                     OpenArchiveRenderer(parentArchive);
                 }
                 else
-            {
-                ImGui.SetWindowFocus(parentArchive.GetWindowName());
+                {
+                    ImGui.SetWindowFocus(parentArchive.GetWindowName());
                 }
                 return;
             }
@@ -361,6 +361,7 @@ namespace NST
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 ModalRenderer.ShowMessageModal("Error", e.Message);
             }
 

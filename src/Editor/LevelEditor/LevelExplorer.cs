@@ -597,6 +597,8 @@ namespace NST
 
         private void LoadCollisions(List<NSTEntity> entities)
         {
+            if (Archive.GameVersion == GameVersion.CTR) return;
+
             _collisionData = StaticCollisionsUtils.GetCollisionData(Archive);
 
             IgArchiveFile? collisionFile = Archive.FindCollisionFile(".hkx");
@@ -1451,9 +1453,12 @@ namespace NST
             {
                 raycaster.layers.Disable((int)CameraLayer.Splines);
                 raycaster.layers.Disable((int)CameraLayer.CameraBox);
-                raycaster.layers.Disable((int)CameraLayer.ScriptTrigger);
-                raycaster.layers.Disable((int)CameraLayer.TriggersOn);
                 raycaster.layers.Disable((int)CameraLayer.ClipEntities);
+                raycaster.layers.Disable((int)CameraLayer.ScriptTrigger);
+                raycaster.layers.Disable((int)CameraLayer.TriggerVolume);
+                raycaster.layers.Disable((int)CameraLayer.AudioBox);
+                raycaster.layers.Disable((int)CameraLayer.VisualBox);
+                raycaster.layers.Disable((int)CameraLayer.TriggersOn);
             }
 
             return raycaster.IntersectObject(InstanceManager.RootObject, true);
@@ -1470,6 +1475,8 @@ namespace NST
                 hitEntities = InstanceManager.SelectFromRaycast(intersects[i]);
                 
                 if (hitEntities.Count == 0) continue;
+
+                if (SelectionManager._selection.Count == 1 && SelectionManager._selection[0] == hitEntities[0]) continue;
                 
                 if (hitEntities[0] is NSTEntity e && e.Object is CScriptTriggerEntity)
                 {
