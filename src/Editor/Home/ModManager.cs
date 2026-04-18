@@ -2,6 +2,7 @@ using Alchemy;
 using ImGuiNET;
 using System.Numerics;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace NST
 {
@@ -363,12 +364,21 @@ namespace NST
             string exePath = Path.Join(LocalStorage.GamePath, "CrashBandicootNSaneTrilogy.exe");
             string args = levelPath == null ? "" : $"-om {levelPath}";
 
-            Console.WriteLine($"{exePath} {args}");
+            string fileName = exePath;
+            string processArgs = args;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                fileName = "wine";
+                processArgs = $"\"{exePath}\" {args}";
+            }
+
+            Console.WriteLine($"{fileName} {processArgs}");
 
             Process.Start(new ProcessStartInfo
             {
-                FileName = $"{exePath}",
-                Arguments = args,
+                FileName = fileName,
+                Arguments = processArgs,
                 UseShellExecute = true
             });
         }
