@@ -1214,7 +1214,7 @@ namespace NST
                 _componentData = new igComponentDataTable() { ObjectName = "PlayerStart_entityData_componentData" },
                 _entityFlags = 782420,
             };
-            playerStartData._tags.Add(NamedReference.CreateObjectReference("EntityTags", "PlayerStart"), true);
+            playerStartData._tags.Add(new CEntityTag() { Reference = new NamedReference("EntityTags", "PlayerStart")}, true);
             playerStartData._tags._values._bitfield = 0x01000000;
 
             CPlayerStartEntity playerStart = new CPlayerStartEntity

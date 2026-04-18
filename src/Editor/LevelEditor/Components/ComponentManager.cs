@@ -445,7 +445,7 @@ namespace NST
 
                         var clones = new Dictionary<igObject, igObject>();
 
-                        foreach (CachedFieldAttr field in components[0].Object.GetFields())
+                        foreach (CachedFieldAttr field in components[0].Object.GetFields(explorer.Archive.GameVersion))
                         {
                             object? value = field.GetValue(components[0].Object);
 

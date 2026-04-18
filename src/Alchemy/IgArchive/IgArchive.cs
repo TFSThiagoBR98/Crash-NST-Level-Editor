@@ -1,5 +1,12 @@
 namespace Alchemy
 {
+    public enum GameVersion
+    {
+        None = 0,
+        NST = 1,
+        CTR = 2
+    }
+
     public enum FileSearchType 
     { 
         Name, 
@@ -32,7 +39,7 @@ namespace Alchemy
         private const u32 HEADER_SIZE = 0x38;
         public const i32 SECTOR_SIZE = 0x800;
         
-        private struct IgArchiveHeader
+        public struct IgArchiveHeader
         {
             public u32 signature;
             public u32 version;
@@ -64,6 +71,8 @@ namespace Alchemy
             public List<u8> smallBlocks = [];
         }
 
+        public GameVersion GameVersion { get; set; } = GameVersion.NST;
+
         private string _path = "";
         private List<IgArchiveFile> _files = [];
 
@@ -76,8 +85,9 @@ namespace Alchemy
 
         public IgArchive(string path) => _path = path;
 
-        public IgArchive(string path, List<IgArchiveFile> files)
+        public IgArchive(string path, List<IgArchiveFile> files, GameVersion version)
         {
+            GameVersion = version;
             _path = path;
             _files = files;
         }
@@ -100,9 +110,6 @@ namespace Alchemy
 
             // Parse header
             IgArchiveHeader header = reader.ReadStruct<IgArchiveHeader>();
-            
-            // LogHeader(header);
-            VerifyHeader(header);
 
             // Parse file ids
             u32[] fileIds = reader.ReadArray<u32>((int)header.fileCount);
@@ -122,12 +129,14 @@ namespace Alchemy
 
             // Construct files objects
             List<IgArchiveFile> files = [];
-            
+
+            GameVersion version = header.GetGameVersion();
+
             for (int i = 0; i < header.fileCount; i++)
             {
                 (string fullPath, string path) = filePaths[i];
 
-                IgArchiveFile file = new IgArchiveFile(archivePath, path, fullPath, fileInfos[i], blockTables, fs);
+                IgArchiveFile file = new IgArchiveFile(archivePath, path, fullPath, fileInfos[i], blockTables, fs, version);
 
                 if (fileIds[i] != file.GetHash())
                     Console.WriteLine($"[ERROR] {i}: {fileIds[i]} != {file.GetHash()} for {path}");
@@ -137,7 +146,7 @@ namespace Alchemy
                 files.Add(file);
             }
 
-            return new IgArchive(archivePath, files);
+            return new IgArchive(archivePath, files, version);
         }
 
         /// <summary>
@@ -451,7 +460,7 @@ namespace Alchemy
             IgArchiveHeader header = new IgArchiveHeader() 
             {
                 signature = SIGNATURE,
-                version = VERSION,
+                version = GameVersion.GetArchiveVersion(),
                 tocSize = tocSize,
                 fileCount = (uint)_files.Count,
                 sectorSize = SECTOR_SIZE,
@@ -548,6 +557,37 @@ namespace Alchemy
         private static void LogFileInfo(FileInfo fileInfo)
         {
             Console.WriteLine($"[ igArchive file ] offset: 0x{fileInfo.offset:X} ordinal: {fileInfo.ordinal} size: {fileInfo.uncompressedSize} blockIndex: {fileInfo.blockIndex}");
+        }
+    }
+
+    public static class GameVersionUtils
+    {
+        public static GameVersion GetGameVersion(this IgArchive.IgArchiveHeader header)
+        {
+            if (header.version == 11) return GameVersion.NST;
+            if (header.version == 13) return GameVersion.CTR;
+            throw new Exception("Unknown archive version: " + header.version);
+        }
+
+        public static uint GetArchiveVersion(this GameVersion version)
+        {
+            if (version == GameVersion.NST) return 11;
+            if (version == GameVersion.CTR) return 13;
+            throw new Exception("Unknown game version: " + version);
+        }
+
+        public static string GetRootPath(this GameVersion version, string path = "")
+        {
+            if (version == GameVersion.NST) return "temporary/mack/data/win64/output/" + path;
+            if (version == GameVersion.CTR) return "temporary/octane/data/ps4/output/" + path;
+            throw new Exception("Unknown game version: " + version);
+        }
+
+        public static int GetLZMAHeaderSize(this GameVersion version)
+        {
+            if (version == GameVersion.NST) return 2;
+            if (version == GameVersion.CTR) return 4;
+            throw new Exception("Unknown game version: " + version);
         }
     }
 }

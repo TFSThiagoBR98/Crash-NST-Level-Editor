@@ -47,7 +47,7 @@ namespace Alchemy
     /// </summary>
     public abstract class igObjectBase
     {
-        public IReadOnlyList<CachedFieldAttr> GetFields() => AttributeUtils.GetAttributes(GetType()).GetFields();
+        public IReadOnlyList<CachedFieldAttr> GetFields(GameVersion version) => AttributeUtils.GetAttributes(GetType()).GetFields(version);
 
         /// <summary>
         /// Parse each field of this igObject from an IGZ file stream
@@ -56,9 +56,9 @@ namespace Alchemy
         {
             int startOffset = (int)reader.BaseStream.Position;
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(reader.GameVersion))
             {
-                int fieldOffset = startOffset + field.GetOffset();
+                int fieldOffset = startOffset + field.GetOffset(reader.GameVersion);
                 
                 reader.Seek(fieldOffset);
 
@@ -82,9 +82,9 @@ namespace Alchemy
         {
             int startOffset = writer.GetPosition();
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(writer.GameVersion))
             {
-                int fieldOffset = startOffset + field.GetOffset();
+                int fieldOffset = startOffset + field.GetOffset(writer.GameVersion);
                 
                 object? value = field.GetValue(this);
 
@@ -99,7 +99,7 @@ namespace Alchemy
         /// </summary>
         public virtual List<igObject> GetChildren(ChildrenSearchParams searchParams = ChildrenSearchParams.Default)
         {
-            IReadOnlyList<CachedFieldAttr> fields = GetFields();
+            IReadOnlyList<CachedFieldAttr> fields = GetFields(GameVersion.None);
             List<igObject> children = [];
 
             if (searchParams.HasFlag(ChildrenSearchParams.OnlyRefCounted))
@@ -221,7 +221,7 @@ namespace Alchemy
         {
             List<NamedReference> references = [];
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 object? value = field.GetValue(this);
                 if (value == null) continue;
@@ -259,7 +259,7 @@ namespace Alchemy
         /// </summary>
         public virtual void RemoveChild(igObject child)
         {
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 object? value = field.GetValue(this);
                 if (value == null) continue;
@@ -282,7 +282,7 @@ namespace Alchemy
         {            
             igObjectBase clone = (igObjectBase)MemberwiseClone();
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 object? value = field.GetValue(this);
 
@@ -302,7 +302,7 @@ namespace Alchemy
         {
             List<string> strings = [];
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 object? value = field.GetValue(this);
                 if (value == null) continue;
@@ -321,9 +321,9 @@ namespace Alchemy
         /// </summary>
         public virtual void CopyTo(igObjectBase target)
         {
-            HashSet<string> targetFields = target.GetFields().Select(f => f.GetName()).ToHashSet();
+            HashSet<string> targetFields = target.GetFields(GameVersion.None).Select(f => f.GetName()).ToHashSet();
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 if (!targetFields.Contains(field.GetName())) continue;
                 

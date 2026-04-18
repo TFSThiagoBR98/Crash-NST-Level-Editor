@@ -1,25 +1,9 @@
 using Alchemy;
-using System.Text.RegularExpressions;
 
 namespace NST
 {
     public static partial class IgArchiveExtensions
     {
-        /// <summary>
-        /// Clone an object from an external archive, including all its dependencies
-        /// </summary>
-        public static T Clone<T>(this IgArchive archive, T sourceObject, IgArchive sourceArchive, IgzFile sourceIgz, IgzFile destIgz, Dictionary<igObject, igObject>? clones = null) where T : igObject
-        {
-            T clone = IgzFile.Clone(sourceObject, sourceArchive, archive, sourceIgz, destIgz, out List<IgArchiveFile> newFiles, clones);
-
-            foreach (IgArchiveFile file in newFiles)
-            {
-                archive.AddFile(file.Clone());
-            }
-
-            return clone;
-        }
-
         /// <summary>
         /// Rebuild the archive's package file by adding new files
         /// </summary>
@@ -48,7 +32,7 @@ namespace NST
                 // chunkInfos.MemoryPool.alignment = 8;
 
                 IgzFile igz = new IgzFile(newPackagePath, [ chunkInfos ]);
-                packageFile = new IgArchiveFile(newPackagePath);
+                packageFile = new IgArchiveFile(newPackagePath, archive.GameVersion);
                 packageFile.SetData(igz.Save());
 
                 if (files.Count == 0)
@@ -397,7 +381,7 @@ namespace NST
 
                 zoneInfo = newZoneInfo;
                 zoneInfoIgz = new IgzFile(zoneInfoPath, [ newZoneInfo, newLocalizedInfo ]);
-                zoneInfoFile = new IgArchiveFile(zoneInfoPath);
+                zoneInfoFile = new IgArchiveFile(zoneInfoPath, archive.GameVersion);
                 update.AddFile(zoneInfoFile);
             }
 

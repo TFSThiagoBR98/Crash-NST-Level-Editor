@@ -50,7 +50,7 @@ namespace Havok
 
         private void WriteObject(hkObject obj)
         {
-            int position = ReserveBytes(AttributeUtils.GetObjectSize(obj.GetType()));
+            int position = ReserveBytes(AttributeUtils.GetObjectSize(obj.GetType(), GameVersion.NST));
 
             _writtenObjects.Add(obj, position);
             _writer.Seek(position, SeekOrigin.Begin);

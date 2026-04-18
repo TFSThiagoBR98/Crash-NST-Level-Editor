@@ -98,7 +98,7 @@ namespace Alchemy
             _ref._address = reader.ReadUInt64();
 
             int dataOffset = reader.GetGlobalOffset((int)_ref._address);
-            int typeSize = AttributeUtils.GetFieldSize(typeof(T));
+            int typeSize = AttributeUtils.GetFieldSize(typeof(T), reader.GameVersion);
             int count = _size / typeSize;
             
             MemoryPool = reader.GetMemoryPool((int)_ref._address);
@@ -136,7 +136,7 @@ namespace Alchemy
             MemoryPool baseMemory = writer.GetCurrentMemoryPool();
             bool refCounted = writer.RefCounted();
 
-            int typeSize = AttributeUtils.GetFieldSize(typeof(T));
+            int typeSize = AttributeUtils.GetFieldSize(typeof(T), writer.GameVersion);
             int memoryStart = writer.SetMemory(MemoryPool, GetMemoryAlignment());
 
             _size = _elements.Count * typeSize;

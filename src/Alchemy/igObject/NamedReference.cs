@@ -27,16 +27,6 @@ namespace Alchemy
         public NamedReference Clone() => new NamedReference(namespaceName, objectName, isEXID);
 
         /// <summary>
-        /// Creates an EXID NamedReference
-        /// </summary>
-        public static NamedReference EXID(string namespaceName, string objectName) => new NamedReference(namespaceName, objectName, true);
-
-        public static igObject CreateObjectReference(string namespaceName, string objectName, bool isEXID = false)
-        {
-            return new igObject() { Reference = new NamedReference(namespaceName, objectName, isEXID) };
-        }
-
-        /// <summary>
         /// Create a NamedReference from a namespace and object name
         /// </summary>
         /// <param name="isEXID">Whether the reference should be stored in EXID or EXNM (default)</param>
@@ -68,18 +58,15 @@ namespace Alchemy
             }
         }
 
-        public HashedReference ToHandleEXNM(TSTR_Fixup TSTR) => ToEXNM(TSTR, true);
-        public HashedReference ToObjectEXNM(TSTR_Fixup TSTR) => ToEXNM(TSTR, false);
-
         /// <summary>
         /// Converts a NamedReference back to an EXNM fixup item
         /// </summary>
-        private HashedReference ToEXNM(TSTR_Fixup TSTR, bool handleRef = false)
+        public HashedReference ToEXNM(TSTR_Fixup TSTR, bool isHandle = false)
         {
             uint fileHash = (uint)TSTR.AddUnique(namespaceName);
             uint objectHash = (uint)TSTR.AddUnique(objectName);
 
-            if (handleRef) fileHash |= 0x80000000;
+            if (isHandle) fileHash |= 0x80000000;
 
             return new HashedReference() { fileHash = fileHash, objectHash = objectHash };
         }

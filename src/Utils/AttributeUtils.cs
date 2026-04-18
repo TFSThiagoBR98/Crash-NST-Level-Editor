@@ -11,14 +11,14 @@ namespace Alchemy
         /// <summary>
         /// Get the size of an igObject
         /// </summary>
-        public static int GetObjectSize(Type type) => GetAttributes(type).GetSize();
+        public static int GetObjectSize(Type type, GameVersion version) => GetAttributes(type).GetSize(version);
         
         /// <summary>
         /// Get the size of a field for a given type
         /// </summary>
         /// <param name="type">The field type</param>
         /// <returns>The field size in bytes</returns>
-        public static int GetFieldSize(Type type)
+        public static int GetFieldSize(Type type, GameVersion version)
         {
             if (type == typeof(bool))
             {
@@ -38,7 +38,7 @@ namespace Alchemy
             }
             if (type.IsAssignableTo(typeof(Alchemy.igMetaField)) || type.IsAssignableTo(typeof(Havok.hkObject)))
             {
-                return GetObjectSize(type); // Struct
+                return GetObjectSize(type, version); // Struct
             }
             if (type == typeof(System.Numerics.Vector4) || type == typeof(System.Numerics.Quaternion) ||
                 type == typeof(System.Numerics.Matrix4x4) || type == typeof(Matrix3x4))
@@ -81,7 +81,7 @@ namespace Alchemy
                 .Select(field => new CachedFieldAttr(field))
                 .ToList();
 
-            ReorderFields(fields, type);
+            fields = ReorderFields(fields, type);
 
             _fieldInfoCache[type] = new CachedObjectAttr(type, fields);
 
@@ -91,34 +91,38 @@ namespace Alchemy
         /// <summary>
         /// Reorder fields to guarantee that they're written in the correct order
         /// </summary>
-        private static void ReorderFields(List<CachedFieldAttr> fields, Type type)
+        private static List<CachedFieldAttr> ReorderFields(List<CachedFieldAttr> unorderedFields, Type type)
         {
             // Sort fields by offset
-            fields.Sort((a, b) => a.GetOffset() - b.GetOffset());
+            List<CachedFieldAttr> fields = [];
+            foreach (var field in unorderedFields)
+            {
+                bool nst = field.GameVersions.HasFlag(GameVersion.NST);
+                bool ctr = field.GameVersions.HasFlag(GameVersion.CTR);
+                int offsetNST = nst ? field.GetOffset(GameVersion.NST) : -1;
+                int offsetCTR = ctr ? field.GetOffset(GameVersion.CTR) : -1;
+                int i;
+
+                for (i = 0; i < fields.Count; i++)
+                {
+                    if (nst && fields[i].GameVersions.HasFlag(GameVersion.NST) && offsetNST < fields[i].GetOffset(GameVersion.NST))
+                        break;
+                    if (ctr && fields[i].GameVersions.HasFlag(GameVersion.CTR) && offsetCTR < fields[i].GetOffset(GameVersion.CTR))
+                        break;
+                }
+                
+                fields.Insert(i, field);
+            }
 
             // Reorder fields for some specific types in order to match with the original dump layout.
             // Not neccessary, but guarantees that rebuilding game files will lead to the same result as the original versions.
-            if (type == typeof(Alchemy.DotNetDataMetaField))
-            {
-                CachedFieldAttr elmRef = fields[0];
-                fields.Remove(elmRef);
-                fields.Insert(1, elmRef);
-            }
-            else if (type.IsAssignableTo(typeof(Alchemy.igMetaFieldInstance)))
-            {
-                CachedFieldAttr _attributes = fields.First(f => f.GetName() == "_attributes");
-                CachedFieldAttr _default = fields.First(f => f.GetName() == "_default");
-                int defaultIndex = fields.IndexOf(_default);
-                fields.Remove(_attributes);
-                fields.Insert(defaultIndex, _attributes);
-            }
-            else if (type.IsAssignableTo(typeof(Alchemy.igEntity)))
+            if (type.IsAssignableTo(typeof(Alchemy.igEntity)))
             {
                 CachedFieldAttr data = fields.First(f => f.GetFieldType().IsAssignableTo(typeof(Alchemy.igEntityData)));
                 fields.Remove(data);
                 fields.Insert(2, data);
 
-                if (type.IsAssignableTo(typeof(Alchemy.CActor)))
+                if (type == typeof(Alchemy.CActor))
                 {
                     CachedFieldAttr _actorInput = fields.First(f => f.GetName() == "_actorInput");
                     CachedFieldAttr _combatTargets = fields.First(f => f.GetName() == "_combatTargets")!;
@@ -131,6 +135,41 @@ namespace Alchemy
                     fields.Insert(actorInputIndex, _collectiblesFilters);
                 }
             }
+            else if (type.IsAssignableTo(typeof(Alchemy.igMetaFieldInstance)))
+            {
+                CachedFieldAttr? _attributes = fields.FirstOrDefault(f => f.GetName() == "_attributes");
+                CachedFieldAttr? _default = fields.FirstOrDefault(f => f.GetName() == "_default");
+                if (_attributes == null || _default == null) return fields;
+                fields.Remove(_attributes);
+                int defaultIndex = fields.IndexOf(_default);
+                fields.Insert(defaultIndex + 1, _attributes);
+            }
+            else if (type == typeof(Alchemy.DotNetDataMetaField))
+            {
+                CachedFieldAttr elmRef = fields[0];
+                fields.Remove(elmRef);
+                fields.Insert(1, elmRef);
+            }
+            else if (type.IsAssignableTo(typeof(Alchemy.CGuiBehaviorNavigationItem)))
+            {
+                CachedFieldAttr setLocked = fields.First(f => f.GetName() == "_animSetLocked");
+                CachedFieldAttr pressedLocked = fields.First(f => f.GetName() == "_animPressedLocked");
+                fields.Remove(pressedLocked);
+                fields.Insert(fields.IndexOf(setLocked), pressedLocked);
+
+                if (type.IsAssignableTo(typeof(Alchemy.CGuiBehaviorBaseSettingSelector)))
+                {
+                    CachedFieldAttr toggleCategory = fields.First(f => f.GetName() == "_cycleToggleCategory");
+                    CachedFieldAttr enabledSettings = fields.First(f => f.GetName() == "_enabledSettings");
+                    CachedFieldAttr settingsList = fields.First(f => f.GetName() == "_settingList");
+                    fields.Remove(enabledSettings);
+                    fields.Remove(settingsList);
+                    fields.Insert(fields.IndexOf(toggleCategory), settingsList);
+                    fields.Insert(fields.IndexOf(toggleCategory), enabledSettings);
+                }
+            }
+
+            return fields;
         }
 
         public static readonly Dictionary<Type, Func<BinaryReader, object>> ReadMethods = new()

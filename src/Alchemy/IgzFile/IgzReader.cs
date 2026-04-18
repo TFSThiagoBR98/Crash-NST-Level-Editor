@@ -20,6 +20,8 @@ namespace Alchemy
     /// </summary>
     public class IgzReader : BinaryReader
     {
+        public GameVersion GameVersion { get; private set; }
+
         private FixupCollection _fixups;
         private List<ChunkInfo> _chunkInfos = [];
         private Dictionary<int, igObject> _objects = []; // Global offset -> igObject
@@ -31,8 +33,10 @@ namespace Alchemy
         /// Parse an IGZ file and instanciate all of its objects
         /// </summary>
         /// <param name="stream">The stream containing the IGZ data</param>
-        public IgzReader(MemoryStream stream) : base(stream) 
+        public IgzReader(MemoryStream stream, GameVersion version) : base(stream) 
         {
+            GameVersion = version;
+
             // Parse header
             stream.Seek(0, SeekOrigin.Begin);
             IgzHeader header = this.ReadStruct<IgzHeader>();
@@ -263,8 +267,8 @@ namespace Alchemy
             CachedFieldAttr _dynamicFieldMemory = objectAttributes.GetField("_dynamicFieldMemory")!;
             CachedFieldAttr _meta = objectAttributes.GetField("_meta")!;
 
-            int rawRefOffset = _dynamicFieldMemory.GetOffset();
-            int objectRefOffset = _meta.GetOffset();
+            int rawRefOffset = _dynamicFieldMemory.GetOffset(GameVersion);
+            int objectRefOffset = _meta.GetOffset(GameVersion);
 
             if (!IsFixupActive("ROFS", globalOffset + rawRefOffset, false)) return null;
 
@@ -275,9 +279,22 @@ namespace Alchemy
             if (meta == null)
                 throw new Exception("Could not initialize igMetaObject, meta is null");
 
-            Type metaObjectType = meta.GetMetaObjectType();
+            if (meta.Reference == null) 
+                throw new Exception("igMetaObject has no reference!");
+
+            Type metaObjectType = GetMetaObjectType(meta.Reference);
 
             return (igObject)CreateEmptyInstance(metaObjectType);
+        }
+
+        public Type GetMetaObjectType(NamedReference reference)
+        {
+            string typeName = reference.objectName.Replace(".", "_");
+
+            return Type.GetType($"Alchemy.{typeName}")
+                ?? Type.GetType($"Alchemy.{reference.namespaceName}")
+                ?? Type.GetType($"Alchemy.{reference.namespaceName}_{typeName}")
+                ?? throw new Exception($"Failed to find dynamic object of type {reference} ({typeName})");
         }
 
         /// <summary>
@@ -394,7 +411,7 @@ namespace Alchemy
             }
 
             Array array = (Array)arrayObj;
-            int elementSize = AttributeUtils.GetFieldSize(elementType);
+            int elementSize = AttributeUtils.GetFieldSize(elementType, GameVersion);
             int startOffset = (int)BaseStream.Position;
 
             for (int i = 0; i < array.Length; i++)

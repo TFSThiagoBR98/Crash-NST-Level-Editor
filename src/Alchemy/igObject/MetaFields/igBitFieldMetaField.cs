@@ -9,7 +9,7 @@ namespace Alchemy
         /// </summary>
         public override void Parse(IgzReader reader)
         {
-            int bitfieldSize = AttributeUtils.GetObjectSize(GetType());
+            int bitfieldSize = AttributeUtils.GetObjectSize(GetType(), reader.GameVersion);
 
             int bitfieldValue = bitfieldSize switch
             {
@@ -21,7 +21,7 @@ namespace Alchemy
 
             BitVector32.Section? section = null;
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(reader.GameVersion))
             {
                 Type type = field.GetFieldType();
                 int size = field.GetBitFieldSize();
@@ -46,8 +46,8 @@ namespace Alchemy
 
         public override void Write(IgzWriter writer)
         {
-            int bitfieldSize = AttributeUtils.GetObjectSize(GetType());
-            int bitfieldValue = GetValueAsInteger();
+            int bitfieldSize = AttributeUtils.GetObjectSize(GetType(), writer.GameVersion);
+            int bitfieldValue = GetValueAsInteger(writer.GameVersion);
             int position = writer.GetPosition();
 
             switch (bitfieldSize)
@@ -69,12 +69,12 @@ namespace Alchemy
         /// <summary>
         /// Get the value of this bitfield as an integer
         /// </summary>
-        public int GetValueAsInteger()
+        public int GetValueAsInteger(GameVersion version)
         {
             BitVector32.Section? section = null;
             int bitfieldValue = 0;
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(version))
             {
                 object value = field.GetValue(this)!;
                 int size = field.GetBitFieldSize();

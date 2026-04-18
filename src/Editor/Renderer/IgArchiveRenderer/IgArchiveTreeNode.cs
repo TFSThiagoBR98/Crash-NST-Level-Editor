@@ -174,7 +174,7 @@ namespace NST
                 ModalRenderer.ShowRenameModal(NodePath, (folderPath) => 
                 {
                     if (!folderPath.EndsWith("/")) folderPath += "/";
-                    IgArchiveFile newFolder = new IgArchiveFile(folderPath);
+                    IgArchiveFile newFolder = new IgArchiveFile(folderPath, tree.Renderer.Archive.GameVersion);
                     tree.AddFile(newFolder);
                 });
             }

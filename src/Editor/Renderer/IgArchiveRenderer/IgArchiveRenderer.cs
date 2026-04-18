@@ -940,7 +940,7 @@ namespace NST
                 string path = basePath + fileName;
 
                 IgzFile igz = new IgzFile(path, [ new igObject() { ObjectName = "DummyObject" } ]);
-                IgArchiveFile file = new IgArchiveFile(path);
+                IgArchiveFile file = new IgArchiveFile(path, Archive.GameVersion);
                 file.SetData(igz.Save());
 
                 AddFile(file, focusFile: true);

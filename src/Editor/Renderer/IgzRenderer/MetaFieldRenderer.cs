@@ -21,7 +21,7 @@ namespace NST
             // igBitField
             else if (metaField is igBitFieldMetaField bitfield)
             {
-                int fieldCount = AttributeUtils.GetAttributes(type).GetFields().Count;
+                int fieldCount = AttributeUtils.GetAttributes(type).GetFields(renderer.ArchiveFile.GameVersion).Count;
                 RenderMetaField(bitfield, renderer, typeof(igBitFieldMetaField), name, "(-) Collapse fields", $"(+) {fieldCount} hidden fields");
             }
             // Custom render methods
@@ -59,7 +59,7 @@ namespace NST
             {
                 ImGui.Text(collapseLabel);
                 ImGui.Indent(1);
-                FieldRenderer.RenderFields(renderer, metaField, metaField.GetFields());
+                FieldRenderer.RenderFields(renderer, metaField, metaField.GetFields(renderer.ArchiveFile.GameVersion));
                 ImGui.Unindent(1);
                 ImGui.TreePop();
             }

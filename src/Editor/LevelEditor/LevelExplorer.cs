@@ -1537,7 +1537,7 @@ namespace NST
             {
                 string path = Archive.FindMainMapFile()!.GetPath().Replace(".igz", $"{identifier}.igz");
 
-                file = new IgArchiveFile(path);
+                file = new IgArchiveFile(path, Archive.GameVersion);
                 igz = new IgzFile(path);
 
                 ArchiveRenderer.AddFile(file);
@@ -1558,7 +1558,7 @@ namespace NST
             if (existing == null)
             {
                 igz = new IgzFile(path);
-                file = new IgArchiveFile(path);
+                file = new IgArchiveFile(path, Archive.GameVersion);
                 
                 ArchiveRenderer.AddFile(file);
 
@@ -1574,7 +1574,7 @@ namespace NST
                 }
                 else
                 {
-                    igz = new IgzFile(path, file.Uncompress());
+                    igz = new IgzFile(path, file.Uncompress(), Archive.GameVersion);
                     FileManager.Add(existing, igz, true);
                 }
             }

@@ -187,7 +187,7 @@ namespace NST
                 ImGui.TableHeadersRow();
                 ImGui.PushItemWidth(-1);
 
-                fields ??= AttributeUtils.GetAttributes(obj.GetType()).GetFields();
+                fields ??= AttributeUtils.GetAttributes(obj.GetType()).GetFields(ArchiveFile.GameVersion);
 
                 FieldRenderer.RenderFields(this, obj, fields);
 

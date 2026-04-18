@@ -31,7 +31,7 @@ namespace Alchemy
                 return;
 
             CachedObjectAttr attribs = AttributeUtils.GetAttributes(GetType());
-            int size = attribs.GetSize();
+            int size = attribs.GetSize(writer.GameVersion);
             int alignment = attribs.GetAlignment();
 
             writer.SetMemory(MemoryPool);
@@ -52,7 +52,7 @@ namespace Alchemy
                 igRawRefMetaField rawRef = (igRawRefMetaField)_dynamicFieldMemory.GetValue(this)!;
                 if (rawRef._address != 0)
                 {
-                    rawRef._address = (uint)(offset + AttributeUtils.GetAttributes(GetType().BaseType!).GetSize());
+                    rawRef._address = (uint)(offset + AttributeUtils.GetAttributes(GetType().BaseType!).GetSize(writer.GameVersion));
                 }
             }
 

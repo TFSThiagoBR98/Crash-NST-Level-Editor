@@ -96,7 +96,7 @@ namespace NST
             // Default render method
             else
             {
-                var fields = c.Object.GetFields().ToList();
+                var fields = c.Object.GetFields(c.GameVersion).ToList();
 
                 int metaIndex = fields.FindIndex(f => f.GetName() == "_meta");
                 if (metaIndex != -1)
@@ -617,7 +617,7 @@ namespace NST
 
             RenderNullableCEntityHandleList("Spawned entities", component._Spawn_Entity_List, component, manager);
 
-            manager.RenderAdvancedProperties(component, component.GetFields());
+            manager.RenderAdvancedProperties(component, component.GetFields(manager.GameVersion));
         }
 
         private static void RenderComponent(common_Level_ManagerData component, NSTComponent manager)
@@ -688,13 +688,13 @@ namespace NST
             ImGui.Spacing();
             if (ImGui.TreeNodeEx("Box Settings...", ImGuiTreeNodeFlags.NoTreePushOnOpen))
             {
-                renderer.RenderObject(component, component.GetFields().Skip(2).ToList());
+                renderer.RenderObject(component, component.GetFields(manager.GameVersion).Skip(2).ToList());
             }
 
             ImGui.Spacing();
             if (component._data != null && ImGui.TreeNodeEx("Visual properties...", ImGuiTreeNodeFlags.NoTreePushOnOpen))
             {
-                renderer.RenderObject(component._data, component._data.GetFields());
+                renderer.RenderObject(component._data, component._data.GetFields(manager.GameVersion));
             }
 
             THREE.Vector3? scale = updated ? component._dimensions.ToVector3() : null;
@@ -733,7 +733,7 @@ namespace NST
             {
                 foreach (CBaseMovementController controller in component._controllerList._data)
                 {
-                    manager.RenderAdvancedProperties(controller, controller.GetFields(), controller.GetType().Name + "...");
+                    manager.RenderAdvancedProperties(controller, controller.GetFields(manager.GameVersion), controller.GetType().Name + "...");
                 }
             }
             else
@@ -785,7 +785,7 @@ namespace NST
                 }
             }
 
-            var fields = component.GetFields().ToList();
+            var fields = component.GetFields(manager.GameVersion).ToList();
             fields.RemoveRange(2, 4);
 
             manager.RenderAdvancedProperties(component, fields);
@@ -797,7 +797,7 @@ namespace NST
             updated |=     RenderFloat3("Rotation:  ", ref component._rotation, component, manager, true, 0.1f);
             updated |=     RenderFloat3("Dimensions:", ref component._dimensions, component, manager, true);
 
-            manager.RenderAdvancedProperties(component, component.GetFields().Skip(3).Take(8).ToList());
+            manager.RenderAdvancedProperties(component, component.GetFields(manager.GameVersion).Skip(3).Take(8).ToList());
 
             if (!updated)
             {
@@ -828,7 +828,7 @@ namespace NST
             ImGui.Separator();
             RenderFloat("Crash spawn delay:", ref component._Float_0x34, component, manager);
             RenderFloat("Spawn offset", ref component._Float_0x4c, component, manager);
-            manager.RenderAdvancedProperties(component, component.GetFields());
+            manager.RenderAdvancedProperties(component, component.GetFields(manager.GameVersion));
         }
 
         private static void RenderComponent(common_Collectible_TimeTrial_StartData component, NSTComponent manager)
@@ -869,7 +869,7 @@ namespace NST
                 if (manager.Entity.Object._entityData is CGameEntityData entityData && entityData._tags != null)
                 {
                     entityData._tags.Clear();
-                    entityData._tags.Add(new igObject() { Reference = new NamedReference("EntityTags", "Teleporter_" + type)}, true);
+                    // entityData._tags.Add(new igObject() { Reference = new NamedReference("EntityTags", "Teleporter_" + type)}, true);
                     manager.SetUpdated(entityData._tags);
                 }
             }

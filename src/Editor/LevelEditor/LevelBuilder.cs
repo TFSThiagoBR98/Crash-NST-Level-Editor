@@ -225,7 +225,7 @@ namespace NST
             string? mode = GameplayModeManager.GetSpecialLevelMode(newLevelName);
             if (mode != null) zoneInfo._build = GameplayModeManager.UpdateSpecialZoneInfoOptions(zoneInfo._build, [mode]);
 
-            IgArchiveFile infoFile = new IgArchiveFile(zoneInfoPath);
+            IgArchiveFile infoFile = new IgArchiveFile(zoneInfoPath, GameVersion.NST);
             IgzFile infoIgz = new IgzFile(zoneInfoPath);
             
             infoIgz.Objects.Add(zoneInfo);
@@ -274,12 +274,12 @@ namespace NST
 
             // Create new files
 
-            IgArchiveFile mainFile = new IgArchiveFile(mainPath);
-            IgArchiveFile cameraFile = new IgArchiveFile(cameraPath);
-            IgArchiveFile lightingFile = new IgArchiveFile(lightingPath);
-            IgArchiveFile crateFile = new IgArchiveFile(cratePath);
-            IgArchiveFile musicFile = new IgArchiveFile(musicPath);
-            IgArchiveFile infoFile = new IgArchiveFile(infoPath);
+            IgArchiveFile mainFile = new IgArchiveFile(mainPath, GameVersion.NST);
+            IgArchiveFile cameraFile = new IgArchiveFile(cameraPath, GameVersion.NST);
+            IgArchiveFile lightingFile = new IgArchiveFile(lightingPath, GameVersion.NST);
+            IgArchiveFile crateFile = new IgArchiveFile(cratePath, GameVersion.NST);
+            IgArchiveFile musicFile = new IgArchiveFile(musicPath, GameVersion.NST);
+            IgArchiveFile infoFile = new IgArchiveFile(infoPath, GameVersion.NST);
 
             IgzFile mainIgz = new IgzFile(mainPath);
             IgzFile cameraIgz = new IgzFile(cameraPath);
@@ -334,7 +334,7 @@ namespace NST
             children.ForEach(c => 
             {
                 c.MemoryPool = worldEntity.MemoryPool;
-                c.GetFields().ToList().ForEach(f =>
+                c.GetFields(GameVersion.NST).ToList().ForEach(f =>
                 {
                     object? value = f.GetValue(c);
                     if (value is IMemoryRef mem) mem.MemoryPool = worldEntity.MemoryPool;
@@ -515,7 +515,7 @@ namespace NST
                     startMusic.GetChildrenRecursive().ForEach(c =>
                     {
                         c.MemoryPool = musicSettings.MemoryPool;
-                        c.GetFields().ToList().ForEach(f =>
+                        c.GetFields(GameVersion.NST).ToList().ForEach(f =>
                         {
                             if (f.GetValue(c) is IMemoryRef mem) mem.MemoryPool = musicSettings.MemoryPool;
                         });
@@ -635,6 +635,21 @@ namespace NST
             progress.SetProgress("newlevel", 8/8f, $"Creating new level (8/8)...");
 
             return archive;
+        }
+
+        /// <summary>
+        /// Clone an object from an external archive, including all its dependencies
+        /// </summary>
+        private static T Clone<T>(this IgArchive archive, T sourceObject, IgArchive sourceArchive, IgzFile sourceIgz, IgzFile destIgz, Dictionary<igObject, igObject>? clones = null) where T : igObject
+        {
+            T clone = IgzFile.Clone(sourceObject, sourceArchive, archive, sourceIgz, destIgz, out List<IgArchiveFile> newFiles, clones);
+
+            foreach (IgArchiveFile file in newFiles)
+            {
+                archive.AddFile(file.Clone());
+            }
+
+            return clone;
         }
 
         public static EGameYear GetGameYear(int crashMode) => crashMode switch

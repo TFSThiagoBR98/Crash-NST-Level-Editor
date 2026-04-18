@@ -4,8 +4,10 @@ namespace Alchemy
 {
     public class IgzWriter
     {
+        public GameVersion GameVersion { get; private set; }
+
         private List<MemoryStream> _streams = [];
-        private List<BinaryWriter> _currentWriters = [];
+        private List<BinaryWriter> _writers = [];
         private List<MemoryPool> _memoryPools = [];
 
         private BinaryWriter _currentWriter;
@@ -34,9 +36,14 @@ namespace Alchemy
         /// <param name="objects">The list of objects to include in the file</param>
         /// <param name="dependencies">The dependencies the objects in this file relies on</param>
         /// <returns>The newly built IGZ file as raw bytes</returns>
-        public static byte[] BuildIGZ(List<igObject> objects, TDEP_Fixup dependencies, bool groupMemoryPools = false)
+        public static byte[] BuildIGZ(List<igObject> objects, TDEP_Fixup dependencies, GameVersion gameVersion, bool groupMemoryPools = false)
         {
-            return new IgzWriter() { _groupMemoryPools = groupMemoryPools }.Build(objects, dependencies);
+            return new IgzWriter() 
+            { 
+                GameVersion = gameVersion,
+                _groupMemoryPools = groupMemoryPools 
+            }
+            .Build(objects, dependencies);
         }
 
         private byte[] Build(List<igObject> objects, TDEP_Fixup dependencies) 
@@ -296,7 +303,7 @@ namespace Alchemy
             {
                 Array array = (Array)value!;
                 Type elementType = array.GetType().GetElementType()!;
-                int elementSize = AttributeUtils.GetFieldSize(elementType);
+                int elementSize = AttributeUtils.GetFieldSize(elementType, GameVersion);
 
                 for (int i = 0; i < array.Length; i++)
                 {
@@ -319,7 +326,7 @@ namespace Alchemy
         {
             int memoryPoolIndex = GetOrCreateMemoryPool(memoryPool);
             
-            _currentWriter = _currentWriters[memoryPoolIndex];
+            _currentWriter = _writers[memoryPoolIndex];
             _currentMemoryPool = _memoryPools[memoryPoolIndex];
 
             int offset = GetSize();
@@ -346,7 +353,7 @@ namespace Alchemy
             BinaryWriter writer = new BinaryWriter(stream);
 
             _streams.Add(stream);
-            _currentWriters.Add(writer);
+            _writers.Add(writer);
             _memoryPools.Add(memoryPool);
 
             return _memoryPools.Count - 1;
@@ -403,12 +410,14 @@ namespace Alchemy
         {
             string typeName = type.Name;
 
-            if (type == typeof(igMetaObjectInstance)) typeName = "igMetaObject";
-            else if (typeName.EndsWith("MetaFieldInstance")) typeName = typeName.Replace("MetaFieldInstance", "MetaField");
+            if (typeName.EndsWith("MetaFieldInstance"))
+            {
+                typeName = typeName.Replace("MetaFieldInstance", "MetaField");
+            }
 
             if (!_fixups.TMET.Contains(typeName))
             {
-                _fixups.MTSZ.Add(AttributeUtils.GetObjectSize(type));
+                _fixups.MTSZ.Add(AttributeUtils.GetObjectSize(type, GameVersion));
             }
 
             return _fixups.TMET.AddUnique(typeName);
@@ -426,7 +435,7 @@ namespace Alchemy
             
             if (index == -1)
             {
-                _fixups.EXNM.Add(handle.ToHandleEXNM(_fixups.TSTR));
+                _fixups.EXNM.Add(handle.ToEXNM(_fixups.TSTR, true));
                 _fixups.handleReferences.Add(handle);
                 return _fixups.handleReferences.Count - 1;
             }
@@ -446,7 +455,7 @@ namespace Alchemy
             
             if (index == -1)
             {
-                _fixups.EXNM.Add(handle.ToObjectEXNM(_fixups.TSTR));
+                _fixups.EXNM.Add(handle.ToEXNM(_fixups.TSTR));
                 _fixups.objectReferences.Add(handle);
                 return _fixups.objectReferences.Count - 1;
             }

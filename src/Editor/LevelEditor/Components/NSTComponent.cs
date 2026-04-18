@@ -12,6 +12,7 @@ namespace NST
 
         private ComponentManager _manager;
         public LevelExplorer Explorer => _manager.Explorer;
+        public GameVersion GameVersion => _manager.Explorer.Archive.GameVersion;
         public NSTEntity Entity => _manager.Entity;
 
         private readonly igComponentData _component;

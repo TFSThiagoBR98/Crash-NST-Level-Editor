@@ -11,9 +11,6 @@ namespace Alchemy
     /// </summary>
     public class IgArchiveFile
     {
-        private const string ROOT_DIR = "temporary/mack/data/win64/output/";
-        private const int LZMA_HEADER_SIZE = 2;
-
         private enum BlockSize
         {
             Small = 0x7F,
@@ -36,6 +33,8 @@ namespace Alchemy
             public int compressedSize;
             public int uncompressedSize;
         }
+
+        public GameVersion GameVersion { get; set; }
 
         private string _fullPath;
         private string _path;
@@ -66,25 +65,27 @@ namespace Alchemy
         /// <summary>
         /// Uncompress and convert this file to an IGZ file
         /// </summary>
-        public IgzFile ToIgzFile() => new IgzFile(_path, Uncompress());
+        public IgzFile ToIgzFile() => new IgzFile(_path, Uncompress(), GameVersion);
 
         /// <summary>
         /// Uncompress and convert this file to a Havok file
         /// </summary>
         public HavokFile ToHavokFile() => new HavokFile(_path, Uncompress());
 
-        public IgArchiveFile(string path)
+        public IgArchiveFile(string path, GameVersion version)
         {
+            GameVersion = version;
             _path = path;
-            _fullPath = ROOT_DIR + path;
+            _fullPath = version.GetRootPath(path);
             _hash = NamespaceUtils.ComputeHash(path);
         }
 
         /// <summary>
         /// Constructor used when parsing an IgArchive
         /// </summary>
-        public IgArchiveFile(string archivePath, string path, string fullPath, IgArchive.FileInfo fileInfo, IgArchive.BlockTables blockTables, Stream igArchiveStream, int sectorSize = IgArchive.SECTOR_SIZE) 
+        public IgArchiveFile(string archivePath, string path, string fullPath, IgArchive.FileInfo fileInfo, IgArchive.BlockTables blockTables, Stream igArchiveStream, GameVersion version, int sectorSize = IgArchive.SECTOR_SIZE) 
         {
+            GameVersion = version;
             _path = path;
             _fullPath = fullPath;
             _sectorSize = sectorSize;
@@ -157,7 +158,7 @@ namespace Alchemy
             }
             else
             {
-                _fullPath = ROOT_DIR + newPath;
+                _fullPath = GameVersion.GetRootPath(newPath);
             }
         }
 
@@ -180,6 +181,7 @@ namespace Alchemy
         {
             IgArchiveFile clone = new IgArchiveFile(_path, _data, _uncompressedSize, _compressionType, _blocksData, _sectorSize)
             {
+                GameVersion = GameVersion,
                 _fullPath = _fullPath,
                 _archivePath = _archivePath,
                 _archiveOffset = _archiveOffset,
@@ -260,7 +262,7 @@ namespace Alchemy
             {
                 BlockData block = _blocksData[blockId];
                 int destinationOffset = blockId * 0x8000;
-                UncompressBlock(block.compressionType, block.sourceOffset, destinationOffset, block.uncompressedSize, compressedData, uncompressedData);
+                UncompressBlock(block.compressionType, block.sourceOffset, destinationOffset, block.uncompressedSize, compressedData, uncompressedData, GameVersion);
             }
 
             if (uncompressedData.Length != _uncompressedSize)
@@ -314,7 +316,11 @@ namespace Alchemy
 
                 if (compressed)
                 {
-                    compressedData.Write(BitConverter.GetBytes((u16)compressedBlockSize));
+                    var compressedSizeBytes = GameVersion.GetLZMAHeaderSize() == 2
+                        ? BitConverter.GetBytes((u16)compressedBlockSize)
+                        : BitConverter.GetBytes(compressedBlockSize);
+
+                    compressedData.Write(compressedSizeBytes);
                     compressedData.Write(properties);
                     compressedData.Write(packedData, 0, compressedBlockSize);
 
@@ -433,9 +439,10 @@ namespace Alchemy
             int mask = (int)blockSize;
             int shift = blockSize == BlockSize.Small ? 0x7 : blockSize == BlockSize.Medium ? 0xF : 0x1F;
             int blockStartIndex = fileInfo.blockIndex & 0xFFFFFFF;
+            int lzma_header_size = GameVersion.GetLZMAHeaderSize();
 
             BlockData[] blocksData = new BlockData[blockCount];
-            byte[] sizeBytes = new byte[2];
+            byte[] sizeBytes = new byte[lzma_header_size];
 
             for (int i = 0; i < blockCount; i++)
             {
@@ -454,7 +461,8 @@ namespace Alchemy
                     // Read compressed size from LZMA header
                     igArchiveStream.Seek(fileInfo.offset + blockOffset, SeekOrigin.Begin);
                     igArchiveStream.ReadExactly(sizeBytes);
-                    compressedBlockSize = 7 + BitConverter.ToUInt16(sizeBytes);
+                    int compressedSize = lzma_header_size == 2 ? BitConverter.ToUInt16(sizeBytes) : BitConverter.ToInt32(sizeBytes);
+                    compressedBlockSize = 5 + lzma_header_size + compressedSize;
                 }
 
                 blocksData[i] = new BlockData
@@ -469,7 +477,7 @@ namespace Alchemy
             return blocksData;
         }
 
-        private static void UncompressBlock(CompressionType compressionType, int sourceOffset, int destinationOffset, int uncompressedSize, MemoryStream source, MemoryStream destination)
+        private static void UncompressBlock(CompressionType compressionType, int sourceOffset, int destinationOffset, int uncompressedSize, MemoryStream source, MemoryStream destination, GameVersion version)
         {
             switch (compressionType)
             {
@@ -498,16 +506,15 @@ namespace Alchemy
                     break;
 
                 case CompressionType.LZMA:
-                    compressedSizeBytes = new byte[LZMA_HEADER_SIZE];
+                    int lzma_header_size = version.GetLZMAHeaderSize();
+                    compressedSizeBytes = new byte[lzma_header_size];
                     source.Seek(sourceOffset, SeekOrigin.Begin);
-                    source.Read(compressedSizeBytes, 0, LZMA_HEADER_SIZE);
+                    source.Read(compressedSizeBytes, 0, lzma_header_size);
 
-                    compressedSize = LZMA_HEADER_SIZE == 2 
-                        ? BitConverter.ToUInt16(compressedSizeBytes, 0)
-                        : BitConverter.ToInt32(compressedSizeBytes, 0);
+                    compressedSize = lzma_header_size == 2 ? BitConverter.ToUInt16(compressedSizeBytes) : BitConverter.ToInt32(compressedSizeBytes);
                     
                     byte[] properties = new byte[5];
-                    source.Seek(sourceOffset + LZMA_HEADER_SIZE, SeekOrigin.Begin);
+                    source.Seek(sourceOffset + lzma_header_size, SeekOrigin.Begin);
                     source.Read(properties, 0, 5);
 
                     Decoder decoder = new Decoder();

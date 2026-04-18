@@ -293,7 +293,7 @@ namespace NST
                 if (ImGui.TreeNodeEx($"Advanced properties...##{Object}", ImGuiTreeNodeFlags.NoTreePushOnOpen))
                 {
                     IgzRenderer renderer = explorer.FileManager.GetOrCreateRenderer(ArchiveFile, explorer.ArchiveRenderer);
-                    renderer.RenderObject(motorcycleCamera, motorcycleCamera.GetFields().Skip(31).ToList());
+                    renderer.RenderObject(motorcycleCamera, motorcycleCamera.GetFields(ArchiveFile.GameVersion).Skip(31).ToList());
                 }
             }
         }

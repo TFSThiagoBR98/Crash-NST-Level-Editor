@@ -80,7 +80,7 @@ namespace Alchemy
             image._levelCount = 1; // (u16)(int.Log2(int.Min(width, height)) - 1); // TODO: Fix LOD not working if set to > 1
 
             if (image._format == null) image._format = new igMetaImage();
-            image._format.Reference = NamedReference.EXID("metaimages", format);
+            image._format.Reference = new NamedReference("metaimages", format, true);
 
             BcEncoder encoder = new BcEncoder();
             encoder.OutputOptions.GenerateMipMaps = false;

@@ -11,6 +11,7 @@ namespace Alchemy
     {
         public uint uid;
         private string _path;
+        public GameVersion GameVersion { get; set; } = GameVersion.NST;
         public List<igObject> Objects { get; set; } = [];
         public TDEP_Fixup Dependencies { get; set; } = [];
 
@@ -19,9 +20,10 @@ namespace Alchemy
         /// <summary>
         /// Creates a new IGZ file from a list of objects
         /// </summary>
-        public IgzFile(string path, List<igObject>? objects = null)
+        public IgzFile(string path, List<igObject>? objects = null, GameVersion version = GameVersion.NST)
         {
             _path = path;
+            GameVersion = version;
             Objects = objects ?? [];
             uid = ImGuiUtils.Uuid();
         }
@@ -31,11 +33,12 @@ namespace Alchemy
         /// </summary>
         /// <param name="path">The file's path in the archive</param>
         /// <param name="data">The file's raw data. It must be uncompressed</param>
-        public IgzFile(string path, byte[] data)
+        public IgzFile(string path, byte[] data, GameVersion version)
         {
-            IgzReader reader = new IgzReader(new MemoryStream(data));
+            IgzReader reader = new IgzReader(new MemoryStream(data), version);
 
             _path = path;
+            GameVersion = version;
             Objects = reader.GetObjects();
             Dependencies = reader.GetDependencies();
             uid = ImGuiUtils.Uuid();
