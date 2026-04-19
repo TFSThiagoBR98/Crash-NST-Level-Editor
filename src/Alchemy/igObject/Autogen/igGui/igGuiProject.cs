@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 1)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _canHaveFocus;
+            [FieldAttr(offset: 0, size: 1)] public bool _canHaveFocus = true;
             [FieldAttr(offset: 1, size: 1)] public bool _renderWhenDisabled;
             [FieldAttr(offset: 2, size: 1)] public bool _updateWhenDisabled;
             [FieldAttr(offset: 3, size: 1)] public bool _onSubScreen;

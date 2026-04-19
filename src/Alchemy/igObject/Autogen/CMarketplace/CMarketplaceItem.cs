@@ -8,7 +8,7 @@ namespace Alchemy
         {
             [FieldAttr(offset: 0, size: 14)] public uint _id;
             [FieldAttr(offset: 14, size: 1)] public bool _isGameConsumable;
-            [FieldAttr(offset: 15, size: 1)] public bool _isMarketplaceConsumable;
+            [FieldAttr(offset: 15, size: 1)] public bool _isMarketplaceConsumable = false;
             [FieldAttr(offset: 16, size: 8)] public int _rarity;
         }
 

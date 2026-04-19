@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Bitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _isEnabled;
+            [FieldAttr(offset: 0, size: 1)] public bool _isEnabled = true;
             [FieldAttr(offset: 1, size: 1)] public bool _isThreadSafe;
         }
 

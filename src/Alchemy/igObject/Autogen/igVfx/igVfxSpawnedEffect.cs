@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class FlagStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 4)] public uint _cameraMask;
+            [FieldAttr(offset: 0, size: 4)] public uint _cameraMask = 15;
             [FieldAttr(offset: 4, size: 3)] public int _priorityClass;
             [FieldAttr(offset: 7, size: 1)] public bool _isSoftKilled;
             [FieldAttr(offset: 8, size: 1)] public bool _isHardKilled;

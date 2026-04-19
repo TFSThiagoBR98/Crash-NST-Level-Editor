@@ -6,9 +6,9 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TextureBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_diffuse;
-            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_diffuse;
-            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_diffuse;
+            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_diffuse = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_diffuse = false;
+            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_diffuse = false;
         }
 
         [FieldAttr(nst: 120, ctr: 120)] public TextureBitfield _textureBitfield = new();

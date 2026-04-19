@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _diffuse;
+            [FieldAttr(offset: 0, size: 1)] public bool _diffuse = true;
             [FieldAttr(offset: 1, size: 1)] public bool _mask;
             [FieldAttr(offset: 2, size: 3)] public ERotate _uvRotation;
             [FieldAttr(offset: 5, size: 2)] public EMirror _uMirror;

@@ -4,6 +4,6 @@ namespace Alchemy
     public class Dictionary_2 : igDotNetDataDataHashTable
     {
         [FieldAttr(nst: 64)] public igRawRefMetaField _dynamicFieldMemory = new();
-        [FieldAttr(nst: 72, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 72, refCount: false)] public igMetaObject? _meta;
     }
 }

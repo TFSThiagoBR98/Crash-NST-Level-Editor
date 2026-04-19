@@ -6,8 +6,8 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class SpriteFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _gradientFrame;
-            [FieldAttr(offset: 4, size: 1)] public bool _useWorldUpAxis;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _gradientFrame = EReferenceFrame.eRF_Track2;
+            [FieldAttr(offset: 4, size: 1)] public bool _useWorldUpAxis = false;
         }
 
         [FieldAttr(nst: 88, ctr: 64)] public SpriteFlags _spriteFlags = new();

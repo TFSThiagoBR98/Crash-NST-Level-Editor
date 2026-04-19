@@ -36,17 +36,17 @@ namespace Alchemy
         {
             [FieldAttr(offset: 0, size: 1)] public bool _isSoftParticle;
             [FieldAttr(offset: 1, size: 1)] public bool _softParticlePalettized;
-            [FieldAttr(offset: 2, size: 1)] public bool _enableHaze;
+            [FieldAttr(offset: 2, size: 1)] public bool _enableHaze = false;
             [FieldAttr(offset: 3, size: 1)] public bool _additive;
             [FieldAttr(offset: 4, size: 1)] public bool _premultiplied;
-            [FieldAttr(offset: 5, size: 1)] public bool _enableEnvironmentLighting;
-            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_diffuse;
-            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_diffuse;
-            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_diffuse;
-            [FieldAttr(offset: 9, size: 1)] public bool _textureCompression_mask;
-            [FieldAttr(offset: 10, size: 1)] public bool _textureMips_mask;
-            [FieldAttr(offset: 11, size: 1)] public bool _textureAllowDownsample_mask;
-            [FieldAttr(offset: 12, size: 1)] public bool _textureCompression_palette;
+            [FieldAttr(offset: 5, size: 1)] public bool _enableEnvironmentLighting = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_diffuse = false;
+            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_diffuse = false;
+            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_diffuse = false;
+            [FieldAttr(offset: 9, size: 1)] public bool _textureCompression_mask = false;
+            [FieldAttr(offset: 10, size: 1)] public bool _textureMips_mask = false;
+            [FieldAttr(offset: 11, size: 1)] public bool _textureAllowDownsample_mask = false;
+            [FieldAttr(offset: 12, size: 1)] public bool _textureCompression_palette = false;
             [FieldAttr(offset: 13, size: 1)] public bool _textureMips_palette;
             [FieldAttr(offset: 14, size: 1)] public bool _useOriginalTextureName;
         }

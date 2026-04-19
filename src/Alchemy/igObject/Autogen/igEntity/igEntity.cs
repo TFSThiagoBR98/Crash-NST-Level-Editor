@@ -14,11 +14,11 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Bitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _canSpawn;
+            [FieldAttr(offset: 0, size: 1)] public bool _canSpawn = true;
             [FieldAttr(offset: 1, size: 1)] public bool _isArchetype;
             [FieldAttr(offset: 2, size: 1)] public bool _spawned;
             [FieldAttr(offset: 3, size: 4)] public uint _disableStack;
-            [FieldAttr(offset: 7, size: 1)] public bool _enabledByVisualScript;
+            [FieldAttr(offset: 7, size: 1)] public bool _enabledByVisualScript = false;
             [FieldAttr(offset: 8, size: 1)] public bool _enabled;
             [FieldAttr(offset: 9, size: 1)] public bool _isFading;
             [FieldAttr(offset: 10, size: 1)] public bool _isPositionDirty;
@@ -27,11 +27,11 @@ namespace Alchemy
             [FieldAttr(offset: 13, size: 1)] public bool _isMoving;
             [FieldAttr(offset: 14, size: 1)] public bool _isVisible;
             [FieldAttr(offset: 15, size: 1)] public bool _isHidden;
-            [FieldAttr(offset: 16, size: 1)] public bool _isVolumeCulled;
-            [FieldAttr(offset: 17, size: 1)] public bool _canVolumeCull;
+            [FieldAttr(offset: 16, size: 1)] public bool _isVolumeCulled = false;
+            [FieldAttr(offset: 17, size: 1)] public bool _canVolumeCull = false;
             [FieldAttr(offset: 18, size: 5)] public uint _disableVolumeCullStack;
             [FieldAttr(offset: 23, size: 1)] public bool _disableVolumeCullByScript;
-            [FieldAttr(offset: 24, size: 1)] public bool _netHasAuthority;
+            [FieldAttr(offset: 24, size: 1)] public bool _netHasAuthority = false;
             [FieldAttr(offset: 25, size: 7)] public int _userFlags;
         }
 

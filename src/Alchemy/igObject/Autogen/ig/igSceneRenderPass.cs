@@ -3,7 +3,7 @@ namespace Alchemy
     [ObjectAttr(nst: 464, ctr: 464, align: 16)]
     public class igSceneRenderPass : igBaseRenderPass
     {
-        [FieldAttr(nst: 352, ctr: 352, refCount: false)] public igMetaObject? _passStateType = (null);
+        [FieldAttr(nst: 352, ctr: 352, refCount: false)] public igMetaObject? _passStateType;
         [FieldAttr(nst: 360, ctr: 360)] public igCommandStreamEncoderPassState? _passState;
         [FieldAttr(nst: 368, ctr: 368)] public igSortKeyCommandDelegateObject? _passDelegate;
         [FieldAttr(nst: 376, ctr: 376)] public bool _frustCullState = true;

@@ -16,7 +16,7 @@ namespace Alchemy
             [FieldAttr(offset: 1, size: 1)] public bool _haveComponentsToStart;
             [FieldAttr(offset: 2, size: 1)] public bool _haveComponentsToRemove;
             [FieldAttr(offset: 3, size: 1)] public bool _actEnabled;
-            [FieldAttr(offset: 4, size: 1)] public bool _actToggleOn;
+            [FieldAttr(offset: 4, size: 1)] public bool _actToggleOn = false;
             [FieldAttr(offset: 5, size: 1)] public CEntity.EScaleSource _scaleSource;
             [FieldAttr(offset: 6, size: 1)] public bool netReplicate;
             [FieldAttr(offset: 7, size: 1)] public bool hasTimeComponent;

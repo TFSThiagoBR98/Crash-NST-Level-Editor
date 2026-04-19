@@ -6,9 +6,9 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _diffuse;
+            [FieldAttr(offset: 0, size: 1)] public bool _diffuse = true;
             [FieldAttr(offset: 1, size: 1)] public bool _mask;
-            [FieldAttr(offset: 2, size: 1)] public bool _wrapMode;
+            [FieldAttr(offset: 2, size: 1)] public bool _wrapMode = false;
             [FieldAttr(offset: 3, size: 1)] public bool _bounceMode;
         }
 

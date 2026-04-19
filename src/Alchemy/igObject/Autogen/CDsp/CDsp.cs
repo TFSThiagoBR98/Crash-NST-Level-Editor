@@ -6,11 +6,11 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class PlatformEnabled : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _enabledOnAspen;
+            [FieldAttr(offset: 0, size: 1)] public bool _enabledOnAspen = true;
             [FieldAttr(offset: 1, size: 1)] public bool _enabledOnAspenLow;
-            [FieldAttr(offset: 2, size: 1)] public bool _enabledOnDurango;
-            [FieldAttr(offset: 3, size: 1)] public bool _enabledOnPS4;
-            [FieldAttr(offset: 4, size: 1)] public bool _enabledOnWindows;
+            [FieldAttr(offset: 2, size: 1)] public bool _enabledOnDurango = false;
+            [FieldAttr(offset: 3, size: 1)] public bool _enabledOnPS4 = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _enabledOnWindows = false;
             [FieldAttr(offset: 5, size: 1)] public bool _unknown;
         }
 

@@ -6,23 +6,23 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TextureBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_diffuse;
-            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_diffuse;
-            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_diffuse;
-            [FieldAttr(offset: 3, size: 1)] public bool _textureCompression_normal;
-            [FieldAttr(offset: 4, size: 1)] public bool _textureMips_normal;
-            [FieldAttr(offset: 5, size: 1)] public bool _textureAllowDownsample_normal;
-            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_gloss;
-            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_gloss;
-            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_gloss;
-            [FieldAttr(offset: 9, size: 1)] public bool _textureCompression_metal;
-            [FieldAttr(offset: 10, size: 1)] public bool _textureMips_metal;
-            [FieldAttr(offset: 11, size: 1)] public bool _textureAllowDownsample_metal;
-            [FieldAttr(offset: 12, size: 1)] public bool _textureCompression_emissive;
-            [FieldAttr(offset: 13, size: 1)] public bool _textureMips_emissive;
-            [FieldAttr(offset: 14, size: 1)] public bool _textureAllowDownsample_emissive;
-            [FieldAttr(offset: 15, size: 1)] public bool _textureCompression_height;
-            [FieldAttr(offset: 16, size: 1)] public bool _textureMips_height;
+            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_diffuse = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_diffuse = false;
+            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_diffuse = false;
+            [FieldAttr(offset: 3, size: 1)] public bool _textureCompression_normal = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _textureMips_normal = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _textureAllowDownsample_normal = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_gloss = false;
+            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_gloss = false;
+            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_gloss = false;
+            [FieldAttr(offset: 9, size: 1)] public bool _textureCompression_metal = false;
+            [FieldAttr(offset: 10, size: 1)] public bool _textureMips_metal = false;
+            [FieldAttr(offset: 11, size: 1)] public bool _textureAllowDownsample_metal = false;
+            [FieldAttr(offset: 12, size: 1)] public bool _textureCompression_emissive = false;
+            [FieldAttr(offset: 13, size: 1)] public bool _textureMips_emissive = false;
+            [FieldAttr(offset: 14, size: 1)] public bool _textureAllowDownsample_emissive = false;
+            [FieldAttr(offset: 15, size: 1)] public bool _textureCompression_height = false;
+            [FieldAttr(offset: 16, size: 1)] public bool _textureMips_height = false;
         }
 
         [ObjectAttr(size: 4)]

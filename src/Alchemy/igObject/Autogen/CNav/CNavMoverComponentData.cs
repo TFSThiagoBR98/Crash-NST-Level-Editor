@@ -18,8 +18,8 @@ namespace Alchemy
             [FieldAttr(offset: 3, size: 1)] public bool _allowSpaceChanges;
             [FieldAttr(offset: 4, size: 1)] public bool _allowSeparationFromNavMesh;
             [FieldAttr(offset: 5, size: 5)] public uint _linkCapabilities;
-            [FieldAttr(offset: 10, size: 10)] public uint _repulsorBlockageFlags;
-            [FieldAttr(offset: 20, size: 10)] public uint _repulsorIdentityFlags;
+            [FieldAttr(offset: 10, size: 10)] public uint _repulsorBlockageFlags = 15;
+            [FieldAttr(offset: 20, size: 10)] public uint _repulsorIdentityFlags = 0;
             [FieldAttr(offset: 30, size: 2)] public uint _areaUsageFlags;
         }
 

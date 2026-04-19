@@ -13,7 +13,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TextureRimBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_palette;
+            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_palette = true;
             [FieldAttr(offset: 1, size: 1)] public bool _textureMips_palette;
             [FieldAttr(offset: 2, size: 1)] public bool _flipFacing;
             [FieldAttr(offset: 3, size: 1)] public bool _wrapToBack;

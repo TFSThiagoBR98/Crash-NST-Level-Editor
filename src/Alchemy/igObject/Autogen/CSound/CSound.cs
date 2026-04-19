@@ -6,15 +6,15 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class SoundFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _shouldLoad;
+            [FieldAttr(offset: 0, size: 1)] public bool _shouldLoad = true;
             [FieldAttr(offset: 1, size: 1)] public bool _looping;
             [FieldAttr(offset: 2, size: 3)] public ESoundPauseType _pauseType;
             [FieldAttr(offset: 5, size: 2)] public EPlayBehavior _playBehavior;
-            [FieldAttr(offset: 7, size: 2)] public EPlayFeature _playFeature;
+            [FieldAttr(offset: 7, size: 2)] public EPlayFeature _playFeature = EPlayFeature.ePF_RANDOM;
             [FieldAttr(offset: 9, size: 1)] public bool _useDuckingGainDirectly;
             [FieldAttr(offset: 10, size: 1)] public bool _duckingInverted;
-            [FieldAttr(offset: 11, size: 1)] public bool _canBeDucked;
-            [FieldAttr(offset: 12, size: 2)] public ESound3dBehavior _threeDBehavior;
+            [FieldAttr(offset: 11, size: 1)] public bool _canBeDucked = false;
+            [FieldAttr(offset: 12, size: 2)] public ESound3dBehavior _threeDBehavior = ESound3dBehavior.eS3B_2d;
         }
 
         [ObjectAttr(size: 4)]

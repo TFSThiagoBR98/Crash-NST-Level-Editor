@@ -6,10 +6,10 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class NonPersistentBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _useCameraInputTransform;
+            [FieldAttr(offset: 0, size: 1)] public bool _useCameraInputTransform = true;
             [FieldAttr(offset: 1, size: 1)] public bool _hasActorInputMapComponent;
-            [FieldAttr(offset: 2, size: 1)] public bool _hasBaseVehicleControllerComponent;
-            [FieldAttr(offset: 3, size: 1)] public bool _canDockTo;
+            [FieldAttr(offset: 2, size: 1)] public bool _hasBaseVehicleControllerComponent = false;
+            [FieldAttr(offset: 3, size: 1)] public bool _canDockTo = false;
             [FieldAttr(offset: 4, size: 1)] public bool _animClipDisplayHero;
             [FieldAttr(offset: 5, size: 1)] public bool _timelineDisplayHero;
         }

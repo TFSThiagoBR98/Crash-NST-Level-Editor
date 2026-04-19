@@ -15,11 +15,11 @@ namespace Alchemy
         [ObjectAttr(size: 1)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public int _starsToAward;
+            [FieldAttr(offset: 0, size: 3)] public int _starsToAward = 1;
             [FieldAttr(offset: 3, size: 1)] public bool _resetOnRequirementsLost;
-            [FieldAttr(offset: 4, size: 1)] public bool _displayProgress;
-            [FieldAttr(offset: 5, size: 1)] public bool _showAccoladeHud;
-            [FieldAttr(offset: 6, size: 1)] public bool _displayProgressBar;
+            [FieldAttr(offset: 4, size: 1)] public bool _displayProgress = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _showAccoladeHud = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _displayProgressBar = false;
             [FieldAttr(offset: 7, size: 1)] public bool _showOverCutscene;
         }
 

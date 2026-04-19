@@ -14,7 +14,7 @@ namespace Alchemy
             [FieldAttr(offset: 5, size: 1)] public bool _hasReceivedCreateMessage;
             [FieldAttr(offset: 6, size: 1)] public bool _enabled;
             [FieldAttr(offset: 7, size: 8)] public uint _disableStack;
-            [FieldAttr(offset: 15, size: 1)] public bool _enabledByVisualScript;
+            [FieldAttr(offset: 15, size: 1)] public bool _enabledByVisualScript = false;
             [FieldAttr(offset: 16, size: 1)] public bool _baseFunctionCalled;
             [FieldAttr(offset: 17, size: 15)] public int _userFlags;
         }

@@ -14,14 +14,14 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TrailFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public EModulation _widthAlongTrailModulation;
-            [FieldAttr(offset: 3, size: 3)] public EModulation _colorAlongTrailModulation;
-            [FieldAttr(offset: 6, size: 3)] public EModulation _alphaAlongTrailModulation;
+            [FieldAttr(offset: 0, size: 3)] public EModulation _widthAlongTrailModulation = EModulation.kModulate;
+            [FieldAttr(offset: 3, size: 3)] public EModulation _colorAlongTrailModulation = EModulation.kReplace;
+            [FieldAttr(offset: 6, size: 3)] public EModulation _alphaAlongTrailModulation = EModulation.kReplace;
             [FieldAttr(offset: 9, size: 3)] public igVfxDrawTrailOperator.ERolloutMethod _rolloutMethod;
-            [FieldAttr(offset: 12, size: 3)] public int _trailBezier;
-            [FieldAttr(offset: 15, size: 6)] public int _trailSegmentCount;
+            [FieldAttr(offset: 12, size: 3)] public int _trailBezier = 0;
+            [FieldAttr(offset: 15, size: 6)] public int _trailSegmentCount = 0;
             [FieldAttr(offset: 21, size: 1)] public bool _banner;
-            [FieldAttr(offset: 22, size: 1)] public bool _forceExactLength;
+            [FieldAttr(offset: 22, size: 1)] public bool _forceExactLength = false;
             [FieldAttr(offset: 23, size: 1)] public bool _isBillboard;
         }
 

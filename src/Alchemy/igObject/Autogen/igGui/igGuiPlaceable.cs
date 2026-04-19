@@ -13,7 +13,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _automaticBound;
+            [FieldAttr(offset: 0, size: 1)] public bool _automaticBound = true;
             [FieldAttr(offset: 1, size: 1)] public bool _scissorToBound;
             [FieldAttr(offset: 2, size: 2)] public igGuiPlaceable.EUpdateWhenHiddenMode _updateWhenHiddenMode;
             [FieldAttr(offset: 4, size: 1)] public bool _xExtentRelativeToParent;
@@ -22,12 +22,12 @@ namespace Alchemy
             [FieldAttr(offset: 7, size: 1)] public bool _yExtentEqualsScreenHeight;
             [FieldAttr(offset: 8, size: 1)] public bool _hidden;
             [FieldAttr(offset: 9, size: 1)] public bool _allowTouchInput;
-            [FieldAttr(offset: 10, size: 1)] public bool _dirty;
+            [FieldAttr(offset: 10, size: 1)] public bool _dirty = false;
             [FieldAttr(offset: 11, size: 1)] public bool _finalHidden;
             [FieldAttr(offset: 12, size: 1)] public bool _updateWhenHidden;
             [FieldAttr(offset: 13, size: 1)] public bool _finalScissorToBound;
             [FieldAttr(offset: 14, size: 1)] public bool _deactivated;
-            [FieldAttr(offset: 15, size: 1)] public bool _focusable;
+            [FieldAttr(offset: 15, size: 1)] public bool _focusable = false;
             [FieldAttr(offset: 16, size: 1)] public bool _respectParentFocusability;
             [FieldAttr(offset: 17, size: 1)] public bool _unknown;
             [FieldAttr(offset: 18, size: 1)] public bool _unknown1;

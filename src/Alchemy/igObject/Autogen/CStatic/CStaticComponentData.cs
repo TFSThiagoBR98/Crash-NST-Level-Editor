@@ -6,13 +6,13 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class FlagsBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public EDistanceCullImportance _distanceCullImportance;
+            [FieldAttr(offset: 0, size: 3)] public EDistanceCullImportance _distanceCullImportance = EDistanceCullImportance.kMedium;
             [FieldAttr(offset: 3, size: 1)] public bool _ignoreOcclusionBoxes;
-            [FieldAttr(offset: 4, size: 1)] public bool _receiveDecals;
+            [FieldAttr(offset: 4, size: 1)] public bool _receiveDecals = false;
             [FieldAttr(offset: 5, size: 1)] public bool _disableVisual;
-            [FieldAttr(offset: 6, size: 1)] public bool _castsShadows;
+            [FieldAttr(offset: 6, size: 1)] public bool _castsShadows = false;
             [FieldAttr(offset: 7, size: 2)] public EMobileShadowState _mobileShadowState;
-            [FieldAttr(offset: 9, size: 1)] public bool _includeInBake;
+            [FieldAttr(offset: 9, size: 1)] public bool _includeInBake = false;
         }
 
         [FieldAttr(nst: 24, ctr: 16)] public CFxMaterialRedirectTable? _materialOverrides;

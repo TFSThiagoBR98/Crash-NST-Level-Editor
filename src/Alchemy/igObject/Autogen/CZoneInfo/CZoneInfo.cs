@@ -7,12 +7,12 @@ namespace Alchemy
         public class Flags : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 1)] public bool _isBoss;
-            [FieldAttr(offset: 1, size: 1)] public bool _magicMomentIntro;
+            [FieldAttr(offset: 1, size: 1)] public bool _magicMomentIntro = false;
             [FieldAttr(offset: 2, size: 1)] public bool _isMenu;
             [FieldAttr(offset: 3, size: 1)] public bool _isFmv;
             [FieldAttr(offset: 4, size: 1)] public bool _isSecret;
-            [FieldAttr(offset: 5, size: 1)] public bool _smokeTestAllMaps;
-            [FieldAttr(offset: 6, size: 1)] public bool _smokeTestAllMapsCafe;
+            [FieldAttr(offset: 5, size: 1)] public bool _smokeTestAllMaps = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _smokeTestAllMapsCafe = false;
             [FieldAttr(offset: 7, size: 1)] public bool _alwaysUseHugoVoiceOvers;
         }
 

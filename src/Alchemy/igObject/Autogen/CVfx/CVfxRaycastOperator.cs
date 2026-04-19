@@ -23,7 +23,7 @@ namespace Alchemy
         public class RaycastFlags : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 3)] public CVfxRaycastOperator.EFailAction _failAction;
-            [FieldAttr(offset: 3, size: 2)] public CVfxRaycastOperator.EHitFacing _hitFacing;
+            [FieldAttr(offset: 3, size: 2)] public CVfxRaycastOperator.EHitFacing _hitFacing = CVfxRaycastOperator.EHitFacing.FaceRay;
             [FieldAttr(offset: 5, size: 1)] public bool _hitFacingFlip;
         }
 

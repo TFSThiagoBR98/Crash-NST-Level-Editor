@@ -6,10 +6,10 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public ESourceAxis _instanceAxis;
+            [FieldAttr(offset: 0, size: 3)] public ESourceAxis _instanceAxis = ESourceAxis.eSA_ZAxis;
             [FieldAttr(offset: 3, size: 1)] public bool _instanceFlip;
-            [FieldAttr(offset: 4, size: 4)] public EReferenceFrame _referenceFrame;
-            [FieldAttr(offset: 8, size: 3)] public ESourceAxis _referenceAxis;
+            [FieldAttr(offset: 4, size: 4)] public EReferenceFrame _referenceFrame = EReferenceFrame.eRF_World;
+            [FieldAttr(offset: 8, size: 3)] public ESourceAxis _referenceAxis = ESourceAxis.eSA_XAxis;
             [FieldAttr(offset: 11, size: 1)] public bool _referenceFlip;
         }
 

@@ -50,15 +50,15 @@ namespace Alchemy
         public class VfxBlendedMaterialBitfield : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 1)] public bool _isSoftParticle;
-            [FieldAttr(offset: 1, size: 1)] public bool _enableHaze;
+            [FieldAttr(offset: 1, size: 1)] public bool _enableHaze = false;
             [FieldAttr(offset: 2, size: 1)] public bool _additive;
             [FieldAttr(offset: 3, size: 1)] public bool _premultiplied;
-            [FieldAttr(offset: 4, size: 1)] public bool _textureCompression_diffuse;
-            [FieldAttr(offset: 5, size: 1)] public bool _textureMips_diffuse;
-            [FieldAttr(offset: 6, size: 1)] public bool _textureAllowDownsample_diffuse;
-            [FieldAttr(offset: 7, size: 1)] public bool _textureCompression_mask;
-            [FieldAttr(offset: 8, size: 1)] public bool _textureMips_mask;
-            [FieldAttr(offset: 9, size: 1)] public bool _textureAllowDownsample_mask;
+            [FieldAttr(offset: 4, size: 1)] public bool _textureCompression_diffuse = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _textureMips_diffuse = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _textureAllowDownsample_diffuse = false;
+            [FieldAttr(offset: 7, size: 1)] public bool _textureCompression_mask = false;
+            [FieldAttr(offset: 8, size: 1)] public bool _textureMips_mask = false;
+            [FieldAttr(offset: 9, size: 1)] public bool _textureAllowDownsample_mask = false;
         }
 
         [FieldAttr(nst: 120, ctr: 120)] public u8 _bfStorage__0;

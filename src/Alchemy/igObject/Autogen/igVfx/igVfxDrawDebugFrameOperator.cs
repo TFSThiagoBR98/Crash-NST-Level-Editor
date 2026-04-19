@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class DebugFrameFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _frame;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _frame = EReferenceFrame.eRF_Instance;
             [FieldAttr(offset: 4, size: 1)] public bool _showColor;
             [FieldAttr(offset: 5, size: 1)] public bool _showVelocity;
         }

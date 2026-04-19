@@ -4,6 +4,6 @@ namespace Alchemy
     public class List_1 : igDotNetDataList
     {
         [FieldAttr(nst: 40)] public igRawRefMetaField _dynamicFieldMemory = new();
-        [FieldAttr(nst: 48, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 48, refCount: false)] public igMetaObject? _meta;
     }
 }

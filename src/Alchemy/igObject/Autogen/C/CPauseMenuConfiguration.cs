@@ -11,10 +11,10 @@ namespace Alchemy
             [FieldAttr(offset: 2, size: 1)] public bool _showAreaName;
             [FieldAttr(offset: 3, size: 1)] public bool _showCharacterBarWidget;
             [FieldAttr(offset: 4, size: 1)] public bool _showVaultCodeWidget;
-            [FieldAttr(offset: 5, size: 1)] public bool _showDescriptions;
+            [FieldAttr(offset: 5, size: 1)] public bool _showDescriptions = false;
             [FieldAttr(offset: 6, size: 1)] public bool _showObjectives;
             [FieldAttr(offset: 7, size: 1)] public bool _showDetailsImage;
-            [FieldAttr(offset: 8, size: 1)] public bool _allowBackOutOnButtonPress;
+            [FieldAttr(offset: 8, size: 1)] public bool _allowBackOutOnButtonPress = false;
             [FieldAttr(offset: 9, size: 1)] public bool _pauseGame;
             [FieldAttr(offset: 10, size: 1)] public bool _showPlayerActorInScreenspace;
             [FieldAttr(offset: 11, size: 1)] public bool _showBackgroundFilmStrip;

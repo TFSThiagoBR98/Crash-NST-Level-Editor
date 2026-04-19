@@ -14,11 +14,11 @@ namespace Alchemy
         public class BitfieldStorage : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 1)] public bool _capInitialSpeed;
-            [FieldAttr(offset: 1, size: 1)] public bool _orientToMovement;
+            [FieldAttr(offset: 1, size: 1)] public bool _orientToMovement = false;
             [FieldAttr(offset: 2, size: 1)] public bool _movementDelayUntilMessage;
             [FieldAttr(offset: 3, size: 1)] public bool _accelerateToFullSpeed;
-            [FieldAttr(offset: 4, size: 1)] public bool _dieOnContact;
-            [FieldAttr(offset: 5, size: 1)] public bool _dieOnDamage;
+            [FieldAttr(offset: 4, size: 1)] public bool _dieOnContact = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _dieOnDamage = false;
             [FieldAttr(offset: 6, size: 1)] public bool _onlyDamageTarget;
             [FieldAttr(offset: 7, size: 1)] public bool _damageOtherProjectiles;
             [FieldAttr(offset: 8, size: 1)] public bool _ignoreDieOnDamageForDestructibles;
@@ -28,13 +28,13 @@ namespace Alchemy
             [FieldAttr(offset: 12, size: 1)] public bool _snapToFollowGroundDistance;
             [FieldAttr(offset: 13, size: 1)] public bool _stickAllowDamage;
             [FieldAttr(offset: 14, size: 1)] public bool _bounceOnContact;
-            [FieldAttr(offset: 15, size: 1)] public bool _dieOnBounceComplete;
+            [FieldAttr(offset: 15, size: 1)] public bool _dieOnBounceComplete = false;
             [FieldAttr(offset: 16, size: 1)] public bool _alignDeathEffectsToLastBounce;
-            [FieldAttr(offset: 17, size: 1)] public bool _boltSpawnEffect;
-            [FieldAttr(offset: 18, size: 1)] public bool _deathEffectAligned;
-            [FieldAttr(offset: 19, size: 1)] public bool _explodeEffectAligned;
-            [FieldAttr(offset: 20, size: 1)] public bool _bounceEffectAligned;
-            [FieldAttr(offset: 21, size: 1)] public bool _stickEffectAligned;
+            [FieldAttr(offset: 17, size: 1)] public bool _boltSpawnEffect = false;
+            [FieldAttr(offset: 18, size: 1)] public bool _deathEffectAligned = false;
+            [FieldAttr(offset: 19, size: 1)] public bool _explodeEffectAligned = false;
+            [FieldAttr(offset: 20, size: 1)] public bool _bounceEffectAligned = false;
+            [FieldAttr(offset: 21, size: 1)] public bool _stickEffectAligned = false;
             [FieldAttr(offset: 22, size: 1)] public bool _killEffectOnStick;
             [FieldAttr(offset: 23, size: 1)] public bool _reticleEffectRemoveOnContact;
             [FieldAttr(offset: 24, size: 1)] public bool _stopSpawnSoundOnDeath;
@@ -44,7 +44,7 @@ namespace Alchemy
             [FieldAttr(offset: 28, size: 1)] public bool _sendBounceCompleteMessageToSelf;
             [FieldAttr(offset: 29, size: 1)] public bool _sendBounceMessageOnEveryBounce;
             [FieldAttr(offset: 30, size: 1)] public bool _sendExceedingSlopeMessage;
-            [FieldAttr(offset: 31, size: 1)] public bool _allowDeflection;
+            [FieldAttr(offset: 31, size: 1)] public bool _allowDeflection = false;
         }
 
         [ObjectAttr(size: 4)]
@@ -54,8 +54,8 @@ namespace Alchemy
             [FieldAttr(offset: 1, size: 1)] public bool _needsOnContactEvents;
             [FieldAttr(offset: 2, size: 1)] public bool _useAttackerForForwardTraceFiltering;
             [FieldAttr(offset: 3, size: 2)] public CProjectileComponentData.EProjectileInitialPositionCollisionCheck _checkInitialPositionCollision;
-            [FieldAttr(offset: 5, size: 1)] public bool _stopHomingWithNoEntityTarget;
-            [FieldAttr(offset: 6, size: 1)] public bool _homingPlanarForwardMatchVehicleMaxSpeed;
+            [FieldAttr(offset: 5, size: 1)] public bool _stopHomingWithNoEntityTarget = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _homingPlanarForwardMatchVehicleMaxSpeed = false;
             [FieldAttr(offset: 7, size: 1)] public bool _followWater;
         }
 

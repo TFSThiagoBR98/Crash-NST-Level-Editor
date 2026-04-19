@@ -7,7 +7,7 @@ namespace Alchemy
         public class AlignFlags : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 1)] public bool _axisAligned;
-            [FieldAttr(offset: 1, size: 1)] public bool _viewPlaneAligned;
+            [FieldAttr(offset: 1, size: 1)] public bool _viewPlaneAligned = false;
         }
 
         [FieldAttr(nst: 32, ctr: 20)] public AlignFlags _alignFlags = new();

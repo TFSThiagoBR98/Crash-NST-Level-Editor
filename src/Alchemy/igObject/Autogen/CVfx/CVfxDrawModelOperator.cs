@@ -15,9 +15,9 @@ namespace Alchemy
         {
             [FieldAttr(offset: 0, size: 1)] public bool _isSkinned;
             [FieldAttr(offset: 1, size: 1)] public bool _fitToScale;
-            [FieldAttr(offset: 2, size: 1)] public bool _keepAspectRatio;
+            [FieldAttr(offset: 2, size: 1)] public bool _keepAspectRatio = false;
             [FieldAttr(offset: 3, size: 1)] public bool _useBoltAnimation;
-            [FieldAttr(offset: 4, size: 1)] public bool _useAlphaForFade;
+            [FieldAttr(offset: 4, size: 1)] public bool _useAlphaForFade = false;
             [FieldAttr(offset: 5, size: 2)] public CVfxDrawModelOperator.EDrawMode _drawMode;
         }
 

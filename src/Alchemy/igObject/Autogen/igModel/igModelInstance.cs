@@ -14,9 +14,9 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class Bitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 16)] public uint _flags;
-            [FieldAttr(offset: 16, size: 1)] public bool _allowFrustumCulling;
-            [FieldAttr(offset: 17, size: 3)] public EDistanceCullImportance _distanceCullImportance;
+            [FieldAttr(offset: 0, size: 16)] public uint _flags = 11;
+            [FieldAttr(offset: 16, size: 1)] public bool _allowFrustumCulling = false;
+            [FieldAttr(offset: 17, size: 3)] public EDistanceCullImportance _distanceCullImportance = EDistanceCullImportance.kVeryLow;
         }
 
         [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igModelInstance? _parent;

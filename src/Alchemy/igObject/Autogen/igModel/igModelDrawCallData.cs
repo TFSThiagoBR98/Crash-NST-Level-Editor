@@ -6,10 +6,10 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class PropertiesBitField : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public EIG_INDEX_TYPE _indexBufferType;
-            [FieldAttr(offset: 3, size: 3)] public EIG_GFX_DRAW _primitiveType;
-            [FieldAttr(offset: 6, size: 8)] public u8 _lod;
-            [FieldAttr(offset: 14, size: 1)] public bool _enabled;
+            [FieldAttr(offset: 0, size: 3)] public EIG_INDEX_TYPE _indexBufferType = EIG_INDEX_TYPE.INT32;
+            [FieldAttr(offset: 3, size: 3)] public EIG_GFX_DRAW _primitiveType = EIG_GFX_DRAW.POINTS;
+            [FieldAttr(offset: 6, size: 8)] public u8 _lod = 3;
+            [FieldAttr(offset: 14, size: 1)] public bool _enabled = false;
             [FieldAttr(offset: 15, size: 8)] public u8 _instanceShaderConstants;
         }
 

@@ -7,8 +7,8 @@ namespace Alchemy
         public class OcclusionFlags : igBitFieldMetaField
         {
             [FieldAttr(offset: 0, size: 1)] public bool _invertVisibility;
-            [FieldAttr(offset: 1, size: 4)] public int _flags;
-            [FieldAttr(offset: 5, size: 1)] public bool _state;
+            [FieldAttr(offset: 1, size: 4)] public int _flags = 9;
+            [FieldAttr(offset: 5, size: 1)] public bool _state = false;
         }
 
         [FieldAttr(nst: 16, ctr: 16)] public igMatrix44fMetaField _inverseMatrix = new();

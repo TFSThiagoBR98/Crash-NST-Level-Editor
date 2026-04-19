@@ -30,7 +30,7 @@ namespace Alchemy
         [ObjectAttr(size: 2)]
         public class Flags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 2)] public igVfxAnimatedFrame.EAnimatedFrameLoopMode _loopMode;
+            [FieldAttr(offset: 0, size: 2)] public igVfxAnimatedFrame.EAnimatedFrameLoopMode _loopMode = igVfxAnimatedFrame.EAnimatedFrameLoopMode.kLoopLoop;
             [FieldAttr(offset: 2, size: 3)] public igVfxAnimatedFrame.EAnimatedFrameRotation _uvRotation;
             [FieldAttr(offset: 5, size: 2)] public igVfxAnimatedFrame.EAnimatedFrameMirror _uMirror;
             [FieldAttr(offset: 7, size: 2)] public igVfxAnimatedFrame.EAnimatedFrameMirror _vMirror;

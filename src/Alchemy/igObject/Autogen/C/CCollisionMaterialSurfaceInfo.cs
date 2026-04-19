@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 2)]
         public class SpawnLayers : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _spawnLayer1;
+            [FieldAttr(offset: 0, size: 1)] public bool _spawnLayer1 = true;
             [FieldAttr(offset: 1, size: 1)] public bool _spawnLayer2;
             [FieldAttr(offset: 2, size: 1)] public bool _spawnLayer3;
             [FieldAttr(offset: 3, size: 1)] public bool _spawnLayer4;
@@ -35,7 +35,7 @@ namespace Alchemy
             [FieldAttr(offset: 5, size: 1)] public bool _preventJumping;
             [FieldAttr(offset: 6, size: 1)] public bool _ignoreVehicleBlockingContacts;
             [FieldAttr(offset: 7, size: 1)] public bool _forceVehicleBlockingContacts;
-            [FieldAttr(offset: 8, size: 1)] public bool _actionPackGroundIgnoreBlocking;
+            [FieldAttr(offset: 8, size: 1)] public bool _actionPackGroundIgnoreBlocking = false;
             [FieldAttr(offset: 9, size: 1)] public bool _unknown;
             [FieldAttr(offset: 10, size: 1)] public bool _unknown1;
             [FieldAttr(offset: 11, size: 1)] public bool _unknown2;

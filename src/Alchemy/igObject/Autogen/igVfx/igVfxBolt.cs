@@ -19,10 +19,10 @@ namespace Alchemy
             [FieldAttr(offset: 0, size: 1)] public bool _flip;
             [FieldAttr(offset: 1, size: 1)] public bool _hasUpdated;
             [FieldAttr(offset: 2, size: 1)] public bool _teleported;
-            [FieldAttr(offset: 3, size: 1)] public bool _isValid;
-            [FieldAttr(offset: 4, size: 1)] public bool _isVisible;
-            [FieldAttr(offset: 5, size: 1)] public bool _keepScale;
-            [FieldAttr(offset: 6, size: 1)] public bool _lateUpdate;
+            [FieldAttr(offset: 3, size: 1)] public bool _isValid = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _isVisible = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _keepScale = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _lateUpdate = false;
         }
 
         [FieldAttr(ctr: 12)] public float _boltUpdateTime;

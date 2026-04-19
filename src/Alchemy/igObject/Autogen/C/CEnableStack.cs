@@ -16,6 +16,6 @@ namespace Alchemy
         [FieldAttr(nst: 36, ctr: 36)] public bool _enableMismatchedCallChecks = true;
         [FieldAttr(nst: 40, ctr: 40)] public string? _enableErrorMessage = "RequestEnable() has been called more times than RequestDisable()";
         [FieldAttr(nst: 48, ctr: 48)] public string? _disableErrorMessage = "RequestDisable() has been called more times than RequestEnable()";
-        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 56, ctr: 56, refCount: false)] public igMetaObject? _meta;
     }
 }

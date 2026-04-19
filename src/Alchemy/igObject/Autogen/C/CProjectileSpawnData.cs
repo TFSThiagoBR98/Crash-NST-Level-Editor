@@ -47,36 +47,36 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class BitfieldStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public ECombatTargetSelect _combatTargetSelect;
+            [FieldAttr(offset: 0, size: 3)] public ECombatTargetSelect _combatTargetSelect = ECombatTargetSelect.eCTS_First;
             [FieldAttr(offset: 3, size: 3)] public ECombatTargetList _combatTargetList;
-            [FieldAttr(offset: 6, size: 3)] public CProjectileSpawnData.EAimingMethod _aimingMethod;
+            [FieldAttr(offset: 6, size: 3)] public CProjectileSpawnData.EAimingMethod _aimingMethod = CProjectileSpawnData.EAimingMethod.eAM_NoAiming;
             [FieldAttr(offset: 9, size: 2)] public CProjectileSpawnData.ELobbedTargettingMode _lobbedTargettingMode;
             [FieldAttr(offset: 11, size: 1)] public bool _fakeAiming;
             [FieldAttr(offset: 12, size: 1)] public bool _aimAtGround;
-            [FieldAttr(offset: 13, size: 3)] public CProjectileSpawnData.ESpawnPositionMode _positionRelativeMode;
-            [FieldAttr(offset: 16, size: 2)] public CProjectileSpawnData.ESpawnOrientationMode _angleRelativeMode;
-            [FieldAttr(offset: 18, size: 1)] public bool _useAttackerScale;
+            [FieldAttr(offset: 13, size: 3)] public CProjectileSpawnData.ESpawnPositionMode _positionRelativeMode = CProjectileSpawnData.ESpawnPositionMode.eSPM_AbsoluteWorldSpace;
+            [FieldAttr(offset: 16, size: 2)] public CProjectileSpawnData.ESpawnOrientationMode _angleRelativeMode = CProjectileSpawnData.ESpawnOrientationMode.eSOM_RelativeToWorld;
+            [FieldAttr(offset: 18, size: 1)] public bool _useAttackerScale = false;
             [FieldAttr(offset: 19, size: 1)] public bool _useAttackerSpeedOverride;
             [FieldAttr(offset: 20, size: 1)] public bool _adjustProjectileSpeedAndRange;
-            [FieldAttr(offset: 21, size: 4)] public int _spawnCount;
-            [FieldAttr(offset: 25, size: 1)] public bool _spreadDamagesOnce;
+            [FieldAttr(offset: 21, size: 4)] public int _spawnCount = 0;
+            [FieldAttr(offset: 25, size: 1)] public bool _spreadDamagesOnce = false;
             [FieldAttr(offset: 26, size: 1)] public bool _spreadForceAimed;
             [FieldAttr(offset: 27, size: 1)] public bool _spreadAroundTarget;
             [FieldAttr(offset: 28, size: 1)] public bool _spreadSingleSpawnEffect;
             [FieldAttr(offset: 29, size: 1)] public bool _useSpecialTeamForProjectile;
-            [FieldAttr(offset: 30, size: 1)] public bool _spawnAsChildOfAttacker;
+            [FieldAttr(offset: 30, size: 1)] public bool _spawnAsChildOfAttacker = false;
             [FieldAttr(offset: 31, size: 1)] public bool _boltSpawnEffect;
         }
 
         [ObjectAttr(size: 4)]
         public class BitfieldStorage2 : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _aimYaw;
-            [FieldAttr(offset: 1, size: 1)] public bool _aimPitch;
+            [FieldAttr(offset: 0, size: 1)] public bool _aimYaw = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _aimPitch = false;
             [FieldAttr(offset: 2, size: 1)] public bool _useRootEntityForAttackerSpeedOverride;
-            [FieldAttr(offset: 3, size: 1)] public bool _spawnWhenOffScreen;
-            [FieldAttr(offset: 4, size: 3)] public CProjectileSpawnData.EReplicationMode _netReplicate;
-            [FieldAttr(offset: 7, size: 3)] public ENetworkSendPriority _netSendPriority;
+            [FieldAttr(offset: 3, size: 1)] public bool _spawnWhenOffScreen = false;
+            [FieldAttr(offset: 4, size: 3)] public CProjectileSpawnData.EReplicationMode _netReplicate = CProjectileSpawnData.EReplicationMode.eRM_False;
+            [FieldAttr(offset: 7, size: 3)] public ENetworkSendPriority _netSendPriority = ENetworkSendPriority.eNSP_Low;
             [FieldAttr(offset: 10, size: 1)] public bool _netReliable;
             [FieldAttr(offset: 11, size: 1)] public bool _recalculateTargetingOnPeer;
         }

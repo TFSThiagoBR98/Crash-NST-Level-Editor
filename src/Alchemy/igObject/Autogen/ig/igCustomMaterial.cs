@@ -6,28 +6,28 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class CustomMaterialBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public EIG_GFX_ALPHA_FUNCTION _alphaFunction;
+            [FieldAttr(offset: 0, size: 3)] public EIG_GFX_ALPHA_FUNCTION _alphaFunction = EIG_GFX_ALPHA_FUNCTION.GEQUAL;
             [FieldAttr(offset: 3, size: 1)] public bool _alphaTestState;
-            [FieldAttr(offset: 4, size: 4)] public EIG_GFX_BLENDING_FUNCTION _blendingSource;
-            [FieldAttr(offset: 8, size: 4)] public EIG_GFX_BLENDING_FUNCTION _blendingDestination;
+            [FieldAttr(offset: 4, size: 4)] public EIG_GFX_BLENDING_FUNCTION _blendingSource = EIG_GFX_BLENDING_FUNCTION.ZERO;
+            [FieldAttr(offset: 8, size: 4)] public EIG_GFX_BLENDING_FUNCTION _blendingDestination = EIG_GFX_BLENDING_FUNCTION.ZERO;
             [FieldAttr(offset: 12, size: 3)] public EIG_GFX_BLENDING_EQUATION _blendingEquation;
             [FieldAttr(offset: 15, size: 1)] public bool _blendingState;
             [FieldAttr(offset: 16, size: 1)] public EIG_GFX_CULL_FACE_MODE _cullFaceMode;
-            [FieldAttr(offset: 17, size: 1)] public bool _cullFaceState;
-            [FieldAttr(offset: 18, size: 1)] public bool _depthTestState;
-            [FieldAttr(offset: 19, size: 1)] public bool _depthWriteState;
-            [FieldAttr(offset: 20, size: 3)] public EIG_GFX_TEXTURE_WRAP _wrapS;
-            [FieldAttr(offset: 23, size: 3)] public EIG_GFX_TEXTURE_WRAP _wrapT;
-            [FieldAttr(offset: 26, size: 4)] public u8 _sortKey;
-            [FieldAttr(offset: 30, size: 1)] public bool _prepareAffectsRenderState;
+            [FieldAttr(offset: 17, size: 1)] public bool _cullFaceState = false;
+            [FieldAttr(offset: 18, size: 1)] public bool _depthTestState = false;
+            [FieldAttr(offset: 19, size: 1)] public bool _depthWriteState = false;
+            [FieldAttr(offset: 20, size: 3)] public EIG_GFX_TEXTURE_WRAP _wrapS = EIG_GFX_TEXTURE_WRAP.CLAMP;
+            [FieldAttr(offset: 23, size: 3)] public EIG_GFX_TEXTURE_WRAP _wrapT = EIG_GFX_TEXTURE_WRAP.CLAMP;
+            [FieldAttr(offset: 26, size: 4)] public u8 _sortKey = 0;
+            [FieldAttr(offset: 30, size: 1)] public bool _prepareAffectsRenderState = false;
         }
 
         [ObjectAttr(size: 2)]
         public class CustomMaterialBitfield2 : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _dirty;
-            [FieldAttr(offset: 1, size: 4)] public EIG_GFX_TEXTURE_FILTER _magnificationFilter;
-            [FieldAttr(offset: 5, size: 4)] public EIG_GFX_TEXTURE_FILTER _minificationFilter;
+            [FieldAttr(offset: 0, size: 1)] public bool _dirty = true;
+            [FieldAttr(offset: 1, size: 4)] public EIG_GFX_TEXTURE_FILTER _magnificationFilter = EIG_GFX_TEXTURE_FILTER.NEAREST;
+            [FieldAttr(offset: 5, size: 4)] public EIG_GFX_TEXTURE_FILTER _minificationFilter = EIG_GFX_TEXTURE_FILTER.NEAREST;
             [FieldAttr(offset: 9, size: 2)] public EigCustomMaterialAnimationTimeSource _timeSource;
             [FieldAttr(offset: 10, size: 1)] public bool _unknown;
             [FieldAttr(offset: 11, size: 1)] public bool _unknown1;

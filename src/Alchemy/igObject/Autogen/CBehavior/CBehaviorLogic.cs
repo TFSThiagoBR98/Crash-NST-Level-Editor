@@ -13,6 +13,6 @@ namespace Alchemy
         [FieldAttr(nst: 66, ctr: 50)] public bool _useProxyInputOnly;
         [FieldAttr(nst: 67, ctr: 51)] public bool _useProxyPassengerOnly;
         [FieldAttr(nst: 68, ctr: 52)] public bool _disable;
-        [FieldAttr(nst: 72, ctr: 56, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 72, ctr: 56, refCount: false)] public igMetaObject? _meta;
     }
 }

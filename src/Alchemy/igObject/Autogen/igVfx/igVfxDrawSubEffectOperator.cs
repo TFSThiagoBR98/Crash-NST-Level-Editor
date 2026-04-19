@@ -38,11 +38,11 @@ namespace Alchemy
         [ObjectAttr(size: 2)]
         public class SubEffectFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 3)] public igVfxDrawSubEffectOperator.ESubEffectSecondBolt _secondBolt;
-            [FieldAttr(offset: 3, size: 2)] public igVfxDrawSubEffectOperator.ESubEffectChildKill _childKill;
+            [FieldAttr(offset: 0, size: 3)] public igVfxDrawSubEffectOperator.ESubEffectSecondBolt _secondBolt = igVfxDrawSubEffectOperator.ESubEffectSecondBolt.kBolt2Follow;
+            [FieldAttr(offset: 3, size: 2)] public igVfxDrawSubEffectOperator.ESubEffectChildKill _childKill = igVfxDrawSubEffectOperator.ESubEffectChildKill.kDontKill;
             [FieldAttr(offset: 5, size: 2)] public igVfxDrawSubEffectOperator.ESubEffectChainMode _chain;
             [FieldAttr(offset: 7, size: 2)] public igVfxDrawSubEffectOperator.ESubEffectChainOrientationMode _chainOrientation;
-            [FieldAttr(offset: 9, size: 1)] public bool _floatingChain;
+            [FieldAttr(offset: 9, size: 1)] public bool _floatingChain = false;
         }
 
         [FieldAttr(nst: 32, ctr: 18)] public SubEffectFlags _subEffectFlags = new();

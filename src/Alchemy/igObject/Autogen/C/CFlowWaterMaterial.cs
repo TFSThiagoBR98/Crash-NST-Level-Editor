@@ -6,9 +6,9 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TextureBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_normal;
-            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_normal;
-            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_normal;
+            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_normal = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_normal = false;
+            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_normal = false;
         }
 
         [FieldAttr(nst: 120, ctr: 120)] public string? _shaderName = "FlowWater";

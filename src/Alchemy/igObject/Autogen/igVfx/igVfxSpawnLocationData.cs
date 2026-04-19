@@ -6,8 +6,8 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class SpawnLocationFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _hasPosition;
-            [FieldAttr(offset: 1, size: 1)] public bool _hasRotation;
+            [FieldAttr(offset: 0, size: 1)] public bool _hasPosition = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _hasRotation = false;
             [FieldAttr(offset: 2, size: 1)] public bool _dataFieldsCached;
         }
 

@@ -28,14 +28,14 @@ namespace Alchemy
         {
             [FieldAttr(offset: 0, size: 2)] public igVfxEffect.EInvalidBoltBehavior _invalidBoltBehavior;
             [FieldAttr(offset: 2, size: 1)] public bool _playOutLoopOnSoftKill;
-            [FieldAttr(offset: 3, size: 1)] public bool _keepBoltScale;
-            [FieldAttr(offset: 4, size: 1)] public bool _keepBoltVisibility;
+            [FieldAttr(offset: 3, size: 1)] public bool _keepBoltScale = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _keepBoltVisibility = false;
             [FieldAttr(offset: 5, size: 1)] public bool _softCull;
-            [FieldAttr(offset: 6, size: 1)] public bool _pauseAfterSoftCull;
+            [FieldAttr(offset: 6, size: 1)] public bool _pauseAfterSoftCull = false;
             [FieldAttr(offset: 7, size: 2)] public igVfxEffect.ECameraVisibility _cameraVisibility;
             [FieldAttr(offset: 9, size: 1)] public bool _forceLateUpdate;
-            [FieldAttr(offset: 10, size: 1)] public bool _useLevelCameraCullDistance;
-            [FieldAttr(offset: 11, size: 2)] public igVfxEffect.EPriorityClass _priority;
+            [FieldAttr(offset: 10, size: 1)] public bool _useLevelCameraCullDistance = false;
+            [FieldAttr(offset: 11, size: 2)] public igVfxEffect.EPriorityClass _priority = igVfxEffect.EPriorityClass.kLowPriority;
         }
 
         [FieldAttr(nst: 40, ctr: 40)] public igTimeMetaField _loopStart = new();

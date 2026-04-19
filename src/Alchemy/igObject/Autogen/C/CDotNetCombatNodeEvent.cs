@@ -4,6 +4,6 @@ namespace Alchemy
     public class CDotNetCombatNodeEvent : igObject
     {
         [FieldAttr(nst: 16, ctr: 16)] public igRawRefMetaField _dynamicFieldMemory = new();
-        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 24, ctr: 24, refCount: false)] public igMetaObject? _meta;
     }
 }

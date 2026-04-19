@@ -33,10 +33,10 @@ namespace Alchemy
         [ObjectAttr(size: 2)]
         public class ZeroSpaceFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _track0ZeroSpace;
-            [FieldAttr(offset: 4, size: 4)] public EReferenceFrame _track1ZeroSpace;
-            [FieldAttr(offset: 8, size: 4)] public EReferenceFrame _track2ZeroSpace;
-            [FieldAttr(offset: 12, size: 4)] public EReferenceFrame _track3ZeroSpace;
+            [FieldAttr(offset: 0, size: 4)] public EReferenceFrame _track0ZeroSpace = EReferenceFrame.eRF_Bolt1;
+            [FieldAttr(offset: 4, size: 4)] public EReferenceFrame _track1ZeroSpace = EReferenceFrame.eRF_World;
+            [FieldAttr(offset: 8, size: 4)] public EReferenceFrame _track2ZeroSpace = EReferenceFrame.eRF_World;
+            [FieldAttr(offset: 12, size: 4)] public EReferenceFrame _track3ZeroSpace = EReferenceFrame.eRF_World;
         }
 
         [ObjectAttr(size: 4)]

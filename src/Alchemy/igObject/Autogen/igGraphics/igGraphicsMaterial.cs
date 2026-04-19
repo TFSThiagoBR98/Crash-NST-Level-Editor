@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class MaterialBitField : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 4)] public u8 _sortKey;
+            [FieldAttr(offset: 0, size: 4)] public u8 _sortKey = 8;
             [FieldAttr(offset: 4, size: 2)] public EigDrawType _drawType;
             [FieldAttr(offset: 6, size: 2)] public EigGraphicsMaterialAnimationTimeSource _timeSource;
         }

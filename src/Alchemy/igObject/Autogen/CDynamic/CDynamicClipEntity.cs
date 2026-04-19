@@ -6,11 +6,11 @@ namespace Alchemy
         [ObjectAttr(size: 2)]
         public class ClipTypeStorage : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _clipTeamHero;
-            [FieldAttr(offset: 1, size: 1)] public bool _clipNPCEnemies;
+            [FieldAttr(offset: 0, size: 1)] public bool _clipTeamHero = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _clipNPCEnemies = false;
             [FieldAttr(offset: 2, size: 1)] public bool _clipPlayers;
-            [FieldAttr(offset: 3, size: 1)] public bool _clipNPCAltEnemies;
-            [FieldAttr(offset: 4, size: 1)] public bool _clipWorld;
+            [FieldAttr(offset: 3, size: 1)] public bool _clipNPCAltEnemies = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _clipWorld = false;
         }
 
         [FieldAttr(nst: 224, ctr: 220)] public bool _clipEnabled = true;

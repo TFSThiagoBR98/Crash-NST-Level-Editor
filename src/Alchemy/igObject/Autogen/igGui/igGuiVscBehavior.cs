@@ -5,6 +5,6 @@ namespace Alchemy
     {
         [FieldAttr(nst: 16, ctr: 16, refCount: false)] public igGuiPlaceable? _owner;
         [FieldAttr(nst: 24, ctr: 24)] public igRawRefMetaField _dynamicFieldMemory = new();
-        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igMetaObject? _meta = (null);
+        [FieldAttr(nst: 32, ctr: 32, refCount: false)] public igMetaObject? _meta;
     }
 }

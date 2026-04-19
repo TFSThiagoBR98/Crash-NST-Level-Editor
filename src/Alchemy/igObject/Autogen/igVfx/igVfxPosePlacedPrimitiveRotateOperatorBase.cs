@@ -10,15 +10,15 @@ namespace Alchemy
             [FieldAttr(offset: 1, size: 1)] public bool _isLockedToBolt;
             [FieldAttr(offset: 2, size: 1)] public bool _isBillboard;
             [FieldAttr(offset: 3, size: 1)] public bool _hackRotationFix;
-            [FieldAttr(offset: 4, size: 1)] public bool _isBillboardViewPlaneAligned;
+            [FieldAttr(offset: 4, size: 1)] public bool _isBillboardViewPlaneAligned = false;
             [FieldAttr(offset: 5, size: 1)] public bool _isBillboardAxisAligned;
             [FieldAttr(offset: 6, size: 1)] public bool _isOrientationRandom;
-            [FieldAttr(offset: 7, size: 2)] public ETransformSpace _orientationSpace;
+            [FieldAttr(offset: 7, size: 2)] public ETransformSpace _orientationSpace = ETransformSpace.kCameraSpace;
             [FieldAttr(offset: 9, size: 1)] public bool _isRotationAxisRandom;
-            [FieldAttr(offset: 10, size: 1)] public bool _isRotationAppliedToOrientation;
-            [FieldAttr(offset: 11, size: 2)] public ETransformSpace _rotationSpace;
+            [FieldAttr(offset: 10, size: 1)] public bool _isRotationAppliedToOrientation = false;
+            [FieldAttr(offset: 11, size: 2)] public ETransformSpace _rotationSpace = ETransformSpace.kCameraSpace;
             [FieldAttr(offset: 13, size: 1)] public bool _useMotionPathDuration;
-            [FieldAttr(offset: 14, size: 3)] public EMotionPathBehavior _motionPathBehavior;
+            [FieldAttr(offset: 14, size: 3)] public EMotionPathBehavior _motionPathBehavior = EMotionPathBehavior.kSpawnAlongPath;
         }
 
         [FieldAttr(nst: 32, ctr: 20)] public PlacedPrimitiveFlags _placedPrimitiveFlags = new();

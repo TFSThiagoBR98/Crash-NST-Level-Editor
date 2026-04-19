@@ -6,15 +6,15 @@ namespace Alchemy
         [ObjectAttr(size: 4)]
         public class TextureBitfield : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_surface;
-            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_surface;
-            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_surface;
-            [FieldAttr(offset: 3, size: 1)] public bool _textureCompression_normal;
-            [FieldAttr(offset: 4, size: 1)] public bool _textureMips_normal;
-            [FieldAttr(offset: 5, size: 1)] public bool _textureAllowDownsample_normal;
-            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_normal2;
-            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_normal2;
-            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_normal2;
+            [FieldAttr(offset: 0, size: 1)] public bool _textureCompression_surface = true;
+            [FieldAttr(offset: 1, size: 1)] public bool _textureMips_surface = false;
+            [FieldAttr(offset: 2, size: 1)] public bool _textureAllowDownsample_surface = false;
+            [FieldAttr(offset: 3, size: 1)] public bool _textureCompression_normal = false;
+            [FieldAttr(offset: 4, size: 1)] public bool _textureMips_normal = false;
+            [FieldAttr(offset: 5, size: 1)] public bool _textureAllowDownsample_normal = false;
+            [FieldAttr(offset: 6, size: 1)] public bool _textureCompression_normal2 = false;
+            [FieldAttr(offset: 7, size: 1)] public bool _textureMips_normal2 = false;
+            [FieldAttr(offset: 8, size: 1)] public bool _textureAllowDownsample_normal2 = false;
         }
 
         [FieldAttr(nst: 120, ctr: 120)] public string? _shaderName = "Water";

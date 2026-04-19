@@ -6,7 +6,7 @@ namespace Alchemy
         [ObjectAttr(size: 1)]
         public class RuntimeFlags : igBitFieldMetaField
         {
-            [FieldAttr(offset: 0, size: 1)] public bool _removeOnDeath;
+            [FieldAttr(offset: 0, size: 1)] public bool _removeOnDeath = true;
             [FieldAttr(offset: 1, size: 1)] public bool _netDeath;
             [FieldAttr(offset: 2, size: 1)] public bool _hasDied;
             [FieldAttr(offset: 3, size: 1)] public bool _immunityCallbackRegistered;
