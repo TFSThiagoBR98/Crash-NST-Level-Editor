@@ -33,6 +33,8 @@
 
       <Compile Remove="lib\**\*.cs" />
 
+      <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.8" />
+      <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="2.88.8" />
       <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
       <ProjectReference Include="lib\THREE\THREE.csproj" />
       <ProjectReference Include="lib\THREE.Silk\THREE.Silk.csproj" />
