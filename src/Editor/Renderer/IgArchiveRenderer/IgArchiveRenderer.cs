@@ -734,13 +734,22 @@ namespace NST
 
             if (saveAs || ForceSaveAs || string.IsNullOrEmpty(path))
             {
-                path = FileExplorer.SaveFile(FileExplorer.EXT_ARCHIVES, Archive.GetName());
-                if (path == null) return;
-                _hasBackup = File.Exists(path + ".backup");
-                LocalStorage.AddRecentFile(path, IsLevelArchive);
-                ForceSaveAs = false;
+                FileExplorer.SaveFile(FileExplorer.EXT_ARCHIVES, Archive.GetName(), selectedPath =>
+                {
+                    if (selectedPath == null) return;
+                    _hasBackup = File.Exists(selectedPath + ".backup");
+                    LocalStorage.AddRecentFile(selectedPath, IsLevelArchive);
+                    ForceSaveAs = false;
+                    DoSave(selectedPath);
+                });
+                return;
             }
 
+            DoSave(path);
+            return;
+
+            void DoSave(string resolvedPath)
+            {
             ModalRenderer.ShowLoadingModal($"Saving{(compress ? " compressed " : " ")}archive...");
 
             Task.Run(() =>
@@ -789,7 +798,7 @@ namespace NST
                     try
                     {
                         // Create backup
-                        uint hash = NamespaceUtils.ComputeHash(path);
+                        uint hash = NamespaceUtils.ComputeHash(resolvedPath);
                         string backupDir = LocalStorage.AutoBackupPath;
                         string backupPath = Path.Join(backupDir, $"{hash}.pak");
                         Directory.CreateDirectory(backupDir);
@@ -803,7 +812,7 @@ namespace NST
                 }
 
                 // Save archive
-                Archive.SafeSave(path, true, compress);
+                Archive.SafeSave(resolvedPath, true, compress);
                 IsUpdated = false;
 
                 postSaveCallback?.Invoke();
@@ -828,6 +837,7 @@ namespace NST
                 }
                 postSaveCallback?.Invoke();
             }, TaskContinuationOptions.OnlyOnFaulted);
+            } // end DoSave
         }
 
         /// <summary>
@@ -884,12 +894,11 @@ namespace NST
         /// </summary>
         private void ExtractFile(IgArchiveFile file)
         {
-            string? filePath = FileExplorer.SaveFile(FileExplorer.EXT_ALL, file.GetName());
-
-            if (filePath != null)
+            FileExplorer.SaveFile(FileExplorer.EXT_ALL, file.GetName(), filePath =>
             {
-                file.Save(filePath);
-            }
+                if (filePath != null)
+                    file.Save(filePath);
+            });
         }
 
         /// <summary>

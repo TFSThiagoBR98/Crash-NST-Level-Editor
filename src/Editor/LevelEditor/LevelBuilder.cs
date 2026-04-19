@@ -41,26 +41,30 @@ namespace NST
 
                 if (ImGuiUtils.CenteredButton("Open Level Editor", size))
                 {
-                    List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
-                    if (files.Count == 0) return;
+                    FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, files =>
+                    {
+                        if (files.Count == 0) return;
 
-                    try
-                    {
-                        App.OpenArchive(files[0], true);
-                    }
-                    catch (Exception e)
-                    {
-                        ModalRenderer.ShowMessageModal("Error", e.Message);
-                    }
+                        try
+                        {
+                            App.OpenArchive(files[0], true);
+                        }
+                        catch (Exception e)
+                        {
+                            ModalRenderer.ShowMessageModal("Error", e.Message);
+                        }
+                    });
                 }
-                
+
                 ImGuiUtils.VerticalSpacing(10);
 
                 if (ImGuiUtils.CenteredButton("Play Custom Level", size))
                 {
-                    List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
-                    if (files.Count == 0) return;
-                    IgArchive.Open(files[0]).TryRunLevel();
+                    FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, files =>
+                    {
+                        if (files.Count == 0) return;
+                        IgArchive.Open(files[0]).TryRunLevel();
+                    });
                 }
             }
             else

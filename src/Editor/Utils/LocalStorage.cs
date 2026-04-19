@@ -143,10 +143,10 @@ namespace NST
         /// </summary>
         public static void SetNewGamePath()
         {
-            List<string> paths = FileExplorer.OpenFiles(FileExplorer.EXT_EXECUTABLE, false, DEFAULT_GAME_PATH);
-
-            if (paths.Count > 0)
+            FileExplorer.OpenFiles(FileExplorer.EXT_EXECUTABLE, false, paths =>
             {
+                if (paths.Count == 0) return;
+
                 string? folder = Path.GetDirectoryName(paths[0]);
 
                 if (folder != null)
@@ -157,7 +157,7 @@ namespace NST
                 {
                     ModalRenderer.ShowMessageModal("An error occurred", "Could not set the game path.");
                 }
-            }
+            }, DEFAULT_GAME_PATH);
         }
 
         /// <summary>

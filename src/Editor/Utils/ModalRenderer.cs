@@ -257,7 +257,8 @@ namespace NST
         private static RenameModal _renameModal = new RenameModal();
         private static WarningModal _warningModal = new WarningModal();
         private static LoadingModal _loadingModal = new LoadingModal();
-        private static List<IModalBase> _modals = [ _textModal, _confirmationModal, _deleteModal, _renameModal, _warningModal, _loadingModal ];
+        private static FileBrowserModal _fileBrowser = new FileBrowserModal();
+        private static List<IModalBase> _modals = [ _fileBrowser, _textModal, _confirmationModal, _deleteModal, _renameModal, _warningModal, _loadingModal ];
 
         /// <summary>
         /// Show a message modal (OK button)
@@ -311,6 +312,22 @@ namespace NST
         public static void CloseLoadingModal()
         {
             _loadingModal.Close();
+        }
+
+        /// <summary>
+        /// Show a file browser for opening one or multiple files
+        /// </summary>
+        public static void ShowOpenDialog(string filter, bool multiSelect, Action<List<string>> callback, string? initialDir = null)
+        {
+            _fileBrowser.ShowOpen(filter, multiSelect, callback, initialDir);
+        }
+
+        /// <summary>
+        /// Show a file browser for saving a file
+        /// </summary>
+        public static void ShowSaveDialog(string filter, string defaultName, Action<string?> callback, string? initialDir = null)
+        {
+            _fileBrowser.ShowSave(filter, defaultName, callback, initialDir);
         }
 
         /// <summary>

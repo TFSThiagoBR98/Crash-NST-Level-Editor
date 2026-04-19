@@ -120,9 +120,10 @@ namespace NST
 
             if (ImGui.Button("Import audio"))
             {
-                List<string> paths = FileExplorer.OpenFiles(FileExplorer.EXT_AUDIO, false, "");
-                if (paths.Count == 1)
+                FileExplorer.OpenFiles(FileExplorer.EXT_AUDIO, false, paths =>
                 {
+                    if (paths.Count != 1) return;
+
                     ModalRenderer.ShowLoadingModal("Importing audio...");
                     Task.Run(() =>
                     {
@@ -130,7 +131,7 @@ namespace NST
                         onReplace?.Invoke(_rawData);
                         ModalRenderer.CloseLoadingModal();
                     })
-                    .ContinueWith(t => 
+                    .ContinueWith(t =>
                     {
                         if (t.IsFaulted && t.Exception != null)
                         {
@@ -141,9 +142,9 @@ namespace NST
                             string logPath = CrashHandler.WriteLogsToFile();
                             ModalRenderer.ShowMessageModal("Error", $"An error occured while importing the audio\n\nLog file: {logPath}");
                         }
-                    }, 
+                    },
                     TaskContinuationOptions.OnlyOnFaulted);
-                }
+                }, "");
             }
 
             ImGui.Separator(); 
@@ -179,10 +180,11 @@ namespace NST
 
         private static void ExportAudio()
         {
-            string? path = FileExplorer.SaveFile(FileExplorer.EXT_AUDIO, _name + ".mp3");
-            if (path == null) return;
-
-            File.WriteAllBytes(path, _audioStream.ToArray());
+            FileExplorer.SaveFile(FileExplorer.EXT_AUDIO, _name + ".mp3", path =>
+            {
+                if (path == null) return;
+                File.WriteAllBytes(path, _audioStream.ToArray());
+            });
         }
 
         private static byte[] ReplaceAudio(byte[] data, string inputPath)

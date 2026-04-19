@@ -647,11 +647,11 @@ namespace NST
                         ImGui.SameLine();
                         if (ImGui.SmallButton("Export raw"))
                         {
-                            string? path = FileExplorer.SaveFile(FileExplorer.EXT_ALL, name + ".bin");
-                            if (path != null)
+                            FileExplorer.SaveFile(FileExplorer.EXT_ALL, name + ".bin", path =>
                             {
-                                File.WriteAllBytes(path, mem.Cast<u8>().ToArray());
-                            }
+                                if (path != null)
+                                    File.WriteAllBytes(path, mem.Cast<u8>().ToArray());
+                            });
                         }
                     }
                 }

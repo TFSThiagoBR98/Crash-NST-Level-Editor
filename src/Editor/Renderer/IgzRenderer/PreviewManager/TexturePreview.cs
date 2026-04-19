@@ -143,11 +143,11 @@ namespace NST
                 ? Path.GetFileNameWithoutExtension(image._name) + ".png"
                 : "image.png";
 
-            string? filePath = FileExplorer.SaveFile(FileExplorer.EXT_IMAGES, fileName);
-
-            if (filePath == null) return;
-
-            TextureHelper.SaveImageToFile(image.GetPixels(), image._width, image._height, filePath);
+            FileExplorer.SaveFile(FileExplorer.EXT_IMAGES, fileName, filePath =>
+            {
+                if (filePath == null) return;
+                TextureHelper.SaveImageToFile(image.GetPixels(), image._width, image._height, filePath);
+            });
         }
 
         /// <summary>
@@ -162,21 +162,16 @@ namespace NST
                 return;
             }
 
-            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_IMAGES, false, "");
-            if (files.Count != 1) return;
+            FileExplorer.OpenFiles(FileExplorer.EXT_IMAGES, false, files =>
+            {
+                if (files.Count != 1) return;
 
-            // Load image
-            byte[] pixels = TextureHelper.LoadImageFromFile(files[0], out int width, out int height);
-
-            // Update igImage2 data
-            image.SetPixels(pixels, width, height, image._format);
-            
-            // Save changes
-            _renderer.ArchiveFile.SetData(_renderer.Igz.Save());
-            _renderer.SetUpdated(image);
-
-            // Create OpenGL texture for UI rendering
-            LoadImage(pixels, width, height);
+                byte[] pixels = TextureHelper.LoadImageFromFile(files[0], out int width, out int height);
+                image.SetPixels(pixels, width, height, image._format);
+                _renderer.ArchiveFile.SetData(_renderer.Igz.Save());
+                _renderer.SetUpdated(image);
+                LoadImage(pixels, width, height);
+            }, "");
         }
     }
 }

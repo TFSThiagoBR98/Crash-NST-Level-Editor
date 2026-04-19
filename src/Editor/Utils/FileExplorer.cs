@@ -1,12 +1,9 @@
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using NativeFileDialogSharp;
 
 namespace NST
 {
     /// <summary>
-    /// Utility class for opening and saving files using cross-platform NativeFileDialogSharp
+    /// Utility class for opening and saving files using the ImGui-based file browser
     /// </summary>
     public static class FileExplorer
     {
@@ -17,87 +14,37 @@ namespace NST
         public static string EXT_AUDIO = "Audio Files (*.mp3,*.ogg,*.wav)|*.mp3;*.ogg;*.wav|" + EXT_ALL;
         public static string EXT_EXECUTABLE = "Executable Files (*.exe)|*.exe|" + EXT_ALL;
 
-        private static string? ConvertFilter(string winFormsFilter)
+        public static void OpenFiles(string extensions, bool multiSelect, Action<List<string>> onComplete, string? initialDirectory = null)
         {
-            var parts = winFormsFilter.Split('|');
-            var nfdFilters = new List<string>();
-            for (int i = 1; i < parts.Length; i += 2)
+            string? initialDir = initialDirectory ?? LocalStorage.Get("last_open_path", LocalStorage.ArchivePath);
+
+            ModalRenderer.ShowOpenDialog(extensions, multiSelect, paths =>
             {
-                var pattern = parts[i];
-                if (pattern == "*.*") continue;
-                
-                var exts = pattern.Split(';')
-                                  .Select(p => p.Trim().Replace("*.", "").Replace(".", ""))
-                                  .Where(e => !string.IsNullOrEmpty(e) && e != "*");
-                if (exts.Any())
+                if (paths.Count > 0 && initialDirectory == null)
                 {
-                    nfdFilters.Add(string.Join(",", exts));
+                    string? dir = Path.GetDirectoryName(paths[0]);
+                    if (dir != null) LocalStorage.Set("last_open_path", dir);
                 }
-            }
-            string result = string.Join(";", nfdFilters);
-            return string.IsNullOrEmpty(result) ? null : result;
+                onComplete(paths);
+            }, initialDir);
         }
 
-        public static List<string> OpenFiles(string extensions, bool multiSelect, string? initialDirectory = null)
-        {
-            string defaultPath = initialDirectory ?? LocalStorage.Get("last_open_path", LocalStorage.ArchivePath) ?? string.Empty;
-            string? filter = ConvertFilter(extensions);
-
-            if (multiSelect)
-            {
-                var result = Dialog.FileOpenMultiple(filter, defaultPath);
-                if (result.IsOk)
-                {
-                    var paths = result.Paths.ToList();
-                    if (paths.Count > 0 && initialDirectory == null)
-                    {
-                        string? path = Path.GetDirectoryName(paths[0]);
-                        if (path != null) LocalStorage.Set("last_open_path", path);
-                    }
-                    return paths;
-                }
-            }
-            else
-            {
-                var result = Dialog.FileOpen(filter, defaultPath);
-                if (result.IsOk)
-                {
-                    if (initialDirectory == null)
-                    {
-                        string? path = Path.GetDirectoryName(result.Path);
-                        if (path != null) LocalStorage.Set("last_open_path", path);
-                    }
-                    return [result.Path];
-                }
-            }
-
-            return [];
-        }
-
-        public static string? SaveFile(string extensions, string defaultName, string? initialDirectory = null)
+        public static void SaveFile(string extensions, string defaultName, Action<string?> onComplete, string? initialDirectory = null)
         {
             string defaultPath = initialDirectory ?? LocalStorage.Get("last_save_path", "") ?? string.Empty;
-            
+
             if (!string.IsNullOrEmpty(defaultName))
-            {
                 defaultPath = Path.Combine(defaultPath, SanitizeFileName(defaultName));
-            }
 
-            string? filter = ConvertFilter(extensions);
-
-            var result = Dialog.FileSave(filter, defaultPath);
-
-            if (result.IsOk)
+            ModalRenderer.ShowSaveDialog(extensions, Path.GetFileName(defaultPath), path =>
             {
-                if (initialDirectory == null)
+                if (path != null && initialDirectory == null)
                 {
-                    string? path = Path.GetDirectoryName(result.Path);
-                    if (path != null) LocalStorage.Set("last_save_path", path);
+                    string? dir = Path.GetDirectoryName(path);
+                    if (dir != null) LocalStorage.Set("last_save_path", dir);
                 }
-                return result.Path;
-            }
-
-            return null;
+                onComplete(path);
+            }, Path.GetDirectoryName(defaultPath));
         }
 
         private static string SanitizeFileName(string fileName)

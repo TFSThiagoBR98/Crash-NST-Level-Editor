@@ -351,21 +351,22 @@ namespace NST
 
         public static void OnClickOpen(bool fromLevelEditor = false)
         {
-            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false);
-
-            if (files.Count == 0) return;
-
-            try
+            FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, files =>
             {
-                OpenArchive(files[0], fromLevelEditor);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                ModalRenderer.ShowMessageModal("Error", e.Message);
-            }
+                if (files.Count == 0) return;
 
-            _mainMenu.IsOpen = false;
+                try
+                {
+                    OpenArchive(files[0], fromLevelEditor);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    ModalRenderer.ShowMessageModal("Error", e.Message);
+                }
+
+                _mainMenu.IsOpen = false;
+            });
         }
 
         public static void OnClickNew()

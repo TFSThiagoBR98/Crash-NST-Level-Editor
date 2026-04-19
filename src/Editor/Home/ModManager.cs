@@ -273,17 +273,19 @@ namespace NST
         /// </summary>
         private void OnClickAddMod()
         {
-            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, true);
-            if (files.Count == 0) return;
-
-            foreach (string file in files)
+            FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, true, files =>
             {
-                if (_modPaths.Contains(file)) continue;
-                _modPaths.Add(file);
-                _enabledMods.Add(file);
-            }
+                if (files.Count == 0) return;
 
-            SaveToLocalStorage();
+                foreach (string file in files)
+                {
+                    if (_modPaths.Contains(file)) continue;
+                    _modPaths.Add(file);
+                    _enabledMods.Add(file);
+                }
+
+                SaveToLocalStorage();
+            });
         }
         
         /// <summary>
@@ -303,19 +305,20 @@ namespace NST
         /// </summary>
         private void OnClickLocateMod(string path)
         {
-            List<string> files = FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, Path.GetDirectoryName(path));
-            if (files.Count != 1) return;
-
-            string filePath = files[0];
-
-            int index = _modPaths.IndexOf(path);
-            if (index != -1)
+            FileExplorer.OpenFiles(FileExplorer.EXT_ARCHIVES, false, files =>
             {
-                _modPaths[index] = filePath;
-                _enabledMods.Add(filePath);
-                
-                SaveToLocalStorage();
-            }
+                if (files.Count != 1) return;
+
+                string filePath = files[0];
+
+                int index = _modPaths.IndexOf(path);
+                if (index != -1)
+                {
+                    _modPaths[index] = filePath;
+                    _enabledMods.Add(filePath);
+                    SaveToLocalStorage();
+                }
+            }, Path.GetDirectoryName(path));
         }
         
         /// <summary>
