@@ -83,13 +83,11 @@ namespace Alchemy
         public void AddFile(IgArchiveFile file) => _files.Add(file);
         public void RemoveFile(IgArchiveFile file) => _files.Remove(file);
 
-        public IgArchive(string path) => _path = path;
-
-        public IgArchive(string path, List<IgArchiveFile> files, GameVersion version)
+        public IgArchive(string path, GameVersion version, List<IgArchiveFile>? files = null)
         {
-            GameVersion = version;
             _path = path;
-            _files = files;
+            _files = files ?? [];
+            GameVersion = version;
         }
 
         /// <summary>
@@ -146,7 +144,7 @@ namespace Alchemy
                 files.Add(file);
             }
 
-            return new IgArchive(archivePath, files, version);
+            return new IgArchive(archivePath, version, files);
         }
 
         /// <summary>

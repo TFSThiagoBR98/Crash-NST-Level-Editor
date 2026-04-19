@@ -232,7 +232,7 @@ namespace NST
             // Create update.pak
             string updatePath = Path.Join(LocalStorage.GamePath, "archives", "update.pak");
 
-            IgArchive update = new IgArchive(updatePath);
+            IgArchive update = new IgArchive(updatePath, GameVersion.NST);
 
             foreach (IgArchiveFile file in files.Values)
             {

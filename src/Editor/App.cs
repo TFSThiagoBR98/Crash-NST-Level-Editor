@@ -370,7 +370,7 @@ namespace NST
 
         public static void OnClickNew()
         {
-            IgArchive archive = new IgArchive("");
+            IgArchive archive = new IgArchive("", GameVersion.NST);
             _archives.Add(new IgArchiveRenderer(archive));
             _mainMenu.IsOpen = false;
         }

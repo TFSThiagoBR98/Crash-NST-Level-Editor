@@ -262,7 +262,7 @@ namespace NST
 
             // Create new archive
 
-            IgArchive archive = new IgArchive("Custom_Level.pak");
+            IgArchive archive = new IgArchive("Custom_Level.pak", GameVersion.NST);
 
             string basePath = sourceFile.GetPath().Split("/").SkipLast(2).Aggregate((a, b) => a + "/" + b);
             string mainPath = $"{basePath}/Custom_Level/Custom_Level.igz";

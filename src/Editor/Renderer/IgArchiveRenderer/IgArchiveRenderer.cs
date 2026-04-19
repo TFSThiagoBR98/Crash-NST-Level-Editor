@@ -260,7 +260,9 @@ namespace NST
 
                 if (fromLevelEditor || IsLevelArchive)
                 {
+                    if (Archive.GameVersion != GameVersion.NST) ImGui.BeginDisabled();
                     RenderPlayCurrentLevel();
+                    if (Archive.GameVersion != GameVersion.NST) ImGui.EndDisabled();
                 }
 
                 ImGui.EndMenuBar();
@@ -760,12 +762,12 @@ namespace NST
                 }
 
                 // Rebuild collisions if needed
-                if (updatedCollisions.Count > 0)
+                if (updatedCollisions.Count > 0 && Archive.GameVersion == GameVersion.NST)
                 {
                     StaticCollisionsUtils.RebuildCollisions(Archive, updatedCollisions);
                 }
 
-                if (IsLevelArchive && saveAs && Archive.FindCustomZoneInfoFile() == null)
+                if (IsLevelArchive && saveAs && Archive.GameVersion == GameVersion.NST && Archive.FindCustomZoneInfoFile() == null)
                 {
                     LevelBuilder.ConvertToCustomLevel(Archive);
                 }

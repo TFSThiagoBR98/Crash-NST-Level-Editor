@@ -281,7 +281,7 @@ namespace NST
             catch (Exception e)
             {
                 Console.WriteLine($"Error while launching the game: {e.Message}\n{e.StackTrace}");
-                ModalRenderer.ShowMessageModal("Could not launch the level", "The game is already running");
+                ModalRenderer.ShowMessageModal("Could not launch the level", e.Message);
             }
         }
 
@@ -356,7 +356,7 @@ namespace NST
 
             IgArchive update = File.Exists(LocalStorage.UpdateFilePath)
                 ? IgArchive.Open(LocalStorage.UpdateFilePath)
-                : new IgArchive(LocalStorage.UpdateFilePath);
+                : new IgArchive(LocalStorage.UpdateFilePath, GameVersion.NST);
                 
             foreach (IgArchiveFile file in update.GetFiles().ToList())
             {
