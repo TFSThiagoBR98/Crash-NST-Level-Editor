@@ -89,5 +89,20 @@ namespace NST
 
             return new THREE.Vector4(color._x, color._y, color._z, color._w);
         }
+
+        public static THREE.Vector4 FindColor(this igGraphicsMaterial igMaterial)
+        {
+            if (igMaterial._commonState == null || igMaterial._commonState._memory.Count < 28 * 4) 
+                return new THREE.Vector4(1, 1, 1, 1);
+
+            byte[] data = igMaterial._commonState._memory.ToArray();
+
+            float r = BitConverter.ToSingle(data, 24 * 4);
+            float g = BitConverter.ToSingle(data, 25 * 4);
+            float b = BitConverter.ToSingle(data, 26 * 4);
+            float a = BitConverter.ToSingle(data, 27 * 4);
+
+            return new THREE.Vector4(r, g, b, a);
+        }
     }
 }

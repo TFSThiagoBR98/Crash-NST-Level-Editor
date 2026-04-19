@@ -155,6 +155,11 @@ namespace NST
                 group.Attach(child);
             }
 
+            if (!selected && !IsSpawned)
+            {
+                SetLayer(group, selected);
+            }
+
             Object3D?.Parent?.Remove(Object3D);
 
             Object3D = group;

@@ -277,6 +277,7 @@ namespace NST
             try
             {
                 archive.RunLevel();
+                LocalStorage.AddRecentFile(archive.GetPath(), true);
             }
             catch (Exception e)
             {
@@ -298,6 +299,11 @@ namespace NST
             // Find level path
             int index = pkg.GetPath().IndexOf("maps/");
             if (index == -1) throw new Exception("The current archive is not a level.");
+
+            if (LocalStorage.IsFileLocked(Path.Join(LocalStorage.GamePath, "CrashBandicootNSaneTrilogy.exe")))
+            {
+                throw new Exception("The game is already running.");
+            }
 
             string levelPath = pkg.GetPath().Substring(index + 5);
             levelPath = levelPath.Replace("_pkg.igz", "");                                // Crash1/L101_NSanityBeach/L101_NSanityBeach

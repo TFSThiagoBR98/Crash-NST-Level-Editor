@@ -135,7 +135,11 @@ namespace NST
             }
             else if (material is igGraphicsMaterial gx)
             {
+                alphaTest  = gx._materialBitField._drawType == EigDrawType.kDrawTypeAlphaTest;
+                blending   = gx._materialBitField._drawType == EigDrawType.kDrawTypeTransparent || alphaTest;
+                drawType   = gx._materialBitField._drawType;
                 shaderName = gx._fxMaterialMetaName ?? "";
+                color      = gx.FindColor();
             }
             else
             {

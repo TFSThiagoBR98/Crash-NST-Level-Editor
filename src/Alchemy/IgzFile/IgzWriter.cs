@@ -198,10 +198,8 @@ namespace Alchemy
             nameListNSPC?.Write(this);
 
             // Build TMET, MTSZ and RVTB fixups
-            foreach((igObject obj, int value) in _objectOffsets)
+            foreach((igObject obj, int offset) in _objectOffsets)
             {
-                int offset = _objectOffsets[obj];
-
                 SetMemory(obj.MemoryPool);
                 _currentWriter!.Seek(offset,  SeekOrigin.Begin);
                 
@@ -210,7 +208,7 @@ namespace Alchemy
 
                 _currentWriter.Write((uint)AddTMET(objectType));
 
-                _fixups.RVTB.Add(EncodeOffset(value, obj.MemoryPool));
+                _fixups.RVTB.Add(EncodeOffset(offset, obj.MemoryPool));
             }
 
             // Build ROOT, ONAM and NSPC fixups
