@@ -676,7 +676,7 @@ namespace NST
             
             if (!IsUpdated && !compress)
             {
-                if (launchGame) Archive.TryRunLevel();
+                if (launchGame && Archive.GameVersion != GameVersion.CTR) Archive.TryRunLevel();
                 return;
             }
 
@@ -762,7 +762,7 @@ namespace NST
                 }
 
                 // Rebuild collisions if needed
-                if (updatedCollisions.Count > 0 && Archive.GameVersion == GameVersion.NST)
+                if (updatedCollisions.Count > 0)
                 {
                     StaticCollisionsUtils.RebuildCollisions(Archive, updatedCollisions);
                 }
@@ -806,7 +806,7 @@ namespace NST
 
                 ModalRenderer.CloseLoadingModal();
 
-                if (launchGame)
+                if (launchGame && Archive.GameVersion != GameVersion.CTR)
                 {
                     Archive.TryRunLevel();
                 }

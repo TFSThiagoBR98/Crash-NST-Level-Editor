@@ -4,7 +4,9 @@ namespace Havok
 {
     public class HavokFile
     {
-        public hkRootLevelContainer RootLevelContainer;
+        public hkRootLevelContainer RootLevelContainer { get; set; }
+
+        public GameVersion GameVersion { get; set; }
 
         private string _path;
         private HavokHeader _header;
@@ -14,13 +16,15 @@ namespace Havok
         public List<hkObject> GetRootObjects() => GetObjects(true);
         public hkObject GetObject(int offset) => _rootObjects[offset];
 
-        public HavokFile(string path, byte[] data) : this(data) => _path = path;
+        public HavokFile(string path, byte[] data, GameVersion version) : this(data, version) => _path = path;
 
-        public HavokFile(byte[] data)
+        public HavokFile(byte[] data, GameVersion version)
         {
             using MemoryStream stream = new MemoryStream(data.ToArray());
             using BinaryReader reader = new BinaryReader(stream);
             using BinaryWriter writer = new BinaryWriter(stream);
+
+            GameVersion = version;
 
             // File header
             _header = new HavokHeader(reader);
@@ -71,7 +75,7 @@ namespace Havok
             // Sections
             HavokClassNameSection classNameSection = new HavokClassNameSection();
             HavokTypeSection typeSection = new HavokTypeSection();
-            HavokDataSection dataSection = new HavokDataSection();
+            HavokDataSection dataSection = new HavokDataSection() { GameVersion = GameVersion };
 
             int sectionOffset = writer.GetPosition();
             int dataOffset = sectionOffset + HavokSection.Size * _header.sectionCount;

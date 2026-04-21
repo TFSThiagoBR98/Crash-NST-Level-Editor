@@ -19,7 +19,7 @@ namespace Havok
 
         protected void ParseElements(HavokFile hkx, BinaryReader reader, int offset, int count)
         {
-            int elementSize = AttributeUtils.GetFieldSize(typeof(T), GameVersion.NST);
+            int elementSize = AttributeUtils.GetFieldSize(typeof(T), hkx.GameVersion);
 
             for (int i = 0; i < count; i++)
             {
@@ -32,7 +32,7 @@ namespace Havok
 
         protected void WriteElements(HavokDataSection section, BinaryWriter writer, int offset)
         {
-            int elementSize = AttributeUtils.GetFieldSize(typeof(T), GameVersion.NST);
+            int elementSize = AttributeUtils.GetFieldSize(typeof(T), section.GameVersion);
 
             for (int i = 0; i < _elements.Count; i++)
             {
@@ -46,7 +46,7 @@ namespace Havok
         {
             if (_elements.Count == 0) return 0;
 
-            int elementSize = AttributeUtils.GetFieldSize(typeof(T), GameVersion.NST);
+            int elementSize = AttributeUtils.GetFieldSize(typeof(T), section.GameVersion);
             int size = _elements.Count * elementSize;
 
             int dataOffset = section.ReserveBytes(size);
@@ -96,8 +96,6 @@ namespace Havok
             section.AlignNextString = true;
         }
     }
-
-    public class hkMemoryPtr<T> : hkMemory<T> where T : hkReferencedObject { }
 
     public class hkList<T> : hkMemoryBase<T>
     {

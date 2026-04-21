@@ -11,7 +11,7 @@ namespace NST
         /// <summary>
         /// Build the tree from the file's root level container
         /// </summary>
-        public void BuildNodes(hkObject rootLevelContainer)
+        public void BuildNodes(hkObject rootLevelContainer, GameVersion version)
         {
             Dictionary<hkObject, HavokTreeNode> nodes = [];
 
@@ -22,7 +22,6 @@ namespace NST
                 hkObject obj = queue.Dequeue();
                 if (nodes.ContainsKey(obj)) continue;
 
-                string name = obj.GetType().Name + "_" + obj.GetHashCode();
                 HavokTreeNode node = new HavokTreeNode(obj);
                 nodes.Add(obj, node);
 
@@ -49,7 +48,7 @@ namespace NST
 
             foreach ((hkObject obj, HavokTreeNode node) in nodes)
             {
-                foreach (CachedFieldAttr field in obj.GetFields())
+                foreach (CachedFieldAttr field in obj.GetFields(version))
                 {
                     if (field.GetName() == "_name" && field.GetFieldType() == typeof(string))
                     {

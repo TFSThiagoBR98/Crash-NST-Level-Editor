@@ -70,7 +70,7 @@ namespace Alchemy
         /// <summary>
         /// Uncompress and convert this file to a Havok file
         /// </summary>
-        public HavokFile ToHavokFile() => new HavokFile(_path, Uncompress());
+        public HavokFile ToHavokFile() => new HavokFile(_path, Uncompress(), GameVersion);
 
         public IgArchiveFile(string path, GameVersion version)
         {

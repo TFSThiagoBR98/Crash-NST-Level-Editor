@@ -603,8 +603,6 @@ namespace NST
 
         private void LoadCollisions(List<NSTEntity> entities)
         {
-            if (Archive.GameVersion == GameVersion.CTR) return;
-
             _collisionData = StaticCollisionsUtils.GetCollisionData(Archive);
 
             IgArchiveFile? collisionFile = Archive.FindCollisionFile(".hkx");

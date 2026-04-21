@@ -16,6 +16,7 @@ namespace Havok
         private List<(int offset, hkObject destination)> _globalFixups = [];
 
         public bool AlignNextString { get; set; }
+        public GameVersion GameVersion { get; set; }
 
         public void AddObjectToQueue(hkObject obj) => _localObjectQueue.Add(obj);
         public void AddLocalFixup(int offset, int destination) => _localFixups.Add((offset, destination));
@@ -50,7 +51,7 @@ namespace Havok
 
         private void WriteObject(hkObject obj)
         {
-            int position = ReserveBytes(AttributeUtils.GetObjectSize(obj.GetType(), GameVersion.NST));
+            int position = ReserveBytes(AttributeUtils.GetObjectSize(obj.GetType(), GameVersion));
 
             _writtenObjects.Add(obj, position);
             _writer.Seek(position, SeekOrigin.Begin);

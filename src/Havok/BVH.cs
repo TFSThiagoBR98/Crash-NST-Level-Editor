@@ -150,7 +150,7 @@ namespace Havok
                 
                 if (instance._shape is hknpCompressedMeshShape cshape)
                 {
-                    shapeMin = cshape._data._meshTree._min.AsVector3();
+                    shapeMin = cshape._data!._meshTree!._min.AsVector3();
                     shapeMax = cshape._data._meshTree._max.AsVector3();
 
                     THREE.Matrix4 scaledTransform = instance._transform.ToMatrix4()
@@ -200,7 +200,7 @@ namespace Havok
                     shapeMin = transformedCenter - new Vector3(radius, radius, radius);
                     shapeMax = transformedCenter + new Vector3(radius, radius, radius);
                 }
-                else throw new Exception("Unsupported shape type: " + instance._shape.GetType());
+                else throw new Exception("Unsupported shape type: " + instance._shape?.GetType());
 
                 min = Vector3.Min(min, shapeMin);
                 max = Vector3.Max(max, shapeMax);

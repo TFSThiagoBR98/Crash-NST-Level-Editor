@@ -29,7 +29,7 @@ namespace NST
         {
             _havokFile = havokFile;
 
-            TreeView.BuildNodes(havokFile.RootLevelContainer);
+            TreeView.BuildNodes(havokFile.RootLevelContainer, havokFile.GameVersion);
         }
 
         public override void SetUpdated(object? obj = null)

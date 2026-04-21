@@ -149,19 +149,22 @@ namespace NST
                 }
             }
 
-            // Rebuild BVH tree
-            BVHNode root = BVHBuilder.Build(compoundShape._elements.GetElements());
-            List<hkcdStaticTreeCodec3Axis6> axis6Tree = root.BuildAxis6Tree(compoundShape._elements.GetElements());
+            if (compoundShape._boundingVolumeData != null)
+            {
+                // Rebuild BVH tree
+                BVHNode root = BVHBuilder.Build(compoundShape._elements.GetElements());
+                List<hkcdStaticTreeCodec3Axis6> axis6Tree = root.BuildAxis6Tree(compoundShape._elements.GetElements());
 
-            compoundShape._boundingVolumeData._nodes.Clear();
-            compoundShape._boundingVolumeData._nodes.AddRange(axis6Tree);
-
-            // Update bounds
-            compoundShape._min = new System.Numerics.Vector4(root.boundsMin.X, root.boundsMin.Y, root.boundsMin.Z, compoundShape._min.W);
-            compoundShape._max = new System.Numerics.Vector4(root.boundsMax.X, root.boundsMax.Y, root.boundsMax.Z, compoundShape._max.W);
-            compoundShape._boundingVolumeData._min = new System.Numerics.Vector4(root.boundsMin.X, root.boundsMin.Y, root.boundsMin.Z, compoundShape._boundingVolumeData._min.W);
-            compoundShape._boundingVolumeData._max = new System.Numerics.Vector4(root.boundsMax.X, root.boundsMax.Y, root.boundsMax.Z, compoundShape._boundingVolumeData._max.W);
-            compoundShape._numShapeKeyBits = (byte)Math.Max(1, 32 - System.Numerics.BitOperations.LeadingZeroCount((uint)compoundShape._elements.Count-1));
+                compoundShape._boundingVolumeData._nodes.Clear();
+                compoundShape._boundingVolumeData._nodes.AddRange(axis6Tree);
+                compoundShape._boundingVolumeData._min = new System.Numerics.Vector4(root.boundsMin.X, root.boundsMin.Y, root.boundsMin.Z, compoundShape._boundingVolumeData._min.W);
+                compoundShape._boundingVolumeData._max = new System.Numerics.Vector4(root.boundsMax.X, root.boundsMax.Y, root.boundsMax.Z, compoundShape._boundingVolumeData._max.W);
+            
+                // Update bounds
+                compoundShape._min = new System.Numerics.Vector4(root.boundsMin.X, root.boundsMin.Y, root.boundsMin.Z, compoundShape._min.W);
+                compoundShape._max = new System.Numerics.Vector4(root.boundsMax.X, root.boundsMax.Y, root.boundsMax.Z, compoundShape._max.W);
+                compoundShape._numShapeKeyBits = (byte)Math.Max(1, 32 - System.Numerics.BitOperations.LeadingZeroCount((uint)compoundShape._elements.Count-1));
+            }
 
             collisionHkxFile.SetData(collisionHkx.Save());
 

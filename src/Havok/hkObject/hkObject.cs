@@ -6,7 +6,7 @@ namespace Havok
     {
         public virtual uint Hash => 0x0;
 
-        public IReadOnlyList<CachedFieldAttr> GetFields() => AttributeUtils.GetAttributes(GetType()).GetFields(GameVersion.NST);
+        public IReadOnlyList<CachedFieldAttr> GetFields(GameVersion version) => AttributeUtils.GetAttributes(GetType()).GetFields(version);
 
         public hkObject Clone() => (hkObject)MemberwiseClone();
         
@@ -14,9 +14,9 @@ namespace Havok
         {
             int startOffset = (int)reader.BaseStream.Position;
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(hkx.GameVersion))
             {
-                int fieldOffset = startOffset + field.GetOffset(GameVersion.NST);
+                int fieldOffset = startOffset + field.GetOffset(hkx.GameVersion);
                 
                 reader.Seek(fieldOffset);
 
@@ -30,9 +30,9 @@ namespace Havok
         {
             int startOffset = writer.GetPosition();
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(section.GameVersion))
             {
-                int fieldOffset = startOffset + field.GetOffset(GameVersion.NST);
+                int fieldOffset = startOffset + field.GetOffset(section.GameVersion);
                 
                 object? value = field.GetValue(this);
 
@@ -152,7 +152,7 @@ namespace Havok
         {
             List<hkObject> children = [];
 
-            foreach (CachedFieldAttr field in GetFields())
+            foreach (CachedFieldAttr field in GetFields(GameVersion.None))
             {
                 object? value = field.GetValue(this);
 

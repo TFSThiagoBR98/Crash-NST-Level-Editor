@@ -289,6 +289,8 @@ namespace NST
         private static void RunLevel(this IgArchive archive)
         {
             ModManager.PlayButtonTimeout();
+
+            if (archive.GameVersion == GameVersion.CTR) throw new Exception("This option is only available for Crash NST");
             
             if (LocalStorage.GamePath == null) throw new Exception("The path to the game folder is not set.");
 
