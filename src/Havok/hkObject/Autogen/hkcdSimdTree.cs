@@ -2,11 +2,11 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(24)]
-    public class hkcdSimdTree : hkBaseObject
+    [ObjectAttr(nst: 24, ctr: 24)]
+    public class hkcdSimdTree : hkObject
     {
         public override uint Hash => 0x84c43960;
 
-        [FieldAttr(8)] public hkMemory<hkcdSimdTreeNode> _nodes; // TYPE_ARRAY, ctype: hkcdSimdTreeNode, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 8, ctr: 8)] public hkMemory<hkcdSimdTreeNode> _nodes;
     }
 }

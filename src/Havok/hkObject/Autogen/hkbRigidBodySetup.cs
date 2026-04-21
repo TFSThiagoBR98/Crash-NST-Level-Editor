@@ -2,13 +2,13 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(32)]
+    [ObjectAttr(nst: 32, ctr: 32)]
     public class hkbRigidBodySetup : hkObject
     {
         public override uint Hash => 0x3b082f95;
 
-        [FieldAttr(0)] public u32 _collisionFilterInfo; // TYPE_UINT32
-        [FieldAttr(4)] public EType _type; // TYPE_ENUM, etype: Type, subtype: TYPE_INT8
-        [FieldAttr(8)] public hkbShapeSetup _shapeSetup; // TYPE_STRUCT, ctype: hkbShapeSetup
+        [FieldAttr(nst: 0, ctr: 0)] public uint _collisionFilterInfo;
+        [FieldAttr(nst: 4, ctr: 4)] public EType _type;
+        [FieldAttr(nst: 8, ctr: 8)] public hkbShapeSetup? _shapeSetup;
     }
 }

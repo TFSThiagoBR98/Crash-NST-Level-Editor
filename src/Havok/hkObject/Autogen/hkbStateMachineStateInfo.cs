@@ -2,20 +2,20 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(120)]
+    [ObjectAttr(nst: 120, ctr: 120)]
     public class hkbStateMachineStateInfo : hkbBindable
     {
         public override uint Hash => 0x39d76713;
 
-        [FieldAttr(48)] public hkMemoryPtr<hkbStateListener> _listeners; // TYPE_ARRAY, ctype: hkbStateListener, subtype: TYPE_POINTER
-        [FieldAttr(64)] public hkbStateMachineEventPropertyArray _enterNotifyEvents; // TYPE_POINTER, ctype: hkbStateMachineEventPropertyArray, subtype: TYPE_STRUCT
-        [FieldAttr(72)] public hkbStateMachineEventPropertyArray _exitNotifyEvents; // TYPE_POINTER, ctype: hkbStateMachineEventPropertyArray, subtype: TYPE_STRUCT
-        [FieldAttr(80)] public hkbStateMachineTransitionInfoArray _transitions; // TYPE_POINTER, ctype: hkbStateMachineTransitionInfoArray, subtype: TYPE_STRUCT
-        [FieldAttr(88)] public hkbGenerator _generator; // TYPE_POINTER, ctype: hkbGenerator, subtype: TYPE_STRUCT
-        [FieldAttr(96)] public string _name; // TYPE_STRINGPTR
-        [FieldAttr(104)] public i32 _stateId; // TYPE_INT32
-        [FieldAttr(108)] public float _probability; // TYPE_REAL
-        [FieldAttr(112)] public bool _enable; // TYPE_BOOL
-        [FieldAttr(113)] public bool _hasEventlessTransitions; // TYPE_BOOL, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 48, ctr: 48)] public hkMemory<hkbStateListener> _listeners;
+        [FieldAttr(nst: 64, ctr: 64)] public hkbStateMachineEventPropertyArray? _enterNotifyEvents;
+        [FieldAttr(nst: 72, ctr: 72)] public hkbStateMachineEventPropertyArray? _exitNotifyEvents;
+        [FieldAttr(nst: 80, ctr: 80)] public hkbStateMachineTransitionInfoArray? _transitions;
+        [FieldAttr(nst: 88, ctr: 88)] public hkbGenerator? _generator;
+        [FieldAttr(nst: 96, ctr: 96)] public string? _name;
+        [FieldAttr(nst: 104, ctr: 104)] public int _stateId;
+        [FieldAttr(nst: 108, ctr: 108)] public float _probability;
+        [FieldAttr(nst: 112, ctr: 112)] public bool _enable;
+        [FieldAttr(nst: 113, ctr: 113)] public bool _hasEventlessTransitions;
     }
 }

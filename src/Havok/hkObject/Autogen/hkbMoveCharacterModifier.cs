@@ -3,12 +3,13 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(128)]
+    [ObjectAttr(nst: 128, ctr: 128)]
     public class hkbMoveCharacterModifier : hkbModifier
     {
         public override uint Hash => 0x8a40ba00;
 
-        [FieldAttr(96)] public Vector4 _offsetPerSecondMS; // TYPE_VECTOR4
-        [FieldAttr(112)] public float _timeSinceLastModify; // TYPE_REAL, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 96, ctr: 96)] public Vector4 _offsetPerSecondMS;
+        [FieldAttr(ctr: 112)] public bool _useStartOfFrameRotation;
+        [FieldAttr(nst: 112, ctr: 116)] public float _timeSinceLastModify;
     }
 }

@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(16)]
+    [ObjectAttr(nst: 16, ctr: 16)]
     public class hkaAnnotationTrackAnnotation : hkObject
     {
         public override uint Hash => 0x623bf34f;
 
-        [FieldAttr(0)] public float _time; // TYPE_REAL
-        [FieldAttr(8)] public string _text; // TYPE_STRINGPTR
+        [FieldAttr(nst: 0, ctr: 0)] public float _time;
+        [FieldAttr(nst: 8, ctr: 8)] public string? _text;
     }
 }

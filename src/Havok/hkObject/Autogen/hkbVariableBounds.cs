@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(8)]
+    [ObjectAttr(nst: 8, ctr: 8)]
     public class hkbVariableBounds : hkObject
     {
         public override uint Hash => 0x9b766364;
 
-        [FieldAttr(0)] public hkbVariableValue _min; // TYPE_STRUCT, ctype: hkbVariableValue
-        [FieldAttr(4)] public hkbVariableValue _max; // TYPE_STRUCT, ctype: hkbVariableValue
+        [FieldAttr(nst: 0, ctr: 0)] public hkbVariableValue? _min;
+        [FieldAttr(nst: 4, ctr: 4)] public hkbVariableValue? _max;
     }
 }

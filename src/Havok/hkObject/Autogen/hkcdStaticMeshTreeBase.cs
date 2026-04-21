@@ -2,16 +2,16 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(112)]
+    [ObjectAttr(nst: 112, ctr: 112)]
     public class hkcdStaticMeshTreeBase : hkcdStaticTreeTreehkcdStaticTreeDynamicStorage5
     {
         public override uint Hash => 0xf885dcd0;
 
-        [FieldAttr(48)] public i32 _numPrimitiveKeys; // TYPE_INT32
-        [FieldAttr(52)] public i32 _bitsPerKey; // TYPE_INT32
-        [FieldAttr(56)] public u32 _maxKeyValue; // TYPE_UINT32
-        [FieldAttr(64)] public hkMemory<hkcdStaticMeshTreeBaseSection> _sections; // TYPE_ARRAY, ctype: hkcdStaticMeshTreeBaseSection, subtype: TYPE_STRUCT
-        [FieldAttr(80)] public hkMemory<hkcdStaticMeshTreeBasePrimitive> _primitives; // TYPE_ARRAY, ctype: hkcdStaticMeshTreeBasePrimitive, subtype: TYPE_STRUCT
-        [FieldAttr(96)] public hkMemory<u16> _sharedVerticesIndex; // TYPE_ARRAY, subtype: TYPE_UINT16
+        [FieldAttr(nst: 48, ctr: 48)] public int _numPrimitiveKeys;
+        [FieldAttr(nst: 52, ctr: 52)] public int _bitsPerKey;
+        [FieldAttr(nst: 56, ctr: 56)] public uint _maxKeyValue;
+        [FieldAttr(nst: 64, ctr: 64)] public hkMemory<hkcdStaticMeshTreeBaseSection> _sections;
+        [FieldAttr(nst: 80, ctr: 80)] public hkMemory<hkcdStaticMeshTreeBasePrimitive> _primitives;
+        [FieldAttr(nst: 96, ctr: 96)] public hkMemory<u16> _sharedVerticesIndex;
     }
 }

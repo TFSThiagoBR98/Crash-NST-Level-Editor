@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(136)]
+    [ObjectAttr(nst: 136, ctr: 136)]
     public class hkxVertexBuffer : hkReferencedObject
     {
         public override uint Hash => 0xc7213b44;
 
-        [FieldAttr(16)] public hkxVertexBufferVertexData _data; // TYPE_STRUCT, ctype: hkxVertexBufferVertexData
-        [FieldAttr(120)] public hkxVertexDescription _desc; // TYPE_STRUCT, ctype: hkxVertexDescription
+        [FieldAttr(nst: 16, ctr: 16)] public hkxVertexBufferVertexData? _data;
+        [FieldAttr(nst: 120, ctr: 120)] public hkxVertexDescription? _desc;
     }
 }

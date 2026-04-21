@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(96)]
+    [ObjectAttr(nst: 96, ctr: 96)]
     public class hknpCompositeShape : hknpShape
     {
         public override uint Hash => 0x12bb3bef;
 
-        [FieldAttr(48)] public hknpSparseCompactMapunsignedshort _edgeWeldingMap; // TYPE_STRUCT, ctype: hknpSparseCompactMapunsignedshort
-        [FieldAttr(88)] public u32 _shapeTagCodecInfo; // TYPE_UINT32
+        [FieldAttr(nst: 48, ctr: 40)] public hknpSparseCompactMapunsignedshort? _edgeWeldingMap;
+        [FieldAttr(nst: 88, ctr: 80)] public uint _shapeTagCodecInfo;
     }
 }

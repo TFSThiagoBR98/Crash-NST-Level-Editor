@@ -2,13 +2,13 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(16)]
+    [ObjectAttr(nst: 16, ctr: 16)]
     public class hkRefCountedPropertiesEntry : hkObject
     {
         public override uint Hash => 0x28ef93ed;
 
-        [FieldAttr(0)] public hkReferencedObject _object; // TYPE_POINTER, ctype: hkReferencedObject, subtype: TYPE_STRUCT
-        [FieldAttr(8)] public u16 _key; // TYPE_UINT16
-        [FieldAttr(10)] public u16 _flags; // TYPE_UINT16
+        [FieldAttr(nst: 0, ctr: 0)] public hkReferencedObject? _object;
+        [FieldAttr(nst: 8, ctr: 8)] public u16 _key;
+        [FieldAttr(nst: 10, ctr: 10)] public u16 _flags;
     }
 }

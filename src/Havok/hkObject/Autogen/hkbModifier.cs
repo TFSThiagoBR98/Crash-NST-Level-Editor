@@ -2,14 +2,14 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(88)]
+    [ObjectAttr(nst: 88, ctr: 88)]
     public class hkbModifier : hkbNode
     {
         public override uint Hash => 0xc811e80c;
 
-        [FieldAttr(80)] public bool _enable; // TYPE_BOOL
-        [FieldAttr(81)] public bool _padModifier_0; // TYPE_BOOL, arrsize: 3, flags: SERIALIZE_IGNORED
-        [FieldAttr(82)] public bool _padModifier_1;
-        [FieldAttr(83)] public bool _padModifier_2;
+        [FieldAttr(nst: 80, ctr: 80)] public bool _enable;
+        [FieldAttr(nst: 81, ctr: 81)] public bool _padModifier_0;
+        [FieldAttr(nst: 82, ctr: 82)] public bool _padModifier_1;
+        [FieldAttr(nst: 83, ctr: 83)] public bool _padModifier_2;
     }
 }

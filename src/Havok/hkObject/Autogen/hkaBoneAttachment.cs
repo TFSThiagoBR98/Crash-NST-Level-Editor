@@ -3,15 +3,15 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(128)]
+    [ObjectAttr(nst: 128, ctr: 128)]
     public class hkaBoneAttachment : hkReferencedObject
     {
         public override uint Hash => 0xb566faa5;
 
-        [FieldAttr(16)] public string _originalSkeletonName; // TYPE_STRINGPTR
-        [FieldAttr(32)] public Matrix4x4 _boneFromAttachment; // TYPE_MATRIX4
-        [FieldAttr(96)] public hkReferencedObject _attachment; // TYPE_POINTER, ctype: hkReferencedObject, subtype: TYPE_STRUCT
-        [FieldAttr(104)] public string _name; // TYPE_STRINGPTR
-        [FieldAttr(112)] public i16 _boneIndex; // TYPE_INT16
+        [FieldAttr(nst: 16, ctr: 16)] public string? _originalSkeletonName;
+        [FieldAttr(nst: 32, ctr: 32)] public Matrix4x4 _boneFromAttachment;
+        [FieldAttr(nst: 96, ctr: 96)] public hkReferencedObject? _attachment;
+        [FieldAttr(nst: 104, ctr: 104)] public string? _name;
+        [FieldAttr(nst: 112, ctr: 112)] public i16 _boneIndex;
     }
 }

@@ -2,14 +2,14 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(192)]
+    [ObjectAttr(nst: 192, ctr: 184)]
     public class hkxVertexAnimation : hkReferencedObject
     {
         public override uint Hash => 0x27678cb3;
 
-        [FieldAttr(16)] public float _time; // TYPE_REAL
-        [FieldAttr(24)] public hkxVertexBuffer _vertData; // TYPE_STRUCT, ctype: hkxVertexBuffer
-        [FieldAttr(160)] public hkMemory<i32> _vertexIndexMap; // TYPE_ARRAY, subtype: TYPE_INT32
-        [FieldAttr(176)] public hkMemory<hkxVertexAnimationUsageMap> _componentMap; // TYPE_ARRAY, ctype: hkxVertexAnimationUsageMap, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 16, ctr: 12)] public float _time;
+        [FieldAttr(nst: 24, ctr: 16)] public hkxVertexBuffer? _vertData;
+        [FieldAttr(nst: 160, ctr: 152)] public hkMemory<int> _vertexIndexMap;
+        [FieldAttr(nst: 176, ctr: 168)] public hkMemory<hkxVertexAnimationUsageMap> _componentMap;
     }
 }

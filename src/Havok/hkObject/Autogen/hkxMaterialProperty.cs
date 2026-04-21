@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(8)]
+    [ObjectAttr(nst: 8, ctr: 8)]
     public class hkxMaterialProperty : hkObject
     {
         public override uint Hash => 0xd295234d;
 
-        [FieldAttr(0)] public u32 _key; // TYPE_UINT32
-        [FieldAttr(4)] public u32 _value; // TYPE_UINT32
+        [FieldAttr(nst: 0, ctr: 0)] public uint _key;
+        [FieldAttr(nst: 4, ctr: 4)] public uint _value;
     }
 }

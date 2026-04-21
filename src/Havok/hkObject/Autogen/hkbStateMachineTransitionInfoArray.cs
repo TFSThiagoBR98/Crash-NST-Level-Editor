@@ -2,13 +2,13 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(40)]
+    [ObjectAttr(nst: 40, ctr: 40)]
     public class hkbStateMachineTransitionInfoArray : hkReferencedObject
     {
         public override uint Hash => 0x704a19af;
 
-        [FieldAttr(16)] public hkMemory<hkbStateMachineTransitionInfo> _transitions; // TYPE_ARRAY, ctype: hkbStateMachineTransitionInfo, subtype: TYPE_STRUCT
-        [FieldAttr(32)] public bool _hasEventlessTransitions; // TYPE_BOOL, flags: SERIALIZE_IGNORED
-        [FieldAttr(33)] public bool _hasTimeBoundedTransitions; // TYPE_BOOL, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 16, ctr: 16)] public hkMemory<hkbStateMachineTransitionInfo> _transitions;
+        [FieldAttr(nst: 32, ctr: 32)] public bool _hasEventlessTransitions;
+        [FieldAttr(nst: 33, ctr: 33)] public bool _hasTimeBoundedTransitions;
     }
 }

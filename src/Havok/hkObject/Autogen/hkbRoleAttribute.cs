@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(4)]
+    [ObjectAttr(nst: 4, ctr: 4)]
     public class hkbRoleAttribute : hkObject
     {
         public override uint Hash => 0xfecef669;
 
-        [FieldAttr(0)] public ERole _role; // TYPE_ENUM, etype: Role, subtype: TYPE_INT16
-        [FieldAttr(2)] public i16 _flags; // TYPE_FLAGS, etype: RoleFlags, subtype: TYPE_INT16
+        [FieldAttr(nst: 0, ctr: 0)] public ERole _role;
+        [FieldAttr(nst: 2, ctr: 2)] public ERoleFlags _flags;
     }
 }

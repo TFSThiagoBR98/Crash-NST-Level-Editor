@@ -2,12 +2,12 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(40)]
+    [ObjectAttr(nst: 40, ctr: 40)]
     public class hkbCharacterControllerSetup : hkObject
     {
         public override uint Hash => 0xaf5f7339;
 
-        [FieldAttr(0)] public hkbRigidBodySetup _rigidBodySetup; // TYPE_STRUCT, ctype: hkbRigidBodySetup
-        [FieldAttr(32)] public hkReferencedObject _controllerCinfo; // TYPE_POINTER, ctype: hkReferencedObject, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 0, ctr: 0)] public hkbRigidBodySetup? _rigidBodySetup;
+        [FieldAttr(nst: 32, ctr: 32)] public hkReferencedObject? _controllerCinfo;
     }
 }

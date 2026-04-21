@@ -3,14 +3,14 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(96)]
+    [ObjectAttr(nst: 96, ctr: 80)]
     public class hkaDefaultAnimatedReferenceFrame : hkaAnimatedReferenceFrame
     {
         public override uint Hash => 0x60f8e0b8;
 
-        [FieldAttr(32)] public Vector4 _up; // TYPE_VECTOR4
-        [FieldAttr(48)] public Vector4 _forward; // TYPE_VECTOR4
-        [FieldAttr(64)] public float _duration; // TYPE_REAL
-        [FieldAttr(72)] public hkMemory<Vector4> _referenceFrameSamples; // TYPE_ARRAY, subtype: TYPE_VECTOR4
+        [FieldAttr(nst: 32, ctr: 16)] public Vector4 _up;
+        [FieldAttr(nst: 48, ctr: 32)] public Vector4 _forward;
+        [FieldAttr(nst: 64, ctr: 48)] public float _duration;
+        [FieldAttr(nst: 72, ctr: 56)] public hkMemory<Vector4> _referenceFrameSamples;
     }
 }

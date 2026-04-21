@@ -3,13 +3,13 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(80)]
+    [ObjectAttr(nst: 80, ctr: 64)]
     public class hknpConvexPolytopeShape : hknpConvexShape
     {
         public override uint Hash => 0x3ce9b3e3;
 
-        [FieldAttr(64)] public hkList<Vector4> _planes; // TYPE_RELARRAY, subtype: TYPE_VECTOR4
-        [FieldAttr(68)] public hkList<hknpConvexPolytopeShapeFace> _faces; // TYPE_RELARRAY, ctype: hknpConvexPolytopeShapeFace, subtype: TYPE_STRUCT
-        [FieldAttr(72)] public hkList<u8> _indices; // TYPE_RELARRAY, subtype: TYPE_UINT8
+        [FieldAttr(nst: 64, ctr: 44)] public hkList<Vector4> _planes;
+        [FieldAttr(nst: 68, ctr: 48)] public hkList<hknpConvexPolytopeShapeFace> _faces;
+        [FieldAttr(nst: 72, ctr: 52)] public hkList<u8> _indices;
     }
 }

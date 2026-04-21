@@ -2,11 +2,11 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(32)]
+    [ObjectAttr(nst: 32, ctr: 32)]
     public class hkxAttributeHolder : hkReferencedObject
     {
         public override uint Hash => 0xfc72021b;
 
-        [FieldAttr(16)] public hkMemory<hkxAttributeGroup> _attributeGroups; // TYPE_ARRAY, ctype: hkxAttributeGroup, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 16, ctr: 16)] public hkMemory<hkxAttributeGroup> _attributeGroups;
     }
 }

@@ -2,15 +2,15 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(64)]
+    [ObjectAttr(nst: 64, ctr: 56)]
     public class hkxIndexBuffer : hkReferencedObject
     {
         public override uint Hash => 0x81d1cd6e;
 
-        [FieldAttr(16)] public EIndexType _indexType; // TYPE_ENUM, etype: IndexType, subtype: TYPE_INT8
-        [FieldAttr(24)] public hkMemory<u16> _indices16; // TYPE_ARRAY, subtype: TYPE_UINT16
-        [FieldAttr(40)] public hkMemory<u32> _indices32; // TYPE_ARRAY, subtype: TYPE_UINT32
-        [FieldAttr(56)] public u32 _vertexBaseOffset; // TYPE_UINT32
-        [FieldAttr(60)] public u32 _length; // TYPE_UINT32
+        [FieldAttr(nst: 16, ctr: 12)] public EIndexType _indexType;
+        [FieldAttr(nst: 24, ctr: 16)] public hkMemory<u16> _indices16;
+        [FieldAttr(nst: 40, ctr: 32)] public hkMemory<uint> _indices32;
+        [FieldAttr(nst: 56, ctr: 48)] public uint _vertexBaseOffset;
+        [FieldAttr(nst: 60, ctr: 52)] public uint _length;
     }
 }

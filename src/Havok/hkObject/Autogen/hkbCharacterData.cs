@@ -3,27 +3,27 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(240)]
+    [ObjectAttr(nst: 240, ctr: 240)]
     public class hkbCharacterData : hkReferencedObject
     {
         public override uint Hash => 0xfec46c1f;
 
-        [FieldAttr(16)] public hkbCharacterControllerSetup _characterControllerSetup; // TYPE_STRUCT, ctype: hkbCharacterControllerSetup
-        [FieldAttr(64)] public Vector4 _modelUpMS; // TYPE_VECTOR4
-        [FieldAttr(80)] public Vector4 _modelForwardMS; // TYPE_VECTOR4
-        [FieldAttr(96)] public Vector4 _modelRightMS; // TYPE_VECTOR4
-        [FieldAttr(112)] public hkMemory<hkbVariableInfo> _characterPropertyInfos; // TYPE_ARRAY, ctype: hkbVariableInfo, subtype: TYPE_STRUCT
-        [FieldAttr(128)] public hkMemory<i32> _numBonesPerLod; // TYPE_ARRAY, subtype: TYPE_INT32
-        [FieldAttr(144)] public hkbVariableValueSet _characterPropertyValues; // TYPE_POINTER, ctype: hkbVariableValueSet, subtype: TYPE_STRUCT
-        [FieldAttr(152)] public hkbFootIkDriverInfo _footIkDriverInfo; // TYPE_POINTER, ctype: hkbFootIkDriverInfo, subtype: TYPE_STRUCT
-        [FieldAttr(160)] public hkbHandIkDriverInfo _handIkDriverInfo; // TYPE_POINTER, ctype: hkbHandIkDriverInfo, subtype: TYPE_STRUCT
-        [FieldAttr(168)] public hkReferencedObject _aiControlDriverInfo; // TYPE_POINTER, ctype: hkReferencedObject, subtype: TYPE_STRUCT
-        [FieldAttr(176)] public hkbCharacterStringData _stringData; // TYPE_POINTER, ctype: hkbCharacterStringData, subtype: TYPE_STRUCT
-        [FieldAttr(184)] public hkbMirroredSkeletonInfo _mirroredSkeletonInfo; // TYPE_POINTER, ctype: hkbMirroredSkeletonInfo, subtype: TYPE_STRUCT
-        [FieldAttr(192)] public hkMemory<i16> _boneAttachmentBoneIndices; // TYPE_ARRAY, subtype: TYPE_INT16
-        [FieldAttr(208)] public hkMemory<Matrix4x4> _boneAttachmentTransforms; // TYPE_ARRAY, subtype: TYPE_MATRIX4
-        [FieldAttr(224)] public float _scale; // TYPE_REAL
-        [FieldAttr(228)] public i16 _numHands; // TYPE_INT16, flags: SERIALIZE_IGNORED
-        [FieldAttr(230)] public i16 _numFloatSlots; // TYPE_INT16, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 16, ctr: 16)] public hkbCharacterControllerSetup? _characterControllerSetup;
+        [FieldAttr(nst: 64, ctr: 64)] public Vector4 _modelUpMS;
+        [FieldAttr(nst: 80, ctr: 80)] public Vector4 _modelForwardMS;
+        [FieldAttr(nst: 96, ctr: 96)] public Vector4 _modelRightMS;
+        [FieldAttr(nst: 112, ctr: 112)] public hkMemory<hkbVariableInfo> _characterPropertyInfos;
+        [FieldAttr(nst: 128, ctr: 128)] public hkMemory<int> _numBonesPerLod;
+        [FieldAttr(nst: 144, ctr: 144)] public hkbVariableValueSet? _characterPropertyValues;
+        [FieldAttr(nst: 152, ctr: 152)] public hkbFootIkDriverInfo? _footIkDriverInfo;
+        [FieldAttr(nst: 160, ctr: 160)] public hkbHandIkDriverInfo? _handIkDriverInfo;
+        [FieldAttr(nst: 168, ctr: 168)] public hkReferencedObject? _aiControlDriverInfo;
+        [FieldAttr(nst: 176, ctr: 176)] public hkbCharacterStringData? _stringData;
+        [FieldAttr(nst: 184, ctr: 184)] public hkbMirroredSkeletonInfo? _mirroredSkeletonInfo;
+        [FieldAttr(nst: 192, ctr: 192)] public hkMemory<i16> _boneAttachmentBoneIndices;
+        [FieldAttr(nst: 208, ctr: 208)] public hkMemory<Matrix4x4> _boneAttachmentTransforms;
+        [FieldAttr(nst: 224, ctr: 224)] public float _scale;
+        [FieldAttr(nst: 228, ctr: 228)] public i16 _numHands;
+        [FieldAttr(nst: 230, ctr: 230)] public i16 _numFloatSlots;
     }
 }

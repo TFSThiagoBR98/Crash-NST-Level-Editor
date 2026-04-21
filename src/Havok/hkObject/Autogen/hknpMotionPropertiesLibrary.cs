@@ -2,14 +2,14 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(64)]
+    [ObjectAttr(nst: 64, ctr: 64)]
     public class hknpMotionPropertiesLibrary : hkReferencedObject
     {
         public override uint Hash => 0xc131fa71;
 
-        [FieldAttr(16)] public u32 _entryAddedSignal; // TYPE_POINTER, flags: SERIALIZE_IGNORED
-        [FieldAttr(24)] public u32 _entryModifiedSignal; // TYPE_POINTER, flags: SERIALIZE_IGNORED
-        [FieldAttr(32)] public u32 _entryRemovedSignal; // TYPE_POINTER, flags: SERIALIZE_IGNORED
-        [FieldAttr(40)] public hkFreeListArrayhknpMotionPropertieshknpMotionPropertiesId8hknpMotionPropertiesFreeListArrayOperations _entries; // TYPE_STRUCT, ctype: hkFreeListArrayhknpMotionPropertieshknpMotionPropertiesId8hknpMotionPropertiesFreeListArrayOperations
+        [FieldAttr(nst: 16, ctr: 16)] public uint _entryAddedSignal;
+        [FieldAttr(nst: 24, ctr: 24)] public uint _entryModifiedSignal;
+        [FieldAttr(nst: 32, ctr: 32)] public uint _entryRemovedSignal;
+        [FieldAttr(nst: 40, ctr: 40)] public uint _entries;
     }
 }

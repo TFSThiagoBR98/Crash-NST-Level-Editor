@@ -3,24 +3,24 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(96)]
+    [ObjectAttr(nst: 96, ctr: 96)]
     public class hkbHandIkDriverInfoHand : hkObject
     {
         public override uint Hash => 0x14dfe1dd;
 
-        [FieldAttr(0)] public Vector4 _elbowAxisLS; // TYPE_VECTOR4
-        [FieldAttr(16)] public Vector4 _backHandNormalLS; // TYPE_VECTOR4
-        [FieldAttr(32)] public Vector4 _handOffsetLS; // TYPE_VECTOR4
-        [FieldAttr(48)] public Quaternion _handOrienationOffsetLS; // TYPE_QUATERNION
-        [FieldAttr(64)] public float _maxElbowAngleDegrees; // TYPE_REAL
-        [FieldAttr(68)] public float _minElbowAngleDegrees; // TYPE_REAL
-        [FieldAttr(72)] public i16 _shoulderIndex; // TYPE_INT16
-        [FieldAttr(74)] public i16 _shoulderSiblingIndex; // TYPE_INT16
-        [FieldAttr(76)] public i16 _elbowIndex; // TYPE_INT16
-        [FieldAttr(78)] public i16 _elbowSiblingIndex; // TYPE_INT16
-        [FieldAttr(80)] public i16 _wristIndex; // TYPE_INT16
-        [FieldAttr(82)] public bool _enforceEndPosition; // TYPE_BOOL
-        [FieldAttr(83)] public bool _enforceEndRotation; // TYPE_BOOL
-        [FieldAttr(88)] public string _localFrameName; // TYPE_STRINGPTR
+        [FieldAttr(nst: 0, ctr: 0)] public Vector4 _elbowAxisLS;
+        [FieldAttr(nst: 16, ctr: 16)] public Vector4 _backHandNormalLS;
+        [FieldAttr(nst: 32, ctr: 32)] public Vector4 _handOffsetLS;
+        [FieldAttr(nst: 48, ctr: 48)] public Quaternion _handOrienationOffsetLS;
+        [FieldAttr(nst: 64, ctr: 64)] public float _maxElbowAngleDegrees;
+        [FieldAttr(nst: 68, ctr: 68)] public float _minElbowAngleDegrees;
+        [FieldAttr(nst: 72, ctr: 72)] public i16 _shoulderIndex;
+        [FieldAttr(nst: 74, ctr: 74)] public i16 _shoulderSiblingIndex;
+        [FieldAttr(nst: 76, ctr: 76)] public i16 _elbowIndex;
+        [FieldAttr(nst: 78, ctr: 78)] public i16 _elbowSiblingIndex;
+        [FieldAttr(nst: 80, ctr: 80)] public i16 _wristIndex;
+        [FieldAttr(nst: 82, ctr: 82)] public bool _enforceEndPosition;
+        [FieldAttr(nst: 83, ctr: 83)] public bool _enforceEndRotation;
+        [FieldAttr(nst: 88, ctr: 88)] public string _localFrameName;
     }
 }

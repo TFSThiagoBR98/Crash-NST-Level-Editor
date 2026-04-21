@@ -2,18 +2,18 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(136)]
+    [ObjectAttr(nst: 136, ctr: 136)]
     public class hkaSkeleton : hkReferencedObject
     {
         public override uint Hash => 0xfec1cedb;
 
-        [FieldAttr(16)] public string _name; // TYPE_STRINGPTR
-        [FieldAttr(24)] public hkMemory<i16> _parentIndices; // TYPE_ARRAY, subtype: TYPE_INT16
-        [FieldAttr(40)] public hkMemory<hkaBone> _bones; // TYPE_ARRAY, ctype: hkaBone, subtype: TYPE_STRUCT
-        [FieldAttr(56)] public hkMemory<Matrix3x4> _referencePose; // TYPE_ARRAY, subtype: TYPE_QSTRANSFORM
-        [FieldAttr(72)] public hkMemory<float> _referenceFloats; // TYPE_ARRAY, subtype: TYPE_REAL
-        [FieldAttr(88)] public hkMemory<string> _floatSlots; // TYPE_ARRAY, subtype: TYPE_STRINGPTR
-        [FieldAttr(104)] public hkMemory<hkaSkeletonLocalFrameOnBone> _localFrames; // TYPE_ARRAY, ctype: hkaSkeletonLocalFrameOnBone, subtype: TYPE_STRUCT
-        [FieldAttr(120)] public hkMemory<hkaSkeletonPartition> _partitions; // TYPE_ARRAY, ctype: hkaSkeletonPartition, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 16, ctr: 16)] public string? _name;
+        [FieldAttr(nst: 24, ctr: 24)] public hkMemory<i16> _parentIndices;
+        [FieldAttr(nst: 40, ctr: 40)] public hkMemory<hkaBone> _bones;
+        [FieldAttr(nst: 56, ctr: 56)] public hkMemory<Matrix3x4> _referencePose;
+        [FieldAttr(nst: 72, ctr: 72)] public hkMemory<float> _referenceFloats;
+        [FieldAttr(nst: 88, ctr: 88)] public hkMemory<string> _floatSlots;
+        [FieldAttr(nst: 104, ctr: 104)] public hkMemory<hkaSkeletonLocalFrameOnBone> _localFrames;
+        [FieldAttr(nst: 120, ctr: 120)] public hkMemory<hkaSkeletonPartition> _partitions;
     }
 }

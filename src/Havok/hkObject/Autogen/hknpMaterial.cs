@@ -2,32 +2,32 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(80)]
+    [ObjectAttr(nst: 80, ctr: 80)]
     public class hknpMaterial : hkObject
     {
         public override uint Hash => 0xb7c5f24e;
 
-        [FieldAttr(0)] public string _name; // TYPE_STRINGPTR
-        [FieldAttr(8)] public u32 _isExclusive; // TYPE_UINT32
-        [FieldAttr(12)] public i32 _flags; // TYPE_INT32
-        [FieldAttr(16)] public ETriggerType _triggerType; // TYPE_ENUM, etype: TriggerType, subtype: TYPE_UINT8
-        [FieldAttr(17)] public u8 _triggerManifoldTolerance; // TYPE_UINT8, (Inlined from type: hkUFloat8)
-        [FieldAttr(18)] public Half _dynamicFriction; // TYPE_HALF
-        [FieldAttr(20)] public Half _staticFriction; // TYPE_HALF
-        [FieldAttr(22)] public Half _restitution; // TYPE_HALF
-        [FieldAttr(24)] public ECombinePolicy _frictionCombinePolicy; // TYPE_ENUM, etype: CombinePolicy, subtype: TYPE_UINT8
-        [FieldAttr(25)] public ECombinePolicy _restitutionCombinePolicy; // TYPE_ENUM, etype: CombinePolicy, subtype: TYPE_UINT8
-        [FieldAttr(26)] public Half _weldingTolerance; // TYPE_HALF
-        [FieldAttr(28)] public float _maxContactImpulse; // TYPE_REAL
-        [FieldAttr(32)] public float _fractionOfClippedImpulseToApply; // TYPE_REAL
-        [FieldAttr(36)] public EMassChangerCategory _massChangerCategory; // TYPE_ENUM, etype: MassChangerCategory, subtype: TYPE_UINT8
-        [FieldAttr(38)] public Half _massChangerHeavyObjectFactor; // TYPE_HALF
-        [FieldAttr(40)] public Half _softContactForceFactor; // TYPE_HALF
-        [FieldAttr(42)] public Half _softContactDampFactor; // TYPE_HALF
-        [FieldAttr(44)] public u8 _softContactSeperationVelocity; // TYPE_UINT8, (Inlined from type: hkUFloat8)
-        [FieldAttr(48)] public hknpSurfaceVelocity _surfaceVelocity; // TYPE_POINTER, ctype: hknpSurfaceVelocity, subtype: TYPE_STRUCT
-        [FieldAttr(56)] public Half _disablingCollisionsBetweenCvxCvxDynamicObjectsDistance; // TYPE_HALF
-        [FieldAttr(64)] public u64 _userData; // TYPE_UINT64
-        [FieldAttr(72)] public bool _isShared; // TYPE_BOOL
+        [FieldAttr(nst: 0, ctr: 0)] public string? _name;
+        [FieldAttr(nst: 8, ctr: 8)] public bool _isExclusive;
+        [FieldAttr(nst: 12, ctr: 12)] public int _flags;
+        [FieldAttr(nst: 16, ctr: 16)] public ETriggerType _triggerType;
+        [FieldAttr(nst: 17, ctr: 17)] public u8 _triggerManifoldTolerance;
+        [FieldAttr(nst: 18, ctr: 18)] public Half _dynamicFriction;
+        [FieldAttr(nst: 20, ctr: 20)] public Half _staticFriction;
+        [FieldAttr(nst: 22, ctr: 22)] public Half _restitution;
+        [FieldAttr(nst: 24, ctr: 24)] public ECombinePolicy _frictionCombinePolicy;
+        [FieldAttr(nst: 25, ctr: 25)] public ECombinePolicy _restitutionCombinePolicy;
+        [FieldAttr(nst: 26, ctr: 26)] public Half _weldingTolerance;
+        [FieldAttr(nst: 28, ctr: 28)] public float _maxContactImpulse;
+        [FieldAttr(nst: 32, ctr: 32)] public float _fractionOfClippedImpulseToApply;
+        [FieldAttr(nst: 36, ctr: 36)] public EMassChangerCategory _massChangerCategory;
+        [FieldAttr(nst: 38, ctr: 38)] public Half _massChangerHeavyObjectFactor;
+        [FieldAttr(nst: 40, ctr: 40)] public Half _softContactForceFactor;
+        [FieldAttr(nst: 42, ctr: 42)] public Half _softContactDampFactor;
+        [FieldAttr(nst: 44, ctr: 44)] public u8 _softContactSeperationVelocity;
+        [FieldAttr(nst: 48, ctr: 48)] public hknpSurfaceVelocity? _surfaceVelocity;
+        [FieldAttr(nst: 56, ctr: 56)] public Half _disablingCollisionsBetweenCvxCvxDynamicObjectsDistance;
+        [FieldAttr(nst: 64, ctr: 64)] public u64 _userData;
+        [FieldAttr(nst: 72, ctr: 72)] public bool _isShared;
     }
 }

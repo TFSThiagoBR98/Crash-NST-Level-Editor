@@ -2,11 +2,11 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(144)]
+    [ObjectAttr(nst: 144, ctr: 144)]
     public class hkbReferencePoseGenerator : hkbGenerator
     {
         public override uint Hash => 0xbc1536ee;
 
-        [FieldAttr(136)] public u32 _skeleton; // TYPE_POINTER, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 136, ctr: 136)] public hkaSkeleton? _skeleton;
     }
 }

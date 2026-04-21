@@ -2,14 +2,14 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(40)]
+    [ObjectAttr(nst: 40, ctr: 40)]
     public class hknpSparseCompactMapunsignedshort : hkObject
     {
         public override uint Hash => 0x4558127c;
 
-        [FieldAttr(0)] public u32 _secondaryKeyMask; // TYPE_UINT32
-        [FieldAttr(4)] public u32 _sencondaryKeyBits; // TYPE_UINT32
-        [FieldAttr(8)] public hkMemory<u16> _primaryKeyToIndex; // TYPE_ARRAY, subtype: TYPE_UINT16
-        [FieldAttr(24)] public hkMemory<u16> _valueAndSecondaryKeys; // TYPE_ARRAY, subtype: TYPE_UINT16
+        [FieldAttr(nst: 0, ctr: 0)] public uint _secondaryKeyMask;
+        [FieldAttr(nst: 4, ctr: 4)] public uint _sencondaryKeyBits;
+        [FieldAttr(nst: 8, ctr: 8)] public hkMemory<u16> _primaryKeyToIndex;
+        [FieldAttr(nst: 24, ctr: 24)] public hkMemory<u16> _valueAndSecondaryKeys;
     }
 }

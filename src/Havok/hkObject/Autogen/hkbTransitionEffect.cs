@@ -2,16 +2,16 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(168)]
+    [ObjectAttr(nst: 168, ctr: 160)]
     public class hkbTransitionEffect : hkbGenerator
     {
         public override uint Hash => 0xeca9d564;
 
-        [FieldAttr(136)] public ESelfTransitionMode _selfTransitionMode; // TYPE_ENUM, etype: SelfTransitionMode, subtype: TYPE_INT8
-        [FieldAttr(137)] public EEventMode _eventMode; // TYPE_ENUM, etype: EventMode, subtype: TYPE_INT8
-        [FieldAttr(138)] public i8 _defaultEventMode; // TYPE_ENUM, subtype: TYPE_INT8, flags: SERIALIZE_IGNORED
-        [FieldAttr(144)] public u32 _patchedBindingInfo; // TYPE_POINTER, flags: SERIALIZE_IGNORED
-        [FieldAttr(152)] public u32 _fromGenerator; // TYPE_POINTER, flags: SERIALIZE_IGNORED
-        [FieldAttr(160)] public u32 _toGenerator; // TYPE_POINTER, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 136, ctr: 132)] public ESelfTransitionMode _selfTransitionMode;
+        [FieldAttr(nst: 137, ctr: 133)] public EEventMode _eventMode;
+        [FieldAttr(nst: 138, ctr: 134)] public EEventMode _defaultEventMode;
+        [FieldAttr(nst: 144, ctr: 136)] public hkReferencedObject? _patchedBindingInfo;
+        [FieldAttr(nst: 152, ctr: 144)] public hkbGenerator? _fromGenerator;
+        [FieldAttr(nst: 160, ctr: 152)] public hkbGenerator? _toGenerator;
     }
 }

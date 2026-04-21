@@ -3,19 +3,19 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(160)]
+    [ObjectAttr(nst: 160, ctr: 160)]
     public class hkbTwistModifier : hkbModifier
     {
         public override uint Hash => 0x98d623bc;
 
-        [FieldAttr(96)] public Vector4 _axisOfRotation; // TYPE_VECTOR4
-        [FieldAttr(112)] public float _twistAngle; // TYPE_REAL
-        [FieldAttr(116)] public i16 _startBoneIndex; // TYPE_INT16
-        [FieldAttr(118)] public i16 _endBoneIndex; // TYPE_INT16
-        [FieldAttr(120)] public ESetAngleMethod _setAngleMethod; // TYPE_ENUM, etype: SetAngleMethod, subtype: TYPE_INT8
-        [FieldAttr(121)] public ERotationAxisCoordinates _rotationAxisCoordinates; // TYPE_ENUM, etype: RotationAxisCoordinates, subtype: TYPE_INT8
-        [FieldAttr(122)] public bool _isAdditive; // TYPE_BOOL
-        [FieldAttr(128)] public hkMemory<u32> _boneChainIndices; // TYPE_ARRAY, flags: SERIALIZE_IGNORED
-        [FieldAttr(144)] public hkMemory<u32> _parentBoneIndices; // TYPE_ARRAY, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 96, ctr: 96)] public Vector4 _axisOfRotation;
+        [FieldAttr(nst: 112, ctr: 112)] public float _twistAngle;
+        [FieldAttr(nst: 116, ctr: 116)] public i16 _startBoneIndex;
+        [FieldAttr(nst: 118, ctr: 118)] public i16 _endBoneIndex;
+        [FieldAttr(nst: 120, ctr: 120)] public ESetAngleMethod _setAngleMethod;
+        [FieldAttr(nst: 121, ctr: 121)] public ERotationAxisCoordinates _rotationAxisCoordinates;
+        [FieldAttr(nst: 122, ctr: 122)] public bool _isAdditive;
+        [FieldAttr(nst: 128, ctr: 128)] public hkMemory<i16> _boneChainIndices;
+        [FieldAttr(nst: 144, ctr: 144)] public hkMemory<i16> _parentBoneIndices;
     }
 }

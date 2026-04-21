@@ -2,23 +2,23 @@ using Alchemy;
 
 namespace Havok
 {
-    [ObjectAttr(176)]
+    [ObjectAttr(nst: 176, ctr: 176)]
     public class hkaSplineCompressedAnimation : hkaAnimation
     {
         public override uint Hash => 0x8c3b5f7e;
 
-        [FieldAttr(56)] public i32 _numFrames; // TYPE_INT32
-        [FieldAttr(60)] public i32 _numBlocks; // TYPE_INT32
-        [FieldAttr(64)] public i32 _maxFramesPerBlock; // TYPE_INT32
-        [FieldAttr(68)] public i32 _maskAndQuantizationSize; // TYPE_INT32
-        [FieldAttr(72)] public float _blockDuration; // TYPE_REAL
-        [FieldAttr(76)] public float _blockInverseDuration; // TYPE_REAL
-        [FieldAttr(80)] public float _frameDuration; // TYPE_REAL
-        [FieldAttr(88)] public hkMemory<u32> _blockOffsets; // TYPE_ARRAY, subtype: TYPE_UINT32
-        [FieldAttr(104)] public hkMemory<u32> _floatBlockOffsets; // TYPE_ARRAY, subtype: TYPE_UINT32
-        [FieldAttr(120)] public hkMemory<u32> _transformOffsets; // TYPE_ARRAY, subtype: TYPE_UINT32
-        [FieldAttr(136)] public hkMemory<u32> _floatOffsets; // TYPE_ARRAY, subtype: TYPE_UINT32
-        [FieldAttr(152)] public hkMemory<u8> _data; // TYPE_ARRAY, subtype: TYPE_UINT8
-        [FieldAttr(168)] public i32 _endian; // TYPE_INT32
+        [FieldAttr(nst: 56, ctr: 56)] public int _numFrames;
+        [FieldAttr(nst: 60, ctr: 60)] public int _numBlocks;
+        [FieldAttr(nst: 64, ctr: 64)] public int _maxFramesPerBlock;
+        [FieldAttr(nst: 68, ctr: 68)] public int _maskAndQuantizationSize;
+        [FieldAttr(nst: 72, ctr: 72)] public float _blockDuration;
+        [FieldAttr(nst: 76, ctr: 76)] public float _blockInverseDuration;
+        [FieldAttr(nst: 80, ctr: 80)] public float _frameDuration;
+        [FieldAttr(nst: 88, ctr: 88)] public hkMemory<uint> _blockOffsets;
+        [FieldAttr(nst: 104, ctr: 104)] public hkMemory<uint> _floatBlockOffsets;
+        [FieldAttr(nst: 120, ctr: 120)] public hkMemory<uint> _transformOffsets;
+        [FieldAttr(nst: 136, ctr: 136)] public hkMemory<uint> _floatOffsets;
+        [FieldAttr(nst: 152, ctr: 152)] public hkMemory<u8> _data;
+        [FieldAttr(nst: 168, ctr: 168)] public int _endian;
     }
 }

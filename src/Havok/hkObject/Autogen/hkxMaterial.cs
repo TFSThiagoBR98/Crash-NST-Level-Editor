@@ -3,29 +3,29 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(224)]
+    [ObjectAttr(nst: 224, ctr: 224)]
     public class hkxMaterial : hkxAttributeHolder
     {
         public override uint Hash => 0x785ec362;
 
-        [FieldAttr(32)] public string _name; // TYPE_STRINGPTR
-        [FieldAttr(40)] public hkMemory<hkxMaterialTextureStage> _stages; // TYPE_ARRAY, ctype: hkxMaterialTextureStage, subtype: TYPE_STRUCT
-        [FieldAttr(64)] public Vector4 _diffuseColor; // TYPE_VECTOR4
-        [FieldAttr(80)] public Vector4 _ambientColor; // TYPE_VECTOR4
-        [FieldAttr(96)] public Vector4 _specularColor; // TYPE_VECTOR4
-        [FieldAttr(112)] public Vector4 _emissiveColor; // TYPE_VECTOR4
-        [FieldAttr(128)] public hkMemoryPtr<hkxMaterial> _subMaterials; // TYPE_ARRAY, ctype: hkxMaterial, subtype: TYPE_POINTER
-        [FieldAttr(144)] public hkReferencedObject _extraData; // TYPE_POINTER, ctype: hkReferencedObject, subtype: TYPE_STRUCT
-        [FieldAttr(152)] public float _uvMapScale_0; // TYPE_REAL, arrsize: 2
-        [FieldAttr(156)] public float _uvMapScale_1;
-        [FieldAttr(160)] public float _uvMapOffset_0; // TYPE_REAL, arrsize: 2
-        [FieldAttr(164)] public float _uvMapOffset_1;
-        [FieldAttr(168)] public float _uvMapRotation; // TYPE_REAL
-        [FieldAttr(172)] public EUVMappingAlgorithm _uvMapAlgorithm; // TYPE_ENUM, etype: UVMappingAlgorithm, subtype: TYPE_UINT32
-        [FieldAttr(176)] public float _specularMultiplier; // TYPE_REAL
-        [FieldAttr(180)] public float _specularExponent; // TYPE_REAL
-        [FieldAttr(184)] public ETransparency _transparency; // TYPE_ENUM, etype: Transparency, subtype: TYPE_UINT8
-        [FieldAttr(192)] public u64 _userData; // TYPE_ULONG
-        [FieldAttr(200)] public hkMemory<hkxMaterialProperty> _properties; // TYPE_ARRAY, ctype: hkxMaterialProperty, subtype: TYPE_STRUCT
+        [FieldAttr(nst: 32, ctr: 32)] public string? _name;
+        [FieldAttr(nst: 40, ctr: 40)] public hkMemory<hkxMaterialTextureStage> _stages;
+        [FieldAttr(nst: 64, ctr: 64)] public Vector4 _diffuseColor;
+        [FieldAttr(nst: 80, ctr: 80)] public Vector4 _ambientColor;
+        [FieldAttr(nst: 96, ctr: 96)] public Vector4 _specularColor;
+        [FieldAttr(nst: 112, ctr: 112)] public Vector4 _emissiveColor;
+        [FieldAttr(nst: 128, ctr: 128)] public hkMemory<hkxMaterial> _subMaterials;
+        [FieldAttr(nst: 144, ctr: 144)] public hkReferencedObject? _extraData;
+        [FieldAttr(nst: 152, ctr: 152)] public float _uvMapScale_0;
+        [FieldAttr(nst: 156, ctr: 156)] public float _uvMapScale_1;
+        [FieldAttr(nst: 160, ctr: 160)] public float _uvMapOffset_0;
+        [FieldAttr(nst: 164, ctr: 164)] public float _uvMapOffset_1;
+        [FieldAttr(nst: 168, ctr: 168)] public float _uvMapRotation;
+        [FieldAttr(nst: 172, ctr: 172)] public EUVMappingAlgorithm _uvMapAlgorithm;
+        [FieldAttr(nst: 176, ctr: 176)] public float _specularMultiplier;
+        [FieldAttr(nst: 180, ctr: 180)] public float _specularExponent;
+        [FieldAttr(nst: 184, ctr: 184)] public ETransparency _transparency;
+        [FieldAttr(nst: 192, ctr: 192)] public u64 _userData;
+        [FieldAttr(nst: 200, ctr: 200)] public hkMemory<hkxMaterialProperty> _properties;
     }
 }

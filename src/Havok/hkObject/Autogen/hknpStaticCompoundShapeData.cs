@@ -3,13 +3,13 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(64)]
+    [ObjectAttr(nst: 64, ctr: 64)]
     public class hknpStaticCompoundShapeData : hkReferencedObject
     {
         public override uint Hash => 0x4fd87fd9;
 
-        [FieldAttr(16)] public hkMemory<hkcdStaticTreeCodec3Axis6> _nodes; // TYPE_ARRAY, ctype: hkcdStaticTreeCodec3Axis6, subtype: TYPE_STRUCT
-        [FieldAttr(32)] public Vector4 _min; // TYPE_VECTOR4, (Inlined from type: hkAabb)
-        [FieldAttr(48)] public Vector4 _max; // TYPE_VECTOR4, (Inlined from type: hkAabb)
+        [FieldAttr(nst: 16, ctr: 16)] public hkMemory<hkcdStaticTreeCodec3Axis6> _nodes;
+        [FieldAttr(nst: 32, ctr: 32)] public Vector4 _min;
+        [FieldAttr(nst: 48, ctr: 48)] public Vector4 _max;
     }
 }

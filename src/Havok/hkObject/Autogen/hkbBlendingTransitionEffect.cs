@@ -3,29 +3,29 @@ using System.Numerics;
 
 namespace Havok
 {
-    [ObjectAttr(320)]
+    [ObjectAttr(nst: 320, ctr: 304)]
     public class hkbBlendingTransitionEffect : hkbTransitionEffect
     {
         public override uint Hash => 0x14e54c5c;
 
-        [FieldAttr(168)] public float _duration; // TYPE_REAL
-        [FieldAttr(172)] public float _toGeneratorStartTimeFraction; // TYPE_REAL
-        [FieldAttr(176)] public u16 _flags; // TYPE_FLAGS, etype: FlagBits, subtype: TYPE_UINT16
-        [FieldAttr(178)] public EEndMode _endMode; // TYPE_ENUM, etype: EndMode, subtype: TYPE_INT8
-        [FieldAttr(179)] public EBlendCurve _blendCurve; // TYPE_ENUM, etype: BlendCurve, subtype: TYPE_INT8
-        [FieldAttr(180)] public i16 _alignmentBone; // TYPE_INT16
-        [FieldAttr(192)] public Vector4 _fromPos; // TYPE_VECTOR4, flags: SERIALIZE_IGNORED
-        [FieldAttr(208)] public Quaternion _fromRot; // TYPE_QUATERNION, flags: SERIALIZE_IGNORED
-        [FieldAttr(224)] public Vector4 _toPos; // TYPE_VECTOR4, flags: SERIALIZE_IGNORED
-        [FieldAttr(240)] public Quaternion _toRot; // TYPE_QUATERNION, flags: SERIALIZE_IGNORED
-        [FieldAttr(256)] public Vector4 _lastPos; // TYPE_VECTOR4, flags: SERIALIZE_IGNORED
-        [FieldAttr(272)] public Quaternion _lastRot; // TYPE_QUATERNION, flags: SERIALIZE_IGNORED
-        [FieldAttr(288)] public hkMemory<u32> _characterPoseAtBeginningOfTransition; // TYPE_ARRAY, flags: SERIALIZE_IGNORED
-        [FieldAttr(304)] public float _timeRemaining; // TYPE_REAL, flags: SERIALIZE_IGNORED
-        [FieldAttr(308)] public float _timeInTransition; // TYPE_REAL, flags: SERIALIZE_IGNORED
-        [FieldAttr(312)] public i8 _toGeneratorSelfTranstitionMode; // TYPE_ENUM, subtype: TYPE_INT8, flags: SERIALIZE_IGNORED
-        [FieldAttr(313)] public bool _initializeCharacterPose; // TYPE_BOOL, flags: SERIALIZE_IGNORED
-        [FieldAttr(314)] public bool _alignThisFrame; // TYPE_BOOL, flags: SERIALIZE_IGNORED
-        [FieldAttr(315)] public bool _alignmentFinished; // TYPE_BOOL, flags: SERIALIZE_IGNORED
+        [FieldAttr(nst: 168, ctr: 160)] public float _duration;
+        [FieldAttr(nst: 172, ctr: 164)] public float _toGeneratorStartTimeFraction;
+        [FieldAttr(nst: 176, ctr: 168)] public EFlagBits _flags;
+        [FieldAttr(nst: 178, ctr: 170)] public EEndMode _endMode;
+        [FieldAttr(nst: 179, ctr: 171)] public EBlendCurve _blendCurve;
+        [FieldAttr(nst: 180, ctr: 172)] public i16 _alignmentBone;
+        [FieldAttr(nst: 192, ctr: 176)] public Vector4 _fromPos;
+        [FieldAttr(nst: 208, ctr: 192)] public Vector4 _fromRot;
+        [FieldAttr(nst: 224, ctr: 208)] public Vector4 _toPos;
+        [FieldAttr(nst: 240, ctr: 224)] public Vector4 _toRot;
+        [FieldAttr(nst: 256, ctr: 240)] public Vector4 _lastPos;
+        [FieldAttr(nst: 272, ctr: 256)] public Vector4 _lastRot;
+        [FieldAttr(nst: 288, ctr: 272)] public hkMemory<Matrix3x4> _characterPoseAtBeginningOfTransition;
+        [FieldAttr(nst: 304, ctr: 288)] public float _timeRemaining;
+        [FieldAttr(nst: 308, ctr: 292)] public float _timeInTransition;
+        [FieldAttr(nst: 312, ctr: 296)] public ESelfTransitionMode _toGeneratorSelfTranstitionMode;
+        [FieldAttr(nst: 313, ctr: 297)] public bool _initializeCharacterPose;
+        [FieldAttr(nst: 314, ctr: 298)] public bool _alignThisFrame;
+        [FieldAttr(nst: 315, ctr: 299)] public bool _alignmentFinished;
     }
 }
