@@ -34,7 +34,7 @@ namespace Alchemy
             public int uncompressedSize;
         }
 
-        public GameVersion GameVersion { get; set; }
+        public GameVersion GameVersion { get; private set; }
 
         private string _fullPath;
         private string _path;
@@ -160,6 +160,16 @@ namespace Alchemy
             {
                 _fullPath = GameVersion.GetRootPath(newPath);
             }
+        }
+        
+        /// <summary>
+        /// Change the file's game version and update its full path accordingly
+        /// </summary>
+        /// <param name="version"></param>
+        public void SetGameVersion(GameVersion version)
+        {
+            GameVersion = version;
+            _fullPath = version.GetRootPath(_path);
         }
 
         /// <summary>

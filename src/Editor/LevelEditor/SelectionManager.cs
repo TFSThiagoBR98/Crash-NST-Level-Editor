@@ -820,6 +820,14 @@ namespace NST
                     {
                         clone.Object._bitfield._isArchetype = false;
                     }
+
+                    if (_copyExplorer.Archive.GameVersion == GameVersion.CTR && _explorer.Archive.GameVersion == GameVersion.NST)
+                    {
+                        if (clone.Object.TryGetComponent(out CModelComponentData? model))
+                        {
+                            model._distanceCullImportance = EDistanceCullImportance.kMedium;
+                        }
+                    }
                 }
 
                 // Register new collisions

@@ -65,12 +65,10 @@ namespace Alchemy
         /// <summary>
         /// Uncompress the image and return the pixel data as a RGBA byte array
         /// </summary>
-        public static byte[] GetPixels(this igImage2 image)
+        public static byte[] GetPixels(this igImage2 image, bool decode = true)
         {
             if (!image.HasPixels())
-            {
                 throw new Exception($"{image} has no texture data!");
-            }
 
             string format = image._format?.Reference?.objectName 
                             ?? throw new Exception($"_format property is not set for {image}!");
@@ -83,7 +81,6 @@ namespace Alchemy
             CompressionFormat compressionFormat = StringToCompressionFormat(format);
 
             byte[] data = image._data.ToArray();
-            byte[] outPixels = new byte[image._width * image._height * 4];
 
             try
             {
@@ -101,6 +98,13 @@ namespace Alchemy
             {
                 Console.WriteLine(e);
             }
+
+            if (!decode)
+            {
+                return data;
+            }
+
+            byte[] outPixels = new byte[image._width * image._height * 4];
 
             new BcDecoder()
                 .DecodeRawToImageRgba32(data, image._width, image._height, compressionFormat)

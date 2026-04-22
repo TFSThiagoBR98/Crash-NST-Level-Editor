@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0-windows</TargetFramework>
     <RootNamespace>NST</RootNamespace>
-    <AssemblyTitle>Crash NST Maker 1.31.1</AssemblyTitle>
+    <AssemblyTitle>Crash NST Maker 1.32</AssemblyTitle>
     <AssemblyDescription>Level editor for Crash NST / CTR:NF</AssemblyDescription>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseWindowsForms>true</UseWindowsForms>
@@ -38,6 +38,7 @@
       <EmbeddedResource Include="assets\icomoon.ttf" />
       <EmbeddedResource Include="assets\namespace_infos.metadata" />
       <EmbeddedResource Include="assets\L332_CollisionTemplate.pak" />
+      <EmbeddedResource Include="assets\platform_data.json" />
   </ItemGroup>
 
 </Project>
