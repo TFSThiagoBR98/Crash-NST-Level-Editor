@@ -363,6 +363,8 @@ namespace NST
             // _RenderExternalReferences(renderer);
             ImGui.EndChild();
 
+            RenderSpecialOptions(renderer);
+
             // Object properties table
 
             ImGui.BeginChild("ObjectFields" + _uuid);
@@ -370,6 +372,30 @@ namespace NST
             renderer.RenderObject(Object);
 
             ImGui.EndChild();
+        }
+
+        private void RenderSpecialOptions(IgzRenderer renderer)
+        {
+            if (Object is CModelComponentData modelComponent && !string.IsNullOrEmpty(modelComponent._fileName))
+            {
+                ImGui.Spacing();
+                ImGui.SetNextItemWidth(-1);
+                if (ImGui.Button("Open model file", new Vector2(-1, 0)))
+                {
+                    string modelName = NamespaceUtils.GetFileName(modelComponent._fileName, false) + ".igz";
+                    IgArchiveFile? modelFile = renderer.ArchiveRenderer.Archive.FindFile(modelName);
+                    IgArchiveTreeNode? fileNode = modelFile == null ? null : renderer.ArchiveRenderer.TreeView.FindNode(modelFile);
+                    if (fileNode != null)
+                    {
+                        renderer.ArchiveRenderer.FocusNode(fileNode, lastRenderer: renderer);
+                    }
+                    else
+                    {
+                        ModalRenderer.ShowMessageModal("Error", "Model file not found.");
+                    }
+                }
+                ImGui.Spacing();
+            }
         }
 
         /// <summary>

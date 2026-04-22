@@ -13,6 +13,7 @@ namespace NST
         public Type? type; // Material type
         public NamedReference? materialHandle; // igFxMaterial reference
         public NamedReference? diffuseTexture = null; // igImage2 reference
+        public NamedReference? effectHandle = null; // igGraphicsMaterial shader reference
         public THREE.Texture? texture = null; // GPU diffuse texture
 
         public string shaderName = "";
@@ -130,16 +131,18 @@ namespace NST
                 minFilter      = fx._customMaterialBitfield2._minificationFilter;
                 magFilter      = fx._customMaterialBitfield2._magnificationFilter;
                 drawType       = fx._graphicsMaterial?._materialBitField._drawType ?? EigDrawType.kDrawTypeOpaque;
+                effectHandle   = fx._effectHandle.Reference;
                 shaderName     = fx._fxFilename ?? "";
                 color          = fx.FindColor();
             }
             else if (material is igGraphicsMaterial gx)
             {
-                alphaTest  = gx._materialBitField._drawType == EigDrawType.kDrawTypeAlphaTest;
-                blending   = gx._materialBitField._drawType == EigDrawType.kDrawTypeTransparent || alphaTest;
-                drawType   = gx._materialBitField._drawType;
-                shaderName = gx._fxMaterialMetaName ?? "";
-                color      = gx.FindColor();
+                alphaTest    = gx._materialBitField._drawType == EigDrawType.kDrawTypeAlphaTest;
+                blending     = gx._materialBitField._drawType == EigDrawType.kDrawTypeTransparent || alphaTest;
+                drawType     = gx._materialBitField._drawType;
+                effectHandle = gx._effectHandle.Reference;
+                shaderName   = gx._fxMaterialMetaName ?? "";
+                color        = gx.FindColor();
             }
             else
             {
@@ -384,6 +387,11 @@ namespace NST
                 ImGui.Text($"> Diffuse:");
                 ImGui.SameLine();
                 ImGui.TextColored(MathUtils.UIntToVector4Numerics(0xffff90f4), diffuseTexture.namespaceName);
+            }
+
+            if (effectHandle != null)
+            {
+                ImGui.BulletText($"Shader: {effectHandle}");
             }
 
             if (alphaTest && alphaRef != 0.5f)

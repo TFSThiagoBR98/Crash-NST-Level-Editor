@@ -93,7 +93,7 @@ namespace NST
         private bool _clickedInsideScene = false;
         private bool _shouldOpenContextMenu = false;
         private bool _refreshSelectionOnMouseUp = false;
-        private static bool _clearMemoryOnExit = false;
+        private static int _maxTextureSize = 512;
 
         public bool CanUseBoxSelection => !_gizmos.dragging && _clickedInsideScene && IsWindowFocused;
 
@@ -176,7 +176,7 @@ namespace NST
         {
             InitScene();
 
-            _clearMemoryOnExit = LocalStorage.Get("clear_memory_on_exit", false);
+            _maxTextureSize = LocalStorage.Get("max_texture_size",  512);
 
             KeyDown   += (_, e) => _isDragging = _clickedInsideScene;
             MouseMove += (_, e) => 
@@ -207,7 +207,7 @@ namespace NST
                     }
                     else
                     {
-                        _shouldOpenContextMenu = true;
+                        _shouldOpenContextMenu = Archive.GameVersion == GameVersion.NST;
                         _fpsControls?.ResetMousePos();
                     }
                 }
@@ -524,11 +524,7 @@ namespace NST
 
                 if (image != null)
                 {
-                    byte[] pixels = image.GetPixels();
-
-                    SKBitmap bitmap = new SKBitmap(image._width, image._height, SKColorType.Rgba8888, SKAlphaType.Unpremul);
-                    Marshal.Copy(pixels, 0, bitmap.GetPixels(), pixels.Length);
-
+                    SKBitmap bitmap = image.CreateScaledBitmap(_maxTextureSize);
                     THREE.Texture texture = new THREE.Texture(bitmap) { NeedsUpdate = true };
 
                     foreach (NSTMaterial mat in _textureToMaterials[textureRef])
@@ -1233,16 +1229,19 @@ namespace NST
 
                 ImGui.PushItemWidth(-1);
 
-                ImGuiUtils.Prefix("Free memory on close:");
-                if (ImGui.Checkbox("##clearMemory", ref _clearMemoryOnExit))
+                int logMaxTexSize = (int)Math.Log2(_maxTextureSize) - 4;
+                ImGuiUtils.Prefix("Max texture res.");
+                ImGui.TextDisabled("(?)");
+                ImGui.SameLine();
+                ImGui.SetItemTooltip("Lower values decrease memory usage.\nRestart the editor for the change to take effect.");
+                if (ImGui.SliderInt("##maxTexSize", ref logMaxTexSize, 0, 7, logMaxTexSize <= 0 ? "potato" : _maxTextureSize.ToString()))
                 {
-                    LocalStorage.Set("clear_memory_on_exit", _clearMemoryOnExit);
+                    _maxTextureSize = logMaxTexSize <= 0 ? 8 : (int)Math.Pow(2, logMaxTexSize + 4);
+                    LocalStorage.Set("max_texture_size", _maxTextureSize);
                 }
 
-                ImGuiUtils.ColoredSeparator("Render settings", editorColor);
-
-                ImGuiUtils.Prefix("Render distance:");
-                if (ImGui.SliderFloat("##renderDistance", ref _camera.Far, 4000, 200000, $"%.0f"))
+                ImGuiUtils.Prefix("Render distance");
+                if (ImGui.SliderFloat("##renderDistance", ref _camera.Far, 4000, 400000, $"%.0f"))
                 {
                     LocalStorage.Set("camera_far", _camera.Far);
                     _scene.Fog.Far = _camera.Far;
@@ -1254,8 +1253,7 @@ namespace NST
                 //     _camera.UpdateProjectionMatrix();
                 // }
 
-                ImGuiUtils.Prefix("Debug mode:");
-                if (ImGui.Combo("##debugMode", ref _debugMode, _debugModes, _debugModes.Length))
+                ImGuiUtils.Prefix("Debug mode");
                 {
                     _debugMode = _debugMode % _debugModes.Length;
                     _gizmos.Visible = false;

@@ -28,6 +28,7 @@ namespace NST
         private bool _rebuildPackageFile = true;
         private bool _hasPackageFile = false;
 
+        public IgArchiveTreeView TreeView => _treeView;
         public string GetWindowName() => (string.IsNullOrEmpty(Archive.GetName()) ? "New Archive" : Archive.GetName()) + "###" + _uuid;
         public bool IncludeInPackageFile(IgArchiveFile file) => !_hasPackageFile || _includeInPackageFile.Contains(file);
 
@@ -618,10 +619,13 @@ namespace NST
                 igzRenderer?.TreeView.SelectedNode.OnFocus(igzRenderer); // Re-focus to update audio player
             }
 
-            if (reference != null && igzRenderer != null)
+            if (igzRenderer != null)
             {
                 // Focus igz object node
-                igzRenderer.TreeView.SelectNode(reference);
+                if (reference != null)
+                {
+                    igzRenderer.TreeView.SelectNode(reference);
+                }
 
                 // Setup back button
                 if (igzRenderer != lastRenderer && lastRenderer != null) 

@@ -1,8 +1,10 @@
 using NST;
+using SkiaSharp;
 using BCnEncoder.Decoder;
 using BCnEncoder.Encoder;
 using BCnEncoder.ImageSharp;
 using BCnEncoder.Shared;
+using System.Runtime.InteropServices;
 
 namespace Alchemy
 {
@@ -25,6 +27,40 @@ namespace Alchemy
         /// Check if the image has texture data
         /// </summary>
         public static bool HasPixels(this igImage2 image) => image._data.IsActive() && image._data.Count > 0;
+
+        public static SKBitmap CreateScaledBitmap(this igImage2 image, int maxSize)
+        {
+            byte[] rgbaData = image.GetPixels();
+
+            var info = new SKImageInfo(image._width, image._height, SKColorType.Rgba8888, SKAlphaType.Unpremul);
+            var bitmap = new SKBitmap(info);
+
+            Marshal.Copy(rgbaData, 0, bitmap.GetPixels(), rgbaData.Length);
+
+            int longest = Math.Max(image._width, image._height);
+            if (longest <= maxSize) return bitmap; // No resize needed
+
+            float scale = (float)maxSize / longest;
+            int width = (int)(image._width * scale);
+            int height = (int)(image._height * scale);
+
+            var resizedInfo = new SKImageInfo(width, height, info.ColorType, info.AlphaType);
+            var resizedBitmap = new SKBitmap(resizedInfo);
+
+            using (var canvas = new SKCanvas(resizedBitmap))
+            {
+                canvas.Clear(SKColors.Transparent);
+
+                var destRect = new SKRect(0, 0, width, height);
+                canvas.DrawBitmap(bitmap, destRect, new SKPaint
+                {
+                    FilterQuality = SKFilterQuality.High
+                });
+            }
+
+            bitmap.Dispose();
+            return resizedBitmap;
+        }
 
         /// <summary>
         /// Uncompress the image and return the pixel data as a RGBA byte array

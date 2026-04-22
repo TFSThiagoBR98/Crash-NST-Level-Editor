@@ -141,7 +141,13 @@ namespace NST
                         if (ImGui.MenuItem(displayName)) TryAddObject(() => AddCrate(objectName, explorer));
                     }
 
-                    if (ImGui.MenuItem("Nitro (not moving)")) TryAddObject(() => AddGeneric("L220_BeeHaving_Crates", "Crate_Nitro_Flying", "Crates", explorer));
+                    if (ImGui.MenuItem("Nitro (not moving)")) TryAddObject(() => AddGeneric("L220_BeeHaving_Crates", "Crate_Nitro_Flying", "Crates", explorer, (objects) =>
+                    {
+                        if (objects.FirstOrDefault() is NSTEntity e && e.Object.TryGetComponent(out common_Crate_LevelCountData? levelCount))
+                        {
+                            levelCount._Bool = false; // disable bonus crate
+                        }
+                    }));
                     if (ImGui.MenuItem("Fake Nitro")) TryAddObject(() => AddFakeNitro(explorer));
                     if (ImGui.MenuItem("Big TNT")) TryAddObject(() => AddBigTNTCrate(explorer));
 

@@ -869,7 +869,7 @@ namespace NST
                 if (manager.Entity.Object._entityData is CGameEntityData entityData && entityData._tags != null)
                 {
                     entityData._tags.Clear();
-                    // entityData._tags.Add(new igObject() { Reference = new NamedReference("EntityTags", "Teleporter_" + type)}, true);
+                    entityData._tags.Add(new CEntityTag() { Reference = new NamedReference("EntityTags", "Teleporter_" + type)}, true);
                     manager.SetUpdated(entityData._tags);
                 }
             }
