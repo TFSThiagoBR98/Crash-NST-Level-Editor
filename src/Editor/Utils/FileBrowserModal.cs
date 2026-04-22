@@ -196,6 +196,8 @@ namespace NST
             ImGui.TableSetupColumn("Size", ImGuiTableColumnFlags.WidthFixed, 75);
             ImGui.TableHeadersRow();
 
+            string? pendingNavigate = null;
+
             foreach (var entry in _entries)
             {
                 ImGui.TableNextRow();
@@ -210,7 +212,13 @@ namespace NST
                     new Vector2(0, 0));
 
                 if (clicked)
-                    HandleEntryClick(entry);
+                {
+                    bool isDoubleClick = ImGui.IsMouseDoubleClicked(ImGuiMouseButton.Left);
+                    if (entry.IsDirectory && isDoubleClick)
+                        pendingNavigate = entry.FullPath;
+                    else
+                        HandleEntryClick(entry);
+                }
 
                 ImGui.TableSetColumnIndex(1);
                 if (!entry.IsDirectory)
@@ -218,6 +226,9 @@ namespace NST
             }
 
             ImGui.EndTable();
+
+            if (pendingNavigate != null)
+                NavigateTo(pendingNavigate);
         }
 
         private void RenderFooter()
